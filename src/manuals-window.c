@@ -89,28 +89,28 @@ set_mode (ManualsWindow *self,
     {
       gtk_stack_set_visible_child_name (self->stack, "empty");
       gtk_stack_set_visible_child_name (self->omni_stack, "search");
-      adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_FLAT);
+      //adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_FLAT);
       gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
     }
   else if (g_str_equal (mode, MODE_SEARCH))
     {
       gtk_stack_set_visible_child_name (self->stack, "search");
       gtk_stack_set_visible_child_name (self->omni_stack, "search");
-      adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_FLAT);
+      //adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_FLAT);
       gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
     }
   else if (g_str_equal (mode, MODE_LISTING))
     {
       gtk_stack_set_visible_child_name (self->stack, "search");
       gtk_stack_set_visible_child_name (self->omni_stack, "browse");
-      adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_FLAT);
+      //adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_FLAT);
       gtk_widget_grab_focus (GTK_WIDGET (self->search_view));
     }
   else if (g_str_equal (mode, MODE_TABS))
     {
       gtk_stack_set_visible_child_name (self->stack, "tabs");
       gtk_stack_set_visible_child_name (self->omni_stack, "browse");
-      adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_RAISED);
+      //adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_RAISED);
       gtk_widget_grab_focus (GTK_WIDGET (self->tab_view));
     }
 }
