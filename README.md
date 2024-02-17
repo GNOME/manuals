@@ -52,3 +52,5 @@ purge the existing indexed contents and re-index that specific documentation.
 ![Navigate](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/navigate.png)
 
 ![Browse SDK](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/browse-sdk.png)
+
+![Dark](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/dark.png)
