@@ -166,7 +166,7 @@ manuals_tab_decide_policy_fiber (gpointer user_data)
     }
 
   if ((resource = dex_await_object (manuals_heading_find_by_uri (repository, uri), NULL)) ||
-      (resource == dex_await_object (manuals_keyword_find_by_uri (repository, uri), NULL)))
+      (resource = dex_await_object (manuals_keyword_find_by_uri (repository, uri), NULL)))
     {
       g_autoptr(ManualsNavigatable) navigatable = NULL;
       ManualsTab *tab = manuals_window_get_visible_tab (window);
