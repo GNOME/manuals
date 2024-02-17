@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/gnome/Manuals">
+    <file preprocess="xml-stripblanks">manuals-path-bar.ui</file>
+    <file preprocess="xml-stripblanks">manuals-path-button.ui</file>
+    <file preprocess="xml-stripblanks">manuals-search-entry.ui</file>
+    <file preprocess="xml-stripblanks">manuals-search-view.ui</file>
+    <file preprocess="xml-stripblanks">manuals-sidebar.ui</file>
+    <file preprocess="xml-stripblanks">manuals-tab.ui</file>
+    <file preprocess="xml-stripblanks">manuals-window.ui</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/browse-documentation-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/funnel-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-class-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-constant-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-enum-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-function-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-macro-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-signal-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-struct-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/library-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/org.gnome.Sdk-symbolic.svg</file>
+    <file>style.css</file>
+  </gresource>
+</gresources>

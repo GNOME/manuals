@@ -1,0 +1,94 @@
+/*
+ * manuals-version.h.in
+ *
+ * Copyright 2024 Christian Hergert <chergert@redhat.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+#pragma once
+
+/**
+ * SECTION:manuals-version
+ * @title: Version Checking
+ * @short_description: Conditionally include code based on Drafting version
+ *
+ * This module provides various macros that may be used to build code based
+ * on the version of Drafting at build time.
+ */
+
+/**
+ * MANUALS_MAJOR_VERSION:
+ *
+ * Drafting major version component (e.g. 1 if %MANUALS_VERSION is 1.2.3)
+ */
+#define MANUALS_MAJOR_VERSION (@ABI_MAJOR@)
+
+/**
+ * MANUALS_MINOR_VERSION:
+ *
+ * Drafting minor version component (e.g. 2 if %MANUALS_VERSION is 1.2.3)
+ */
+#define MANUALS_MINOR_VERSION (@ABI_MINOR@)
+
+/**
+ * MANUALS_MICRO_VERSION:
+ *
+ * Drafting micro version component (e.g. 3 if %MANUALS_VERSION is 1.2.3)
+ */
+#define MANUALS_MICRO_VERSION (@ABI_MICRO@)
+
+/**
+ * MANUALS_VERSION
+ *
+ * Drafting version.
+ */
+#define MANUALS_VERSION (@VERSION@)
+
+/**
+ * MANUALS_VERSION_S:
+ *
+ * Drafting version, encoded as a string, useful for printing and
+ * concatenation.
+ */
+#define MANUALS_VERSION_S "@VERSION@"
+
+#define MANUALS_ENCODE_VERSION(major,minor,micro) \
+        ((major) << 24 | (minor) << 16 | (micro) << 8)
+
+/**
+ * MANUALS_VERSION_HEX:
+ *
+ * Drafting version, encoded as an hexadecimal number, useful for
+ * integer comparisons.
+ */
+#define MANUALS_VERSION_HEX \
+        (MANUALS_ENCODE_VERSION (MANUALS_MAJOR_VERSION, MANUALS_MINOR_VERSION, MANUALS_MICRO_VERSION))
+
+/**
+ * MANUALS_CHECK_VERSION:
+ * @major: required major version
+ * @minor: required minor version
+ * @micro: required micro version
+ *
+ * Compile-time version checking. Evaluates to %TRUE if the version
+ * of Drafting is greater than the required one.
+ */
+#define MANUALS_CHECK_VERSION(major,minor,micro)                                  \
+        (MANUALS_MAJOR_VERSION > (major) ||                                       \
+         (MANUALS_MAJOR_VERSION == (major) && MANUALS_MINOR_VERSION > (minor)) || \
+         (MANUALS_MAJOR_VERSION == (major) && MANUALS_MINOR_VERSION == (minor) && \
+          MANUALS_MICRO_VERSION >= (micro)))

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="ManualsTab" parent="GtkWidget">
+    <child>
+      <object class="WebKitWebView" id="web_view">
+      </object>
+    </child>
+  </template>
+</interface>

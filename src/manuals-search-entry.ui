@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="ManualsSearchEntry" parent="GtkWidget">
+    <property name="focusable">false</property>
+    <child>
+      <object class="GtkShortcutController">
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;ctrl&gt;Return</property>
+            <property name="action">action(search.activate-first)</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">Down</property>
+            <property name="action">action(search.move-down)</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">edit-find-symbolic</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkText" id="text">
+            <property name="hexpand">true</property>
+            <signal name="activate" handler="manuals_search_entry_text_activate_cb" swapped="true"/>
+            <signal name="changed" handler="manuals_search_entry_text_changed_cb" swapped="true"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="count_label">
+            <style>
+              <class name="caption"/>
+              <class name="dim-label"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
