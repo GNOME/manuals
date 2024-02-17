@@ -43,3 +43,12 @@ purge the existing indexed contents and re-index that specific documentation.
  * Sphinx documentation format used by Builder and GNOME HIG
  * Indexing online-based documentation
 
+## Screenshots
+
+![Browse](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/browse.png)
+
+![Search](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/search.png)
+
+![Navigate](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/navigate.png)
+
+![Browse SDK](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/browse-sdk.png)
