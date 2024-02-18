@@ -39,6 +39,18 @@
             <property name="action">action(win.toggle-overview)</property>
           </object>
         </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;alt&gt;Left</property>
+            <property name="action">action(tab.go-back)</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;alt&gt;Right</property>
+            <property name="action">action(tab.go-forward)</property>
+          </object>
+        </child>
       </object>
     </child>
     <property name="content">
