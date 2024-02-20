@@ -314,6 +314,9 @@ manuals_window_tab_close_action (GtkWidget  *widget,
   if ((tab = manuals_window_get_visible_tab (self)) &&
       (page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (tab))))
     adw_tab_view_close_page (self->tab_view, page);
+
+  if (NULL == manuals_window_get_visible_tab (self))
+    gtk_window_destroy (GTK_WINDOW (self));
 }
 
 static AdwTabPage *
