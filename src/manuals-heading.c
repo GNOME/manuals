@@ -21,8 +21,11 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "manuals-book.h"
 #include "manuals-heading.h"
+#include "manuals-navigatable.h"
 #include "manuals-repository.h"
 
 struct _ManualsHeading
@@ -402,4 +405,114 @@ manuals_heading_find_by_uri (ManualsRepository *repository,
   filter = gom_filter_new_eq (MANUALS_TYPE_HEADING, "uri", &value);
 
   return manuals_repository_find_one (repository, MANUALS_TYPE_HEADING, filter);
+}
+
+static DexFuture *
+manuals_heading_list_alternates_fiber (gpointer data)
+{
+  ManualsHeading *self = data;
+  g_autoptr(ManualsRepository) repository = NULL;
+  g_autoptr(GomFilter) books_filter = NULL;
+  g_autoptr(GomFilter) heading_filter = NULL;
+  g_autoptr(GListStore) store = NULL;
+  g_autoptr(GListModel) books = NULL;
+  g_autoptr(ManualsBook) book = NULL;
+  g_auto(GValue) title_value = G_VALUE_INIT;
+  g_auto(GValue) heading_value = G_VALUE_INIT;
+  guint n_books;
+
+  g_assert (MANUALS_IS_HEADING (self));
+
+  store = g_list_store_new (MANUALS_TYPE_NAVIGATABLE);
+  g_object_get (self, "repository", &repository, NULL);
+  if (repository == NULL)
+    goto failure;
+
+  /* First find the book for this heading */
+  if (!(book = dex_await_object (manuals_heading_find_book (self), NULL)))
+    goto failure;
+
+  /* Now create filter where book title is same */
+  g_value_init (&title_value, G_TYPE_STRING);
+  g_object_get_property (G_OBJECT (book), "title", &title_value);
+  books_filter = gom_filter_new_eq (MANUALS_TYPE_BOOK, "title", &title_value);
+
+  /* Now find other books that have the same title */
+  if (!(books = dex_await_object (manuals_repository_list (repository,
+                                                           MANUALS_TYPE_BOOK,
+                                                           books_filter),
+                                  NULL)))
+    goto failure;
+
+  /* Look for matching headings of each book */
+  g_value_init (&heading_value, G_TYPE_STRING);
+  g_value_set_string (&heading_value, self->title);
+  heading_filter = gom_filter_new_eq (MANUALS_TYPE_HEADING, "title", &heading_value);
+  n_books = g_list_model_get_n_items (books);
+  for (guint i = 0; i < n_books; i++)
+    {
+      g_autoptr(ManualsBook) this_book = g_list_model_get_item (books, i);
+      g_autoptr(ManualsNavigatable) navigatable = NULL;
+      g_autoptr(ManualsHeading) match = NULL;
+      g_autoptr(ManualsSdk) sdk = NULL;
+      g_autoptr(GomFilter) book_id_filter = NULL;
+      g_autoptr(GomFilter) filter = NULL;
+      g_autoptr(GomFilter) sdk_filter = NULL;
+      g_auto(GValue) book_id_value = G_VALUE_INIT;
+      g_auto(GValue) sdk_id_value = G_VALUE_INIT;
+      g_autofree char *title = NULL;
+      g_autofree char *sdk_title = NULL;
+      gint64 sdk_id;
+
+      if (manuals_book_get_id (this_book) == self->book_id)
+        continue;
+
+      g_value_init (&book_id_value, G_TYPE_INT64);
+      g_value_set_int64 (&book_id_value, manuals_book_get_id (this_book));
+
+      book_id_filter = gom_filter_new_eq (MANUALS_TYPE_HEADING, "book-id", &book_id_value);
+      filter = gom_filter_new_and (book_id_filter, heading_filter);
+
+      /* Find the matching heading for this book */
+      if (!(match = dex_await_object (manuals_repository_find_one (repository,
+                                                                   MANUALS_TYPE_HEADING,
+                                                                   filter),
+                                      NULL)))
+        continue;
+
+      sdk_id = manuals_repository_get_cached_sdk_id (repository, manuals_book_get_id (this_book));
+      g_value_init (&sdk_id_value, G_TYPE_INT64);
+      g_value_set_int64 (&sdk_id_value, sdk_id);
+      sdk_filter = gom_filter_new_eq (MANUALS_TYPE_SDK, "id", &sdk_id_value);
+
+      /* Get the SDK title for this book */
+      if (!(sdk = dex_await_object (manuals_repository_find_one (repository,
+                                                                 MANUALS_TYPE_SDK,
+                                                                 sdk_filter),
+                                    NULL)))
+        continue;
+
+      sdk_title = manuals_sdk_dup_title (sdk);
+      title = g_strdup_printf (_("View in %s"), sdk_title);
+      navigatable = manuals_navigatable_new_for_resource (G_OBJECT (match));
+      g_object_set (navigatable,
+                    "menu-title", title,
+                    NULL);
+
+      g_list_store_append (store, navigatable);
+    }
+
+failure:
+  return dex_future_new_take_object (g_steal_pointer (&store));
+}
+
+DexFuture *
+manuals_heading_list_alternates (ManualsHeading *self)
+{
+  g_return_val_if_fail (MANUALS_IS_HEADING (self), NULL);
+
+  return dex_scheduler_spawn (NULL, 0,
+                              manuals_heading_list_alternates_fiber,
+                              g_object_ref (self),
+                              g_object_unref);
 }

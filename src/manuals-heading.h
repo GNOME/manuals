@@ -33,26 +33,27 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (ManualsHeading, manuals_heading, MANUALS, HEADING, GomResource)
 
-DexFuture  *manuals_heading_find_by_uri   (ManualsRepository *repository,
-                                           const char        *uri);
-gint64      manuals_heading_get_id        (ManualsHeading    *self);
-void        manuals_heading_set_id        (ManualsHeading    *self,
-                                           gint64             id);
-gint64      manuals_heading_get_book_id   (ManualsHeading    *self);
-void        manuals_heading_set_book_id   (ManualsHeading    *self,
-                                           gint64             book_id);
-gint64      manuals_heading_get_parent_id (ManualsHeading    *self);
-void        manuals_heading_set_parent_id (ManualsHeading    *self,
-                                           gint64             parent_id);
-const char *manuals_heading_get_title     (ManualsHeading    *self);
-void        manuals_heading_set_title     (ManualsHeading    *self,
-                                           const char        *title);
-const char *manuals_heading_get_uri       (ManualsHeading    *self);
-void        manuals_heading_set_uri       (ManualsHeading    *self,
-                                           const char        *uri);
-DexFuture  *manuals_heading_find_parent   (ManualsHeading    *self);
-DexFuture  *manuals_heading_find_sdk      (ManualsHeading    *self);
-DexFuture  *manuals_heading_find_book     (ManualsHeading    *self);
-DexFuture  *manuals_heading_list_headings (ManualsHeading    *self);
+DexFuture  *manuals_heading_find_by_uri     (ManualsRepository *repository,
+                                             const char        *uri);
+gint64      manuals_heading_get_id          (ManualsHeading    *self);
+void        manuals_heading_set_id          (ManualsHeading    *self,
+                                             gint64             id);
+gint64      manuals_heading_get_book_id     (ManualsHeading    *self);
+void        manuals_heading_set_book_id     (ManualsHeading    *self,
+                                             gint64             book_id);
+gint64      manuals_heading_get_parent_id   (ManualsHeading    *self);
+void        manuals_heading_set_parent_id   (ManualsHeading    *self,
+                                             gint64             parent_id);
+const char *manuals_heading_get_title       (ManualsHeading    *self);
+void        manuals_heading_set_title       (ManualsHeading    *self,
+                                             const char        *title);
+const char *manuals_heading_get_uri         (ManualsHeading    *self);
+void        manuals_heading_set_uri         (ManualsHeading    *self,
+                                             const char        *uri);
+DexFuture  *manuals_heading_find_parent     (ManualsHeading    *self);
+DexFuture  *manuals_heading_find_sdk        (ManualsHeading    *self);
+DexFuture  *manuals_heading_find_book       (ManualsHeading    *self);
+DexFuture  *manuals_heading_list_headings   (ManualsHeading    *self);
+DexFuture  *manuals_heading_list_alternates (ManualsHeading    *self);
 
 G_END_DECLS
