@@ -606,6 +606,8 @@ manuals_navigatable_find_peers (ManualsNavigatable *self)
 
   if (MANUALS_IS_HEADING (self->item))
     alternates = manuals_heading_list_alternates (MANUALS_HEADING (self->item));
+  else if (MANUALS_IS_KEYWORD (self->item))
+    alternates = manuals_keyword_list_alternates (MANUALS_KEYWORD (self->item));
   else
     alternates = dex_future_new_take_object (g_list_store_new (MANUALS_TYPE_NAVIGATABLE));
 

@@ -31,32 +31,33 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (ManualsKeyword, manuals_keyword, MANUALS, KEYWORD, GomResource)
 
-DexFuture  *manuals_keyword_find_by_uri    (ManualsRepository *repository,
-                                            const char        *uri);
-DexFuture  *manuals_keyword_find_book      (ManualsKeyword    *self);
-gint64      manuals_keyword_get_id         (ManualsKeyword    *self);
-void        manuals_keyword_set_id         (ManualsKeyword    *self,
-                                            gint64             id);
-gint64      manuals_keyword_get_book_id    (ManualsKeyword    *self);
-void        manuals_keyword_set_book_id    (ManualsKeyword    *self,
-                                            gint64             book_id);
-const char *manuals_keyword_get_kind       (ManualsKeyword    *self);
-void        manuals_keyword_set_kind       (ManualsKeyword    *self,
-                                            const char        *kind);
-const char *manuals_keyword_get_since      (ManualsKeyword    *self);
-void        manuals_keyword_set_since      (ManualsKeyword    *self,
-                                            const char        *since);
-const char *manuals_keyword_get_stability  (ManualsKeyword    *self);
-void        manuals_keyword_set_stability  (ManualsKeyword    *self,
-                                            const char        *stability);
-const char *manuals_keyword_get_deprecated (ManualsKeyword    *self);
-void        manuals_keyword_set_deprecated (ManualsKeyword    *self,
-                                            const char        *deprecated);
-const char *manuals_keyword_get_name       (ManualsKeyword    *self);
-void        manuals_keyword_set_name       (ManualsKeyword    *self,
-                                            const char        *name);
-const char *manuals_keyword_get_uri        (ManualsKeyword    *self);
-void        manuals_keyword_set_uri        (ManualsKeyword    *self,
-                                            const char        *uri);
+DexFuture  *manuals_keyword_find_by_uri     (ManualsRepository *repository,
+                                             const char        *uri);
+DexFuture  *manuals_keyword_find_book       (ManualsKeyword    *self);
+gint64      manuals_keyword_get_id          (ManualsKeyword    *self);
+void        manuals_keyword_set_id          (ManualsKeyword    *self,
+                                             gint64             id);
+gint64      manuals_keyword_get_book_id     (ManualsKeyword    *self);
+void        manuals_keyword_set_book_id     (ManualsKeyword    *self,
+                                             gint64             book_id);
+const char *manuals_keyword_get_kind        (ManualsKeyword    *self);
+void        manuals_keyword_set_kind        (ManualsKeyword    *self,
+                                             const char        *kind);
+const char *manuals_keyword_get_since       (ManualsKeyword    *self);
+void        manuals_keyword_set_since       (ManualsKeyword    *self,
+                                             const char        *since);
+const char *manuals_keyword_get_stability   (ManualsKeyword    *self);
+void        manuals_keyword_set_stability   (ManualsKeyword    *self,
+                                             const char        *stability);
+const char *manuals_keyword_get_deprecated  (ManualsKeyword    *self);
+void        manuals_keyword_set_deprecated  (ManualsKeyword    *self,
+                                             const char        *deprecated);
+const char *manuals_keyword_get_name        (ManualsKeyword    *self);
+void        manuals_keyword_set_name        (ManualsKeyword    *self,
+                                             const char        *name);
+const char *manuals_keyword_get_uri         (ManualsKeyword    *self);
+void        manuals_keyword_set_uri         (ManualsKeyword    *self,
+                                             const char        *uri);
+DexFuture  *manuals_keyword_list_alternates (ManualsKeyword    *self);
 
 G_END_DECLS
