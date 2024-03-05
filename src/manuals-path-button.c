@@ -140,21 +140,6 @@ manuals_path_button_show_popover (DexFuture *completed,
   return dex_future_new_for_boolean (TRUE);
 }
 
-static DexFuture *
-manuals_path_button_find_children (DexFuture *completed,
-                                   gpointer   user_data)
-{
-  ManualsPathButton *self = user_data;
-  g_autoptr(ManualsNavigatable) parent = NULL;
-
-  g_assert (MANUALS_IS_PATH_BUTTON (self));
-  g_assert (DEX_IS_FUTURE (completed));
-
-  parent = dex_await_object (dex_ref (completed), NULL);
-
-  return manuals_navigatable_find_children (parent);
-}
-
 static void
 manuals_path_button_context_pressed_cb (ManualsPathButton *self,
                                         int                n_press,
@@ -187,11 +172,7 @@ manuals_path_button_context_pressed_cb (ManualsPathButton *self,
 
   gtk_gesture_set_state (GTK_GESTURE (click), GTK_EVENT_SEQUENCE_CLAIMED);
 
-  future = manuals_navigatable_find_parent (MANUALS_NAVIGATABLE (object));
-  future = dex_future_then (future,
-                            manuals_path_button_find_children,
-                            g_object_ref (self),
-                            g_object_unref);
+  future = manuals_navigatable_find_peers (MANUALS_NAVIGATABLE (object));
   future = dex_future_then (future,
                             manuals_path_button_show_popover,
                             g_object_ref (self),

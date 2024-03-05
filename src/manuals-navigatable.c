@@ -113,6 +113,20 @@ manuals_navigatable_wrap_in_map (DexFuture *completed,
 }
 
 static DexFuture *
+join_future_models (DexFuture *completed,
+                    gpointer   user_data)
+{
+  GListModel *first = g_value_get_object (dex_future_set_get_value_at (DEX_FUTURE_SET (completed), 0, NULL));
+  GListModel *second = g_value_get_object (dex_future_set_get_value_at (DEX_FUTURE_SET (completed), 1, NULL));
+  GListStore *store = g_list_store_new (G_TYPE_LIST_MODEL);
+
+  g_list_store_append (store, first);
+  g_list_store_append (store, second);
+
+  return dex_future_new_take_object (gtk_flatten_list_model_new (G_LIST_MODEL (store)));
+}
+
+static DexFuture *
 manuals_navigatable_find_parent_for_resource (ManualsNavigatable *self,
                                               GObject            *object)
 {
@@ -567,4 +581,39 @@ manuals_navigatable_set_item (ManualsNavigatable *self,
 
   if (g_set_object (&self->item, item))
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_ITEM]);
+}
+
+static DexFuture *
+manuals_navigatable_find_parents_children (DexFuture *completed,
+                                           gpointer   user_data)
+{
+  g_autoptr(ManualsNavigatable) parent = NULL;
+
+  g_assert (DEX_IS_FUTURE (completed));
+
+  parent = dex_await_object (dex_ref (completed), NULL);
+
+  return manuals_navigatable_find_children (parent);
+}
+
+
+DexFuture *
+manuals_navigatable_find_peers (ManualsNavigatable *self)
+{
+  DexFuture *alternates;
+
+  g_return_val_if_fail (MANUALS_IS_NAVIGATABLE (self), NULL);
+
+  if (MANUALS_IS_HEADING (self->item))
+    alternates = manuals_heading_list_alternates (MANUALS_HEADING (self->item));
+  else
+    alternates = dex_future_new_take_object (g_list_store_new (MANUALS_TYPE_NAVIGATABLE));
+
+  return dex_future_then (dex_future_all (alternates,
+                                          dex_future_then (manuals_navigatable_find_parent (self),
+                                                           manuals_navigatable_find_parents_children,
+                                                           NULL, NULL),
+                                          NULL),
+                          join_future_models,
+                          NULL, NULL);
 }

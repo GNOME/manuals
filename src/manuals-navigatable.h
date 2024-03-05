@@ -49,5 +49,6 @@ void                manuals_navigatable_set_item         (ManualsNavigatable *se
                                                           gpointer            item);
 DexFuture          *manuals_navigatable_find_parent      (ManualsNavigatable *self);
 DexFuture          *manuals_navigatable_find_children    (ManualsNavigatable *self);
+DexFuture          *manuals_navigatable_find_peers       (ManualsNavigatable *self);
 
 G_END_DECLS
