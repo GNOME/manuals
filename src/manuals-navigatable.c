@@ -36,6 +36,7 @@ struct _ManualsNavigatable
 
   GObject *item;
   GIcon *icon;
+  char *menu_title;
   char *title;
   char *uri;
 };
@@ -46,6 +47,7 @@ enum {
   PROP_0,
   PROP_ICON,
   PROP_ITEM,
+  PROP_MENU_TITLE,
   PROP_TITLE,
   PROP_URI,
   N_PROPS
@@ -179,6 +181,7 @@ manuals_navigatable_finalize (GObject *object)
 {
   ManualsNavigatable *self = (ManualsNavigatable *)object;
 
+  g_clear_pointer (&self->menu_title, g_free);
   g_clear_pointer (&self->title, g_free);
   g_clear_pointer (&self->uri, g_free);
   g_clear_object (&self->icon);
@@ -203,6 +206,10 @@ manuals_navigatable_get_property (GObject    *object,
 
     case PROP_ITEM:
       g_value_set_object (value, manuals_navigatable_get_item (self));
+      break;
+
+    case PROP_MENU_TITLE:
+      g_value_set_string (value, manuals_navigatable_get_menu_title (self));
       break;
 
     case PROP_TITLE:
@@ -234,6 +241,10 @@ manuals_navigatable_set_property (GObject      *object,
 
     case PROP_ITEM:
       manuals_navigatable_set_item (self, g_value_get_object (value));
+      break;
+
+    case PROP_MENU_TITLE:
+      manuals_navigatable_set_menu_title (self, g_value_get_string (value));
       break;
 
     case PROP_TITLE:
@@ -268,6 +279,13 @@ manuals_navigatable_class_init (ManualsNavigatableClass *klass)
   properties[PROP_ITEM] =
     g_param_spec_object ("item", NULL, NULL,
                          G_TYPE_OBJECT,
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_MENU_TITLE] =
+    g_param_spec_string ("menu-title", NULL, NULL,
+                         NULL,
                          (G_PARAM_READWRITE |
                           G_PARAM_EXPLICIT_NOTIFY |
                           G_PARAM_STATIC_STRINGS));
@@ -461,7 +479,33 @@ manuals_navigatable_set_title (ManualsNavigatable *self,
   g_return_if_fail (MANUALS_IS_NAVIGATABLE (self));
 
   if (g_set_str (&self->title, title))
-    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TITLE]);
+    {
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TITLE]);
+
+      if (self->menu_title == NULL)
+        g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MENU_TITLE]);
+    }
+}
+
+const char *
+manuals_navigatable_get_menu_title (ManualsNavigatable *self)
+{
+  g_return_val_if_fail (MANUALS_IS_NAVIGATABLE (self), NULL);
+
+  if (self->menu_title == NULL)
+    return self->title;
+
+  return self->menu_title;
+}
+
+void
+manuals_navigatable_set_menu_title (ManualsNavigatable *self,
+                                    const char         *menu_title)
+{
+  g_return_if_fail (MANUALS_IS_NAVIGATABLE (self));
+
+  if (g_set_str (&self->menu_title, menu_title))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MENU_TITLE]);
 }
 
 const char *

@@ -43,7 +43,7 @@
           <object class="GtkLabel" id="title">
             <property name="ellipsize">middle</property>
             <binding name="label">
-              <lookup name="title" type="ManualsNavigatable">
+              <lookup name="menu-title" type="ManualsNavigatable">
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
             </binding>
