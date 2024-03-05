@@ -55,6 +55,7 @@ const char *manuals_book_get_language    (ManualsBook *self);
 void        manuals_book_set_language    (ManualsBook *self,
                                           const char  *language);
 DexFuture  *manuals_book_list_headings   (ManualsBook *self);
+DexFuture  *manuals_book_list_alternates (ManualsBook *self);
 DexFuture  *manuals_book_find_sdk        (ManualsBook *self);
 
 G_END_DECLS

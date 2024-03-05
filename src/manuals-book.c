@@ -21,8 +21,11 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "manuals-book.h"
 #include "manuals-heading.h"
+#include "manuals-navigatable.h"
 #include "manuals-repository.h"
 
 struct _ManualsBook
@@ -445,4 +448,81 @@ manuals_book_find_sdk (ManualsBook *self)
   sdk_id = gom_filter_new_eq (MANUALS_TYPE_SDK, "id", &value);
 
   return manuals_repository_find_one (repository, MANUALS_TYPE_SDK, sdk_id);
+}
+
+static DexFuture *
+manuals_book_list_alternates_fiber (gpointer data)
+{
+  ManualsBook *self = data;
+  g_autoptr(ManualsRepository) repository = NULL;
+  g_autoptr(GomFilter) books_filter = NULL;
+  g_autoptr(GListStore) store = NULL;
+  g_autoptr(GListModel) books = NULL;
+  g_auto(GValue) title_value = G_VALUE_INIT;
+  guint n_books;
+
+  g_assert (MANUALS_IS_BOOK (self));
+
+  store = g_list_store_new (MANUALS_TYPE_NAVIGATABLE);
+  g_object_get (self, "repository", &repository, NULL);
+  if (repository == NULL)
+    goto failure;
+
+  /* Create filter where book title is same */
+  g_value_init (&title_value, G_TYPE_STRING);
+  g_value_set_string (&title_value, self->title);
+  books_filter = gom_filter_new_eq (MANUALS_TYPE_BOOK, "title", &title_value);
+
+  /* Now find other books that have the same title */
+  if (!(books = dex_await_object (manuals_repository_list (repository,
+                                                           MANUALS_TYPE_BOOK,
+                                                           books_filter),
+                                  NULL)))
+    goto failure;
+
+  /* Now create entries using SDK for menu key */
+  n_books = g_list_model_get_n_items (books);
+  for (guint i = 0; i < n_books; i++)
+    {
+      g_autoptr(ManualsBook) this_book = g_list_model_get_item (books, i);
+      g_autoptr(ManualsNavigatable) navigatable = NULL;
+      g_autoptr(ManualsSdk) sdk = NULL;
+      g_autofree char *sdk_title = NULL;
+      g_autofree char *title = NULL;
+      g_autoptr(GIcon) jump_icon = NULL;
+      const char *icon_name;
+
+      if (manuals_book_get_id (this_book) == self->id)
+        continue;
+
+      if (!(sdk = dex_await_object (manuals_book_find_sdk (this_book), NULL)))
+        continue;
+
+      if ((icon_name = manuals_sdk_get_icon_name (sdk)))
+        jump_icon = g_themed_icon_new (icon_name);
+
+      sdk_title = manuals_sdk_dup_title (sdk);
+      title = g_strdup_printf (_("View in %s"), sdk_title);
+      navigatable = manuals_navigatable_new_for_resource (G_OBJECT (this_book));
+      g_object_set (navigatable,
+                    "menu-title", title,
+                    "menu-icon", jump_icon,
+                    NULL);
+
+      g_list_store_append (store, navigatable);
+    }
+
+failure:
+  return dex_future_new_take_object (g_steal_pointer (&store));
+}
+
+DexFuture *
+manuals_book_list_alternates (ManualsBook *self)
+{
+  g_return_val_if_fail (MANUALS_IS_BOOK (self), NULL);
+
+  return dex_scheduler_spawn (NULL, 0,
+                              manuals_book_list_alternates_fiber,
+                              g_object_ref (self),
+                              g_object_unref);
 }
