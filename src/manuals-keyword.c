@@ -487,6 +487,8 @@ manuals_keyword_list_alternates_fiber (gpointer data)
       g_auto(GValue) sdk_id_value = G_VALUE_INIT;
       g_autofree char *title = NULL;
       g_autofree char *sdk_title = NULL;
+      g_autoptr(GIcon) jump_icon = NULL;
+      const char *icon_name;
       gint64 sdk_id;
 
       if (manuals_book_get_id (this_book) == self->book_id)
@@ -517,11 +519,15 @@ manuals_keyword_list_alternates_fiber (gpointer data)
                                     NULL)))
         continue;
 
+      if ((icon_name = manuals_sdk_get_icon_name (sdk)))
+        jump_icon = g_themed_icon_new (icon_name);
+
       sdk_title = manuals_sdk_dup_title (sdk);
       title = g_strdup_printf (_("View in %s"), sdk_title);
       navigatable = manuals_navigatable_new_for_resource (G_OBJECT (match));
       g_object_set (navigatable,
                     "menu-title", title,
+                    "menu-icon", jump_icon,
                     NULL);
 
       g_list_store_append (store, navigatable);
