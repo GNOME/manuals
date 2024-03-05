@@ -36,6 +36,7 @@ struct _ManualsNavigatable
 
   GObject *item;
   GIcon *icon;
+  GIcon *menu_icon;
   char *menu_title;
   char *title;
   char *uri;
@@ -47,6 +48,7 @@ enum {
   PROP_0,
   PROP_ICON,
   PROP_ITEM,
+  PROP_MENU_ICON,
   PROP_MENU_TITLE,
   PROP_TITLE,
   PROP_URI,
@@ -199,6 +201,7 @@ manuals_navigatable_finalize (GObject *object)
   g_clear_pointer (&self->title, g_free);
   g_clear_pointer (&self->uri, g_free);
   g_clear_object (&self->icon);
+  g_clear_object (&self->menu_icon);
   g_clear_object (&self->item);
 
   G_OBJECT_CLASS (manuals_navigatable_parent_class)->finalize (object);
@@ -220,6 +223,10 @@ manuals_navigatable_get_property (GObject    *object,
 
     case PROP_ITEM:
       g_value_set_object (value, manuals_navigatable_get_item (self));
+      break;
+
+    case PROP_MENU_ICON:
+      g_value_set_object (value, manuals_navigatable_get_menu_icon (self));
       break;
 
     case PROP_MENU_TITLE:
@@ -255,6 +262,10 @@ manuals_navigatable_set_property (GObject      *object,
 
     case PROP_ITEM:
       manuals_navigatable_set_item (self, g_value_get_object (value));
+      break;
+
+    case PROP_MENU_ICON:
+      manuals_navigatable_set_menu_icon (self, g_value_get_object (value));
       break;
 
     case PROP_MENU_TITLE:
@@ -293,6 +304,13 @@ manuals_navigatable_class_init (ManualsNavigatableClass *klass)
   properties[PROP_ITEM] =
     g_param_spec_object ("item", NULL, NULL,
                          G_TYPE_OBJECT,
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_MENU_ICON] =
+    g_param_spec_object ("menu-icon", NULL, NULL,
+                         G_TYPE_ICON,
                          (G_PARAM_READWRITE |
                           G_PARAM_EXPLICIT_NOTIFY |
                           G_PARAM_STATIC_STRINGS));
@@ -475,7 +493,34 @@ manuals_navigatable_set_icon (ManualsNavigatable *self,
   g_return_if_fail (MANUALS_IS_NAVIGATABLE (self));
 
   if (g_set_object (&self->icon, icon))
-    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_ICON]);
+    {
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_ICON]);
+
+      if (self->menu_icon == NULL)
+        g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MENU_ICON]);
+    }
+}
+
+GIcon *
+manuals_navigatable_get_menu_icon (ManualsNavigatable *self)
+{
+  g_return_val_if_fail (MANUALS_IS_NAVIGATABLE (self), NULL);
+
+  if (self->menu_icon == NULL)
+    return self->icon;
+
+  return self->menu_icon;
+}
+
+void
+manuals_navigatable_set_menu_icon (ManualsNavigatable *self,
+                                   GIcon              *menu_icon)
+{
+  g_return_if_fail (MANUALS_IS_NAVIGATABLE (self));
+  g_return_if_fail (!menu_icon || G_IS_ICON (menu_icon));
+
+  if (g_set_object (&self->menu_icon, menu_icon))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MENU_ICON]);
 }
 
 const char *

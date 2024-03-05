@@ -38,6 +38,9 @@ void                manuals_navigatable_set_icon         (ManualsNavigatable *se
 const char         *manuals_navigatable_get_title        (ManualsNavigatable *self);
 void                manuals_navigatable_set_title        (ManualsNavigatable *self,
                                                           const char         *title);
+GIcon              *manuals_navigatable_get_menu_icon    (ManualsNavigatable *self);
+void                manuals_navigatable_set_menu_icon    (ManualsNavigatable *self,
+                                                          GIcon              *menu_icon);
 const char         *manuals_navigatable_get_menu_title   (ManualsNavigatable *self);
 void                manuals_navigatable_set_menu_title   (ManualsNavigatable *self,
                                                           const char         *menu_title);

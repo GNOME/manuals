@@ -33,7 +33,7 @@
         <child>
           <object class="GtkImage" id="image">
             <binding name="gicon">
-              <lookup name="icon" type="ManualsNavigatable">
+              <lookup name="menu-icon" type="ManualsNavigatable">
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
             </binding>
