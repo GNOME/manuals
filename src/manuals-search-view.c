@@ -45,7 +45,6 @@ struct _ManualsSearchView
   ManualsSearchQuery   *query;
 
   GtkColumnView        *column_view;
-  GtkNoSelection       *selection;
   GtkColumnViewColumn  *name_column;
   GtkColumnViewColumn  *book_column;
   GtkColumnViewColumn  *sdk_column;
@@ -191,7 +190,6 @@ manuals_search_view_class_init (ManualsSearchViewClass *klass)
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
   gtk_widget_class_bind_template_child (widget_class, ManualsSearchView, column_view);
-  gtk_widget_class_bind_template_child (widget_class, ManualsSearchView, selection);
   gtk_widget_class_bind_template_child (widget_class, ManualsSearchView, book_column);
   gtk_widget_class_bind_template_child (widget_class, ManualsSearchView, name_column);
   gtk_widget_class_bind_template_child (widget_class, ManualsSearchView, sdk_column);
@@ -252,8 +250,9 @@ manuals_search_view_show_results (DexFuture *completed,
 
   if (search->query == search->self->query)
     {
-      gtk_no_selection_set_model (search->self->selection,
-                                  G_LIST_MODEL (search->query));
+      g_autoptr(GtkNoSelection) no = gtk_no_selection_new (g_object_ref (G_LIST_MODEL (search->query)));
+
+      gtk_column_view_set_model (search->self->column_view, GTK_SELECTION_MODEL (no));
       set_visible_columns (search->self, MANUALS_SEARCH_COLUMN_ALL);
     }
 
@@ -296,11 +295,15 @@ manuals_search_view_display (ManualsSearchView    *self,
                              GListModel           *results,
                              ManualsSearchColumns  columns)
 {
+  g_autoptr(GtkNoSelection) no = NULL;
+
   g_return_if_fail (MANUALS_IS_SEARCH_VIEW (self));
   g_return_if_fail (!results || G_IS_LIST_MODEL (results));
 
+  no = gtk_no_selection_new (g_object_ref (results));
+
   g_set_object (&self->query, NULL);
-  gtk_no_selection_set_model (self->selection, results);
+  gtk_column_view_set_model (self->column_view, GTK_SELECTION_MODEL (no));
   set_visible_columns (self, columns);
 }
 
@@ -308,12 +311,15 @@ ManualsNavigatable *
 manuals_search_view_dup_selected (ManualsSearchView *self)
 {
   g_autoptr(ManualsSearchResult) result = NULL;
+  GtkSelectionModel *model;
 
   g_return_val_if_fail (MANUALS_IS_SEARCH_VIEW (self), NULL);
 
   /* TODO: Selection */
 
-  if ((result = g_list_model_get_item (G_LIST_MODEL (self->selection), 0)))
+  model = gtk_column_view_get_model (self->column_view);
+
+  if ((result = g_list_model_get_item (G_LIST_MODEL (model), 0)))
     {
       ManualsNavigatable *navigatable;
 

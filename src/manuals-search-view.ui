@@ -9,9 +9,6 @@
             <signal name="activate" handler="manuals_search_view_column_view_activate_cb" swapped="true"/>
             <property name="single-click-activate">true</property>
             <property name="tab-behavior">item</property>
-            <property name="model">
-              <object class="GtkNoSelection" id="selection"/>
-            </property>
             <child>
               <object class="GtkColumnViewColumn" id="name_column">
                 <property name="title" translatable="yes">Name</property>
