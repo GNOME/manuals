@@ -33,6 +33,7 @@ struct _ManualsSearchModel
   GObject           parent_instance;
   GomResourceGroup *group;
   GPtrArray        *prefetch;
+  GHashTable       *items;
 };
 
 static void
@@ -106,6 +107,10 @@ manuals_search_model_get_item (GListModel *model,
   if (position >= gom_resource_group_get_count (self->group))
     return NULL;
 
+  /* If we already got this item before, give the same pointer again */
+  if ((result = g_hash_table_lookup (self->items, GUINT_TO_POINTER (position))))
+    return g_object_ref (result);
+
   fetch_index = position / PER_FETCH_GROUP;
   if (fetch_index >= self->prefetch->len)
     g_ptr_array_set_size (self->prefetch, fetch_index+1);
@@ -119,6 +124,11 @@ manuals_search_model_get_item (GListModel *model,
     }
 
   result = manuals_search_result_new (position);
+
+  /* Make sure we have a stable item across get calls */
+  g_hash_table_insert (self->items,
+                       GUINT_TO_POINTER (position),
+                       g_object_ref (result));
 
   dex_future_disown (dex_future_then (dex_ref (fetch),
                                       manuals_search_model_fetch_item_cb,
@@ -163,6 +173,7 @@ manuals_search_model_dispose (GObject *object)
   ManualsSearchModel *self = (ManualsSearchModel *)object;
 
   g_clear_pointer (&self->prefetch, g_ptr_array_unref);
+  g_clear_pointer (&self->items, g_hash_table_unref);
   g_clear_object (&self->group);
 
   G_OBJECT_CLASS (manuals_search_model_parent_class)->dispose (object);
@@ -229,4 +240,5 @@ static void
 manuals_search_model_init (ManualsSearchModel *self)
 {
   self->prefetch = g_ptr_array_new_with_free_func (_dex_xunref);
+  self->items = g_hash_table_new_full (NULL, NULL, NULL, g_object_unref);
 }
