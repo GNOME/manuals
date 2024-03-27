@@ -334,12 +334,13 @@ manuals_application_about_action (GSimpleAction *action,
   window = gtk_application_get_active_window (GTK_APPLICATION (self));
 
   adw_show_about_window (window,
-                         "application-name", "manuals",
-                         "application-icon", "org.gnome.Manuals",
+                         "application-name", _("Manuals"),
+                         "application-icon", APP_ID,
                          "developer-name", "Christian Hergert",
-                         "version", "0.1.0",
+                         "version", PACKAGE_VERSION,
                          "developers", developers,
                          "copyright", "© 2024 Christian Hergert",
+                         "license-type", GTK_LICENSE_GPL_3_0,
                          NULL);
 }
 
