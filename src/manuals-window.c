@@ -55,6 +55,7 @@ struct _ManualsWindow
   AdwTabOverview       *tab_overview;
   AdwTabView           *tab_view;
   AdwToolbarView       *toolbar_view;
+  GtkButton            *search_button;
 
   guint                 disposed : 1;
 };
@@ -81,36 +82,32 @@ static void
 set_mode (ManualsWindow *self,
           const char    *mode)
 {
-  self->mode = mode;
+  self->mode = g_intern_string (mode);
 
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MODE]);
 
-  if (g_str_equal (mode, MODE_EMPTY))
+  if (g_str_equal (self->mode, MODE_EMPTY))
     {
       gtk_stack_set_visible_child_name (self->stack, "empty");
       gtk_stack_set_visible_child_name (self->omni_stack, "search");
-      //adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_FLAT);
       gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
     }
-  else if (g_str_equal (mode, MODE_SEARCH))
+  else if (g_str_equal (self->mode, MODE_SEARCH))
     {
       gtk_stack_set_visible_child_name (self->stack, "search");
       gtk_stack_set_visible_child_name (self->omni_stack, "search");
-      //adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_FLAT);
       gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
     }
-  else if (g_str_equal (mode, MODE_LISTING))
+  else if (g_str_equal (self->mode, MODE_LISTING))
     {
       gtk_stack_set_visible_child_name (self->stack, "search");
       gtk_stack_set_visible_child_name (self->omni_stack, "browse");
-      //adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_FLAT);
       gtk_widget_grab_focus (GTK_WIDGET (self->search_view));
     }
-  else if (g_str_equal (mode, MODE_TABS))
+  else if (g_str_equal (self->mode, MODE_TABS))
     {
       gtk_stack_set_visible_child_name (self->stack, "tabs");
       gtk_stack_set_visible_child_name (self->omni_stack, "browse");
-      //adw_toolbar_view_set_top_bar_style (self->toolbar_view, ADW_TOOLBAR_RAISED);
       gtk_widget_grab_focus (GTK_WIDGET (self->tab_view));
     }
 }
@@ -372,6 +369,38 @@ manuals_window_search_move_down (GtkWidget  *widget,
   manuals_search_view_move_down (self->search_view);
 }
 
+static gboolean
+mode_to_visible (GBinding     *binding,
+                 const GValue *from_value,
+                 GValue       *to_value,
+                 gpointer      user_data)
+{
+  const char *mode = g_value_get_string (from_value);
+  gboolean visible = TRUE;
+
+  if (g_strcmp0 (mode, MODE_SEARCH) == 0 ||
+      g_strcmp0 (mode, MODE_EMPTY) == 0)
+    visible = FALSE;
+
+  g_value_set_boolean (to_value, visible);
+
+  return TRUE;
+}
+
+static void
+manuals_window_set_mode_action (GtkWidget  *widget,
+                                const char *action_name,
+                                GVariant   *param)
+{
+  ManualsWindow *self = (ManualsWindow *)widget;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (param != NULL);
+  g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE_STRING));
+
+  set_mode (self, g_variant_get_string (param, NULL));
+}
+
 static void
 manuals_window_dispose (GObject *object)
 {
@@ -396,6 +425,10 @@ manuals_window_get_property (GObject    *object,
 
   switch (prop_id)
     {
+    case PROP_MODE:
+      g_value_set_string (value, self->mode);
+      break;
+
     case PROP_REPOSITORY:
       g_value_set_object (value, manuals_window_get_repository (self));
       break;
@@ -419,6 +452,10 @@ manuals_window_set_property (GObject      *object,
 
   switch (prop_id)
     {
+    case PROP_MODE:
+      set_mode (self, g_value_get_string (value));
+      break;
+
     case PROP_REPOSITORY:
       self->repository = g_value_dup_object (value);
       break;
@@ -445,7 +482,8 @@ manuals_window_class_init (ManualsWindowClass *klass)
   properties[PROP_MODE] =
     g_param_spec_string ("mode", NULL, NULL,
                          NULL,
-                         (G_PARAM_READABLE |
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
                           G_PARAM_STATIC_STRINGS));
 
   properties[PROP_REPOSITORY] =
@@ -468,6 +506,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
 
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, omni_stack);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, path_model);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_button);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_entry);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_view);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, stack);
@@ -489,6 +528,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_install_action (widget_class, "win.browse-root", NULL, manuals_window_browse_root_action);
   gtk_widget_class_install_action (widget_class, "search.activate-first", NULL, manuals_window_activate_first_action);
   gtk_widget_class_install_action (widget_class, "search.move-down", NULL, manuals_window_search_move_down);
+  gtk_widget_class_install_action (widget_class, "win.mode", "s", manuals_window_set_mode_action);
 
   g_type_ensure (MANUALS_TYPE_PATH_BAR);
   g_type_ensure (MANUALS_TYPE_SEARCH_ENTRY);
@@ -541,6 +581,11 @@ manuals_window_init (ManualsWindow *self)
   manuals_window_add_tab (self, manuals_tab_new ());
 
   set_mode (self, MODE_EMPTY);
+
+  g_object_bind_property_full (self, "mode",
+                               self->search_button, "visible",
+                               G_BINDING_SYNC_CREATE,
+                               mode_to_visible, NULL, NULL, NULL);
 }
 
 void

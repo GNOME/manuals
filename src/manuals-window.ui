@@ -78,6 +78,14 @@
                     <property name="focus-on-click">false</property>
                   </object>
                 </child>
+                <child type="end">
+                  <object class="GtkButton" id="search_button">
+                    <property name="action-name">win.mode</property>
+                    <property name="action-target">'search'</property>
+                    <property name="margin-start">6</property>
+                    <property name="icon-name">edit-find-symbolic</property>
+                  </object>
+                </child>
                 <child type="start">
                   <object class="GtkStack" id="controls">
                     <property name="transition-type">crossfade</property>
@@ -170,12 +178,6 @@
                                 </property>
                               </object>
                             </child>
-                          </object>
-                        </child>
-                        <child type="end">
-                          <object class="GtkToggleButton">
-                            <property name="margin-start">6</property>
-                            <property name="icon-name">edit-find-symbolic</property>
                           </object>
                         </child>
                       </object>
