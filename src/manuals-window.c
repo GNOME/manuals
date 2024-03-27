@@ -402,6 +402,17 @@ manuals_window_set_mode_action (GtkWidget  *widget,
 }
 
 static void
+manuals_window_constructed (GObject *object)
+{
+  G_OBJECT_CLASS (manuals_window_parent_class)->constructed (object);
+
+#if 0
+  /* For some reason this causes librsvg to segfault */
+  gtk_widget_add_css_class (GTK_WIDGET (object), "devel");
+#endif
+}
+
+static void
 manuals_window_dispose (GObject *object)
 {
   ManualsWindow *self = (ManualsWindow *)object;
@@ -475,6 +486,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
+  object_class->constructed = manuals_window_constructed;
   object_class->dispose = manuals_window_dispose;
   object_class->get_property = manuals_window_get_property;
   object_class->set_property = manuals_window_set_property;
@@ -539,10 +551,6 @@ manuals_window_class_init (ManualsWindowClass *klass)
 static void
 manuals_window_init (ManualsWindow *self)
 {
-#ifdef DEVELOPMENT_BUILD
-  gtk_widget_add_css_class (GTK_WIDGET (self), "devel");
-#endif
-
   gtk_window_set_title (GTK_WINDOW (self), _("Manuals"));
 
   self->visible_tab_signals = g_signal_group_new (MANUALS_TYPE_TAB);
