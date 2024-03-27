@@ -1,6 +1,6 @@
 project('manuals', 'c',
-          version: '46.alpha',
-    meson_version: '>= 0.62.0',
+          version: '47.alpha',
+    meson_version: '>= 1.0.0',
   default_options: [ 'warning_level=2', 'werror=false', 'c_std=gnu11', ],
 )
 
@@ -31,10 +31,19 @@ add_project_arguments(['-I' + meson.project_build_root()], language: 'c')
 
 config_h = configuration_data()
 
-app_id = 'org.gnome.Manuals'
 if get_option('development')
-  app_id = 'org.gnome.Manuals.Devel'
   config_h.set10('DEVELOPMENT_BUILD', true)
+  if get_option('builder')
+    app_id = 'org.gnome.Builder.Devel.Manuals'
+  else
+    app_id = 'org.gnome.Manuals.Devel'
+  endif
+else
+  if get_option('builder')
+    app_id = 'org.gnome.Builder.Manuals'
+  else
+    app_id = 'org.gnome.Manuals'
+  endif
 endif
 
 config_h.set_quoted('APP_ID', app_id)
