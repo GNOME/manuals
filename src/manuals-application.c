@@ -64,6 +64,8 @@ manuals_application_new (const char        *application_id,
 {
   g_return_val_if_fail (application_id != NULL, NULL);
 
+  g_debug ("Running manuals with app-id %s", application_id);
+
   return g_object_new (MANUALS_TYPE_APPLICATION,
                        "application-id", application_id,
                        "flags", flags,
