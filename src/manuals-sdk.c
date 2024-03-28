@@ -266,7 +266,12 @@ manuals_sdk_dup_title (ManualsSdk *self)
   g_return_val_if_fail (MANUALS_IS_SDK (self), NULL);
 
   if (g_strcmp0 (self->kind, "host") == 0)
-    return g_strdup (system_title);
+    {
+      if (g_strcmp0 (self->name, "GNOME") == 0)
+        return g_strdup ("GNOME OS");
+
+      return g_strdup (system_title);
+    }
 
   if (g_strcmp0 (self->kind, "flatpak") == 0)
     {
