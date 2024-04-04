@@ -23,6 +23,8 @@
 
 G_BEGIN_DECLS
 
+char *manuals_get_os_info (const char *key_name);
+
 static inline gboolean
 _g_str_empty0 (const char *str)
 {
