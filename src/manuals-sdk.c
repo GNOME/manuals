@@ -26,6 +26,7 @@
 #include "manuals-book.h"
 #include "manuals-repository.h"
 #include "manuals-sdk.h"
+#include "manuals-utils.h"
 
 struct _ManualsSdk
 {
@@ -233,8 +234,8 @@ manuals_sdk_class_init (ManualsSdkClass *klass)
   gom_resource_class_set_unique (resource_class, "uri");
   gom_resource_class_set_property_set_mapped (resource_class, "title", FALSE);
 
-  system_icon_name = g_get_os_info ("LOGO");
-  system_title = g_get_os_info (G_OS_INFO_KEY_NAME);
+  system_icon_name = manuals_get_os_info ("LOGO");
+  system_title = manuals_get_os_info (G_OS_INFO_KEY_NAME);
 }
 
 static void
