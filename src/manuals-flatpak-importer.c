@@ -60,28 +60,25 @@ import_installations_free (gpointer data)
 }
 
 static char *
-rewrite_uri (FlatpakInstalledRef *ref,
-             char                *uri)
+rewrite_uri (char *uri)
 {
-  g_autofree char *freeme = uri;
-  const char *commit;
-  GString *str;
+  const char *beginptr;
 
-  g_assert (FLATPAK_IS_INSTALLED_REF (ref));
   g_assert (uri != NULL);
 
-  commit = flatpak_ref_get_commit (FLATPAK_REF (ref));
-  str = g_string_new (uri);
+  if (!g_str_has_suffix (uri, "/active") && (beginptr = strrchr (uri, '/')))
+    {
+      GString *str = g_string_new (uri);
 
-  /* We want to give a path which contains "active" instead of the commit
-   * ID if we are able to. Otherwise we'd have to keep re-importing the
-   * documents each time the SDK is updated and the old files would be
-   * missing. This could result in duplicated SDK entries.
-   */
-  if (strstr (str->str, commit) != NULL)
-    g_string_replace (str, commit, "active", 0);
+      g_string_truncate (str, beginptr - uri);
+      g_string_append (str, "/active");
 
-  return g_string_free (str, FALSE);
+      g_free (uri);
+
+      return g_string_free (str, FALSE);
+    }
+
+  return uri;
 }
 
 static DexFuture *
@@ -99,7 +96,7 @@ find_or_create_sdk_for_ref (ManualsRepository   *repository,
 
   deploy_dir = flatpak_installed_ref_get_deploy_dir (ref);
   file = g_file_new_for_path (deploy_dir);
-  uri = rewrite_uri (ref, g_file_get_uri (file));
+  uri = rewrite_uri (g_file_get_uri (file));
 
   sdk = dex_await_object (manuals_repository_find_sdk (repository, uri), NULL);
 
@@ -204,7 +201,7 @@ manuals_flatpak_importer_import_fiber (gpointer user_data)
           const char *deploy_dir = flatpak_installed_ref_get_deploy_dir (ref);
           g_autoptr(ManualsSdk) sdk = NULL;
           g_autoptr(GFile) file = g_file_new_for_path (deploy_dir);
-          g_autofree char *uri = rewrite_uri (ref, g_file_get_uri (file));
+          g_autofree char *uri = rewrite_uri (g_file_get_uri (file));
           g_autoptr(GFile) active_file = g_file_new_for_uri (uri);
           g_autofree char *doc_dir = NULL;
           g_autofree char *gtk_doc_dir = NULL;
