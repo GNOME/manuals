@@ -42,6 +42,7 @@ purge the existing indexed contents and re-index that specific documentation.
  * I'd love to see idexing of manpages such as POSIX headers.
  * Sphinx documentation format used by Builder and GNOME HIG
  * Indexing online-based documentation
+ * Installation of doc runtimes
 
 ## Screenshots
 
