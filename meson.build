@@ -36,13 +36,13 @@ if get_option('development')
   if get_option('builder')
     app_id = 'org.gnome.Builder.Devel.Manuals'
   else
-    app_id = 'org.gnome.Manuals.Devel'
+    app_id = 'app.devsuite.Manuals.Devel'
   endif
 else
   if get_option('builder')
     app_id = 'org.gnome.Builder.Manuals'
   else
-    app_id = 'org.gnome.Manuals'
+    app_id = 'app.devsuite.Manuals'
   endif
 endif
 

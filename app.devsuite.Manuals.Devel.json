@@ -1,5 +1,5 @@
 {
-    "id" : "org.gnome.Manuals.Devel",
+    "id" : "app.devsuite.Manuals.Devel",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",
