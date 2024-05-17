@@ -11,15 +11,17 @@
         }
     },
     "finish-args" : [
-        "--share=network",
-        "--share=ipc",
-        "--socket=fallback-x11",
+        "--allow=devel",
         "--device=dri",
-        "--socket=wayland",
-        "--filesystem=host:ro",
+        "--filesystem=/var/lib/flatpak",
         "--filesystem=home:ro",
+        "--filesystem=host:ro",
         "--filesystem=~/.local/share/flatpak",
-        "--filesystem=/var/lib/flatpak"
+        "--share=ipc",
+        "--share=network",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--talk-name=org.freedesktop.Flatpak"
     ],
     "cleanup" : [
         "/include",
