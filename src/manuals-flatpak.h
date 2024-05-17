@@ -33,11 +33,26 @@ load_installations_thread (gpointer data)
   g_autoptr(FlatpakInstallation) user = NULL;
   g_auto(GValue) value = G_VALUE_INIT;
 
-  if ((user = flatpak_installation_new_user (NULL, NULL)))
-    g_ptr_array_add (installations, g_object_ref (user));
+  if (g_file_test ("/.flatpak-info", G_FILE_TEST_EXISTS))
+    {
+      g_autoptr(GFile) user_path = g_file_new_build_filename (g_get_home_dir (), ".local", "share", "flatpak", NULL);
+      g_autoptr(GFile) host_path = g_file_new_for_path ("/var/run/host/var/lib/flatpak");
+      g_autoptr(FlatpakInstallation) host = NULL;
 
-  if ((system = flatpak_get_system_installations (NULL, NULL)))
-    g_ptr_array_extend (installations, system, (GCopyFunc)g_object_ref, NULL);
+      if ((user = flatpak_installation_new_for_path (user_path, TRUE, NULL, NULL)))
+        g_ptr_array_add (installations, g_object_ref (user));
+
+      if ((host = flatpak_installation_new_for_path (host_path, FALSE, NULL, NULL)))
+        g_ptr_array_add (installations, g_object_ref (host));
+    }
+  else
+    {
+      if ((user = flatpak_installation_new_user (NULL, NULL)))
+        g_ptr_array_add (installations, g_object_ref (user));
+
+      if ((system = flatpak_get_system_installations (NULL, NULL)))
+        g_ptr_array_extend (installations, system, (GCopyFunc)g_object_ref, NULL);
+    }
 
   g_value_init (&value, G_TYPE_PTR_ARRAY);
   g_value_set_boxed (&value, installations);
