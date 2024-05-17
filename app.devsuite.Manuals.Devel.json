@@ -17,7 +17,9 @@
         "--device=dri",
         "--socket=wayland",
         "--filesystem=host:ro",
-        "--filesystem=home:ro"
+        "--filesystem=home:ro",
+        "--filesystem=~/.local/share/flatpak",
+        "--filesystem=/var/lib/flatpak"
     ],
     "cleanup" : [
         "/include",
