@@ -252,6 +252,23 @@ manuals_tab_constructed (GObject *object)
 }
 
 static void
+manuals_tab_css_changed (GtkWidget         *widget,
+                         GtkCssStyleChange *change)
+{
+  ManualsTab *self = (ManualsTab *)widget;
+  GdkRGBA background;
+
+  g_assert (GTK_IS_WIDGET (widget));
+
+  if (adw_style_manager_get_dark (adw_style_manager_get_default ()))
+    gdk_rgba_parse (&background, "#1e1e1e");
+  else
+    gdk_rgba_parse (&background, "#ffffff");
+
+  webkit_web_view_set_background_color (self->web_view, &background);
+}
+
+static void
 manuals_tab_dispose (GObject *object)
 {
   ManualsTab *self = (ManualsTab *)object;
@@ -335,6 +352,8 @@ manuals_tab_class_init (ManualsTabClass *klass)
   object_class->dispose = manuals_tab_dispose;
   object_class->get_property = manuals_tab_get_property;
   object_class->set_property = manuals_tab_set_property;
+
+  widget_class->css_changed = manuals_tab_css_changed;
 
   properties[PROP_CAN_GO_BACK] =
     g_param_spec_boolean ("can-go-back", NULL, NULL,
