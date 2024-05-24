@@ -23,6 +23,7 @@
 
 #include <libdex.h>
 
+#include "manuals-application.h"
 #include "manuals-keyword.h"
 #include "manuals-navigatable.h"
 #include "manuals-search-query.h"
@@ -31,6 +32,7 @@
 #include "manuals-tag.h"
 #include "manuals-tree-expander.h"
 #include "manuals-utils.h"
+#include "manuals-window.h"
 
 struct _ManualsSidebar
 {
@@ -88,6 +90,45 @@ manuals_sidebar_search_changed_cb (ManualsSidebar *self,
 
       gtk_stack_set_visible_child_name (self->stack, "search");
     }
+}
+
+static void
+manuals_sidebar_search_view_activate_cb (ManualsSidebar *self,
+                                         guint           position,
+                                         GtkListView    *list_view)
+{
+  g_autoptr(ManualsSearchResult) result = NULL;
+  ManualsNavigatable *navigatable;
+  GtkSelectionModel *model;
+  ManualsWindow *window;
+  ManualsTab *tab;
+
+  g_assert (MANUALS_IS_SIDEBAR (self));
+  g_assert (GTK_IS_LIST_VIEW (list_view));
+
+  model = gtk_list_view_get_model (list_view);
+  result = g_list_model_get_item (G_LIST_MODEL (model), position);
+  navigatable = manuals_search_result_get_item (result);
+
+  if (navigatable == NULL)
+    return;
+
+
+  window = MANUALS_WINDOW (gtk_widget_get_ancestor (GTK_WIDGET (self), MANUALS_TYPE_WINDOW));
+
+  g_assert (MANUALS_IS_NAVIGATABLE (navigatable));
+  g_assert (MANUALS_IS_WINDOW (window));
+
+  tab = manuals_window_get_visible_tab (window);
+
+  if (manuals_application_control_is_pressed ())
+    {
+      tab = manuals_tab_new ();
+      manuals_window_add_tab (window, tab);
+      manuals_window_set_visible_tab (window, tab);
+    }
+
+  manuals_tab_set_navigatable (tab, navigatable);
 }
 
 static gboolean
@@ -192,6 +233,7 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, stack);
 
   gtk_widget_class_bind_template_callback (widget_class, manuals_sidebar_search_changed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, manuals_sidebar_search_view_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, nonempty_to_boolean);
   gtk_widget_class_bind_template_callback (widget_class, lookup_sdk_title);
 
