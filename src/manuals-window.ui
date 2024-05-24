@@ -106,6 +106,14 @@
                         <property name="menu-model">primary_menu</property>
                       </object>
                     </child>
+                    <child type="end">
+                      <object class="GtkButton">
+                        <property name="icon-name">edit-find-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Search</property>
+                        <property name="action-name">sidebar.focus-search</property>
+                        <property name="visible" bind-source="dock" bind-property="reveal-start" bind-flags="sync-create|invert-boolean"/>
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <child>

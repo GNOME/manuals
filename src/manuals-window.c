@@ -31,20 +31,14 @@
 #include "manuals-tab.h"
 #include "manuals-window.h"
 
-#define MODE_EMPTY   "empty"
-#define MODE_SEARCH  "search"
-#define MODE_TABS    "tabs"
-#define MODE_LISTING "listing"
-
 struct _ManualsWindow
 {
   PanelWorkspace        parent_instance;
 
-  const char           *mode;
-
   ManualsRepository    *repository;
   GSignalGroup         *visible_tab_signals;
 
+  PanelDock            *dock;
   ManualsSidebar       *sidebar;
   AdwTabView           *tab_view;
 
@@ -56,7 +50,6 @@ G_DEFINE_FINAL_TYPE (ManualsWindow, manuals_window, PANEL_TYPE_WORKSPACE)
 enum {
   PROP_0,
   PROP_REPOSITORY,
-  PROP_MODE,
   PROP_VISIBLE_TAB,
   N_PROPS
 };
@@ -186,6 +179,7 @@ manuals_window_sidebar_focus_search_action (GtkWidget  *widget,
 
   g_assert (MANUALS_IS_WINDOW (self));
 
+  panel_dock_set_reveal_start (self->dock, TRUE);
   manuals_sidebar_focus_search (self->sidebar);
 }
 
@@ -229,10 +223,6 @@ manuals_window_get_property (GObject    *object,
 
   switch (prop_id)
     {
-    case PROP_MODE:
-      g_value_set_string (value, self->mode);
-      break;
-
     case PROP_REPOSITORY:
       g_value_set_object (value, manuals_window_get_repository (self));
       break;
@@ -280,13 +270,6 @@ manuals_window_class_init (ManualsWindowClass *klass)
   object_class->get_property = manuals_window_get_property;
   object_class->set_property = manuals_window_set_property;
 
-  properties[PROP_MODE] =
-    g_param_spec_string ("mode", NULL, NULL,
-                         NULL,
-                         (G_PARAM_READWRITE |
-                          G_PARAM_EXPLICIT_NOTIFY |
-                          G_PARAM_STATIC_STRINGS));
-
   properties[PROP_REPOSITORY] =
     g_param_spec_object ("repository", NULL, NULL,
                          MANUALS_TYPE_REPOSITORY,
@@ -305,6 +288,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-window.ui");
 
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, dock);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, sidebar);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
 
