@@ -23,6 +23,7 @@
 
 #include <gtk/gtk.h>
 
+#include "manuals-navigatable.h"
 #include "manuals-repository.h"
 
 G_BEGIN_DECLS
@@ -31,9 +32,11 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (ManualsSidebar, manuals_sidebar, MANUALS, SIDEBAR, GtkWidget)
 
-ManualsRepository *manuals_sidebar_get_repository (ManualsSidebar    *self);
-void               manuals_sidebar_set_repository (ManualsSidebar    *self,
-                                                   ManualsRepository *repository);
-void               manuals_sidebar_focus_search   (ManualsSidebar    *self);
+ManualsRepository *manuals_sidebar_get_repository (ManualsSidebar     *self);
+void               manuals_sidebar_set_repository (ManualsSidebar     *self,
+                                                   ManualsRepository  *repository);
+void               manuals_sidebar_focus_search   (ManualsSidebar     *self);
+void               manuals_sidebar_reveal         (ManualsSidebar     *self,
+                                                   ManualsNavigatable *navigatable);
 
 G_END_DECLS

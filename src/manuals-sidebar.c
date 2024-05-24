@@ -287,3 +287,12 @@ manuals_sidebar_focus_search (ManualsSidebar *self)
   gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
   gtk_editable_select_region (GTK_EDITABLE (self->search_entry), 0, -1);
 }
+
+void
+manuals_sidebar_reveal (ManualsSidebar     *self,
+                        ManualsNavigatable *navigatable)
+{
+  g_return_if_fail (MANUALS_IS_SIDEBAR (self));
+  g_return_if_fail (!navigatable || MANUALS_IS_NAVIGATABLE (navigatable));
+
+}

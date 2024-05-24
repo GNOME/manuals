@@ -424,7 +424,27 @@ void
 manuals_window_navigate_to (ManualsWindow      *self,
                             ManualsNavigatable *navigatable)
 {
+  const char *uri;
+
   g_return_if_fail (MANUALS_IS_WINDOW (self));
   g_return_if_fail (MANUALS_IS_NAVIGATABLE (navigatable));
 
+  if ((uri = manuals_navigatable_get_uri (navigatable)))
+    {
+      ManualsTab *tab = manuals_window_get_visible_tab (self);
+
+      if (manuals_application_control_is_pressed ())
+        {
+          tab = manuals_tab_new ();
+          manuals_window_add_tab (self, tab);
+          manuals_window_set_visible_tab (self, tab);
+        }
+
+      manuals_tab_set_navigatable (tab, navigatable);
+      gtk_widget_grab_focus (GTK_WIDGET (tab));
+    }
+  else
+    {
+      manuals_sidebar_reveal (self->sidebar, navigatable);
+    }
 }
