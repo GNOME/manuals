@@ -117,6 +117,16 @@
             </property>
             <property name="bottom-edge">
               <object class="PanelStatusbar">
+                <child type="prefix">
+                  <object class="ManualsPathBar" id="path_bar">
+                    <property name="hexpand">true</property>
+                    <binding name="navigatable">
+                      <lookup name="navigatable" type="ManualsTab">
+                        <lookup name="visible-tab">ManualsWindow</lookup>
+                      </lookup>
+                    </binding>
+                  </object>
+                </child>
               </object>
             </property>
             <property name="child">
