@@ -295,4 +295,6 @@ manuals_sidebar_reveal (ManualsSidebar     *self,
   g_return_if_fail (MANUALS_IS_SIDEBAR (self));
   g_return_if_fail (!navigatable || MANUALS_IS_NAVIGATABLE (navigatable));
 
+  gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
+  gtk_stack_set_visible_child_name (self->stack, "browse");
 }
