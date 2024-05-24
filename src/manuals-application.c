@@ -202,7 +202,7 @@ manuals_application_startup (GApplication *application)
   g_autofree char *storage_path = NULL;
   DexFuture *future;
 
-  g_application_set_resource_base_path (application, "/org/gnome/Manuals");
+  g_application_set_resource_base_path (application, "/app/devsuite/Manuals");
 
   /* Setup the progress helper we'll use in the app */
   self->import_progress = manuals_progress_new ();

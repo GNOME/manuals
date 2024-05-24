@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/gnome/Manuals">
+  <gresource prefix="/app/devsuite/Manuals">
     <file preprocess="xml-stripblanks">manuals-path-bar.ui</file>
     <file preprocess="xml-stripblanks">manuals-path-button.ui</file>
     <file preprocess="xml-stripblanks">manuals-search-entry.ui</file>

@@ -105,7 +105,7 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
   object_class->get_property = manuals_sidebar_get_property;
   object_class->set_property = manuals_sidebar_set_property;
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Manuals/manuals-sidebar.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-sidebar.ui");
   gtk_widget_class_set_css_name (widget_class, "sidebar");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, list_view);

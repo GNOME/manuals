@@ -155,7 +155,7 @@ manuals_search_entry_class_init (ManualsSearchEntryClass *klass)
                   NULL,
                   G_TYPE_NONE, 1, MANUALS_TYPE_SEARCH_QUERY);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Manuals/manuals-search-entry.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-search-entry.ui");
   gtk_widget_class_set_css_name (widget_class, "entry");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_bind_template_child (widget_class, ManualsSearchEntry, count_label);

@@ -185,7 +185,7 @@ manuals_search_view_class_init (ManualsSearchViewClass *klass)
 
   object_class->dispose = manuals_search_view_dispose;
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Manuals/manuals-search-view.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-search-view.ui");
   gtk_widget_class_set_css_name (widget_class, "searchview");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
