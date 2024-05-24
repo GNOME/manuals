@@ -120,6 +120,7 @@
                 <child type="prefix">
                   <object class="ManualsPathBar" id="path_bar">
                     <property name="hexpand">true</property>
+                    <property name="valign">center</property>
                     <binding name="navigatable">
                       <lookup name="navigatable" type="ManualsTab">
                         <lookup name="visible-tab">ManualsWindow</lookup>

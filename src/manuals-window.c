@@ -392,3 +392,26 @@ manuals_window_get_repository (ManualsWindow *self)
 
   return self->repository;
 }
+
+ManualsWindow *
+manuals_window_from_widget (GtkWidget *widget)
+{
+  GtkWidget *window;
+
+  g_return_val_if_fail (GTK_IS_WIDGET (widget), NULL);
+
+  window = gtk_widget_get_ancestor (widget, MANUALS_TYPE_WINDOW);
+
+  g_return_val_if_fail (MANUALS_IS_WINDOW (window), NULL);
+
+  return MANUALS_WINDOW (window);
+}
+
+void
+manuals_window_navigate_to (ManualsWindow      *self,
+                            ManualsNavigatable *navigatable)
+{
+  g_return_if_fail (MANUALS_IS_WINDOW (self));
+  g_return_if_fail (MANUALS_IS_NAVIGATABLE (navigatable));
+
+}

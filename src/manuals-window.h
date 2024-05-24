@@ -32,6 +32,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (ManualsWindow, manuals_window, MANUALS, WINDOW, PanelWorkspace)
 
+ManualsWindow     *manuals_window_from_widget         (GtkWidget          *widget);
 ManualsWindow     *manuals_window_new                 (void);
 void               manuals_window_add_tab             (ManualsWindow      *self,
                                                        ManualsTab         *tab);
@@ -39,5 +40,7 @@ ManualsTab        *manuals_window_get_visible_tab     (ManualsWindow      *self)
 void               manuals_window_set_visible_tab     (ManualsWindow      *self,
                                                        ManualsTab         *tab);
 ManualsRepository *manuals_window_get_repository      (ManualsWindow      *self);
+void               manuals_window_navigate_to         (ManualsWindow      *self,
+                                                       ManualsNavigatable *navigatable);
 
 G_END_DECLS

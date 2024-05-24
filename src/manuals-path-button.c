@@ -21,12 +21,10 @@
 
 #include "config.h"
 
-#include "manuals-application.h"
 #include "manuals-path-bar.h"
 #include "manuals-path-button.h"
 #include "manuals-sdk.h"
 #include "manuals-search-result.h"
-#include "manuals-tab.h"
 #include "manuals-window.h"
 
 struct _ManualsPathButton
@@ -61,32 +59,17 @@ manuals_path_button_list_item_activate_cb (ManualsPathButton *self,
   g_autoptr(ManualsNavigatable) navigatable = NULL;
   GtkSelectionModel *model;
   ManualsWindow *window;
-  ManualsTab *tab;
-  GObject *item;
 
   g_assert (MANUALS_IS_PATH_BUTTON (self));
   g_assert (GTK_IS_LIST_VIEW (list_view));
 
   model = gtk_list_view_get_model (list_view);
   navigatable = g_list_model_get_item (G_LIST_MODEL (model), position);
-  item = manuals_navigatable_get_item (navigatable);
-  window = MANUALS_WINDOW (gtk_widget_get_ancestor (GTK_WIDGET (self), MANUALS_TYPE_WINDOW));
+  window = manuals_window_from_widget (GTK_WIDGET (self));
 
-  if (MANUALS_IS_SDK (item) || MANUALS_IS_REPOSITORY (item))
-    {
-      //manuals_window_show_listing (window, navigatable);
-      return;
-    }
+  gtk_popover_popdown (self->popover);
 
-  tab = manuals_window_get_visible_tab (window);
-  if (tab == NULL || manuals_application_control_is_pressed ())
-    {
-      tab = manuals_tab_new ();
-      manuals_window_add_tab (window, tab);
-    }
-
-  manuals_tab_set_navigatable (tab, navigatable);
-  manuals_window_set_visible_tab (window, tab);
+  manuals_window_navigate_to (window, navigatable);
 }
 
 static void
@@ -151,7 +134,6 @@ manuals_path_button_context_pressed_cb (ManualsPathButton *self,
                                         double             y,
                                         GtkGestureClick   *click)
 {
-  ManualsWindow *window;
   DexFuture *future;
   GtkWidget *widget;
   GObject *object;
@@ -169,9 +151,7 @@ manuals_path_button_context_pressed_cb (ManualsPathButton *self,
     gtk_widget_grab_focus (widget);
 
   object = manuals_path_element_get_item (self->element);
-  window = MANUALS_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
 
-  g_assert (MANUALS_IS_WINDOW (window));
   g_assert (MANUALS_IS_NAVIGATABLE (object));
 
   gtk_gesture_set_state (GTK_GESTURE (click), GTK_EVENT_SEQUENCE_CLAIMED);
@@ -192,10 +172,8 @@ manuals_path_button_pressed_cb (ManualsPathButton *self,
                                 GtkGestureClick   *click)
 {
   ManualsWindow *window;
-  ManualsTab *tab;
   GtkWidget *widget;
   GObject *object;
-  GObject *item;
 
   g_assert (MANUALS_IS_PATH_BUTTON (self));
   g_assert (GTK_IS_GESTURE_CLICK (click));
@@ -207,32 +185,15 @@ manuals_path_button_pressed_cb (ManualsPathButton *self,
   gtk_gesture_set_state (GTK_GESTURE (click), GTK_EVENT_SEQUENCE_CLAIMED);
 
   object = manuals_path_element_get_item (self->element);
-  window = MANUALS_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
+  window = manuals_window_from_widget (GTK_WIDGET (self));
 
   g_assert (MANUALS_IS_WINDOW (window));
   g_assert (MANUALS_IS_NAVIGATABLE (object));
 
-  tab = manuals_window_get_visible_tab (window);
-  g_assert (!tab || MANUALS_IS_TAB (tab));
-
-  item = manuals_navigatable_get_item (MANUALS_NAVIGATABLE (object));
+  manuals_window_navigate_to (window, MANUALS_NAVIGATABLE (object));
 
   gtk_widget_unset_state_flags (GTK_WIDGET (self->box),
                                 GTK_STATE_FLAG_ACTIVE);
-  if (MANUALS_IS_SDK (item) || MANUALS_IS_REPOSITORY (item))
-    {
-      //manuals_window_show_listing (window, MANUALS_NAVIGATABLE (object));
-      return;
-    }
-
-  if (tab == NULL || manuals_application_control_is_pressed ())
-    {
-      tab = manuals_tab_new ();
-      manuals_window_add_tab (window, tab);
-    }
-
-  manuals_tab_set_navigatable (tab, MANUALS_NAVIGATABLE (object));
-  manuals_window_set_visible_tab (window, tab);
 }
 
 static void
@@ -362,7 +323,7 @@ manuals_path_button_class_init (ManualsPathButtonClass *klass)
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/plugins/manuals/manuals-path-button.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-path-button.ui");
   gtk_widget_class_set_css_name (widget_class, "pathbutton");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
