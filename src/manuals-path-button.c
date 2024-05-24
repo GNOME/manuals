@@ -99,7 +99,8 @@ manuals_path_button_popover_closed_cb (ManualsPathButton *self,
   g_assert (GTK_IS_POPOVER (popover));
 
   gtk_widget_unset_state_flags (GTK_WIDGET (self->box),
-                                GTK_STATE_FLAG_CHECKED);
+                                GTK_STATE_FLAG_ACTIVE);
+  gtk_widget_queue_resize (GTK_WIDGET (self));
 
   bar = gtk_widget_get_ancestor (GTK_WIDGET (self), MANUALS_TYPE_PATH_BAR);
   manuals_path_bar_uninhibit_scroll (MANUALS_PATH_BAR (bar));
@@ -129,13 +130,16 @@ manuals_path_button_show_popover (DexFuture *completed,
 
   gtk_widget_grab_focus (GTK_WIDGET (self->box));
 
-  gtk_widget_set_state_flags (GTK_WIDGET (self->box),
-                              GTK_STATE_FLAG_CHECKED,
-                              FALSE);
-
   model = dex_await_object (dex_ref (completed), NULL);
-  gtk_no_selection_set_model (self->selection, model);
-  gtk_popover_popup (self->popover);
+
+  if (g_list_model_get_n_items (model) > 0)
+    {
+      gtk_widget_set_state_flags (GTK_WIDGET (self->box),
+                                  GTK_STATE_FLAG_ACTIVE,
+                                  FALSE);
+      gtk_no_selection_set_model (self->selection, model);
+      gtk_popover_popup (self->popover);
+    }
 
   return dex_future_new_for_boolean (TRUE);
 }
@@ -213,6 +217,8 @@ manuals_path_button_pressed_cb (ManualsPathButton *self,
 
   item = manuals_navigatable_get_item (MANUALS_NAVIGATABLE (object));
 
+  gtk_widget_unset_state_flags (GTK_WIDGET (self->box),
+                                GTK_STATE_FLAG_ACTIVE);
   if (MANUALS_IS_SDK (item) || MANUALS_IS_REPOSITORY (item))
     {
       //manuals_window_show_listing (window, MANUALS_NAVIGATABLE (object));
@@ -356,7 +362,7 @@ manuals_path_button_class_init (ManualsPathButtonClass *klass)
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-path-button.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/plugins/manuals/manuals-path-button.ui");
   gtk_widget_class_set_css_name (widget_class, "pathbutton");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
