@@ -278,3 +278,11 @@ manuals_sidebar_set_repository (ManualsSidebar    *self,
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_REPOSITORY]);
     }
 }
+
+void
+manuals_sidebar_focus_search (ManualsSidebar *self)
+{
+  g_return_if_fail (MANUALS_IS_SIDEBAR (self));
+
+  gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
+}

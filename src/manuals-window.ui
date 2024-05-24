@@ -2,7 +2,7 @@
 <interface>
   <template class="ManualsWindow" parent="PanelWorkspace">
     <property name="default-width">1000</property>
-    <property name="default-height">800</property>
+    <property name="default-height">700</property>
     <style>
       <class name="view"/>
     </style>
@@ -55,6 +55,7 @@
     </child>
     <property name="content">
       <object class="PanelDock" id="dock">
+        <property name="start-width">300</property>
         <child internal-child="center">
           <object class="PanelDockChild">
             <property name="top-edge">

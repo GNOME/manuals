@@ -34,5 +34,6 @@ G_DECLARE_FINAL_TYPE (ManualsSidebar, manuals_sidebar, MANUALS, SIDEBAR, GtkWidg
 ManualsRepository *manuals_sidebar_get_repository (ManualsSidebar    *self);
 void               manuals_sidebar_set_repository (ManualsSidebar    *self,
                                                    ManualsRepository *repository);
+void               manuals_sidebar_focus_search   (ManualsSidebar    *self);
 
 G_END_DECLS

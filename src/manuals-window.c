@@ -418,6 +418,7 @@ manuals_window_constructed (GObject *object)
 #endif
 
   manuals_sidebar_set_repository (self->sidebar, self->repository);
+  manuals_sidebar_focus_search (self->sidebar);
 }
 
 static void
