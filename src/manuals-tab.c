@@ -24,6 +24,8 @@
 #include <libdex.h>
 #include <webkit/webkit.h>
 
+#include <glib/gi18n.h>
+
 #include "manuals-heading.h"
 #include "manuals-keyword.h"
 #include "manuals-tab.h"
@@ -472,6 +474,9 @@ manuals_tab_get_title (ManualsTab *self)
 
   if (_g_str_empty0 (title) && self->navigatable != NULL)
     title = manuals_navigatable_get_title (self->navigatable);
+
+  if (_g_str_empty0 (title))
+    title = _("Empty Page");
 
   return title;
 }

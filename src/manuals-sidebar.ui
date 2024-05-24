@@ -6,6 +6,14 @@
         <child type="top">
           <object class="AdwHeaderBar">
             <property name="show-end-title-buttons">false</property>
+            <child type="start">
+              <object class="GtkButton" id="back_button">
+                <property name="icon-name">go-previous-symbolic</property>
+                <property name="action-name">sidebar.browse</property>
+                <property name="tooltip-text" translatable="yes">Back to Manuals</property>
+                <property name="visible">false</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>

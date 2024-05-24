@@ -42,6 +42,7 @@ struct _ManualsSidebar
   GtkListView        *search_view;
   GtkSearchEntry     *search_entry;
   GtkStack           *stack;
+  GtkButton          *back_button;
 
   DexFuture          *query;
   ManualsRepository  *repository;
@@ -73,6 +74,7 @@ manuals_sidebar_search_changed_cb (ManualsSidebar *self,
   if (_g_str_empty0 (text))
     {
       gtk_stack_set_visible_child_name (self->stack, "browse");
+      gtk_widget_set_visible (GTK_WIDGET (self->back_button), FALSE);
     }
   else
     {
@@ -89,6 +91,7 @@ manuals_sidebar_search_changed_cb (ManualsSidebar *self,
       gtk_list_view_set_model (self->search_view, GTK_SELECTION_MODEL (selection));
 
       gtk_stack_set_visible_child_name (self->stack, "search");
+      gtk_widget_set_visible (GTK_WIDGET (self->back_button), TRUE);
     }
 }
 
@@ -129,6 +132,16 @@ manuals_sidebar_search_view_activate_cb (ManualsSidebar *self,
     }
 
   manuals_tab_set_navigatable (tab, navigatable);
+}
+
+static void
+browse_action (GtkWidget  *widget,
+               const char *action,
+               GVariant   *param)
+{
+  ManualsSidebar *self = MANUALS_SIDEBAR (widget);
+
+  gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
 }
 
 static gboolean
@@ -227,6 +240,7 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
   gtk_widget_class_set_css_name (widget_class, "sidebar");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
+  gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, back_button);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, browse_view);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, search_entry);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, search_view);
@@ -236,6 +250,8 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, manuals_sidebar_search_view_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, nonempty_to_boolean);
   gtk_widget_class_bind_template_callback (widget_class, lookup_sdk_title);
+
+  gtk_widget_class_install_action (widget_class, "sidebar.browse", NULL, browse_action);
 
   properties[PROP_REPOSITORY] =
     g_param_spec_object ("repository", NULL, NULL,
