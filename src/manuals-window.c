@@ -178,6 +178,18 @@ manuals_window_tab_close_action (GtkWidget  *widget,
 }
 
 static void
+manuals_window_sidebar_focus_search_action (GtkWidget  *widget,
+                                            const char *action_name,
+                                            GVariant   *param)
+{
+  ManualsWindow *self = MANUALS_WINDOW (widget);
+
+  g_assert (MANUALS_IS_WINDOW (self));
+
+  manuals_sidebar_focus_search (self->sidebar);
+}
+
+static void
 manuals_window_constructed (GObject *object)
 {
   ManualsWindow *self = (ManualsWindow *)object;
@@ -296,6 +308,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, sidebar);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
 
+  gtk_widget_class_install_action (widget_class, "sidebar.focus-search", NULL, manuals_window_sidebar_focus_search_action);
   gtk_widget_class_install_action (widget_class, "tab.go-back", NULL, manuals_window_tab_go_back_action);
   gtk_widget_class_install_action (widget_class, "tab.go-forward", NULL, manuals_window_tab_go_forward_action);
   gtk_widget_class_install_action (widget_class, "tab.close", NULL, manuals_window_tab_close_action);

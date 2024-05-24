@@ -12,7 +12,7 @@
         <child>
           <object class="GtkShortcut">
             <property name="trigger">&lt;ctrl&gt;k</property>
-            <property name="action">action(win.begin-search)</property>
+            <property name="action">action(sidebar.focus-search)</property>
           </object>
         </child>
         <child>
