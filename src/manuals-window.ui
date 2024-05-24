@@ -66,6 +66,15 @@
                     <style>
                       <class name="flat"/>
                     </style>
+                    <property name="title-widget">
+                      <object class="AdwWindowTitle">
+                        <binding name="title">
+                          <lookup name="title" type="ManualsTab">
+                            <lookup name="visible-tab">ManualsWindow</lookup>
+                          </lookup>
+                        </binding>
+                      </object>
+                    </property>
                     <child type="start">
                       <object class="PanelToggleButton">
                         <property name="dock">dock</property>
