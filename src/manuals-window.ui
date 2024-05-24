@@ -58,21 +58,49 @@
         <child internal-child="center">
           <object class="PanelDockChild">
             <property name="top-edge">
-              <object class="AdwHeaderBar" id="header_bar">
-                <style>
-                  <class name="flat"/>
-                </style>
-                <child type="start">
-                  <object class="PanelToggleButton">
-                    <property name="dock">dock</property>
-                    <property name="area">start</property>
-                    <property name="tooltip-text" translatable="yes">Toggle Sidebar</property>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="AdwHeaderBar" id="header_bar">
+                    <style>
+                      <class name="flat"/>
+                    </style>
+                    <child type="start">
+                      <object class="PanelToggleButton">
+                        <property name="dock">dock</property>
+                        <property name="area">start</property>
+                        <property name="tooltip-text" translatable="yes">Toggle Sidebar</property>
+                      </object>
+                    </child>
+                    <child type="start">
+                      <object class="GtkBox">
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkButton" id="go_back_button">
+                            <property name="action-name">tab.go-back</property>
+                            <property name="icon-name">go-previous-symbolic</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="go_forward_button">
+                            <property name="action-name">tab.go-forward</property>
+                            <property name="icon-name">go-next-symbolic</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="end">
+                      <object class="GtkMenuButton">
+                        <property name="icon-name">open-menu-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Main Menu</property>
+                        <property name="menu-model">primary_menu</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
-                <child type="end">
-                  <object class="GtkMenuButton">
-                    <property name="icon-name">open-menu-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Main Menu</property>
+                <child>
+                  <object class="AdwTabBar" id="tab_bar">
+                    <property name="view">tab_view</property>
                   </object>
                 </child>
               </object>
@@ -82,7 +110,14 @@
               </object>
             </property>
             <property name="child">
-              <object class="PanelGrid" id="grid">
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="vexpand">true</property>
+                <child>
+                  <object class="AdwTabView" id="tab_view">
+                    <property name="vexpand">true</property>
+                  </object>
+                </child>
               </object>
             </property>
           </object>

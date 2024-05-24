@@ -49,14 +49,15 @@ struct _ManualsWindow
   GSignalGroup         *visible_tab_signals;
 
   ManualsSidebar       *sidebar;
+  AdwTabView           *tab_view;
+
+  GtkStack             *stack;
 
   GtkStack             *omni_stack;
   ManualsPathModel     *path_model;
   ManualsSearchEntry   *search_entry;
   ManualsSearchView    *search_view;
-  GtkStack             *stack;
   AdwTabOverview       *tab_overview;
-  AdwTabView           *tab_view;
   AdwToolbarView       *toolbar_view;
   GtkButton            *search_button;
 
@@ -524,6 +525,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-window.ui");
 
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, sidebar);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
 
 #if 0
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, omni_stack);
@@ -533,7 +535,6 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_view);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, stack);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_overview);
-  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, toolbar_view);
 #endif
 
@@ -565,7 +566,6 @@ manuals_window_init (ManualsWindow *self)
 {
   gtk_window_set_title (GTK_WINDOW (self), _("Manuals"));
 
-#if 0
   self->visible_tab_signals = g_signal_group_new (MANUALS_TYPE_TAB);
   g_signal_connect_object (self->visible_tab_signals,
                            "bind",
@@ -590,11 +590,9 @@ manuals_window_init (ManualsWindow *self)
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "tab.go-back", FALSE);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "tab.go-forward", FALSE);
-#endif
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
-#if 0
   g_signal_connect_object (self->tab_view,
                            "notify::selected-page",
                            G_CALLBACK (manuals_window_tab_view_notify_selected_page_cb),
@@ -602,6 +600,7 @@ manuals_window_init (ManualsWindow *self)
                            G_CONNECT_SWAPPED);
   manuals_window_add_tab (self, manuals_tab_new ());
 
+#if 0
   set_mode (self, MODE_EMPTY);
 
   g_object_bind_property_full (self, "mode",
@@ -716,7 +715,6 @@ manuals_window_show_listing_cb (DexFuture *completed,
   g_assert (show != NULL);
   g_assert (MANUALS_IS_WINDOW (show->self));
   g_assert (MANUALS_IS_NAVIGATABLE (show->navigatable));
-
 
   item = manuals_navigatable_get_item (show->navigatable);
 

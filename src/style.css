@@ -11,6 +11,10 @@ paneldockchild.start panelresizer separator {
   background: transparent;
 }
 
+paneldockchild.center tabbar > revealer > box {
+  background: transparent;
+}
+
 pathbar path {
   background-color: alpha(currentColor, .1);
   border-radius: 6px;
