@@ -3,16 +3,6 @@
   <template class="ManualsPathBar" parent="GtkWidget">
     <property name="focusable">false</property>
     <child>
-      <object class="GtkShortcutController">
-        <child>
-          <object class="GtkShortcut">
-            <property name="trigger">Escape</property>
-            <property name="action">action(pathbar.leave-search-mode)</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
       <object class="GtkBox">
         <property name="css-name">path</property>
         <child>
@@ -31,26 +21,8 @@
             </child>
           </object>
         </child>
-        <child>
-          <object class="GtkSpinner">
-            <property name="margin-end">6</property>
-            <binding name="spinning">
-              <lookup name="import-active" type="ManualsApplication">
-                <lookup name="application" type="ManualsWindow">
-                  <lookup name="root">ManualsPathBar</lookup>
-                </lookup>
-              </lookup>
-            </binding>
-            <binding name="visible">
-              <lookup name="import-active" type="ManualsApplication">
-                <lookup name="application" type="ManualsWindow">
-                  <lookup name="root">ManualsPathBar</lookup>
-                </lookup>
-              </lookup>
-            </binding>
-          </object>
-        </child>
       </object>
     </child>
   </template>
 </interface>
+

@@ -22,28 +22,28 @@
 #include "config.h"
 
 #include "manuals-path-bar.h"
+
 #include "manuals-path-button.h"
 #include "manuals-path-element.h"
+#include "manuals-path-model.h"
 
 struct _ManualsPathBar
 {
-  GtkWidget          parent_instance;
+  GtkWidget           parent_instance;
 
-  ManualsPathModel  *model;
+  ManualsNavigatable *navigatable;
+  ManualsPathModel   *model;
 
-  GtkBox            *elements;
-  GtkScrolledWindow *scroller;
+  GtkBox             *elements;
+  GtkScrolledWindow  *scroller;
 
-  int                inhibit_scroll;
-
-  guint              scroll_source;
-
-  guint              search_mode : 1;
+  int                 inhibit_scroll;
+  guint               scroll_source;
 };
 
 enum {
   PROP_0,
-  PROP_MODEL,
+  PROP_NAVIGATABLE,
   N_PROPS
 };
 
@@ -96,8 +96,8 @@ manuals_path_bar_queue_scroll (ManualsPathBar *self)
 
 static void
 manuals_path_bar_notify_upper_cb (ManualsPathBar *self,
-                                  GParamSpec     *pspec,
-                                  GtkAdjustment  *hadj)
+                                  GParamSpec            *pspec,
+                                  GtkAdjustment         *hadj)
 {
   GtkWidget *focus;
   GtkRoot *root;
@@ -114,156 +114,6 @@ manuals_path_bar_notify_upper_cb (ManualsPathBar *self,
   manuals_path_bar_queue_scroll (self);
 }
 
-static void
-manuals_path_bar_measure (GtkWidget      *widget,
-                          GtkOrientation  orientation,
-                          int             for_size,
-                          int            *mininum,
-                          int            *natural,
-                          int            *mininum_baseline,
-                          int            *natural_baseline)
-{
-  GtkWidget *child = gtk_widget_get_first_child (widget);
-
-  gtk_widget_measure (child,
-                      orientation,
-                      for_size,
-                      mininum,
-                      natural,
-                      mininum_baseline,
-                      natural_baseline);
-}
-
-static void
-manuals_path_bar_size_allocate (GtkWidget *widget,
-                                int        width,
-                                int        height,
-                                int        baseline)
-{
-  ManualsPathBar *self = (ManualsPathBar *)widget;
-  GtkWidget *child;
-
-  g_assert (MANUALS_IS_PATH_BAR (self));
-
-  child = gtk_widget_get_first_child (widget);
-
-  gtk_widget_size_allocate (child,
-                            &(GtkAllocation) { 0, 0, width, height },
-                            baseline);
-
-  manuals_path_bar_scroll_to_end (self);
-}
-
-static void
-manuals_path_bar_dispose (GObject *object)
-{
-  ManualsPathBar *self = (ManualsPathBar *)object;
-  GtkWidget *child;
-
-  manuals_path_bar_set_model (self, NULL);
-
-  gtk_widget_dispose_template (GTK_WIDGET (self), MANUALS_TYPE_PATH_BAR);
-
-  if ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
-    gtk_widget_unparent (child);
-
-  g_clear_handle_id (&self->scroll_source, g_source_remove);
-
-  G_OBJECT_CLASS (manuals_path_bar_parent_class)->dispose (object);
-}
-
-static void
-manuals_path_bar_get_property (GObject    *object,
-                               guint       prop_id,
-                               GValue     *value,
-                               GParamSpec *pspec)
-{
-  ManualsPathBar *self = MANUALS_PATH_BAR (object);
-
-  switch (prop_id)
-    {
-    case PROP_MODEL:
-      g_value_set_object (value, manuals_path_bar_get_model (self));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-    }
-}
-
-static void
-manuals_path_bar_set_property (GObject      *object,
-                               guint         prop_id,
-                               const GValue *value,
-                               GParamSpec   *pspec)
-{
-  ManualsPathBar *self = MANUALS_PATH_BAR (object);
-
-  switch (prop_id)
-    {
-    case PROP_MODEL:
-      manuals_path_bar_set_model (self, g_value_get_object (value));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-    }
-}
-
-static void
-manuals_path_bar_class_init (ManualsPathBarClass *klass)
-{
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-
-  object_class->dispose = manuals_path_bar_dispose;
-  object_class->get_property = manuals_path_bar_get_property;
-  object_class->set_property = manuals_path_bar_set_property;
-
-  widget_class->measure = manuals_path_bar_measure;
-  widget_class->size_allocate = manuals_path_bar_size_allocate;
-
-  properties[PROP_MODEL] =
-    g_param_spec_object ("model", NULL, NULL,
-                         MANUALS_TYPE_PATH_MODEL,
-                         (G_PARAM_READWRITE |
-                          G_PARAM_EXPLICIT_NOTIFY |
-                          G_PARAM_STATIC_STRINGS));
-
-  g_object_class_install_properties (object_class, N_PROPS, properties);
-
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-path-bar.ui");
-  gtk_widget_class_set_css_name (widget_class, "pathbar");
-
-  gtk_widget_class_bind_template_child (widget_class, ManualsPathBar, elements);
-  gtk_widget_class_bind_template_child (widget_class, ManualsPathBar, scroller);
-
-  g_type_ensure (MANUALS_TYPE_PATH_BUTTON);
-  g_type_ensure (MANUALS_TYPE_PATH_ELEMENT);
-}
-
-static void
-manuals_path_bar_init (ManualsPathBar *self)
-{
-  GtkAdjustment *hadj;
-
-  gtk_widget_init_template (GTK_WIDGET (self));
-
-  hadj = gtk_scrolled_window_get_hadjustment (self->scroller);
-
-  g_signal_connect_object (hadj,
-                           "notify::upper",
-                           G_CALLBACK (manuals_path_bar_notify_upper_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-}
-
-ManualsPathBar *
-manuals_path_bar_new (void)
-{
-  return g_object_new (MANUALS_TYPE_PATH_BAR, NULL);
-}
-
 static GtkWidget *
 create_button (ManualsPathElement *element)
 {
@@ -278,11 +128,11 @@ create_button (ManualsPathElement *element)
 }
 
 static void
-manuals_path_bar_path_items_changed_cb (ManualsPathBar   *self,
-                                        guint             position,
-                                        guint             removed,
-                                        guint             added,
-                                        ManualsPathModel *model)
+manuals_path_bar_path_items_changed_cb (ManualsPathBar *self,
+                                        guint                  position,
+                                        guint                  removed,
+                                        guint                  added,
+                                        ManualsPathModel      *model)
 {
   g_assert (MANUALS_IS_PATH_BAR (self));
   g_assert (MANUALS_IS_PATH_MODEL (model));
@@ -320,30 +170,92 @@ manuals_path_bar_path_items_changed_cb (ManualsPathBar   *self,
 }
 
 static void
-manuals_path_bar_disconnect (ManualsPathBar *self)
+manuals_path_bar_dispose (GObject *object)
 {
-  guint n_items;
+  ManualsPathBar *self = (ManualsPathBar *)object;
+  GtkWidget *child;
 
-  g_assert (MANUALS_IS_PATH_BAR (self));
-  g_assert (G_IS_LIST_MODEL (self->model));
+  gtk_widget_dispose_template (GTK_WIDGET (self), MANUALS_TYPE_PATH_BAR);
 
-  g_signal_handlers_disconnect_by_func (self->model,
-                                        manuals_path_bar_path_items_changed_cb,
-                                        self);
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
+    gtk_widget_unparent (child);
 
-  n_items = g_list_model_get_n_items (G_LIST_MODEL (self->model));
+  g_clear_object (&self->navigatable);
+  g_clear_object (&self->model);
 
-  if (n_items > 0)
-    manuals_path_bar_path_items_changed_cb (self, 0, n_items, 0, self->model);
+  G_OBJECT_CLASS (manuals_path_bar_parent_class)->dispose (object);
 }
 
 static void
-manuals_path_bar_connect (ManualsPathBar *self)
+manuals_path_bar_get_property (GObject    *object,
+                                  guint       prop_id,
+                                  GValue     *value,
+                                  GParamSpec *pspec)
+{
+  ManualsPathBar *self = MANUALS_PATH_BAR (object);
+
+  switch (prop_id)
+    {
+    case PROP_NAVIGATABLE:
+      g_value_set_object (value, manuals_path_bar_get_navigatable (self));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+manuals_path_bar_set_property (GObject      *object,
+                                  guint         prop_id,
+                                  const GValue *value,
+                                  GParamSpec   *pspec)
+{
+  ManualsPathBar *self = MANUALS_PATH_BAR (object);
+
+  switch (prop_id)
+    {
+    case PROP_NAVIGATABLE:
+      manuals_path_bar_set_navigatable (self, g_value_get_object (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+manuals_path_bar_class_init (ManualsPathBarClass *klass)
+{
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  object_class->dispose = manuals_path_bar_dispose;
+  object_class->get_property = manuals_path_bar_get_property;
+  object_class->set_property = manuals_path_bar_set_property;
+
+  properties[PROP_NAVIGATABLE] =
+    g_param_spec_object ("navigatable", NULL, NULL,
+                         MANUALS_TYPE_NAVIGATABLE,
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
+
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
+  gtk_widget_class_set_css_name (widget_class, "ManualsPathBar");
+  gtk_widget_class_set_template_from_resource (widget_class, "/plugins/manuals/manuals-path-bar.ui");
+  gtk_widget_class_bind_template_child (widget_class, ManualsPathBar, elements);
+  gtk_widget_class_bind_template_child (widget_class, ManualsPathBar, scroller);
+}
+
+static void
+manuals_path_bar_init (ManualsPathBar *self)
 {
   guint n_items;
 
-  g_assert (MANUALS_IS_PATH_BAR (self));
-  g_assert (MANUALS_IS_PATH_MODEL (self->model));
+  self->model = manuals_path_model_new ();
 
   g_signal_connect_object (self->model,
                            "items-changed",
@@ -351,39 +263,45 @@ manuals_path_bar_connect (ManualsPathBar *self)
                            self,
                            G_CONNECT_SWAPPED);
 
+  gtk_widget_init_template (GTK_WIDGET (self));
+
   n_items = g_list_model_get_n_items (G_LIST_MODEL (self->model));
 
   if (n_items > 0)
-    manuals_path_bar_path_items_changed_cb (self, 0, 0, n_items, self->model);
+    manuals_path_bar_path_items_changed_cb (self, 0, n_items, 0, self->model);
+
+  g_signal_connect_object (gtk_scrolled_window_get_hadjustment (self->scroller),
+                           "notify::upper",
+                           G_CALLBACK (manuals_path_bar_notify_upper_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
 
-ManualsPathModel *
-manuals_path_bar_get_model (ManualsPathBar *self)
+ManualsPathBar *
+manuals_path_bar_new (void)
+{
+  return g_object_new (MANUALS_TYPE_PATH_BAR, NULL);
+}
+
+ManualsNavigatable *
+manuals_path_bar_get_navigatable (ManualsPathBar *self)
 {
   g_return_val_if_fail (MANUALS_IS_PATH_BAR (self), NULL);
 
-  return self->model;
+  return self->navigatable;
 }
 
 void
-manuals_path_bar_set_model (ManualsPathBar   *self,
-                            ManualsPathModel *model)
+manuals_path_bar_set_navigatable (ManualsPathBar  *self,
+                                  ManualsNavigatable     *navigatable)
 {
   g_return_if_fail (MANUALS_IS_PATH_BAR (self));
-  g_return_if_fail (!model || MANUALS_IS_PATH_MODEL (model));
 
-  if (self->model == model)
-    return;
-
-  if (self->model != NULL)
-    manuals_path_bar_disconnect (self);
-
-  g_set_object (&self->model, model);
-
-  if (self->model != NULL)
-    manuals_path_bar_connect (self);
-
-  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MODEL]);
+  if (g_set_object (&self->navigatable, navigatable))
+    {
+      manuals_path_model_set_navigatable (self->model, navigatable);
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NAVIGATABLE]);
+    }
 }
 
 void
@@ -401,3 +319,4 @@ manuals_path_bar_uninhibit_scroll (ManualsPathBar *self)
 
   self->inhibit_scroll--;
 }
+

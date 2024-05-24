@@ -23,7 +23,7 @@
 
 #include <gtk/gtk.h>
 
-#include "manuals-path-model.h"
+#include "manuals-navigatable.h"
 
 G_BEGIN_DECLS
 
@@ -31,14 +31,12 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (ManualsPathBar, manuals_path_bar, MANUALS, PATH_BAR, GtkWidget)
 
-ManualsPathBar   *manuals_path_bar_new              (void);
-ManualsPathModel *manuals_path_bar_get_model        (ManualsPathBar   *self);
-void              manuals_path_bar_set_model        (ManualsPathBar   *self,
-                                                     ManualsPathModel *model);
-gboolean          manuals_path_bar_get_search_mode  (ManualsPathBar   *self);
-void              manuals_path_bar_set_search_mode  (ManualsPathBar   *self,
-                                                     gboolean          search_mode);
-void              manuals_path_bar_inhibit_scroll   (ManualsPathBar   *self);
-void              manuals_path_bar_uninhibit_scroll (ManualsPathBar   *self);
+ManualsPathBar     *manuals_path_bar_new              (void);
+ManualsNavigatable *manuals_path_bar_get_navigatable  (ManualsPathBar     *self);
+void                manuals_path_bar_set_navigatable  (ManualsPathBar     *self,
+                                                       ManualsNavigatable *navigatable);
+void                manuals_path_bar_inhibit_scroll   (ManualsPathBar     *self);
+void                manuals_path_bar_uninhibit_scroll (ManualsPathBar     *self);
 
 G_END_DECLS
+

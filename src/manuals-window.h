@@ -39,7 +39,5 @@ ManualsTab        *manuals_window_get_visible_tab     (ManualsWindow      *self)
 void               manuals_window_set_visible_tab     (ManualsWindow      *self,
                                                        ManualsTab         *tab);
 ManualsRepository *manuals_window_get_repository      (ManualsWindow      *self);
-void               manuals_window_show_listing        (ManualsWindow      *self,
-                                                       ManualsNavigatable *navigatable);
 
 G_END_DECLS

@@ -74,7 +74,7 @@ manuals_path_button_list_item_activate_cb (ManualsPathButton *self,
 
   if (MANUALS_IS_SDK (item) || MANUALS_IS_REPOSITORY (item))
     {
-      manuals_window_show_listing (window, navigatable);
+      //manuals_window_show_listing (window, navigatable);
       return;
     }
 
@@ -215,7 +215,7 @@ manuals_path_button_pressed_cb (ManualsPathButton *self,
 
   if (MANUALS_IS_SDK (item) || MANUALS_IS_REPOSITORY (item))
     {
-      manuals_window_show_listing (window, MANUALS_NAVIGATABLE (object));
+      //manuals_window_show_listing (window, MANUALS_NAVIGATABLE (object));
       return;
     }
 

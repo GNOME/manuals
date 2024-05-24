@@ -22,7 +22,6 @@ manuals_sources = [
   'manuals-search-model.c',
   'manuals-search-query.c',
   'manuals-search-result.c',
-  'manuals-search-view.c',
   'manuals-sidebar.c',
   'manuals-system-importer.c',
   'manuals-tab.c',
