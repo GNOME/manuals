@@ -11,25 +11,183 @@
         <child>
           <object class="GtkBox">
             <property name="orientation">vertical</property>
+            <property name="vexpand">true</property>
             <child>
-              <object class="GtkScrolledWindow">
-                <property name="hscrollbar-policy">never</property>
-                <property name="vexpand">true</property>
+              <object class="GtkStack" id="stack">
                 <child>
-                  <object class="GtkListView" id="list_view">
-                    <style>
-                      <class name="transparent"/>
-                    </style>
+                  <object class="GtkStackPage" id="browse">
+                    <property name="name">browse</property>
+                    <property name="child">
+                      <object class="GtkScrolledWindow">
+                        <property name="hscrollbar-policy">never</property>
+                        <property name="vexpand">true</property>
+                        <child>
+                          <object class="GtkListView" id="browse_view">
+                            <style>
+                              <class name="transparent"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage" id="search">
+                    <property name="name">search</property>
+                    <property name="child">
+                      <object class="GtkScrolledWindow">
+                        <property name="hscrollbar-policy">never</property>
+                        <property name="vexpand">true</property>
+                        <child>
+                          <object class="GtkListView" id="search_view">
+                            <style>
+                              <class name="transparent"/>
+                            </style>
+                            <property name="single-click-activate">true</property>
+                            <property name="tab-behavior">item</property>
+                            <property name="header-factory">
+                              <object class="GtkBuilderListItemFactory">
+                                <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListHeader">
+    <property name="child">
+      <object class="GtkLabel">
+        <property name="xalign">0</property>
+        <property name="margin-start">6</property>
+        <binding name="label">
+          <closure function="lookup_sdk_title" type="gchararray">
+            <lookup name="item" type="ManualsNavigatable">
+              <lookup name="item" type="ManualsSearchResult">
+                <lookup name="item">GtkListHeader</lookup>
+              </lookup>
+            </lookup>
+          </closure>
+        </binding>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                                </property>
+                              </object>
+                            </property>
+                            <property name="factory">
+                              <object class="GtkBuilderListItemFactory">
+                                <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkImage" id="image">
+            <binding name="gicon">
+              <lookup name="icon" type="ManualsNavigatable">
+                <lookup name="item" type="ManualsSearchResult">
+                  <lookup name="item">GtkListItem</lookup>
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="title">
+            <property name="hexpand">true</property>
+            <property name="xalign">0</property>
+            <property name="ellipsize">middle</property>
+            <binding name="label">
+              <lookup name="title" type="ManualsNavigatable">
+                <lookup name="item" type="ManualsSearchResult">
+                  <lookup name="item">GtkListItem</lookup>
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="ManualsTag" id="since">
+            <style>
+              <class name="since"/>
+            </style>
+            <property name="valign">center</property>
+            <property name="visible">false</property>
+            <binding name="visible">
+              <closure function="nonempty_to_boolean" type="gboolean">
+                <lookup name="since" type="ManualsKeyword">
+                  <lookup name="item" type="ManualsNavigatable">
+                    <lookup name="item" type="ManualsSearchResult">
+                      <lookup name="item">GtkListItem</lookup>
+                    </lookup>
+                  </lookup>
+                </lookup>
+              </closure>
+            </binding>
+            <binding name="value">
+              <lookup name="since" type="ManualsKeyword">
+                <lookup name="item" type="ManualsNavigatable">
+                  <lookup name="item" type="ManualsSearchResult">
+                    <lookup name="item">GtkListItem</lookup>
+                  </lookup>
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="ManualsTag" id="deprecated">
+            <style>
+              <class name="deprecated"/>
+            </style>
+            <property name="valign">center</property>
+            <property name="visible">false</property>
+            <binding name="visible">
+              <closure function="nonempty_to_boolean" type="gboolean">
+                <lookup name="deprecated" type="ManualsKeyword">
+                  <lookup name="item" type="ManualsNavigatable">
+                    <lookup name="item" type="ManualsSearchResult">
+                      <lookup name="item">GtkListItem</lookup>
+                    </lookup>
+                  </lookup>
+                </lookup>
+              </closure>
+            </binding>
+            <binding name="value">
+              <lookup name="deprecated" type="ManualsKeyword">
+                <lookup name="item" type="ManualsNavigatable">
+                  <lookup name="item" type="ManualsSearchResult">
+                    <lookup name="item">GtkListItem</lookup>
+                  </lookup>
+                </lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                                </property>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="GtkSearchEntry">
+              <object class="GtkSearchEntry" id="search_entry">
                 <style>
                   <class name="statusbar"/>
                 </style>
                 <property name="placeholder-text" translatable="yes">Filter…</property>
+                <signal name="search-changed" handler="manuals_sidebar_search_changed_cb" swapped="true"/>
               </object>
             </child>
           </object>

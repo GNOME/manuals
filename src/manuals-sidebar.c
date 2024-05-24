@@ -21,16 +21,28 @@
 
 #include "config.h"
 
+#include <libdex.h>
+
+#include "manuals-keyword.h"
+#include "manuals-navigatable.h"
+#include "manuals-search-query.h"
+#include "manuals-search-result.h"
 #include "manuals-sidebar.h"
+#include "manuals-tag.h"
 #include "manuals-tree-expander.h"
+#include "manuals-utils.h"
 
 struct _ManualsSidebar
 {
-  GtkWidget          parent_instance;
+  GtkWidget           parent_instance;
 
-  GtkListView       *list_view;
+  GtkListView        *browse_view;
+  GtkListView        *search_view;
+  GtkSearchEntry     *search_entry;
+  GtkStack           *stack;
 
-  ManualsRepository *repository;
+  DexFuture          *query;
+  ManualsRepository  *repository;
 };
 
 G_DEFINE_FINAL_TYPE (ManualsSidebar, manuals_sidebar, GTK_TYPE_WIDGET)
@@ -44,6 +56,68 @@ enum {
 static GParamSpec *properties[N_PROPS];
 
 static void
+manuals_sidebar_search_changed_cb (ManualsSidebar *self,
+                                   GtkSearchEntry *search_entry)
+{
+  g_autofree char *text = NULL;
+
+  g_assert (MANUALS_IS_SIDEBAR (self));
+  g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
+
+  dex_clear (&self->query);
+
+  text = g_strstrip (g_strdup (gtk_editable_get_text (GTK_EDITABLE (search_entry))));
+
+  if (_g_str_empty0 (text))
+    {
+      gtk_stack_set_visible_child_name (self->stack, "browse");
+    }
+  else
+    {
+      g_autoptr(ManualsSearchQuery) query = manuals_search_query_new ();
+      g_autoptr(GtkNoSelection) selection = NULL;
+
+      manuals_search_query_set_text (query, text);
+
+      /* Hold on to the future so we can cancel it by releasing when a
+       * new search comes in.
+       */
+      self->query = manuals_search_query_execute (query, self->repository);
+      selection = gtk_no_selection_new (g_object_ref (G_LIST_MODEL (query)));
+      gtk_list_view_set_model (self->search_view, GTK_SELECTION_MODEL (selection));
+
+      gtk_stack_set_visible_child_name (self->stack, "search");
+    }
+}
+
+static gboolean
+nonempty_to_boolean (gpointer    instance,
+                     const char *data)
+{
+  return !_g_str_empty0 (data);
+}
+
+static char *
+lookup_sdk_title (gpointer        instance,
+                  ManualsKeyword *keyword)
+{
+  g_autoptr(ManualsRepository) repository = NULL;
+  gint64 book_id;
+  gint64 sdk_id;
+
+  g_assert (!keyword || MANUALS_IS_KEYWORD (keyword));
+
+  if (keyword == NULL)
+    return NULL;
+
+  g_object_get (keyword, "repository", &repository, NULL);
+  book_id = manuals_keyword_get_book_id (keyword);
+  sdk_id = manuals_repository_get_cached_sdk_id (repository, book_id);
+
+  return g_strdup (manuals_repository_get_cached_sdk_title (repository, sdk_id));
+}
+
+static void
 manuals_sidebar_dispose (GObject *object)
 {
   ManualsSidebar *self = (ManualsSidebar *)object;
@@ -53,6 +127,9 @@ manuals_sidebar_dispose (GObject *object)
 
   while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
     gtk_widget_unparent (child);
+
+  dex_clear (&self->query);
+  g_clear_object (&self->repository);
 
   G_OBJECT_CLASS (manuals_sidebar_parent_class)->dispose (object);
 }
@@ -108,7 +185,15 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-sidebar.ui");
   gtk_widget_class_set_css_name (widget_class, "sidebar");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
-  gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, list_view);
+
+  gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, browse_view);
+  gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, search_entry);
+  gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, search_view);
+  gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, stack);
+
+  gtk_widget_class_bind_template_callback (widget_class, manuals_sidebar_search_changed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, nonempty_to_boolean);
+  gtk_widget_class_bind_template_callback (widget_class, lookup_sdk_title);
 
   properties[PROP_REPOSITORY] =
     g_param_spec_object ("repository", NULL, NULL,
@@ -120,6 +205,9 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   g_type_ensure (MANUALS_TYPE_TREE_EXPANDER);
+  g_type_ensure (MANUALS_TYPE_NAVIGATABLE);
+  g_type_ensure (MANUALS_TYPE_SEARCH_RESULT);
+  g_type_ensure (MANUALS_TYPE_TAG);
 }
 
 static void
