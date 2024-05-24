@@ -31,4 +31,11 @@ _g_str_empty0 (const char *str)
   return str == NULL || str[0] == 0;
 }
 
+static inline gboolean
+_g_str_equal0 (const char *a,
+               const char *b)
+{
+  return g_strcmp0 (a, b) == 0;
+}
+
 G_END_DECLS

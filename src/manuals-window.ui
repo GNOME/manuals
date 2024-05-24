@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="ManualsWindow" parent="AdwApplicationWindow">
+  <template class="ManualsWindow" parent="PanelWorkspace">
     <property name="default-width">1000</property>
     <property name="default-height">800</property>
     <style>
@@ -54,7 +54,46 @@
       </object>
     </child>
     <property name="content">
-      <object class="AdwTabOverview" id="tab_overview">
+      <object class="PanelDock" id="dock">
+        <child internal-child="center">
+          <object class="PanelDockChild">
+            <property name="top-edge">
+              <object class="AdwHeaderBar" id="header_bar">
+                <style>
+                  <class name="flat"/>
+                </style>
+                <child type="start">
+                  <object class="PanelToggleButton">
+                    <property name="dock">dock</property>
+                    <property name="area">start</property>
+                    <property name="tooltip-text" translatable="yes">Toggle Sidebar</property>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkMenuButton">
+                    <property name="icon-name">open-menu-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Main Menu</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+            <property name="bottom-edge">
+              <object class="PanelStatusbar">
+              </object>
+            </property>
+            <property name="child">
+              <object class="PanelGrid" id="grid">
+              </object>
+            </property>
+          </object>
+        </child>
+        <child type="start">
+          <object class="ManualsSidebar" id="sidebar">
+          </object>
+        </child>
+        <property name="reveal-start">true</property>
+      </object>
+      <!--object class="AdwTabOverview" id="tab_overview">
         <property name="enable-new-tab">true</property>
         <signal name="create-tab" handler="manuals_window_tab_overview_create_tab_cb" swapped="true"/>
         <property name="view">tab_view</property>
@@ -239,7 +278,7 @@
             </property>
           </object>
         </property>
-      </object>
+      </object-->
     </property>
   </template>
   <menu id="primary_menu">

@@ -27,6 +27,7 @@ manuals_sources = [
   'manuals-system-importer.c',
   'manuals-tab.c',
   'manuals-tag.c',
+  'manuals-tree-expander.c',
   'manuals-utils.c',
   'manuals-window.c',
   'main.c',
@@ -37,6 +38,7 @@ manuals_deps = [
   dependency('gom-1.0', version: '>= 0.4'),
   dependency('gtk4', version: '>= 4.12'),
   dependency('libadwaita-1', version: '>= 1.5'),
+  dependency('libpanel-1', version: '>= 1.6'),
   dependency('libdex-1', version: '>= 0.5'),
   dependency('webkitgtk-6.0', version: '>= 2.42'),
 ]

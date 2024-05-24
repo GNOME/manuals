@@ -23,10 +23,16 @@
 
 #include <gtk/gtk.h>
 
+#include "manuals-repository.h"
+
 G_BEGIN_DECLS
 
 #define MANUALS_TYPE_SIDEBAR (manuals_sidebar_get_type())
 
 G_DECLARE_FINAL_TYPE (ManualsSidebar, manuals_sidebar, MANUALS, SIDEBAR, GtkWidget)
+
+ManualsRepository *manuals_sidebar_get_repository (ManualsSidebar    *self);
+void               manuals_sidebar_set_repository (ManualsSidebar    *self,
+                                                   ManualsRepository *repository);
 
 G_END_DECLS

@@ -21,7 +21,7 @@
 
 #pragma once
 
-#include <adwaita.h>
+#include <libpanel.h>
 
 #include "manuals-repository.h"
 #include "manuals-tab.h"
@@ -30,7 +30,7 @@ G_BEGIN_DECLS
 
 #define MANUALS_TYPE_WINDOW (manuals_window_get_type())
 
-G_DECLARE_FINAL_TYPE (ManualsWindow, manuals_window, MANUALS, WINDOW, AdwApplicationWindow)
+G_DECLARE_FINAL_TYPE (ManualsWindow, manuals_window, MANUALS, WINDOW, PanelWorkspace)
 
 ManualsWindow     *manuals_window_new                 (void);
 void               manuals_window_add_tab             (ManualsWindow      *self,

@@ -30,6 +30,7 @@
 #include "manuals-search-entry.h"
 #include "manuals-search-result.h"
 #include "manuals-search-view.h"
+#include "manuals-sidebar.h"
 #include "manuals-tab.h"
 #include "manuals-window.h"
 
@@ -40,12 +41,14 @@
 
 struct _ManualsWindow
 {
-  AdwApplicationWindow  parent_instance;
+  PanelWorkspace        parent_instance;
 
   const char           *mode;
 
   ManualsRepository    *repository;
   GSignalGroup         *visible_tab_signals;
+
+  ManualsSidebar       *sidebar;
 
   GtkStack             *omni_stack;
   ManualsPathModel     *path_model;
@@ -60,7 +63,7 @@ struct _ManualsWindow
   guint                 disposed : 1;
 };
 
-G_DEFINE_FINAL_TYPE (ManualsWindow, manuals_window, ADW_TYPE_APPLICATION_WINDOW)
+G_DEFINE_FINAL_TYPE (ManualsWindow, manuals_window, PANEL_TYPE_WORKSPACE)
 
 enum {
   PROP_0,
@@ -404,12 +407,16 @@ manuals_window_set_mode_action (GtkWidget  *widget,
 static void
 manuals_window_constructed (GObject *object)
 {
+  ManualsWindow *self = (ManualsWindow *)object;
+
   G_OBJECT_CLASS (manuals_window_parent_class)->constructed (object);
 
 #if 0
   /* For some reason this causes librsvg to segfault */
   gtk_widget_add_css_class (GTK_WIDGET (object), "devel");
 #endif
+
+  manuals_sidebar_set_repository (self->sidebar, self->repository);
 }
 
 static void
@@ -516,6 +523,9 @@ manuals_window_class_init (ManualsWindowClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Manuals/manuals-window.ui");
 
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, sidebar);
+
+#if 0
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, omni_stack);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, path_model);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_button);
@@ -525,6 +535,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_overview);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, toolbar_view);
+#endif
 
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_entry_begin_search_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_entry_focus_enter_cb);
@@ -545,6 +556,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   g_type_ensure (MANUALS_TYPE_PATH_BAR);
   g_type_ensure (MANUALS_TYPE_SEARCH_ENTRY);
   g_type_ensure (MANUALS_TYPE_SEARCH_VIEW);
+  g_type_ensure (MANUALS_TYPE_SIDEBAR);
   g_type_ensure (MANUALS_TYPE_TAB);
 }
 
@@ -553,6 +565,7 @@ manuals_window_init (ManualsWindow *self)
 {
   gtk_window_set_title (GTK_WINDOW (self), _("Manuals"));
 
+#if 0
   self->visible_tab_signals = g_signal_group_new (MANUALS_TYPE_TAB);
   g_signal_connect_object (self->visible_tab_signals,
                            "bind",
@@ -577,15 +590,16 @@ manuals_window_init (ManualsWindow *self)
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "tab.go-back", FALSE);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "tab.go-forward", FALSE);
+#endif
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
+#if 0
   g_signal_connect_object (self->tab_view,
                            "notify::selected-page",
                            G_CALLBACK (manuals_window_tab_view_notify_selected_page_cb),
                            self,
                            G_CONNECT_SWAPPED);
-
   manuals_window_add_tab (self, manuals_tab_new ());
 
   set_mode (self, MODE_EMPTY);
@@ -594,6 +608,7 @@ manuals_window_init (ManualsWindow *self)
                                self->search_button, "visible",
                                G_BINDING_SYNC_CREATE,
                                mode_to_visible, NULL, NULL, NULL);
+#endif
 }
 
 void
