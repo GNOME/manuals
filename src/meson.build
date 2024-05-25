@@ -28,6 +28,7 @@ manuals_sources = [
   'manuals-system-importer.c',
   'manuals-tab.c',
   'manuals-tag.c',
+  'manuals-tree-addin.c',
   'manuals-tree-expander.c',
   'manuals-utils.c',
   'manuals-window.c',

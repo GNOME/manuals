@@ -23,6 +23,8 @@
 
 #include <libdex.h>
 
+#include <libide-tree/ide-tree.h>
+
 #include "manuals-application.h"
 #include "manuals-keyword.h"
 #include "manuals-navigatable.h"
@@ -30,6 +32,7 @@
 #include "manuals-search-result.h"
 #include "manuals-sidebar.h"
 #include "manuals-tag.h"
+#include "manuals-tree-addin.h"
 #include "manuals-tree-expander.h"
 #include "manuals-utils.h"
 #include "manuals-window.h"
@@ -38,14 +41,15 @@ struct _ManualsSidebar
 {
   GtkWidget           parent_instance;
 
-  GtkListView        *browse_view;
   GtkListView        *search_view;
   GtkSearchEntry     *search_entry;
   GtkStack           *stack;
   GtkButton          *back_button;
+  IdeTree            *tree;
 
   DexFuture          *query;
   ManualsRepository  *repository;
+  ManualsNavigatable *reveal;
 };
 
 G_DEFINE_FINAL_TYPE (ManualsSidebar, manuals_sidebar, GTK_TYPE_WIDGET)
@@ -183,7 +187,9 @@ manuals_sidebar_dispose (GObject *object)
     gtk_widget_unparent (child);
 
   dex_clear (&self->query);
+
   g_clear_object (&self->repository);
+  g_clear_object (&self->reveal);
 
   G_OBJECT_CLASS (manuals_sidebar_parent_class)->dispose (object);
 }
@@ -241,10 +247,10 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, back_button);
-  gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, browse_view);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, search_entry);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, search_view);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, stack);
+  gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, tree);
 
   gtk_widget_class_bind_template_callback (widget_class, manuals_sidebar_search_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_sidebar_search_view_activate_cb);
@@ -271,7 +277,13 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
 static void
 manuals_sidebar_init (ManualsSidebar *self)
 {
+  g_autoptr(ManualsTreeAddin) addin = NULL;
+
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  addin = g_object_new (MANUALS_TYPE_TREE_ADDIN, NULL);
+  ide_tree_add_addin (self->tree, IDE_TREE_ADDIN (addin));
+  ide_tree_invalidate_all (self->tree);
 }
 
 ManualsRepository *
@@ -291,6 +303,11 @@ manuals_sidebar_set_repository (ManualsSidebar    *self,
 
   if (g_set_object (&self->repository, repository))
     {
+      g_autoptr(IdeTreeNode) root = ide_tree_node_new ();
+
+      ide_tree_node_set_item (root, repository);
+      ide_tree_set_root (self->tree, root);
+
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_REPOSITORY]);
     }
 }
@@ -304,6 +321,117 @@ manuals_sidebar_focus_search (ManualsSidebar *self)
   gtk_editable_select_region (GTK_EDITABLE (self->search_entry), 0, -1);
 }
 
+static void
+expand_node_cb (GObject      *object,
+                GAsyncResult *result,
+                gpointer      user_data)
+{
+  g_autoptr(DexPromise) promise = user_data;
+  g_autoptr(GError) error = NULL;
+
+  if (!ide_tree_expand_node_finish (IDE_TREE (object), result, &error))
+    dex_promise_reject (promise, g_steal_pointer (&error));
+  else
+    dex_promise_resolve_boolean (promise, TRUE);
+}
+
+static DexFuture *
+expand_node (IdeTree     *tree,
+             IdeTreeNode *node)
+{
+  DexPromise *promise = dex_promise_new_cancellable ();
+  ide_tree_expand_node_async (tree,
+                              node,
+                              dex_promise_get_cancellable (promise),
+                              expand_node_cb,
+                              dex_ref (promise));
+  return DEX_FUTURE (promise);
+}
+
+static gboolean
+node_matches (IdeTreeNode        *node,
+              ManualsNavigatable *navigatable)
+{
+  gpointer node_item = ide_tree_node_get_item (node);
+  gpointer nav_item = manuals_navigatable_get_item (navigatable);
+  gint64 node_id = 0;
+  gint64 nav_id = 0;
+
+  if (node_item == nav_item)
+    return TRUE;
+
+  if (G_OBJECT_TYPE (node_item) != G_OBJECT_TYPE (nav_item))
+    return FALSE;
+
+  g_object_get (node_item, "id", &node_id, NULL);
+  g_object_get (nav_item, "id", &nav_id, NULL);
+
+  return node_id == nav_id;
+}
+
+static DexFuture *
+manuals_sidebar_reveal_fiber (gpointer user_data)
+{
+  ManualsSidebar *self = user_data;
+  g_autoptr(ManualsNavigatable) reveal = NULL;
+  g_autoptr(GPtrArray) chain = NULL;
+  ManualsNavigatable *parent;
+  IdeTreeNode *node;
+
+  g_assert (MANUALS_IS_SIDEBAR (self));
+
+  if (!(reveal = g_steal_pointer (&self->reveal)))
+    goto completed;
+
+  chain = g_ptr_array_new_with_free_func (g_object_unref);
+  parent = g_object_ref (reveal);
+
+  while (parent != NULL)
+    {
+      g_ptr_array_insert (chain, 0, parent);
+      parent = dex_await_object (manuals_navigatable_find_parent (parent), NULL);
+    }
+
+  /* repository is always index 0 */
+  g_ptr_array_remove_index (chain, 0);
+
+  node = ide_tree_get_root (self->tree);
+
+  while (node != NULL && chain->len > 0)
+    {
+      g_autoptr(ManualsNavigatable) navigatable = g_object_ref (g_ptr_array_index (chain, 0));
+      IdeTreeNode *child;
+      gboolean found = FALSE;
+
+      g_ptr_array_remove_index (chain, 0);
+
+      dex_await (expand_node (self->tree, node), NULL);
+
+      for (child = ide_tree_node_get_first_child (node);
+           child != NULL;
+           child = ide_tree_node_get_next_sibling (child))
+        {
+          if (node_matches (child, navigatable))
+            {
+              node = child;
+              found = TRUE;
+              break;
+            }
+        }
+
+      if (!found)
+        break;
+    }
+
+  if (node != NULL)
+    ide_tree_set_selected_node (self->tree, node);
+
+  gtk_stack_set_visible_child_name (self->stack, "browse");
+
+completed:
+  return dex_future_new_for_boolean (TRUE);
+}
+
 void
 manuals_sidebar_reveal (ManualsSidebar     *self,
                         ManualsNavigatable *navigatable)
@@ -311,6 +439,13 @@ manuals_sidebar_reveal (ManualsSidebar     *self,
   g_return_if_fail (MANUALS_IS_SIDEBAR (self));
   g_return_if_fail (!navigatable || MANUALS_IS_NAVIGATABLE (navigatable));
 
+  g_set_object (&self->reveal, navigatable);
+
   gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
   gtk_stack_set_visible_child_name (self->stack, "browse");
+
+  dex_future_disown (dex_scheduler_spawn (NULL, 0,
+                                          manuals_sidebar_reveal_fiber,
+                                          g_object_ref (self),
+                                          g_object_unref));
 }

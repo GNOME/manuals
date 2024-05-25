@@ -26,16 +26,7 @@
                   <object class="GtkStackPage" id="browse">
                     <property name="name">browse</property>
                     <property name="child">
-                      <object class="GtkScrolledWindow">
-                        <property name="hscrollbar-policy">never</property>
-                        <property name="vexpand">true</property>
-                        <child>
-                          <object class="GtkListView" id="browse_view">
-                            <style>
-                              <class name="transparent"/>
-                            </style>
-                          </object>
-                        </child>
+                      <object class="IdeTree" id="tree">
                       </object>
                     </property>
                   </object>
