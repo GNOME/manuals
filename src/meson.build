@@ -1,3 +1,5 @@
+subdir('libide-tree')
+
 manuals_sources = [
   'manuals-application.c',
   'manuals-book.c',
@@ -40,6 +42,8 @@ manuals_deps = [
   dependency('libpanel-1', version: '>= 1.6'),
   dependency('libdex-1', version: '>= 0.5'),
   dependency('webkitgtk-6.0', version: '>= 2.42'),
+
+  libide_tree_dep,
 ]
 
 manuals_sources += gnome.compile_resources('manuals-resources',
