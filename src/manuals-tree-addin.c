@@ -74,7 +74,7 @@ manuals_tree_addin_build_node (IdeTreeAddin *addin,
       const char *title = manuals_book_get_title (book);
 
       ide_tree_node_set_title (node, title);
-      ide_tree_node_set_icon_name (node, "builder-documentation-symbolic");
+      ide_tree_node_set_icon_name (node, "book-symbolic");
       ide_tree_node_set_children_possible (node, TRUE);
       ide_tree_node_set_is_header (node, TRUE);
     }

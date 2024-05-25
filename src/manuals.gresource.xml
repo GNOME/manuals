@@ -7,6 +7,7 @@
     <file preprocess="xml-stripblanks">manuals-sidebar.ui</file>
     <file preprocess="xml-stripblanks">manuals-tab.ui</file>
     <file preprocess="xml-stripblanks">manuals-window.ui</file>
+    <file preprocess="xml-stripblanks">icons/scalable/actions/book-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/scalable/actions/browse-documentation-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/scalable/actions/funnel-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/scalable/actions/lang-class-symbolic.svg</file>
