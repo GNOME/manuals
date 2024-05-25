@@ -28,6 +28,7 @@
 
 #include "ide-tree.h"
 #include "ide-tree-private.h"
+#include "ide-tree-resources.h"
 
 #include "ide-tree-addin.h"
 #include "ide-tree-empty.h"
@@ -1035,6 +1036,8 @@ ide_tree_class_init (IdeTreeClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, ide_tree_list_item_teardown_cb);
 
   gtk_widget_class_install_action (widget_class, "tree.invalidate-all", NULL, invalidate_all_action);
+
+  g_resources_register (ide_tree_get_resource ());
 }
 
 static void
