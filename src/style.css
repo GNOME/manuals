@@ -93,10 +93,10 @@ ManualsPathBar pathbutton:not(.leaf) button > * {
   opacity: 0.55;
 }
 
-sidebar listview row {
+sidebar listview.search row {
   padding: 6px 12px;
 }
 
-sidebar listview row:not(last-child) {
+sidebar listview.search row:not(last-child) {
   margin-bottom: 3px;
 }

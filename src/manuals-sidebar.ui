@@ -41,6 +41,7 @@
                         <child>
                           <object class="GtkListView" id="search_view">
                             <style>
+                              <class name="search"/>
                               <class name="transparent"/>
                             </style>
                             <signal name="activate" handler="manuals_sidebar_search_view_activate_cb" swapped="true"/>
