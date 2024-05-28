@@ -28,6 +28,7 @@
 
 #include "manuals-heading.h"
 #include "manuals-keyword.h"
+#include "manuals-search-entry.h"
 #include "manuals-tab.h"
 #include "manuals-utils.h"
 #include "manuals-repository.h"
@@ -40,6 +41,10 @@ struct _ManualsTab
   ManualsNavigatable *navigatable;
 
   WebKitWebView      *web_view;
+  ManualsSearchEntry *search_entry;
+  GtkRevealer        *search_revealer;
+
+  guint               search_dir : 1;
 };
 
 G_DEFINE_FINAL_TYPE (ManualsTab, manuals_tab, GTK_TYPE_WIDGET)
@@ -224,6 +229,157 @@ manuals_tab_web_view_decide_policy_cb (ManualsTab               *self,
 }
 
 static void
+notify_search_revealed_cb (ManualsTab *self,
+                           GParamSpec    *pspec,
+                           GtkRevealer   *revealer)
+{
+  g_assert (MANUALS_IS_TAB (self));
+  g_assert (GTK_IS_REVEALER (revealer));
+
+  if (!gtk_revealer_get_child_revealed (revealer))
+    {
+      WebKitFindController *find;
+
+      find = webkit_web_view_get_find_controller (self->web_view);
+      gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
+      webkit_find_controller_search_finish (find);
+    }
+}
+
+static void
+search_entry_changed_cb (ManualsTab         *self,
+                         GParamSpec         *pspec,
+                         ManualsSearchEntry *entry)
+{
+  WebKitFindController *find;
+  WebKitFindOptions options = 0;
+  const char *text;
+
+  g_assert (MANUALS_IS_TAB (self));
+  g_assert (MANUALS_IS_SEARCH_ENTRY (entry));
+
+  find = webkit_web_view_get_find_controller (self->web_view);
+  text = gtk_editable_get_text (GTK_EDITABLE (entry));
+
+  if (_g_str_empty0 (text))
+    {
+      webkit_find_controller_search_finish (find);
+      manuals_search_entry_set_occurrence_count (self->search_entry, 0);
+      return;
+    }
+
+  options = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE;
+  options |= WEBKIT_FIND_OPTIONS_WRAP_AROUND;
+
+  self->search_dir = 1;
+
+  webkit_find_controller_count_matches (find, text, options, G_MAXUINT);
+  webkit_find_controller_search (find, text, options, G_MAXUINT);
+}
+
+static void
+search_counted_matches_cb (ManualsTab        *self,
+                           guint                 match_count,
+                           WebKitFindController *find)
+{
+  g_assert (MANUALS_IS_TAB (self));
+  g_assert (WEBKIT_IS_FIND_CONTROLLER (find));
+
+  if (match_count == G_MAXUINT)
+    match_count = 0;
+
+  manuals_search_entry_set_occurrence_position (self->search_entry, 0);
+  manuals_search_entry_set_occurrence_count (self->search_entry, match_count);
+}
+
+static void
+search_found_text_cb (ManualsTab        *self,
+                      guint                 match_count,
+                      WebKitFindController *find)
+{
+  int count;
+  int position;
+
+  g_assert (MANUALS_IS_TAB (self));
+  g_assert (WEBKIT_IS_FIND_CONTROLLER (find));
+
+  count = manuals_search_entry_get_occurrence_count (self->search_entry);
+  position = manuals_search_entry_get_occurrence_position (self->search_entry);
+
+  position += self->search_dir;
+
+  if (position < 1)
+    position = count;
+  else if (position > count)
+    position = 1;
+
+  manuals_search_entry_set_occurrence_position (self->search_entry, position);
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.move-next", TRUE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.move-previous", TRUE);
+}
+
+static void
+search_failed_to_find_text_cb (ManualsTab        *self,
+                               WebKitFindController *find)
+{
+  g_assert (MANUALS_IS_TAB (self));
+  g_assert (WEBKIT_IS_FIND_CONTROLLER (find));
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.move-next", FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.move-previous", FALSE);
+}
+
+static void
+search_next_action (GtkWidget  *widget,
+                    const char *action_name,
+                    GVariant   *param)
+{
+  ManualsTab *self = (ManualsTab *)widget;
+  WebKitFindController *find;
+
+  g_assert (MANUALS_IS_TAB (self));
+
+  self->search_dir = 1;
+
+  find = webkit_web_view_get_find_controller (self->web_view);
+  webkit_find_controller_search_next (find);
+}
+
+static void
+search_previous_action (GtkWidget  *widget,
+                        const char *action_name,
+                        GVariant   *param)
+{
+  ManualsTab *self = (ManualsTab *)widget;
+  WebKitFindController *find;
+
+  g_assert (MANUALS_IS_TAB (self));
+
+  self->search_dir = -1;
+
+  find = webkit_web_view_get_find_controller (self->web_view);
+  webkit_find_controller_search_previous (find);
+}
+
+static void
+hide_search_action (GtkWidget  *widget,
+                    const char *action_name,
+                    GVariant   *param)
+{
+  gtk_revealer_set_reveal_child (MANUALS_TAB (widget)->search_revealer, FALSE);
+}
+
+static void
+show_search_action (GtkWidget  *widget,
+                    const char *action_name,
+                    GVariant   *param)
+{
+  gtk_revealer_set_reveal_child (MANUALS_TAB (widget)->search_revealer, TRUE);
+  gtk_widget_grab_focus (GTK_WIDGET (MANUALS_TAB (widget)->search_entry));
+}
+
+static void
 manuals_tab_constructed (GObject *object)
 {
   ManualsTab *self = (ManualsTab *)object;
@@ -232,6 +388,7 @@ manuals_tab_constructed (GObject *object)
   WebKitWebsiteDataManager *manager;
   WebKitNetworkSession *session;
   WebKitSettings *webkit_settings;
+  WebKitFindController *find;
 
   G_OBJECT_CLASS (manuals_tab_parent_class)->constructed (object);
 
@@ -251,6 +408,23 @@ manuals_tab_constructed (GObject *object)
   session = webkit_web_view_get_network_session (self->web_view);
   manager = webkit_network_session_get_website_data_manager (session);
   webkit_website_data_manager_set_favicons_enabled (manager, TRUE);
+
+  find = webkit_web_view_get_find_controller (self->web_view);
+  g_signal_connect_object (find,
+                           "counted-matches",
+                           G_CALLBACK (search_counted_matches_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (find,
+                           "found-text",
+                           G_CALLBACK (search_found_text_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (find,
+                           "failed-to-find-text",
+                           G_CALLBACK (search_failed_to_find_text_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
 
 static void
@@ -398,8 +572,20 @@ manuals_tab_class_init (ManualsTabClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-tab.ui");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
-  gtk_widget_class_bind_template_child (widget_class, ManualsTab, web_view);
 
+  gtk_widget_class_bind_template_child (widget_class, ManualsTab, web_view);
+  gtk_widget_class_bind_template_child (widget_class, ManualsTab, search_entry);
+  gtk_widget_class_bind_template_child (widget_class, ManualsTab, search_revealer);
+
+  gtk_widget_class_bind_template_callback (widget_class, search_entry_changed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, notify_search_revealed_cb);
+
+  gtk_widget_class_install_action (widget_class, "search.hide", NULL, hide_search_action);
+  gtk_widget_class_install_action (widget_class, "search.show", NULL, show_search_action);
+  gtk_widget_class_install_action (widget_class, "search.move-next", NULL, search_next_action);
+  gtk_widget_class_install_action (widget_class, "search.move-previous", NULL, search_previous_action);
+
+  g_type_ensure (MANUALS_TYPE_SEARCH_ENTRY);
   g_type_ensure (WEBKIT_TYPE_WEB_VIEW);
 }
 
@@ -562,4 +748,12 @@ manuals_tab_set_navigatable (ManualsTab         *self,
 
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NAVIGATABLE]);
     }
+}
+
+void
+manuals_tab_focus_search (ManualsTab *self)
+{
+  g_return_if_fail (MANUALS_IS_TAB (self));
+
+  gtk_widget_activate_action (GTK_WIDGET (self), "search.show", NULL);
 }

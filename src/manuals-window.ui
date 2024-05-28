@@ -17,6 +17,12 @@
         </child>
         <child>
           <object class="GtkShortcut">
+            <property name="trigger">&lt;ctrl&gt;f</property>
+            <property name="action">action(tab.focus-search)</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcut">
             <property name="trigger">&lt;ctrl&gt;w</property>
             <property name="action">action(tab.close)</property>
           </object>

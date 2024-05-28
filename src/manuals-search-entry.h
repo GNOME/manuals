@@ -1,7 +1,6 @@
-/*
- * manuals-search-entry.h
+/* manuals-search-entry.h
  *
- * Copyright 2024 Christian Hergert <chergert@redhat.com>
+ * Copyright 2021-2024 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,5 +27,13 @@ G_BEGIN_DECLS
 #define MANUALS_TYPE_SEARCH_ENTRY (manuals_search_entry_get_type())
 
 G_DECLARE_FINAL_TYPE (ManualsSearchEntry, manuals_search_entry, MANUALS, SEARCH_ENTRY, GtkWidget)
+
+GtkWidget *manuals_search_entry_new                     (void);
+guint      manuals_search_entry_get_occurrence_count    (ManualsSearchEntry *self);
+void       manuals_search_entry_set_occurrence_count    (ManualsSearchEntry *self,
+                                                         guint               occurrence_count);
+guint      manuals_search_entry_get_occurrence_position (ManualsSearchEntry *self);
+void       manuals_search_entry_set_occurrence_position (ManualsSearchEntry *self,
+                                                         int                 occurrence_position);
 
 G_END_DECLS

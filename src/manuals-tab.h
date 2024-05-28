@@ -43,5 +43,6 @@ void                manuals_tab_go_forward      (ManualsTab         *self);
 ManualsNavigatable *manuals_tab_get_navigatable (ManualsTab         *self);
 void                manuals_tab_set_navigatable (ManualsTab         *self,
                                                  ManualsNavigatable *navigatable);
+void                manuals_tab_focus_search    (ManualsTab         *self);
 
 G_END_DECLS

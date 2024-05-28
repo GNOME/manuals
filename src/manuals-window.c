@@ -135,6 +135,21 @@ manuals_window_tab_go_forward_action (GtkWidget  *widget,
 }
 
 static void
+manuals_window_tab_focus_search_action (GtkWidget  *widget,
+                                        const char *action_name,
+                                        GVariant   *param)
+{
+  ManualsWindow *self = MANUALS_WINDOW (widget);
+  ManualsTab *tab;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+
+  tab = manuals_window_get_visible_tab (self);
+
+  manuals_tab_focus_search (tab);
+}
+
+static void
 manuals_window_tab_new_action (GtkWidget  *widget,
                                const char *action_name,
                                GVariant   *param)
@@ -297,6 +312,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_install_action (widget_class, "tab.go-forward", NULL, manuals_window_tab_go_forward_action);
   gtk_widget_class_install_action (widget_class, "tab.close", NULL, manuals_window_tab_close_action);
   gtk_widget_class_install_action (widget_class, "tab.new", NULL, manuals_window_tab_new_action);
+  gtk_widget_class_install_action (widget_class, "tab.focus-search", NULL, manuals_window_tab_focus_search_action);
 
   g_type_ensure (MANUALS_TYPE_PATH_BAR);
   g_type_ensure (MANUALS_TYPE_SIDEBAR);

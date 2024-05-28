@@ -1,7 +1,6 @@
-/*
- * manuals-search-entry.c
+/* manuals-search-entry.c
  *
- * Copyright 2024 Christian Hergert <chergert@redhat.com>
+ * Copyright 2021-2024 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,94 +23,27 @@
 #include <glib/gi18n.h>
 
 #include "manuals-search-entry.h"
-#include "manuals-search-query.h"
-
-#define SEARCH_DELAY_MSEC 200
 
 struct _ManualsSearchEntry
 {
   GtkWidget  parent_instance;
 
   GtkText   *text;
-  GtkLabel  *count_label;
+  GtkLabel  *info;
 
-  guint      changed_source;
+  guint      occurrence_count;
+  int        occurrence_position;
 };
 
-G_DEFINE_FINAL_TYPE (ManualsSearchEntry, manuals_search_entry, GTK_TYPE_WIDGET)
+static void editable_iface_init (GtkEditableInterface *iface);
 
-enum {
-  BEGIN_SEARCH,
-  N_SIGNALS
-};
+G_DEFINE_TYPE_WITH_CODE (ManualsSearchEntry, manuals_search_entry, GTK_TYPE_WIDGET,
+                         G_IMPLEMENT_INTERFACE (GTK_TYPE_EDITABLE, editable_iface_init))
 
-static guint signals[N_SIGNALS];
-
-static gboolean
-uint_to_label (GBinding     *binding,
-               const GValue *from_value,
-               GValue       *to_value,
-               gpointer      user_data)
+GtkWidget *
+manuals_search_entry_new (void)
 {
-  guint count = g_value_get_uint (from_value);
-
-  if (count > 0)
-    /* translators: %u is replaced with the number of results */
-    g_value_take_string (to_value, g_strdup_printf (_("%u Results"), count));
-
-  return TRUE;
-}
-
-static gboolean
-manuals_search_entry_timeout_cb (gpointer user_data)
-{
-  ManualsSearchEntry *self = user_data;
-  g_autoptr(ManualsSearchQuery) query = NULL;
-  const char *text;
-
-  g_assert (MANUALS_IS_SEARCH_ENTRY (self));
-
-  self->changed_source = 0;
-
-  text = gtk_editable_get_text (GTK_EDITABLE (self->text));
-
-  query = manuals_search_query_new ();
-  manuals_search_query_set_text (query, text);
-
-  g_signal_emit (self, signals[BEGIN_SEARCH], 0, query);
-
-  g_object_bind_property_full (query, "n-items",
-                               self->count_label, "label",
-                               G_BINDING_SYNC_CREATE,
-                               uint_to_label, NULL, NULL, NULL);
-
-  return G_SOURCE_REMOVE;
-}
-
-static void
-manuals_search_entry_text_activate_cb (ManualsSearchEntry *self,
-                                       GtkText            *text)
-{
-  g_assert (MANUALS_IS_SEARCH_ENTRY (self));
-  g_assert (GTK_IS_TEXT (text));
-
-  gtk_widget_activate_action (GTK_WIDGET (self), "search.activate-first", NULL);
-}
-
-static void
-manuals_search_entry_text_changed_cb (ManualsSearchEntry *self,
-                                      GtkText            *text)
-{
-  g_assert (MANUALS_IS_SEARCH_ENTRY (self));
-  g_assert (GTK_IS_TEXT (text));
-
-  g_clear_handle_id (&self->changed_source, g_source_remove);
-
-  self->changed_source = g_timeout_add_full (G_PRIORITY_LOW,
-                                             SEARCH_DELAY_MSEC,
-                                             manuals_search_entry_timeout_cb,
-                                             g_object_ref (self),
-                                             g_object_unref);
+  return g_object_new (MANUALS_TYPE_SEARCH_ENTRY, NULL);
 }
 
 static gboolean
@@ -121,19 +53,69 @@ manuals_search_entry_grab_focus (GtkWidget *widget)
 }
 
 static void
+on_text_activate_cb (ManualsSearchEntry *self,
+                     GtkText            *text)
+{
+  g_assert (MANUALS_IS_SEARCH_ENTRY (self));
+  g_assert (GTK_IS_TEXT (text));
+
+  gtk_widget_activate_action (GTK_WIDGET (self), "search.move-next", "b", TRUE);
+}
+
+static void
+on_text_notify_cb (ManualsSearchEntry *self,
+                   GParamSpec         *pspec,
+                   GtkText            *text)
+{
+  GObjectClass *klass;
+
+  g_assert (MANUALS_IS_SEARCH_ENTRY (self));
+  g_assert (GTK_IS_TEXT (text));
+
+  klass = G_OBJECT_GET_CLASS (self);
+  pspec = g_object_class_find_property (klass, pspec->name);
+
+  if (pspec != NULL)
+    g_object_notify_by_pspec (G_OBJECT (self), pspec);
+}
+
+static void
 manuals_search_entry_dispose (GObject *object)
 {
   ManualsSearchEntry *self = (ManualsSearchEntry *)object;
   GtkWidget *child;
 
-  gtk_widget_dispose_template (GTK_WIDGET (self), MANUALS_TYPE_SEARCH_ENTRY);
+  self->text = NULL;
+  self->info = NULL;
 
-  if ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
     gtk_widget_unparent (child);
 
-  g_clear_handle_id (&self->changed_source, g_source_remove);
-
   G_OBJECT_CLASS (manuals_search_entry_parent_class)->dispose (object);
+}
+
+static void
+manuals_search_entry_get_property (GObject    *object,
+                                   guint       prop_id,
+                                   GValue     *value,
+                                   GParamSpec *pspec)
+{
+  if (gtk_editable_delegate_get_property (object, prop_id, value, pspec))
+    return;
+
+  G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+}
+
+static void
+manuals_search_entry_set_property (GObject      *object,
+                                   guint         prop_id,
+                                   const GValue *value,
+                                   GParamSpec   *pspec)
+{
+  if (gtk_editable_delegate_set_property (object, prop_id, value, pspec))
+    return;
+
+  G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 }
 
 static void
@@ -143,29 +125,105 @@ manuals_search_entry_class_init (ManualsSearchEntryClass *klass)
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->dispose = manuals_search_entry_dispose;
+  object_class->get_property = manuals_search_entry_get_property;
+  object_class->set_property = manuals_search_entry_set_property;
 
   widget_class->grab_focus = manuals_search_entry_grab_focus;
 
-  signals[BEGIN_SEARCH] =
-    g_signal_new ("begin-search",
-                  G_TYPE_FROM_CLASS (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0,
-                  NULL, NULL,
-                  NULL,
-                  G_TYPE_NONE, 1, MANUALS_TYPE_SEARCH_QUERY);
+  gtk_editable_install_properties (object_class, 1);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-search-entry.ui");
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BOX_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "entry");
-  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
-  gtk_widget_class_bind_template_child (widget_class, ManualsSearchEntry, count_label);
+  gtk_widget_class_set_accessible_role (widget_class, GTK_ACCESSIBLE_ROLE_TEXT_BOX);
+  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-search-entry.ui");
+  gtk_widget_class_bind_template_child (widget_class, ManualsSearchEntry, info);
   gtk_widget_class_bind_template_child (widget_class, ManualsSearchEntry, text);
-  gtk_widget_class_bind_template_callback (widget_class, manuals_search_entry_text_activate_cb);
-  gtk_widget_class_bind_template_callback (widget_class, manuals_search_entry_text_changed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_text_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_text_notify_cb);
+
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "search.move-previous", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK, "search.move-next", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Down, 0, "search.move-next", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Up, 0, "search.move-previous", "b", FALSE);
 }
 
 static void
 manuals_search_entry_init (ManualsSearchEntry *self)
 {
+  self->occurrence_position = -1;
+
   gtk_widget_init_template (GTK_WIDGET (self));
+}
+
+static GtkEditable *
+manuals_search_entry_get_delegate (GtkEditable *editable)
+{
+  return GTK_EDITABLE (MANUALS_SEARCH_ENTRY (editable)->text);
+}
+
+static void
+editable_iface_init (GtkEditableInterface *iface)
+{
+  iface->get_delegate = manuals_search_entry_get_delegate;
+}
+
+static void
+manuals_search_entry_update_position (ManualsSearchEntry *self)
+{
+  g_assert (MANUALS_IS_SEARCH_ENTRY (self));
+
+  if (self->occurrence_count == 0)
+    {
+      gtk_label_set_label (self->info, NULL);
+    }
+  else
+    {
+      /* translators: the first %u is replaced with the current position, the second with the number of search results */
+      g_autofree char *str = g_strdup_printf (_("%u of %u"), MAX (0, self->occurrence_position), self->occurrence_count);
+      gtk_label_set_label (self->info, str);
+    }
+}
+
+guint
+manuals_search_entry_get_occurrence_count (ManualsSearchEntry *self)
+{
+  g_return_val_if_fail (MANUALS_IS_SEARCH_ENTRY (self), 0);
+
+  return self->occurrence_count;
+}
+
+void
+manuals_search_entry_set_occurrence_count (ManualsSearchEntry *self,
+                                           guint               occurrence_count)
+{
+  g_assert (MANUALS_IS_SEARCH_ENTRY (self));
+
+  if (self->occurrence_count != occurrence_count)
+    {
+      self->occurrence_count = occurrence_count;
+      manuals_search_entry_update_position (self);
+    }
+}
+
+guint
+manuals_search_entry_get_occurrence_position (ManualsSearchEntry *self)
+{
+  g_return_val_if_fail (MANUALS_IS_SEARCH_ENTRY (self), 0);
+
+  return self->occurrence_position;
+}
+
+void
+manuals_search_entry_set_occurrence_position (ManualsSearchEntry *self,
+                                              int                 occurrence_position)
+{
+  g_assert (MANUALS_IS_SEARCH_ENTRY (self));
+
+  occurrence_position = MAX (-1, occurrence_position);
+
+  if (self->occurrence_position != occurrence_position)
+    {
+      self->occurrence_position = occurrence_position;
+      manuals_search_entry_update_position (self);
+    }
 }
