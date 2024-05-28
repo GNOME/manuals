@@ -130,7 +130,7 @@
               </object>
             </property>
             <property name="bottom-edge">
-              <object class="PanelStatusbar">
+              <object class="PanelStatusbar" id="statusbar">
                 <child type="prefix">
                   <object class="ManualsPathBar" id="path_bar">
                     <property name="hexpand">true</property>
@@ -149,8 +149,35 @@
                 <property name="orientation">vertical</property>
                 <property name="vexpand">true</property>
                 <child>
-                  <object class="AdwTabView" id="tab_view">
+                  <object class="GtkStack" id="stack">
                     <property name="vexpand">true</property>
+                    <child>
+                      <object class="GtkStackPage">
+                        <property name="name">loading</property>
+                        <property name="child">
+                          <object class="AdwStatusPage" id="loading_page">
+                            <property name="icon-name">content-loading-symbolic</property>
+                            <property name="title" translatable="yes">Loading…</property>
+                            <property name="description" translatable="yes">One moment please while we locate your documentation</property>
+                            <property name="child">
+                              <object class="GtkProgressBar" id="progress">
+                                <property name="halign">center</property>
+                                <property name="width-request">300</property>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkStackPage">
+                        <property name="name">tabs</property>
+                        <property name="child">
+                          <object class="AdwTabView" id="tab_view">
+                          </object>
+                        </property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>

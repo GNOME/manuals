@@ -39,8 +39,11 @@ struct _ManualsWindow
   GSignalGroup         *visible_tab_signals;
 
   PanelDock            *dock;
+  PanelStatusbar       *statusbar;
   ManualsSidebar       *sidebar;
   AdwTabView           *tab_view;
+  GtkStack             *stack;
+  GtkProgressBar       *progress;
 
   guint                 disposed : 1;
 };
@@ -209,9 +212,26 @@ manuals_window_invalidate_contents_cb (ManualsWindow      *self,
 }
 
 static void
+manuals_window_notify_import_active_cb (ManualsWindow      *self,
+                                        GParamSpec         *pspec,
+                                        ManualsApplication *app)
+{
+  gboolean import_active;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (MANUALS_IS_APPLICATION (app));
+
+  import_active = manuals_application_get_import_active (app);
+
+  gtk_stack_set_visible_child_name (self->stack, import_active ? "loading" : "tabs");
+  gtk_widget_set_visible (GTK_WIDGET (self->statusbar), !import_active);
+}
+
+static void
 manuals_window_constructed (GObject *object)
 {
   ManualsWindow *self = (ManualsWindow *)object;
+  ManualsApplication *app = MANUALS_APPLICATION (g_application_get_default ());
 
   G_OBJECT_CLASS (manuals_window_parent_class)->constructed (object);
 
@@ -223,11 +243,22 @@ manuals_window_constructed (GObject *object)
   manuals_sidebar_set_repository (self->sidebar, self->repository);
   manuals_sidebar_focus_search (self->sidebar);
 
-  g_signal_connect_object (g_application_get_default (),
+  g_signal_connect_object (app,
                            "invalidate-contents",
                            G_CALLBACK (manuals_window_invalidate_contents_cb),
                            self,
                            G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (app,
+                           "notify::import-active",
+                           G_CALLBACK (manuals_window_notify_import_active_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  manuals_window_notify_import_active_cb (self, NULL, app);
+
+  g_object_bind_property (app, "import-progress",
+                          self->progress, "fraction",
+                          G_BINDING_SYNC_CREATE);
 }
 
 static void
@@ -320,7 +351,10 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-window.ui");
 
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, dock);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, progress);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, sidebar);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, stack);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, statusbar);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
 
   gtk_widget_class_install_action (widget_class, "sidebar.focus-search", NULL, manuals_window_sidebar_focus_search_action);
