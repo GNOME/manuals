@@ -208,7 +208,9 @@ manuals_application_startup (GApplication *application)
   self->import_progress = manuals_progress_new ();
 
   /* Figure out where storage is going to be including SQLite db */
-  self->storage_dir = g_build_filename (g_get_user_data_dir (), "gnome-manuals", NULL);
+  self->storage_dir = g_build_filename (g_get_user_data_dir (),
+                                        g_application_get_application_id (application),
+                                        NULL);
   storage_path = g_build_filename (self->storage_dir, "manuals.sqlite", NULL);
   g_mkdir_with_parents (self->storage_dir, 0770);
 
