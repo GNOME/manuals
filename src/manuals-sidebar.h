@@ -38,5 +38,6 @@ void               manuals_sidebar_set_repository (ManualsSidebar     *self,
 void               manuals_sidebar_focus_search   (ManualsSidebar     *self);
 void               manuals_sidebar_reveal         (ManualsSidebar     *self,
                                                    ManualsNavigatable *navigatable);
+void               manuals_sidebar_reload         (ManualsSidebar     *self);
 
 G_END_DECLS

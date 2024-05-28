@@ -449,3 +449,15 @@ manuals_sidebar_reveal (ManualsSidebar     *self,
                                           g_object_ref (self),
                                           g_object_unref));
 }
+
+void
+manuals_sidebar_reload (ManualsSidebar *self)
+{
+  g_autoptr(IdeTreeNode) root = NULL;
+
+  g_return_if_fail (MANUALS_IS_SIDEBAR (self));
+
+  root = ide_tree_node_new ();
+  ide_tree_node_set_item (root, self->repository);
+  ide_tree_set_root (self->tree, root);
+}

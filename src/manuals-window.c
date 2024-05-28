@@ -199,6 +199,16 @@ manuals_window_sidebar_focus_search_action (GtkWidget  *widget,
 }
 
 static void
+manuals_window_invalidate_contents_cb (ManualsWindow      *self,
+                                       ManualsApplication *application)
+{
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (MANUALS_IS_APPLICATION (application));
+
+  manuals_sidebar_reload (self->sidebar);
+}
+
+static void
 manuals_window_constructed (GObject *object)
 {
   ManualsWindow *self = (ManualsWindow *)object;
@@ -212,6 +222,12 @@ manuals_window_constructed (GObject *object)
 
   manuals_sidebar_set_repository (self->sidebar, self->repository);
   manuals_sidebar_focus_search (self->sidebar);
+
+  g_signal_connect_object (g_application_get_default (),
+                           "invalidate-contents",
+                           G_CALLBACK (manuals_window_invalidate_contents_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
 
 static void
