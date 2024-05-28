@@ -196,6 +196,17 @@ manuals_application_import_complete (DexFuture *completed,
 }
 
 static void
+manuals_application_progress_notify_fraction_cb (ManualsApplication *self,
+                                                 GParamSpec         *pspec,
+                                                 ManualsProgress    *progress)
+{
+  g_assert (MANUALS_IS_APPLICATION (self));
+  g_assert (MANUALS_IS_PROGRESS (progress));
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_IMPORT_PROGRESS]);
+}
+
+static void
 manuals_application_startup (GApplication *application)
 {
   ManualsApplication *self = (ManualsApplication *)application;
@@ -206,6 +217,11 @@ manuals_application_startup (GApplication *application)
 
   /* Setup the progress helper we'll use in the app */
   self->import_progress = manuals_progress_new ();
+  g_signal_connect_object (self->import_progress,
+                           "notify::fraction",
+                           G_CALLBACK (manuals_application_progress_notify_fraction_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   /* Figure out where storage is going to be including SQLite db */
   self->storage_dir = g_build_filename (g_get_user_data_dir (),
