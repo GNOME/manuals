@@ -29,6 +29,7 @@ struct _ManualsProgress
 {
   GObject parent_instance;
   GPtrArray *jobs;
+  guint removed;
 };
 
 enum {
@@ -112,6 +113,7 @@ notify_in_main_cb (gpointer user_data)
 
       if (g_ptr_array_find (state->self->jobs, state->job, &pos))
         {
+          state->self->removed++;
           g_ptr_array_remove_index (state->self->jobs, pos);
           g_list_model_items_changed (G_LIST_MODEL (state->self), pos, 1, 0);
           g_object_notify_by_pspec (G_OBJECT (state->self), properties[PROP_N_ITEMS]);
@@ -263,6 +265,8 @@ double
 manuals_progress_get_fraction (ManualsProgress *self)
 {
   double total = 0;
+  double numerator;
+  double denominator;
 
   g_return_val_if_fail (MANUALS_IS_PROGRESS (self), 0);
 
@@ -275,5 +279,8 @@ manuals_progress_get_fraction (ManualsProgress *self)
       total += CLAMP (manuals_job_get_fraction (job), 0, 1);
     }
 
-  return total / (double)self->jobs->len;
+  numerator = total + self->removed;
+  denominator = self->jobs->len + self->removed;
+
+  return numerator / denominator;
 }
