@@ -104,8 +104,7 @@ notify_in_main_cb (gpointer user_data)
       g_list_model_items_changed (G_LIST_MODEL (state->self),
                                   state->self->jobs->len - 1,
                                   0, 1);
-      if (state->self->jobs->len == 1)
-        g_object_notify_by_pspec (G_OBJECT (state->self), properties[PROP_N_ITEMS]);
+      g_object_notify_by_pspec (G_OBJECT (state->self), properties[PROP_N_ITEMS]);
     }
   else if (state->op == OP_REMOVED)
     {
@@ -115,8 +114,7 @@ notify_in_main_cb (gpointer user_data)
         {
           g_ptr_array_remove_index (state->self->jobs, pos);
           g_list_model_items_changed (G_LIST_MODEL (state->self), pos, 1, 0);
-          if (state->self->jobs->len == 0)
-            g_object_notify_by_pspec (G_OBJECT (state->self), properties[PROP_N_ITEMS]);
+          g_object_notify_by_pspec (G_OBJECT (state->self), properties[PROP_N_ITEMS]);
         }
     }
   else if (state->op == OP_FRACTION) { /* Do nothing */ }
