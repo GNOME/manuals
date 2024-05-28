@@ -623,9 +623,6 @@ manuals_devhelp_importer_import_file_fiber (gpointer user_data)
   g_assert (MANUALS_IS_PROGRESS (import_file->progress));
   g_assert (MANUALS_IS_REPOSITORY (import_file->repository));
 
-  /* Make sure we complete our job at all exit points */
-  monitor = manuals_progress_begin_job (import_file->progress);
-
   /* Load the etag for the devhelp2 file so we can compare to what
    * might already be stored in the repository.
    */
@@ -636,6 +633,9 @@ manuals_devhelp_importer_import_file_fiber (gpointer user_data)
                                                            G_PRIORITY_DEFAULT),
                                       &error)))
     return dex_future_new_for_error (g_steal_pointer (&error));
+
+  /* Make sure we complete our job at all exit points */
+  monitor = manuals_progress_begin_job (import_file->progress);
 
   manuals_job_set_fraction (monitor, JOB_FRACTION_QUERIED_INFO);
 
