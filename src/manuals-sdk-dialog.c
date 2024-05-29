@@ -21,6 +21,8 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "manuals-sdk-dialog.h"
 
 struct _ManualsSdkDialog
@@ -57,6 +59,18 @@ create_sdk_row (gpointer item,
                       "title", title,
                       "subtitle", subtitle,
                       NULL);
+
+  if (!manuals_sdk_reference_get_installed (reference))
+    {
+      GtkWidget *button;
+
+      button = g_object_new (GTK_TYPE_BUTTON,
+                             "label", _("Install"),
+                             "valign", GTK_ALIGN_CENTER,
+                             NULL);
+      adw_action_row_add_suffix (ADW_ACTION_ROW (row), button);
+      adw_action_row_set_activatable_widget (ADW_ACTION_ROW (row), button);
+    }
 
   g_object_set_data_full (G_OBJECT (row),
                           "MANUALS_SDK_REFERENCE",
