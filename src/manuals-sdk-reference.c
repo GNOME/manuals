@@ -189,3 +189,13 @@ manuals_sdk_reference_equal (ManualsSdkReference *self,
 {
   return MANUALS_SDK_REFERENCE_GET_CLASS (self)->equal (self, other);
 }
+
+gboolean
+manuals_sdk_reference_get_installed (ManualsSdkReference *self)
+{
+  ManualsSdkReferencePrivate *priv = manuals_sdk_reference_get_instance_private (self);
+
+  g_return_val_if_fail (MANUALS_IS_SDK_REFERENCE (self), FALSE);
+
+  return priv->installed;
+}
