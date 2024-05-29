@@ -30,6 +30,7 @@ struct _ManualsProgress
   GObject parent_instance;
   GPtrArray *jobs;
   guint removed;
+  guint done : 1;
 };
 
 enum {
@@ -270,6 +271,9 @@ manuals_progress_get_fraction (ManualsProgress *self)
 
   g_return_val_if_fail (MANUALS_IS_PROGRESS (self), 0);
 
+  if (self->done)
+    return 1;
+
   if (self->jobs->len == 0)
     return 0;
 
@@ -283,4 +287,13 @@ manuals_progress_get_fraction (ManualsProgress *self)
   denominator = self->jobs->len + self->removed;
 
   return numerator / denominator;
+}
+
+void
+manuals_progress_done (ManualsProgress *self)
+{
+  g_return_if_fail (MANUALS_IS_PROGRESS (self));
+
+  self->done = TRUE;
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_FRACTION]);
 }

@@ -34,5 +34,6 @@ G_DECLARE_FINAL_TYPE (ManualsProgress, manuals_progress, MANUALS, PROGRESS, GObj
 ManualsProgress *manuals_progress_new          (void);
 ManualsJob      *manuals_progress_begin_job    (ManualsProgress *self);
 double           manuals_progress_get_fraction (ManualsProgress *self);
+void             manuals_progress_done         (ManualsProgress *self);
 
 G_END_DECLS
