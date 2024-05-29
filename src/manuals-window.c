@@ -38,6 +38,7 @@ struct _ManualsWindow
   ManualsRepository    *repository;
   GSignalGroup         *visible_tab_signals;
 
+  AdwWindowTitle       *title;
   PanelDock            *dock;
   PanelStatusbar       *statusbar;
   ManualsSidebar       *sidebar;
@@ -146,6 +147,8 @@ manuals_window_tab_view_notify_selected_page_cb (ManualsWindow *self,
   g_assert (MANUALS_IS_WINDOW (self));
   g_assert (ADW_IS_TAB_VIEW (tab_view));
 
+  adw_window_title_set_title (self->title, "");
+
   tab = manuals_window_get_visible_tab (self);
   g_signal_group_set_target (self->visible_tab_signals, tab);
 
@@ -192,7 +195,9 @@ manuals_window_tab_new_action (GtkWidget  *widget,
 
   g_assert (MANUALS_IS_WINDOW (self));
 
-  tab = manuals_window_get_visible_tab (self);
+  if (!(tab = manuals_window_get_visible_tab (self)))
+    return;
+
   tab = manuals_tab_duplicate (tab);
 
   manuals_window_add_tab (self, tab);
@@ -210,12 +215,14 @@ manuals_window_tab_close_action (GtkWidget  *widget,
 
   g_assert (MANUALS_IS_WINDOW (self));
 
-  if ((tab = manuals_window_get_visible_tab (self)) &&
-      (page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (tab))))
-    adw_tab_view_close_page (self->tab_view, page);
+  if (!(tab = manuals_window_get_visible_tab (self)))
+    {
+      gtk_window_destroy (GTK_WINDOW (self));
+      return;
+    }
 
-  if (NULL == manuals_window_get_visible_tab (self))
-    gtk_window_destroy (GTK_WINDOW (self));
+  if ((page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (tab))))
+    adw_tab_view_close_page (self->tab_view, page);
 }
 
 static void
@@ -250,6 +257,22 @@ manuals_window_notify_import_active_cb (ManualsWindow      *self,
   g_assert (MANUALS_IS_APPLICATION (app));
 
   manuals_window_update_stack_child (self);
+}
+
+static gboolean
+on_tab_view_close_page_cb (ManualsWindow *self,
+                           AdwTabPage    *page,
+                           AdwTabView    *tab_view)
+{
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (ADW_IS_TAB_PAGE (page));
+  g_assert (ADW_IS_TAB_VIEW (tab_view));
+
+  adw_tab_view_close_page_finish (tab_view, page, TRUE);
+
+  manuals_window_update_stack_child (self);
+
+  return GDK_EVENT_STOP;
 }
 
 static void
@@ -381,6 +404,9 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, stack);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, statusbar);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, title);
+
+  gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
 
   gtk_widget_class_install_action (widget_class, "sidebar.focus-search", NULL, manuals_window_sidebar_focus_search_action);
   gtk_widget_class_install_action (widget_class, "tab.go-back", NULL, manuals_window_tab_go_back_action);

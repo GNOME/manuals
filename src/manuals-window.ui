@@ -73,7 +73,7 @@
                       <class name="flat"/>
                     </style>
                     <property name="title-widget">
-                      <object class="AdwWindowTitle">
+                      <object class="AdwWindowTitle" id="title">
                         <binding name="title">
                           <lookup name="title" type="ManualsTab">
                             <lookup name="visible-tab">ManualsWindow</lookup>
@@ -178,8 +178,8 @@
                             <property name="title" translatable="yes">Browse Documentation</property>
                             <property name="child">
                               <object class="GtkLabel">
-                                <property name="label" translatable="yes">• Press Ctrl+T to open a new tab
-• Press Ctrl+K to search for classes and more
+                                <property name="label" translatable="yes">• Press Ctrl+K to search for classes and more
+• Press Ctrl+T to open a new tab
 
 Or, press Ctrl+W to close the window</property>
                               </object>
@@ -193,6 +193,7 @@ Or, press Ctrl+W to close the window</property>
                         <property name="name">tabs</property>
                         <property name="child">
                           <object class="AdwTabView" id="tab_view">
+                            <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
                           </object>
                         </property>
                       </object>
