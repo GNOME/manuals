@@ -140,8 +140,8 @@ real_cancel (ManualsInstallButton *self,
              GCancellable         *cancellable)
 {
   g_assert (MANUALS_IS_INSTALL_BUTTON (self));
-  g_assert (MANUALS_IS_PROGRESS (progress));
-  g_assert (G_IS_CANCELLABLE (cancellable));
+  g_assert (!progress || MANUALS_IS_PROGRESS (progress));
+  g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
 
   g_cancellable_cancel (cancellable);
 
