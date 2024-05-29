@@ -1,0 +1,11 @@
+#main { box-shadow: none !important; }
+
+.devhelp-hidden { display: none; }
+
+.toc { background: transparent !important; }
+
+:root { --body-bg: #ffffff !important; }
+
+@media (prefers-color-scheme: dark) {
+  :root { --body-bg: #1e1e1e !important; }
+}

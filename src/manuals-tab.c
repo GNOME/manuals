@@ -61,15 +61,6 @@ enum {
 };
 
 static GParamSpec *properties[N_PROPS];
-static const char style_sheet_css[] =
-  "#main { box-shadow: none !important; }\n"
-  ".devhelp-hidden { display: none; }\n"
-  ".toc { background: transparent !important; }\n"
-  ":root { --body-bg: #ffffff !important; }\n"
-  "@media (prefers-color-scheme: dark) {\n"
-  "  :root { --body-bg: #1e1e1e !important; }\n"
-  "}\n"
-  ;
 
 static void
 manuals_tab_web_view_notify_is_loading_cb (ManualsTab *self)
@@ -384,6 +375,7 @@ manuals_tab_constructed (GObject *object)
 {
   ManualsTab *self = (ManualsTab *)object;
   g_autoptr(WebKitUserStyleSheet) style_sheet = NULL;
+  g_autoptr(GBytes) style_sheet_css = NULL;
   WebKitUserContentManager *ucm;
   WebKitWebsiteDataManager *manager;
   WebKitNetworkSession *session;
@@ -398,7 +390,9 @@ manuals_tab_constructed (GObject *object)
   webkit_settings_set_enable_html5_local_storage (webkit_settings, FALSE);
   webkit_settings_set_user_agent_with_application_details (webkit_settings, "GNOME-Manuals", PACKAGE_VERSION);
 
-  style_sheet = webkit_user_style_sheet_new (style_sheet_css,
+  style_sheet_css = g_resources_lookup_data ("/app/devsuite/Manuals/manuals-tab.css", 0, NULL);
+
+  style_sheet = webkit_user_style_sheet_new ((const char *)g_bytes_get_data (style_sheet_css, NULL),
                                              WEBKIT_USER_CONTENT_INJECT_ALL_FRAMES,
                                              WEBKIT_USER_STYLE_LEVEL_USER,
                                              NULL, NULL);
