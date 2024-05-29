@@ -44,6 +44,15 @@ G_DEFINE_TYPE_WITH_PRIVATE (ManualsSdkReference, manuals_sdk_reference, G_TYPE_O
 
 static GParamSpec *properties[N_PROPS];
 
+static DexFuture *
+manuals_sdk_reference_real_install (ManualsSdkReference *self,
+                                    ManualsProgress     *progress)
+{
+  return dex_future_new_reject (G_IO_ERROR,
+                                G_IO_ERROR_NOT_SUPPORTED,
+                                "Not supported");
+}
+
 static gboolean
 manuals_sdk_reference_real_equal (ManualsSdkReference *self,
                                   ManualsSdkReference *other)
@@ -144,6 +153,7 @@ manuals_sdk_reference_class_init (ManualsSdkReferenceClass *klass)
   object_class->set_property = manuals_sdk_reference_set_property;
 
   klass->equal = manuals_sdk_reference_real_equal;
+  klass->install = manuals_sdk_reference_real_install;
 
   properties[PROP_INSTALLED] =
     g_param_spec_boolean ("installed", NULL, NULL,
@@ -242,4 +252,14 @@ manuals_sdk_reference_set_tags (ManualsSdkReference *self,
   priv->tags = copy;
 
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TAGS]);
+}
+
+DexFuture *
+manuals_sdk_reference_install (ManualsSdkReference *self,
+                               ManualsProgress     *progress)
+{
+  g_return_val_if_fail (MANUALS_IS_SDK_REFERENCE (self), NULL);
+  g_return_val_if_fail (MANUALS_IS_PROGRESS (progress), NULL);
+
+  return MANUALS_SDK_REFERENCE_GET_CLASS (self)->install (self, progress);
 }

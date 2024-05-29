@@ -227,7 +227,7 @@ Or, press Ctrl+W to close the window</property>
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">_Manage SDKs…</attribute>
+        <attribute name="label" translatable="yes">_Install Documentation…</attribute>
         <attribute name="action">win.show-sdk-dialog</attribute>
       </item>
     </section>

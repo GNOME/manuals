@@ -36,19 +36,13 @@ struct _ManualsSdkInstallerClass
 {
   GObjectClass parent_class;
 
-  DexFuture *(*install) (ManualsSdkInstaller *self,
-                         ManualsSdkReference *ref,
-                         ManualsProgress     *progress);
-  DexFuture *(*load)    (ManualsSdkInstaller *self);
+  DexFuture *(*load) (ManualsSdkInstaller *self);
 };
 
-DexFuture *manuals_sdk_installer_install (ManualsSdkInstaller *self,
-                                          ManualsSdkReference *ref,
-                                          ManualsProgress     *progress);
-DexFuture *manuals_sdk_installer_load    (ManualsSdkInstaller *self);
-void       manuals_sdk_installer_add     (ManualsSdkInstaller *self,
-                                          ManualsSdkReference *ref);
-void       manuals_sdk_installer_remove  (ManualsSdkInstaller *self,
-                                          ManualsSdkReference *ref);
+DexFuture *manuals_sdk_installer_load   (ManualsSdkInstaller *self);
+void       manuals_sdk_installer_add    (ManualsSdkInstaller *self,
+                                         ManualsSdkReference *ref);
+void       manuals_sdk_installer_remove (ManualsSdkInstaller *self,
+                                         ManualsSdkReference *ref);
 
 G_END_DECLS

@@ -3,6 +3,7 @@
   <gresource prefix="/app/devsuite/Manuals">
     <file>manuals-tab.css</file>
     <file>manuals-tab.js</file>
+    <file preprocess="xml-stripblanks">manuals-install-button.ui</file>
     <file preprocess="xml-stripblanks">manuals-path-bar.ui</file>
     <file preprocess="xml-stripblanks">manuals-path-button.ui</file>
     <file preprocess="xml-stripblanks">manuals-sdk-dialog.ui</file>

@@ -11,6 +11,7 @@ manuals_sources = [
   'manuals-gio.c',
   'manuals-heading.c',
   'manuals-importer.c',
+  'manuals-install-button.c',
   'manuals-jhbuild-importer.c',
   'manuals-job.c',
   'manuals-keyword.c',

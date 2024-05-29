@@ -21,7 +21,9 @@
 
 #pragma once
 
-#include <glib-object.h>
+#include <libdex.h>
+
+#include "manuals-progress.h"
 
 G_BEGIN_DECLS
 
@@ -33,8 +35,10 @@ struct _ManualsSdkReferenceClass
 {
   GObjectClass parent_class;
 
-  gboolean (*equal) (ManualsSdkReference *self,
-                     ManualsSdkReference *other);
+  gboolean   (*equal)   (ManualsSdkReference *self,
+                         ManualsSdkReference *other);
+  DexFuture *(*install) (ManualsSdkReference *self,
+                         ManualsProgress     *progress);
 };
 
 gboolean            manuals_sdk_reference_get_installed (ManualsSdkReference *self);
@@ -45,5 +49,7 @@ gboolean            manuals_sdk_reference_equal         (ManualsSdkReference *se
 const char * const *manuals_sdk_reference_get_tags      (ManualsSdkReference *self);
 void                manuals_sdk_reference_set_tags      (ManualsSdkReference *self,
                                                          const char * const  *tags);
+DexFuture          *manuals_sdk_reference_install       (ManualsSdkReference *self,
+                                                         ManualsProgress     *progress);
 
 G_END_DECLS

@@ -23,6 +23,7 @@
 
 #include <glib/gi18n.h>
 
+#include "manuals-install-button.h"
 #include "manuals-sdk-dialog.h"
 #include "manuals-tag.h"
 
@@ -40,6 +41,33 @@ struct _ManualsSdkDialog
 };
 
 G_DEFINE_FINAL_TYPE (ManualsSdkDialog, manuals_sdk_dialog, ADW_TYPE_PREFERENCES_WINDOW)
+
+static void
+manuals_sdk_dialog_install_cb (ManualsSdkReference  *reference,
+                               ManualsProgress      *progress,
+                               GCancellable         *cancellable,
+                               ManualsInstallButton *button)
+{
+  g_assert (MANUALS_IS_SDK_REFERENCE (reference));
+  g_assert (MANUALS_IS_PROGRESS (progress));
+  g_assert (G_IS_CANCELLABLE (cancellable));
+  g_assert (MANUALS_IS_INSTALL_BUTTON (button));
+
+}
+
+static void
+manuals_sdk_dialog_cancel_cb (ManualsSdkReference  *reference,
+                              ManualsProgress      *progress,
+                              GCancellable         *cancellable,
+                              ManualsInstallButton *button)
+{
+  g_assert (MANUALS_IS_SDK_REFERENCE (reference));
+  g_assert (MANUALS_IS_PROGRESS (progress));
+  g_assert (G_IS_CANCELLABLE (cancellable));
+  g_assert (MANUALS_IS_INSTALL_BUTTON (button));
+
+  g_cancellable_cancel (cancellable);
+}
 
 static GtkWidget *
 create_sdk_row (gpointer item,
@@ -78,10 +106,21 @@ create_sdk_row (gpointer item,
     {
       GtkWidget *button;
 
-      button = g_object_new (GTK_TYPE_BUTTON,
+      button = g_object_new (MANUALS_TYPE_INSTALL_BUTTON,
                              "label", _("Install"),
                              "valign", GTK_ALIGN_CENTER,
                              NULL);
+      g_signal_connect_object (button,
+                               "install",
+                               G_CALLBACK (manuals_sdk_dialog_install_cb),
+                               reference,
+                               G_CONNECT_SWAPPED);
+      g_signal_connect_object (button,
+                               "cancel",
+                               G_CALLBACK (manuals_sdk_dialog_cancel_cb),
+                               reference,
+                               G_CONNECT_SWAPPED);
+
       adw_action_row_add_suffix (ADW_ACTION_ROW (row), button);
       adw_action_row_set_activatable_widget (ADW_ACTION_ROW (row), button);
     }
