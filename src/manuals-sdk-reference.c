@@ -27,6 +27,7 @@ typedef struct
 {
   char *title;
   char *subtitle;
+  char **tags;
   guint installed : 1;
 } ManualsSdkReferencePrivate;
 
@@ -35,6 +36,7 @@ enum {
   PROP_INSTALLED,
   PROP_SUBTITLE,
   PROP_TITLE,
+  PROP_TAGS,
   N_PROPS
 };
 
@@ -57,6 +59,7 @@ manuals_sdk_reference_dispose (GObject *object)
 
   g_clear_pointer (&priv->title, g_free);
   g_clear_pointer (&priv->subtitle, g_free);
+  g_clear_pointer (&priv->tags, g_strfreev);
 
   G_OBJECT_CLASS (manuals_sdk_reference_parent_class)->dispose (object);
 }
@@ -82,6 +85,10 @@ manuals_sdk_reference_get_property (GObject    *object,
 
     case PROP_SUBTITLE:
       g_value_set_string (value, priv->subtitle);
+      break;
+
+    case PROP_TAGS:
+      g_value_set_boxed (value, priv->tags);
       break;
 
     default:
@@ -118,6 +125,10 @@ manuals_sdk_reference_set_property (GObject      *object,
         g_object_notify_by_pspec (object, pspec);
       break;
 
+    case PROP_TAGS:
+      manuals_sdk_reference_set_tags (self, g_value_get_boxed (value));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -147,6 +158,13 @@ manuals_sdk_reference_class_init (ManualsSdkReferenceClass *klass)
                          (G_PARAM_READWRITE |
                           G_PARAM_EXPLICIT_NOTIFY |
                           G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_TAGS] =
+    g_param_spec_boxed ("tags", NULL, NULL,
+                        G_TYPE_STRV,
+                        (G_PARAM_READWRITE |
+                         G_PARAM_EXPLICIT_NOTIFY |
+                         G_PARAM_STATIC_STRINGS));
 
   properties[PROP_TITLE] =
     g_param_spec_string ("title", NULL, NULL,
@@ -198,4 +216,30 @@ manuals_sdk_reference_get_installed (ManualsSdkReference *self)
   g_return_val_if_fail (MANUALS_IS_SDK_REFERENCE (self), FALSE);
 
   return priv->installed;
+}
+
+const char * const *
+manuals_sdk_reference_get_tags (ManualsSdkReference *self)
+{
+  ManualsSdkReferencePrivate *priv = manuals_sdk_reference_get_instance_private (self);
+
+  g_return_val_if_fail (MANUALS_IS_SDK_REFERENCE (self), NULL);
+
+  return (const char * const *)priv->tags;
+}
+
+void
+manuals_sdk_reference_set_tags (ManualsSdkReference *self,
+                                const char * const  *tags)
+{
+  ManualsSdkReferencePrivate *priv = manuals_sdk_reference_get_instance_private (self);
+  char **copy;
+
+  g_return_if_fail (MANUALS_IS_SDK_REFERENCE (self));
+
+  copy = g_strdupv ((char **)tags);
+  g_free (priv->tags);
+  priv->tags = copy;
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TAGS]);
 }

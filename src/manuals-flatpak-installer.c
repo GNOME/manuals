@@ -74,14 +74,22 @@ static DexFuture *
 manuals_flatpak_installer_monitor (ManualsFlatpakInstaller *self,
                                    FlatpakInstallation     *installation)
 {
+  const char *system_tags[] = { _("System"), NULL };
+  const char *user_tags[] = { _("User"), NULL };
   g_autoptr(GPtrArray) refs = NULL;
   g_autoptr(GError) error = NULL;
+  const char * const *tags;
 
   g_assert (MANUALS_IS_FLATPAK_INSTALLER (self));
   g_assert (FLATPAK_IS_INSTALLATION (installation));
 
   if (!(refs = dex_await_boxed (list_refs_by_kind (installation, FLATPAK_REF_KIND_RUNTIME), &error)))
     return dex_future_new_for_error (g_steal_pointer (&error));
+
+  if (flatpak_installation_get_is_user (installation))
+    tags = user_tags;
+  else
+    tags = system_tags;
 
   for (guint i = 0; i < refs->len; i++)
     {
@@ -97,6 +105,8 @@ manuals_flatpak_installer_monitor (ManualsFlatpakInstaller *self,
         continue;
 
       reference = manuals_flatpak_reference_new (installation, ref);
+      manuals_sdk_reference_set_tags (MANUALS_SDK_REFERENCE (reference), tags);
+
       manuals_sdk_installer_add (MANUALS_SDK_INSTALLER (self),
                                  MANUALS_SDK_REFERENCE (reference));
     }

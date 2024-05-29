@@ -63,6 +63,7 @@ tag.stability {
   color: black;
 }
 
+tag.installation,
 tag.language {
   background: alpha(currentColor,.2);
 }

@@ -37,10 +37,13 @@ struct _ManualsSdkReferenceClass
                      ManualsSdkReference *other);
 };
 
-gboolean    manuals_sdk_reference_get_installed (ManualsSdkReference *self);
-const char *manuals_sdk_reference_get_title     (ManualsSdkReference *self);
-const char *manuals_sdk_reference_get_subtitle  (ManualsSdkReference *self);
-gboolean    manuals_sdk_reference_equal         (ManualsSdkReference *self,
-                                                 ManualsSdkReference *other);
+gboolean            manuals_sdk_reference_get_installed (ManualsSdkReference *self);
+const char         *manuals_sdk_reference_get_title     (ManualsSdkReference *self);
+const char         *manuals_sdk_reference_get_subtitle  (ManualsSdkReference *self);
+gboolean            manuals_sdk_reference_equal         (ManualsSdkReference *self,
+                                                         ManualsSdkReference *other);
+const char * const *manuals_sdk_reference_get_tags      (ManualsSdkReference *self);
+void                manuals_sdk_reference_set_tags      (ManualsSdkReference *self,
+                                                         const char * const  *tags);
 
 G_END_DECLS

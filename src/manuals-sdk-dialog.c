@@ -24,6 +24,7 @@
 #include <glib/gi18n.h>
 
 #include "manuals-sdk-dialog.h"
+#include "manuals-tag.h"
 
 struct _ManualsSdkDialog
 {
@@ -45,6 +46,7 @@ create_sdk_row (gpointer item,
                 gpointer user_data)
 {
   ManualsSdkReference *reference = item;
+  const char * const *tags;
   const char *subtitle;
   const char *title;
   GtkWidget *row;
@@ -54,11 +56,23 @@ create_sdk_row (gpointer item,
 
   title = manuals_sdk_reference_get_title (reference);
   subtitle = manuals_sdk_reference_get_subtitle (reference);
+  tags = manuals_sdk_reference_get_tags (reference);
 
   row = g_object_new (ADW_TYPE_ACTION_ROW,
                       "title", title,
                       "subtitle", subtitle,
                       NULL);
+
+  if (tags != NULL)
+    {
+      for (guint i = 0; tags[i]; i++)
+        adw_action_row_add_suffix (ADW_ACTION_ROW (row),
+                                   g_object_new (MANUALS_TYPE_TAG,
+                                                 "css-classes", (const char * const []) { "installation", NULL },
+                                                 "value", tags[i],
+                                                 "valign", GTK_ALIGN_CENTER,
+                                                 NULL));
+    }
 
   if (!manuals_sdk_reference_get_installed (reference))
     {
