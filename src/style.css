@@ -100,3 +100,16 @@ sidebar listview.search row {
 sidebar listview.search row:not(last-child) {
   margin-bottom: 3px;
 }
+
+
+list.card row:first-child {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+list.card row:last-child {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+list.card row:not(:last-child) {
+  border-bottom: 1px solid @card_shade_color;
+}

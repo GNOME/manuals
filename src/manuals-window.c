@@ -25,8 +25,10 @@
 
 #include "manuals-application.h"
 #include "manuals-book.h"
+#include "manuals-flatpak-installer.h"
 #include "manuals-path-bar.h"
 #include "manuals-sdk.h"
+#include "manuals-sdk-dialog.h"
 #include "manuals-sidebar.h"
 #include "manuals-tab.h"
 #include "manuals-window.h"
@@ -241,6 +243,27 @@ manuals_window_sidebar_focus_search_action (GtkWidget  *widget,
 }
 
 static void
+manuals_window_show_sdk_dialog_action (GtkWidget  *widget,
+                                       const char *action_name,
+                                       GVariant   *param)
+{
+  ManualsWindow *self = MANUALS_WINDOW (widget);
+  g_autoptr(ManualsSdkInstaller) flatpak = NULL;
+  ManualsSdkDialog *dialog;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+
+  dialog = g_object_new (MANUALS_TYPE_SDK_DIALOG,
+                         "application", MANUALS_APPLICATION_DEFAULT,
+                         "transient-for", self,
+                         NULL);
+
+  flatpak = manuals_flatpak_installer_new ();
+  manuals_sdk_dialog_add_installer (dialog, flatpak);
+  manuals_sdk_dialog_present (dialog);
+}
+
+static void
 manuals_window_invalidate_contents_cb (ManualsWindow      *self,
                                        ManualsApplication *application)
 {
@@ -416,6 +439,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_install_action (widget_class, "tab.close", NULL, manuals_window_tab_close_action);
   gtk_widget_class_install_action (widget_class, "tab.new", NULL, manuals_window_tab_new_action);
   gtk_widget_class_install_action (widget_class, "tab.focus-search", NULL, manuals_window_tab_focus_search_action);
+  gtk_widget_class_install_action (widget_class, "win.show-sdk-dialog", NULL, manuals_window_show_sdk_dialog_action);
 
   g_type_ensure (MANUALS_TYPE_PATH_BAR);
   g_type_ensure (MANUALS_TYPE_SIDEBAR);

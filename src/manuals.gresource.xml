@@ -5,6 +5,7 @@
     <file>manuals-tab.js</file>
     <file preprocess="xml-stripblanks">manuals-path-bar.ui</file>
     <file preprocess="xml-stripblanks">manuals-path-button.ui</file>
+    <file preprocess="xml-stripblanks">manuals-sdk-dialog.ui</file>
     <file preprocess="xml-stripblanks">manuals-search-entry.ui</file>
     <file preprocess="xml-stripblanks">manuals-sidebar.ui</file>
     <file preprocess="xml-stripblanks">manuals-tab.ui</file>

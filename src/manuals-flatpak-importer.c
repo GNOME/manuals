@@ -177,7 +177,7 @@ manuals_flatpak_importer_import_fiber (gpointer user_data)
 
   default_arch = flatpak_get_default_arch ();
 
-  if (!(installations = dex_await_boxed (load_installations (), &error)))
+  if (!(installations = dex_await_boxed (manuals_flatpak_load_installations (), &error)))
     return dex_future_new_for_error (g_steal_pointer (&error));
 
   futures = g_ptr_array_new_with_free_func (dex_unref);
