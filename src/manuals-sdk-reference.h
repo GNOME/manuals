@@ -38,7 +38,8 @@ struct _ManualsSdkReferenceClass
   gboolean   (*equal)   (ManualsSdkReference *self,
                          ManualsSdkReference *other);
   DexFuture *(*install) (ManualsSdkReference *self,
-                         ManualsProgress     *progress);
+                         ManualsProgress     *progress,
+                         GCancellable        *cancellable);
 };
 
 gboolean            manuals_sdk_reference_get_installed (ManualsSdkReference *self);
@@ -50,6 +51,7 @@ const char * const *manuals_sdk_reference_get_tags      (ManualsSdkReference *se
 void                manuals_sdk_reference_set_tags      (ManualsSdkReference *self,
                                                          const char * const  *tags);
 DexFuture          *manuals_sdk_reference_install       (ManualsSdkReference *self,
-                                                         ManualsProgress     *progress);
+                                                         ManualsProgress     *progress,
+                                                         GCancellable        *cancellable);
 
 G_END_DECLS

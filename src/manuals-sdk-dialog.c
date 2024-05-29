@@ -42,17 +42,46 @@ struct _ManualsSdkDialog
 
 G_DEFINE_FINAL_TYPE (ManualsSdkDialog, manuals_sdk_dialog, ADW_TYPE_PREFERENCES_WINDOW)
 
+static DexFuture *
+manuals_sdk_dialog_cancel (DexFuture *completed,
+                           gpointer   user_data)
+{
+  manuals_install_button_cancel (MANUALS_INSTALL_BUTTON (user_data));
+  return NULL;
+}
+
+static DexFuture *
+manuals_sdk_dialog_ensure_done (DexFuture *completed,
+                                gpointer   user_data)
+{
+  manuals_progress_done (MANUALS_PROGRESS (user_data));
+  return NULL;
+}
+
 static void
 manuals_sdk_dialog_install_cb (ManualsSdkReference  *reference,
                                ManualsProgress      *progress,
                                GCancellable         *cancellable,
                                ManualsInstallButton *button)
 {
+  DexFuture *future;
+
   g_assert (MANUALS_IS_SDK_REFERENCE (reference));
   g_assert (MANUALS_IS_PROGRESS (progress));
   g_assert (G_IS_CANCELLABLE (cancellable));
   g_assert (MANUALS_IS_INSTALL_BUTTON (button));
 
+  future = manuals_sdk_reference_install (reference, progress, cancellable);
+  future = dex_future_finally (future,
+                               manuals_sdk_dialog_cancel,
+                               g_object_ref (button),
+                               g_object_unref);
+  future = dex_future_finally (future,
+                               manuals_sdk_dialog_ensure_done,
+                               g_object_ref (progress),
+                               g_object_unref);
+
+  dex_future_disown (future);
 }
 
 static void
@@ -62,8 +91,8 @@ manuals_sdk_dialog_cancel_cb (ManualsSdkReference  *reference,
                               ManualsInstallButton *button)
 {
   g_assert (MANUALS_IS_SDK_REFERENCE (reference));
-  g_assert (MANUALS_IS_PROGRESS (progress));
-  g_assert (G_IS_CANCELLABLE (cancellable));
+  g_assert (!progress || MANUALS_IS_PROGRESS (progress));
+  g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
   g_assert (MANUALS_IS_INSTALL_BUTTON (button));
 
   g_cancellable_cancel (cancellable);

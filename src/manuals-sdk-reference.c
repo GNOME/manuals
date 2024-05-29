@@ -46,7 +46,8 @@ static GParamSpec *properties[N_PROPS];
 
 static DexFuture *
 manuals_sdk_reference_real_install (ManualsSdkReference *self,
-                                    ManualsProgress     *progress)
+                                    ManualsProgress     *progress,
+                                    GCancellable        *cancellable)
 {
   return dex_future_new_reject (G_IO_ERROR,
                                 G_IO_ERROR_NOT_SUPPORTED,
@@ -256,10 +257,12 @@ manuals_sdk_reference_set_tags (ManualsSdkReference *self,
 
 DexFuture *
 manuals_sdk_reference_install (ManualsSdkReference *self,
-                               ManualsProgress     *progress)
+                               ManualsProgress     *progress,
+                               GCancellable        *cancellable)
 {
   g_return_val_if_fail (MANUALS_IS_SDK_REFERENCE (self), NULL);
   g_return_val_if_fail (MANUALS_IS_PROGRESS (progress), NULL);
+  g_return_val_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable), NULL);
 
-  return MANUALS_SDK_REFERENCE_GET_CLASS (self)->install (self, progress);
+  return MANUALS_SDK_REFERENCE_GET_CLASS (self)->install (self, progress, cancellable);
 }
