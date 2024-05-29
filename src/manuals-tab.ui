@@ -19,7 +19,7 @@
                 <child>
                   <object class="GtkShortcut">
                     <property name="trigger">Escape</property>
-                    <property name="action">action(page.search.hide)</property>
+                    <property name="action">action(search.hide)</property>
                   </object>
                 </child>
               </object>
