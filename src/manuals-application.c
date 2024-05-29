@@ -30,11 +30,14 @@
 #include "manuals-system-importer.h"
 #include "manuals-window.h"
 
+#define DELAY_FOR_IMPORT_TIMEOUT_MSEC 100
+
 struct _ManualsApplication
 {
   AdwApplication     parent_instance;
 
   DexFuture         *repository;
+  DexFuture         *import;
   ManualsProgress   *import_progress;
   char              *storage_dir;
 
@@ -87,14 +90,18 @@ static DexFuture *
 manuals_application_activate_cb (DexFuture *completed,
                                  gpointer   user_data)
 {
-  g_autoptr(ManualsRepository) repository = dex_await_object (dex_ref (completed), NULL);
-  ManualsApplication *app = user_data;
+  g_autoptr(ManualsRepository) repository = NULL;
+  ManualsApplication *self = user_data;
   ManualsWindow *window;
 
-  g_application_release (G_APPLICATION (app));
+  g_assert (DEX_IS_FUTURE (completed));
+  g_assert (MANUALS_IS_APPLICATION (self));
 
+  g_application_release (G_APPLICATION (self));
+
+  repository = dex_await_object (dex_ref (self->repository), NULL);
   window = g_object_new (MANUALS_TYPE_WINDOW,
-                         "application", app,
+                         "application", self,
                          "repository", repository,
                          NULL);
 
@@ -108,6 +115,7 @@ manuals_application_activate (GApplication *app)
 {
   ManualsApplication *self = MANUALS_APPLICATION (app);
   GtkWindow *window;
+  DexFuture *future;
 
   g_assert (MANUALS_IS_APPLICATION (app));
 
@@ -119,10 +127,19 @@ manuals_application_activate (GApplication *app)
 
   g_application_hold (app);
 
-  dex_future_disown (dex_future_then (dex_ref (self->repository),
-                                      manuals_application_activate_cb,
-                                      g_object_ref (app),
-                                      g_object_unref));
+  /* We want to wait until import has completed or a small
+   * delay, whichever is sooner so that we are less likely
+   * to flash the "loading" screen when showing the window
+   * on subsequent runs where everything is already imported.
+   */
+  future = dex_future_first (dex_ref (self->import),
+                             dex_timeout_new_msec (DELAY_FOR_IMPORT_TIMEOUT_MSEC),
+                             NULL);
+  future = dex_future_finally (future,
+                               manuals_application_activate_cb,
+                               g_object_ref (app),
+                               g_object_unref);
+  dex_future_disown (future);
 }
 
 static DexFuture *
@@ -246,7 +263,7 @@ manuals_application_startup (GApplication *application)
                                manuals_application_import_complete,
                                g_object_ref (self),
                                g_object_unref);
-  dex_future_disown (future);
+  self->import = g_steal_pointer (&future);
 
   G_APPLICATION_CLASS (manuals_application_parent_class)->startup (application);
 }
@@ -260,6 +277,7 @@ manuals_application_shutdown (GApplication *application)
 
   g_clear_pointer (&self->storage_dir, g_free);
   g_clear_object (&self->import_progress);
+  dex_clear (&self->import);
   dex_clear (&self->repository);
 }
 
