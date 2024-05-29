@@ -375,7 +375,9 @@ manuals_tab_constructed (GObject *object)
 {
   ManualsTab *self = (ManualsTab *)object;
   g_autoptr(WebKitUserStyleSheet) style_sheet = NULL;
+  g_autoptr(WebKitUserScript) script = NULL;
   g_autoptr(GBytes) style_sheet_css = NULL;
+  g_autoptr(GBytes) overshoot_js = NULL;
   WebKitUserContentManager *ucm;
   WebKitWebsiteDataManager *manager;
   WebKitNetworkSession *session;
@@ -390,14 +392,21 @@ manuals_tab_constructed (GObject *object)
   webkit_settings_set_enable_html5_local_storage (webkit_settings, FALSE);
   webkit_settings_set_user_agent_with_application_details (webkit_settings, "GNOME-Manuals", PACKAGE_VERSION);
 
-  style_sheet_css = g_resources_lookup_data ("/app/devsuite/Manuals/manuals-tab.css", 0, NULL);
+  ucm = webkit_web_view_get_user_content_manager (self->web_view);
 
+  style_sheet_css = g_resources_lookup_data ("/app/devsuite/Manuals/manuals-tab.css", 0, NULL);
   style_sheet = webkit_user_style_sheet_new ((const char *)g_bytes_get_data (style_sheet_css, NULL),
                                              WEBKIT_USER_CONTENT_INJECT_ALL_FRAMES,
                                              WEBKIT_USER_STYLE_LEVEL_USER,
                                              NULL, NULL);
-  ucm = webkit_web_view_get_user_content_manager (self->web_view);
   webkit_user_content_manager_add_style_sheet (ucm, style_sheet);
+
+  overshoot_js = g_resources_lookup_data ("/app/devsuite/Manuals/manuals-tab.js", 0, NULL);
+  script = webkit_user_script_new ((const char *)g_bytes_get_data (overshoot_js, NULL),
+                                   WEBKIT_USER_CONTENT_INJECT_ALL_FRAMES,
+                                   WEBKIT_USER_SCRIPT_INJECT_AT_DOCUMENT_END,
+                                   NULL, NULL);
+  webkit_user_content_manager_add_script (ucm, script);
 
   session = webkit_web_view_get_network_session (self->web_view);
   manager = webkit_network_session_get_website_data_manager (session);
