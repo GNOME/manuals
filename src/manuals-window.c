@@ -147,9 +147,8 @@ manuals_window_tab_focus_search_action (GtkWidget  *widget,
 
   g_assert (MANUALS_IS_WINDOW (self));
 
-  tab = manuals_window_get_visible_tab (self);
-
-  manuals_tab_focus_search (tab);
+  if ((tab = manuals_window_get_visible_tab (self)))
+    manuals_tab_focus_search (tab);
 }
 
 static void
@@ -406,7 +405,6 @@ manuals_window_init (ManualsWindow *self)
                            G_CALLBACK (manuals_window_tab_view_notify_selected_page_cb),
                            self,
                            G_CONNECT_SWAPPED);
-  manuals_window_add_tab (self, manuals_tab_new ());
 }
 
 void

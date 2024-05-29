@@ -120,7 +120,6 @@ manuals_sidebar_search_view_activate_cb (ManualsSidebar *self,
   if (navigatable == NULL)
     return;
 
-
   window = MANUALS_WINDOW (gtk_widget_get_ancestor (GTK_WIDGET (self), MANUALS_TYPE_WINDOW));
 
   g_assert (MANUALS_IS_NAVIGATABLE (navigatable));
@@ -128,7 +127,7 @@ manuals_sidebar_search_view_activate_cb (ManualsSidebar *self,
 
   tab = manuals_window_get_visible_tab (window);
 
-  if (manuals_application_control_is_pressed ())
+  if (!tab || manuals_application_control_is_pressed ())
     {
       tab = manuals_tab_new ();
       manuals_window_add_tab (window, tab);

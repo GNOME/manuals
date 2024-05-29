@@ -217,7 +217,7 @@ manuals_tree_addin_node_activated (IdeTreeAddin *addin,
       g_autoptr(ManualsNavigatable) navigatable = manuals_navigatable_new_for_resource (ide_tree_node_get_item (node));
       ManualsTab *tab = manuals_window_get_visible_tab (window);
 
-      if (manuals_application_control_is_pressed ())
+      if (!tab || manuals_application_control_is_pressed ())
         {
           tab = manuals_tab_new ();
           manuals_window_add_tab (window, tab);
