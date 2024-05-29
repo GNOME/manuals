@@ -65,6 +65,35 @@ manuals_window_new (void)
   return g_object_new (MANUALS_TYPE_WINDOW, NULL);
 }
 
+static void
+manuals_window_update_stack_child (ManualsWindow *self)
+{
+  g_autoptr(GtkSelectionModel) pages = NULL;
+  ManualsApplication *app;
+  const char *child_name;
+  gboolean import_active;
+  gboolean has_tabs;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+
+  app = MANUALS_APPLICATION_DEFAULT;
+  import_active = manuals_application_get_import_active (app);
+  pages = adw_tab_view_get_pages (self->tab_view);
+  has_tabs = g_list_model_get_n_items (G_LIST_MODEL (pages)) > 0;
+
+  if (import_active)
+    child_name = "loading";
+  else if (has_tabs)
+    child_name = "tabs";
+  else
+    child_name = "empty";
+
+  gtk_stack_set_visible_child_name (self->stack, child_name);
+
+  gtk_widget_set_visible (GTK_WIDGET (self->statusbar),
+                          g_str_equal (child_name, "tabs"));
+}
+
 static AdwTabPage *
 manuals_window_add_tab_internal (ManualsWindow *self,
                                  ManualsTab    *tab)
@@ -79,6 +108,8 @@ manuals_window_add_tab_internal (ManualsWindow *self,
   g_object_bind_property (tab, "title", page, "title", G_BINDING_SYNC_CREATE);
   g_object_bind_property (tab, "icon", page, "icon", G_BINDING_SYNC_CREATE);
   g_object_bind_property (tab, "loading", page, "loading", G_BINDING_SYNC_CREATE);
+
+  manuals_window_update_stack_child (self);
 
   return page;
 }
@@ -215,15 +246,10 @@ manuals_window_notify_import_active_cb (ManualsWindow      *self,
                                         GParamSpec         *pspec,
                                         ManualsApplication *app)
 {
-  gboolean import_active;
-
   g_assert (MANUALS_IS_WINDOW (self));
   g_assert (MANUALS_IS_APPLICATION (app));
 
-  import_active = manuals_application_get_import_active (app);
-
-  gtk_stack_set_visible_child_name (self->stack, import_active ? "loading" : "tabs");
-  gtk_widget_set_visible (GTK_WIDGET (self->statusbar), !import_active);
+  manuals_window_update_stack_child (self);
 }
 
 static void

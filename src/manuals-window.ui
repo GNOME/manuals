@@ -171,6 +171,25 @@
                     </child>
                     <child>
                       <object class="GtkStackPage">
+                        <property name="name">empty</property>
+                        <property name="child">
+                          <object class="AdwStatusPage" id="empty_page">
+                            <property name="icon-name">manuals</property>
+                            <property name="title" translatable="yes">Browse Documentation</property>
+                            <property name="child">
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">• Press Ctrl+T to open a new tab
+• Press Ctrl+K to search for classes and more
+
+Or, press Ctrl+W to close the window</property>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkStackPage">
                         <property name="name">tabs</property>
                         <property name="child">
                           <object class="AdwTabView" id="tab_view">
