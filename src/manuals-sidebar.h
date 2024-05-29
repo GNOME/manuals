@@ -39,5 +39,7 @@ void               manuals_sidebar_focus_search   (ManualsSidebar     *self);
 void               manuals_sidebar_reveal         (ManualsSidebar     *self,
                                                    ManualsNavigatable *navigatable);
 void               manuals_sidebar_reload         (ManualsSidebar     *self);
+void               manuals_sidebar_set_enabled    (ManualsSidebar     *self,
+                                                   gboolean            enabled);
 
 G_END_DECLS

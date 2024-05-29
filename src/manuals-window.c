@@ -93,6 +93,8 @@ manuals_window_update_stack_child (ManualsWindow *self)
 
   gtk_widget_set_visible (GTK_WIDGET (self->statusbar),
                           g_str_equal (child_name, "tabs"));
+  manuals_sidebar_set_enabled (self->sidebar,
+                               !g_str_equal (child_name, "loading"));
 }
 
 static AdwTabPage *

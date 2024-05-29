@@ -46,6 +46,7 @@ struct _ManualsSidebar
   GtkStack           *stack;
   GtkButton          *back_button;
   IdeTree            *tree;
+  GtkBox             *box;
 
   DexFuture          *query;
   ManualsRepository  *repository;
@@ -246,6 +247,7 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, back_button);
+  gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, box);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, search_entry);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, search_view);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, stack);
@@ -459,4 +461,13 @@ manuals_sidebar_reload (ManualsSidebar *self)
   root = ide_tree_node_new ();
   ide_tree_node_set_item (root, self->repository);
   ide_tree_set_root (self->tree, root);
+}
+
+void
+manuals_sidebar_set_enabled (ManualsSidebar *self,
+                             gboolean        enabled)
+{
+  g_return_if_fail (MANUALS_IS_SIDEBAR (self));
+
+  gtk_widget_set_sensitive (GTK_WIDGET (self->box), enabled);
 }
