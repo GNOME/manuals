@@ -9,19 +9,31 @@ ABI_MINOR = 0
 ABI_MICRO = 0
 
 glib_req_version = '2.78'
+gtk_req_version = '4.14'
+adw_req_version = '1.5'
 dex_req_version = '0.4'
 gom_req_version = '0.4'
 flatpak_req_version = '1.0'
+libpanel_req_version = '1.6'
+webkit_req_version = '2.42'
 
 glib_req = '>= @0@'.format(glib_req_version)
+gtk_req = '>= @0@'.format(gtk_req_version)
+adw_req = '>= @0@'.format(adw_req_version)
 dex_req = '>= @0@'.format(dex_req_version)
 gom_req = '>= @0@'.format(gom_req_version)
 flatpak_req = '>= @0@'.format(flatpak_req_version)
+libpanel_req = '>= @0@'.format(libpanel_req_version)
+webkit_req = '>= @0@'.format(webkit_req_version)
 
 glib_dep = dependency('glib-2.0', version: glib_req)
+gtk_dep = dependency('gtk4', version: gtk_req)
+adw_dep = dependency('libadwaita-1', version: adw_req)
 dex_dep = dependency('libdex-1', version: dex_req)
 gom_dep = dependency('gom-1.0', version: gom_req)
 flatpak_dep = dependency('flatpak', version: flatpak_req)
+libpanel_dep = dependency('libpanel-1', version: libpanel_req)
+webkit_dep = dependency('webkitgtk-6.0', version: webkit_req)
 
 i18n = import('i18n')
 gnome = import('gnome')

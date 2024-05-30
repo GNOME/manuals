@@ -43,13 +43,14 @@ manuals_sources = [
 ]
 
 manuals_deps = [
-  dependency('flatpak', version: '>= 1.0'),
-  dependency('gom-1.0', version: '>= 0.4'),
-  dependency('gtk4', version: '>= 4.12'),
-  dependency('libadwaita-1', version: '>= 1.5'),
-  dependency('libpanel-1', version: '>= 1.6'),
-  dependency('libdex-1', version: '>= 0.5'),
-  dependency('webkitgtk-6.0', version: '>= 2.42'),
+  glib_dep,
+  dex_dep,
+  gom_dep,
+  flatpak_dep,
+  gtk_dep,
+  adw_dep,
+  libpanel_dep,
+  webkit_dep,
 
   libide_tree_dep,
 ]
