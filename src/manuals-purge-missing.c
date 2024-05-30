@@ -79,6 +79,8 @@ manuals_purge_missing_import_fiber (gpointer data)
         }
     }
 
+  /* TODO: Remove SDKs with no books */
+
   return dex_future_new_for_boolean (TRUE);
 }
 
