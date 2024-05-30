@@ -177,11 +177,27 @@
                             <property name="icon-name">manuals</property>
                             <property name="title" translatable="yes">Browse Documentation</property>
                             <property name="child">
-                              <object class="GtkLabel">
-                                <property name="label" translatable="yes">• Press Ctrl+K to search for classes and more
+                              <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                                <property name="spacing">24</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="label" translatable="yes">• Press Ctrl+K to search for classes and more
 • Press Ctrl+T to open a new tab
 
 Or, press Ctrl+W to close the window</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="action-name">win.show-sdk-dialog</property>
+                                    <property name="label" translatable="yes">Install Documentation…</property>
+                                    <property name="halign">center</property>
+                                    <style>
+                                      <class name="pill"/>
+                                    </style>
+                                  </object>
+                                </child>
                               </object>
                             </property>
                           </object>
