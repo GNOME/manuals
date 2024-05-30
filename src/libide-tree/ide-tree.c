@@ -186,9 +186,7 @@ ide_tree_click_pressed_cb (GtkGestureClick *click,
       ide_tree_set_selected_node (tree, node);
       ide_tree_expander_show_popover (expander, popover);
 
-      gtk_gesture_set_sequence_state (GTK_GESTURE (click),
-                                      sequence,
-                                      GTK_EVENT_SEQUENCE_CLAIMED);
+      gtk_gesture_set_state (GTK_GESTURE (click), GTK_EVENT_SEQUENCE_CLAIMED);
     }
 }
 
@@ -229,9 +227,7 @@ ide_tree_click_released_cb (GtkGestureClick *click,
 
           if (ide_tree_addin_node_activated (addin, tree, node))
             {
-              gtk_gesture_set_sequence_state (GTK_GESTURE (click),
-                                              sequence,
-                                              GTK_EVENT_SEQUENCE_CLAIMED);
+              gtk_gesture_set_state (GTK_GESTURE (click), GTK_EVENT_SEQUENCE_CLAIMED);
               break;
             }
         }
