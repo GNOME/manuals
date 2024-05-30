@@ -40,12 +40,12 @@ purge the existing indexed contents and re-index that specific documentation.
 
 ## Screenshots
 
+![Empty](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/empty.png)
+
 ![Browse](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/browse.png)
 
 ![Search](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/search.png)
 
-![Navigate](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/navigate.png)
-
-![Browse SDK](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/browse-sdk.png)
+![Installing SDKs](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/install.png)
 
 ![Dark](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/dark.png)
