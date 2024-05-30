@@ -226,6 +226,9 @@
         {
             "name" : "libpanel",
             "buildsystem" : "meson",
+            "config-opts" : [
+                "-Ddocs=false"
+            ],
             "sources" : [
                 {
                     "type" : "git",
