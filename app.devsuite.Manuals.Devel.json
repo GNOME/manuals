@@ -227,7 +227,7 @@
             "name" : "libpanel",
             "buildsystem" : "meson",
             "config-opts" : [
-                "-Ddocs=false"
+                "-Ddocs=disabled"
             ],
             "sources" : [
                 {
