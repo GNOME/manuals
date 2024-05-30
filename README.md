@@ -4,12 +4,10 @@ Browse and Search developer documentation
 
 ## Installation
 
-Currently you need to install by grabbing a Flatpak artifact from CI. However,
-I've not finished all the necessary parts to make this work from Flatpak, so it
-works better on the host than within the Flatpak.
+Currently you need to install by grabbing a Flatpak artifact from CI.
 
-It is also desireable to install the documentation for particular Flatpak
-runtimes where the documentation lives.
+You can install documentation manually using the `org.gnome.Sdk.Docs`
+runtimes (or similar) or use the application to install them.
 
 ```sh
 flatpak install --user gnome-nightly org.gnome.Sdk.Docs//master
@@ -36,13 +34,9 @@ purge the existing indexed contents and re-index that specific documentation.
 
 ## Future Work
 
- * Lots of papercuts still to be worked out
- * Keyboard shortcuts
- * Performance improvements to Gom
  * I'd love to see idexing of manpages such as POSIX headers.
  * Sphinx documentation format used by Builder and GNOME HIG
  * Indexing online-based documentation
- * Installation of doc runtimes
 
 ## Screenshots
 
