@@ -127,7 +127,6 @@ foreach arg: test_c_args
     project_c_args += arg
   endif
 endforeach
-add_project_arguments(project_c_args, language: 'c')
 
 # Various optimizations for non-debug builds including disabling of
 # cast checks, asserts, and additional link options.
@@ -154,6 +153,25 @@ configure_file(
          output: 'config.h',
   configuration: config_h,
 )
+
+glib_major = glib_req_version.split('.')[0].to_int()
+glib_minor = glib_req_version.split('.')[1].to_int()
+gtk_major = gtk_req_version.split('.')[0].to_int()
+gtk_minor = gtk_req_version.split('.')[1].to_int()
+adw_major = adw_req_version.split('.')[0].to_int()
+adw_minor = adw_req_version.split('.')[1].to_int()
+
+project_c_args += [
+  '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_@0@_@1@'.format(glib_major, glib_minor),
+  '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_@0@_@1@'.format(glib_major, glib_minor),
+  '-DGDK_VERSION_MIN_REQUIRED=GDK_VERSION_@0@_@1@'.format(gtk_major, gtk_minor),
+  '-DGDK_VERSION_MAX_ALLOWED=GDK_VERSION_@0@_@1@'.format(gtk_major, gtk_minor),
+  '-DGDK_DISABLE_DEPRECATION_WARNINGS',
+  '-DADW_VERSION_MIN_REQUIRED=ADW_VERSION_@0@_@1@'.format(adw_major, adw_minor),
+  '-DADW_VERSION_MAX_ALLOWED=ADW_VERSION_@0@_@1@'.format(adw_major, adw_minor),
+]
+
+add_project_arguments(project_c_args, language: 'c')
 
 subdir('data')
 subdir('src')
