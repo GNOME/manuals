@@ -572,6 +572,6 @@ manuals_window_navigate_to (ManualsWindow      *self,
   else
     {
       panel_dock_set_reveal_start (self->dock, TRUE);
-      manuals_sidebar_reveal (self->sidebar, navigatable);
+      manuals_sidebar_reveal (self->sidebar, navigatable, TRUE);
     }
 }

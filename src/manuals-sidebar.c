@@ -51,6 +51,8 @@ struct _ManualsSidebar
   DexFuture          *query;
   ManualsRepository  *repository;
   ManualsNavigatable *reveal;
+
+  guint               reveal_expand : 1;
 };
 
 G_DEFINE_FINAL_TYPE (ManualsSidebar, manuals_sidebar, GTK_TYPE_WIDGET)
@@ -426,7 +428,12 @@ manuals_sidebar_reveal_fiber (gpointer user_data)
     }
 
   if (node != NULL)
-    ide_tree_set_selected_node (self->tree, node);
+    {
+      ide_tree_set_selected_node (self->tree, node);
+
+      if (self->reveal_expand)
+        ide_tree_expand_node (self->tree, node);
+    }
 
   gtk_stack_set_visible_child_name (self->stack, "browse");
 
@@ -436,12 +443,15 @@ completed:
 
 void
 manuals_sidebar_reveal (ManualsSidebar     *self,
-                        ManualsNavigatable *navigatable)
+                        ManualsNavigatable *navigatable,
+                        gboolean            expand)
 {
   g_return_if_fail (MANUALS_IS_SIDEBAR (self));
   g_return_if_fail (!navigatable || MANUALS_IS_NAVIGATABLE (navigatable));
 
   g_set_object (&self->reveal, navigatable);
+
+  self->reveal_expand = !!expand;
 
   gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
   gtk_stack_set_visible_child_name (self->stack, "browse");
