@@ -23,6 +23,7 @@
 
 #include <glib/gi18n.h>
 
+#include "manuals-flatpak.h"
 #include "manuals-flatpak-reference.h"
 
 struct _ManualsFlatpakReference
@@ -42,6 +43,23 @@ enum {
 G_DEFINE_FINAL_TYPE (ManualsFlatpakReference, manuals_flatpak_reference, MANUALS_TYPE_SDK_REFERENCE)
 
 static GParamSpec *properties[N_PROPS];
+
+static DexFuture *
+manuals_flatpak_reference_install (ManualsSdkReference *reference,
+                                   ManualsProgress     *progress,
+                                   GCancellable        *cancellable)
+{
+  ManualsFlatpakReference *self = (ManualsFlatpakReference *)reference;
+
+  g_assert (MANUALS_IS_FLATPAK_REFERENCE (self));
+  g_assert (MANUALS_IS_PROGRESS (progress));
+  g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
+
+  return manuals_flatpak_installation_install (self->installation,
+                                               FLATPAK_REMOTE_REF (self->ref),
+                                               progress,
+                                               cancellable);
+}
 
 static void
 manuals_flatpak_reference_dispose (GObject *object)
@@ -104,10 +122,13 @@ static void
 manuals_flatpak_reference_class_init (ManualsFlatpakReferenceClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  ManualsSdkReferenceClass *sdk_reference_class = MANUALS_SDK_REFERENCE_CLASS (klass);
 
   object_class->dispose = manuals_flatpak_reference_dispose;
   object_class->get_property = manuals_flatpak_reference_get_property;
   object_class->set_property = manuals_flatpak_reference_set_property;
+
+  sdk_reference_class->install = manuals_flatpak_reference_install;
 
   properties[PROP_REF] =
     g_param_spec_object ("ref", NULL, NULL,
