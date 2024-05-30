@@ -15,7 +15,7 @@
             <property name="vhomogeneous">true</property>
             <child>
               <object class="GtkStackPage">
-                <property name="name">empty</property>
+                <property name="name">loading</property>
                 <property name="child">
                   <object class="AdwStatusPage">
                     <property name="vexpand">true</property>
@@ -28,11 +28,24 @@
             </child>
             <child>
               <object class="GtkStackPage">
+                <property name="name">empty</property>
+                <property name="child">
+                  <object class="AdwStatusPage">
+                    <property name="vexpand">true</property>
+                    <property name="icon-name">face-sad-symbolic</property>
+                    <property name="title" translatable="yes">No SDKs Available</property>
+                    <property name="description" translatable="yes">Your system is not configured to access to any SDKs.</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStackPage">
                 <property name="name">list</property>
                 <property name="child">
                   <object class="AdwPreferencesPage" id="page">
                     <child>
-                      <object class="AdwPreferencesGroup">
+                      <object class="AdwPreferencesGroup" id="installed_group">
                         <property name="title" translatable="yes">Installed SDKs</property>
                         <child>
                           <object class="GtkListBox" id="installed_list_box">
@@ -45,7 +58,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="AdwPreferencesGroup">
+                      <object class="AdwPreferencesGroup" id="available_group">
                         <property name="title" translatable="yes">Available SDKs</property>
                         <child>
                           <object class="GtkListBox" id="available_list_box">

@@ -34,8 +34,10 @@ struct _ManualsSdkDialog
   GListStore           *installers;
 
   GtkFilterListModel   *installed;
+  AdwPreferencesGroup  *installed_group;
   GtkListBox           *installed_list_box;
   GtkFilterListModel   *available;
+  AdwPreferencesGroup  *available_group;
   GtkListBox           *available_list_box;
   GtkStack             *stack;
 };
@@ -184,6 +186,40 @@ ref_sorter (gconstpointer a,
 }
 
 static void
+installed_items_changed_cb (ManualsSdkDialog *self,
+                            guint             position,
+                            guint             removed,
+                            guint             added,
+                            GListModel       *model)
+{
+  guint n_items;
+
+  g_assert (MANUALS_IS_SDK_DIALOG (self));
+  g_assert (G_IS_LIST_MODEL (model));
+
+  n_items = g_list_model_get_n_items (model);
+
+  gtk_widget_set_visible (GTK_WIDGET (self->installed_group), !!n_items);
+}
+
+static void
+available_items_changed_cb (ManualsSdkDialog *self,
+                            guint             position,
+                            guint             removed,
+                            guint             added,
+                            GListModel       *model)
+{
+  guint n_items;
+
+  g_assert (MANUALS_IS_SDK_DIALOG (self));
+  g_assert (G_IS_LIST_MODEL (model));
+
+  n_items = g_list_model_get_n_items (model);
+
+  gtk_widget_set_visible (GTK_WIDGET (self->available_group), !!n_items);
+}
+
+static void
 manuals_sdk_dialog_dispose (GObject *object)
 {
   ManualsSdkDialog *self = (ManualsSdkDialog *)object;
@@ -206,8 +242,10 @@ manuals_sdk_dialog_class_init (ManualsSdkDialogClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-sdk-dialog.ui");
 
   gtk_widget_class_bind_template_child (widget_class, ManualsSdkDialog, available);
+  gtk_widget_class_bind_template_child (widget_class, ManualsSdkDialog, available_group);
   gtk_widget_class_bind_template_child (widget_class, ManualsSdkDialog, available_list_box);
   gtk_widget_class_bind_template_child (widget_class, ManualsSdkDialog, installed);
+  gtk_widget_class_bind_template_child (widget_class, ManualsSdkDialog, installed_group);
   gtk_widget_class_bind_template_child (widget_class, ManualsSdkDialog, installed_list_box);
   gtk_widget_class_bind_template_child (widget_class, ManualsSdkDialog, stack);
 
@@ -236,12 +274,27 @@ manuals_sdk_dialog_init (ManualsSdkDialog *self)
   gtk_filter_list_model_set_model (self->installed, G_LIST_MODEL (sorted));
   gtk_filter_list_model_set_model (self->available, G_LIST_MODEL (sorted));
 
+  g_signal_connect_object (self->installed,
+                           "items-changed",
+                           G_CALLBACK (installed_items_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->available,
+                           "items-changed",
+                           G_CALLBACK (available_items_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
   gtk_list_box_bind_model (self->installed_list_box,
                            G_LIST_MODEL (self->installed),
                            create_sdk_row, self, NULL);
   gtk_list_box_bind_model (self->available_list_box,
                            G_LIST_MODEL (self->available),
                            create_sdk_row, self, NULL);
+
+  installed_items_changed_cb (self, 0, 0, 0, G_LIST_MODEL (self->installed));
+  available_items_changed_cb (self, 0, 0, 0, G_LIST_MODEL (self->available));
 }
 
 ManualsSdkDialog *
@@ -265,10 +318,15 @@ manuals_sdk_dialog_present_cb (DexFuture *completed,
                                gpointer   user_data)
 {
   ManualsSdkDialog *self = user_data;
+  guint n_items;
 
   g_assert (MANUALS_IS_SDK_DIALOG (self));
 
-  gtk_stack_set_visible_child_name (self->stack, "list");
+  n_items = g_list_model_get_n_items (G_LIST_MODEL (self->available))
+          + g_list_model_get_n_items (G_LIST_MODEL (self->installed));
+
+  gtk_stack_set_visible_child_name (self->stack,
+                                    n_items ? "list" : "empty");
 
   return NULL;
 }
