@@ -21,6 +21,8 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "manuals-flatpak.h"
 
 static inline gpointer
@@ -76,4 +78,110 @@ manuals_flatpak_load_installations (void)
                          dex_ref (promise));
 
   return dex_ref (promise);
+}
+
+typedef struct
+{
+  FlatpakInstallation *installation;
+  FlatpakRemoteRef *remote_ref;
+  ManualsJob *job;
+  GCancellable *cancellable;
+  DexPromise *promise;
+} Install;
+
+static void
+install_free (Install *install)
+{
+  g_clear_object (&install->installation);
+  g_clear_object (&install->remote_ref);
+  g_clear_object (&install->job);
+  g_clear_object (&install->cancellable);
+  dex_clear (&install->promise);
+  g_free (install);
+}
+
+static void
+progress_cb (const char *status,
+             guint       progress,
+             gboolean    estimating,
+             gpointer    user_data)
+{
+  ManualsJob *job = user_data;
+
+  g_assert (MANUALS_IS_JOB (job));
+
+  manuals_job_set_subtitle (job, status);
+  manuals_job_set_fraction (job, .1 + (((double)progress / 100.) * .9));
+}
+
+static gpointer
+install_thread (gpointer user_data)
+{
+  Install *state = user_data;
+  GError *error = NULL;
+
+  g_assert (state != NULL);
+  g_assert (FLATPAK_IS_INSTALLATION (state->installation));
+  g_assert (FLATPAK_IS_REMOTE_REF (state->remote_ref));
+  g_assert (MANUALS_IS_JOB (state->job));
+  g_assert (!state->cancellable || G_IS_CANCELLABLE (state->cancellable));
+
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+  flatpak_installation_install (state->installation,
+                                flatpak_remote_ref_get_remote_name (state->remote_ref),
+                                flatpak_ref_get_kind (FLATPAK_REF (state->remote_ref)),
+                                flatpak_ref_get_name (FLATPAK_REF (state->remote_ref)),
+                                flatpak_ref_get_arch (FLATPAK_REF (state->remote_ref)),
+                                flatpak_ref_get_branch (FLATPAK_REF (state->remote_ref)),
+                                progress_cb,
+                                state->job,
+                                state->cancellable,
+                                &error);
+  G_GNUC_END_IGNORE_DEPRECATIONS
+
+  if (error != NULL)
+    dex_promise_reject (state->promise, g_steal_pointer (&error));
+  else
+    dex_promise_resolve_boolean (state->promise, TRUE);
+
+  install_free (state);
+
+  return NULL;
+}
+
+DexFuture *
+manuals_flatpak_installation_install (FlatpakInstallation *installation,
+                                      FlatpakRemoteRef    *remote_ref,
+                                      ManualsProgress     *progress,
+                                      GCancellable        *cancellable)
+{
+  g_autoptr(GThread) thread = NULL;
+  g_autofree char *title = NULL;
+  DexPromise *promise;
+  Install *install;
+
+  g_return_val_if_fail (FLATPAK_IS_INSTALLATION (installation), NULL);
+  g_return_val_if_fail (FLATPAK_IS_REMOTE_REF (remote_ref), NULL);
+  g_return_val_if_fail (MANUALS_IS_PROGRESS (progress), NULL);
+  g_return_val_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable), NULL);
+
+  promise = dex_promise_new ();
+
+  install = g_new0 (Install, 1);
+  g_set_object (&install->installation, installation);
+  g_set_object (&install->remote_ref, remote_ref);
+  g_set_object (&install->cancellable, cancellable);
+  install->job = manuals_progress_begin_job (progress);
+  install->promise = dex_ref (promise);
+
+  title = g_strdup_printf (_("Installing %s/%s/%s"),
+                           flatpak_ref_get_name (FLATPAK_REF (remote_ref)),
+                           flatpak_ref_get_arch (FLATPAK_REF (remote_ref)),
+                           flatpak_ref_get_branch (FLATPAK_REF (remote_ref)));
+  manuals_job_set_title (install->job, title);
+  manuals_job_set_fraction (install->job, .1);
+
+  thread = g_thread_new ("[manuals-flatpak]", install_thread, install);
+
+  return DEX_FUTURE (promise);
 }

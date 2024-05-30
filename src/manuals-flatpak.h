@@ -22,9 +22,15 @@
 #include <flatpak.h>
 #include <libdex.h>
 
+#include "manuals-progress.h"
+
 G_BEGIN_DECLS
 
-DexFuture *manuals_flatpak_load_installations (void);
+DexFuture *manuals_flatpak_load_installations   (void);
+DexFuture *manuals_flatpak_installation_install (FlatpakInstallation *installation,
+                                                 FlatpakRemoteRef    *remote_ref,
+                                                 ManualsProgress     *progress,
+                                                 GCancellable        *cancellable);
 
 typedef struct
 {
