@@ -1,8 +1,8 @@
 desktop_config = configuration_data()
 desktop_config.set('APP_ID', app_id)
 desktop_file_in = configure_file(
-          input: 'org.gnome.Manuals.desktop.in.in',
-         output: 'org.gnome.Manuals.desktop.in',
+          input: 'app.devsuite.Manuals.desktop.in.in',
+         output: 'app.devsuite.Manuals.desktop.in',
   configuration: desktop_config,
 )
 desktop_file = i18n.merge_file(
@@ -22,8 +22,8 @@ endif
 appstream_config = configuration_data()
 appstream_config.set('APP_ID', app_id)
 appstream_file_in = configure_file(
-          input: 'org.gnome.Manuals.metainfo.xml.in.in',
-         output: 'org.gnome.Manuals.metainfo.xml.in',
+          input: 'app.devsuite.Manuals.metainfo.xml.in.in',
+         output: 'app.devsuite.Manuals.metainfo.xml.in',
   configuration: appstream_config,
 )
 appstream_file = i18n.merge_file(
@@ -48,7 +48,7 @@ dbusconf = configuration_data()
 dbusconf.set('app_id', app_id)
 dbusconf.set('bindir', join_paths(get_option('prefix'), get_option('bindir')))
 configure_file(
-          input: 'org.gnome.Manuals.service.in',
+          input: 'app.devsuite.Manuals.service.in',
          output: '@0@.service'.format(app_id),
   configuration: dbusconf,
         install: true,

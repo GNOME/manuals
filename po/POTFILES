@@ -1,6 +1,0 @@
-data/org.gnome.Manuals.desktop.in
-data/org.gnome.Manuals.metainfo.xml.in
-data/org.gnome.Manuals.gschema.xml
-src/main.c
-src/manuals-window.c
-src/manuals-window.ui
