@@ -273,6 +273,7 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
   g_type_ensure (MANUALS_TYPE_NAVIGATABLE);
   g_type_ensure (MANUALS_TYPE_SEARCH_RESULT);
   g_type_ensure (MANUALS_TYPE_TAG);
+  g_type_ensure (IDE_TYPE_TREE);
 }
 
 static void
