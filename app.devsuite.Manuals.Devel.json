@@ -224,6 +224,17 @@
             ]
         },
         {
+            "name" : "libpanel",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libpanel.git",
+                    "branch" : "main"
+                }
+            ]
+        },
+        {
             "name" : "manuals",
             "builddir" : true,
             "buildsystem" : "meson",
