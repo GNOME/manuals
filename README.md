@@ -22,7 +22,7 @@ flatpak install --user flathub org.gnome.Sdk.Docs//45
  * GLib/GObject/Gio/etc
  * Flatpak
  * libdex-1
- * gom-1.0 (currently from git)
+ * gom-1.0
 
 ## How it works
 
