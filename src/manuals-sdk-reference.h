@@ -43,6 +43,8 @@ struct _ManualsSdkReferenceClass
 };
 
 gboolean            manuals_sdk_reference_get_installed (ManualsSdkReference *self);
+void                manuals_sdk_reference_set_installed (ManualsSdkReference *self,
+                                                         gboolean             installed);
 const char         *manuals_sdk_reference_get_title     (ManualsSdkReference *self);
 const char         *manuals_sdk_reference_get_subtitle  (ManualsSdkReference *self);
 gboolean            manuals_sdk_reference_equal         (ManualsSdkReference *self,

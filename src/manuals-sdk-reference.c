@@ -118,11 +118,7 @@ manuals_sdk_reference_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_INSTALLED:
-      if (priv->installed != g_value_get_boolean (value))
-        {
-          priv->installed = g_value_get_boolean (value);
-          g_object_notify_by_pspec (object, pspec);
-        }
+      manuals_sdk_reference_set_installed (self, g_value_get_boolean (value));
       break;
 
     case PROP_TITLE:
@@ -227,6 +223,23 @@ manuals_sdk_reference_get_installed (ManualsSdkReference *self)
   g_return_val_if_fail (MANUALS_IS_SDK_REFERENCE (self), FALSE);
 
   return priv->installed;
+}
+
+void
+manuals_sdk_reference_set_installed (ManualsSdkReference *self,
+                                     gboolean             installed)
+{
+  ManualsSdkReferencePrivate *priv = manuals_sdk_reference_get_instance_private (self);
+
+  g_return_if_fail (MANUALS_IS_SDK_REFERENCE (self));
+
+  installed = !!installed;
+
+  if (priv->installed != installed)
+    {
+      priv->installed = installed;
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_INSTALLED]);
+    }
 }
 
 const char * const *

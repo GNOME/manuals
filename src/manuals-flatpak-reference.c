@@ -45,20 +45,36 @@ G_DEFINE_FINAL_TYPE (ManualsFlatpakReference, manuals_flatpak_reference, MANUALS
 static GParamSpec *properties[N_PROPS];
 
 static DexFuture *
+manuals_flatpak_reference_installed_cb (DexFuture *completed,
+                                        gpointer   user_data)
+{
+  ManualsFlatpakReference *self = user_data;
+  manuals_sdk_reference_set_installed (MANUALS_SDK_REFERENCE (self), TRUE);
+  return dex_ref (completed);
+}
+
+static DexFuture *
 manuals_flatpak_reference_install (ManualsSdkReference *reference,
                                    ManualsProgress     *progress,
                                    GCancellable        *cancellable)
 {
   ManualsFlatpakReference *self = (ManualsFlatpakReference *)reference;
+  DexFuture *future;
 
   g_assert (MANUALS_IS_FLATPAK_REFERENCE (self));
   g_assert (MANUALS_IS_PROGRESS (progress));
   g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
 
-  return manuals_flatpak_installation_install (self->installation,
-                                               FLATPAK_REMOTE_REF (self->ref),
-                                               progress,
-                                               cancellable);
+  future = manuals_flatpak_installation_install (self->installation,
+                                                 FLATPAK_REMOTE_REF (self->ref),
+                                                 progress,
+                                                 cancellable);
+  future = dex_future_then (future,
+                            manuals_flatpak_reference_installed_cb,
+                            g_object_ref (self),
+                            g_object_unref);
+
+  return future;
 }
 
 static void
