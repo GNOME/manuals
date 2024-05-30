@@ -7,6 +7,17 @@
         <property name="vexpand">true</property>
         <child>
           <object class="WebKitWebView" id="web_view">
+            <child>
+              <object class="GtkShortcutController">
+                <property name="propagation-phase">capture</property>
+                <child>
+                  <object class="GtkShortcut">
+                    <property name="trigger">slash</property>
+                    <property name="action">action(tab.focus-search)</property>
+                  </object>
+                </child>
+              </object>
+            </child>
             <property name="vexpand">true</property>
           </object>
         </child>
