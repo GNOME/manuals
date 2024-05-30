@@ -144,6 +144,20 @@ manuals_sdk_installer_load (ManualsSdkInstaller *self)
   return MANUALS_SDK_INSTALLER_GET_CLASS (self)->load (self);
 }
 
+static void
+manuals_sdk_installer_notify_installed_cb (ManualsSdkInstaller *self,
+                                           GParamSpec          *pspec,
+                                           ManualsSdkReference *reference)
+{
+  g_assert (MANUALS_IS_SDK_INSTALLER (self));
+  g_assert (MANUALS_IS_SDK_REFERENCE (reference));
+
+  g_object_ref (reference);
+  manuals_sdk_installer_remove (self, reference);
+  manuals_sdk_installer_add (self, reference);
+  g_object_unref (reference);
+}
+
 void
 manuals_sdk_installer_add (ManualsSdkInstaller *self,
                            ManualsSdkReference *ref)
@@ -152,6 +166,12 @@ manuals_sdk_installer_add (ManualsSdkInstaller *self,
 
   g_return_if_fail (MANUALS_IS_SDK_INSTALLER (self));
   g_return_if_fail (MANUALS_IS_SDK_REFERENCE (ref));
+
+  g_signal_connect_object (ref,
+                           "notify::installed",
+                           G_CALLBACK (manuals_sdk_installer_notify_installed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   g_list_store_append (priv->refs, ref);
 }
@@ -165,6 +185,10 @@ manuals_sdk_installer_remove (ManualsSdkInstaller *self,
 
   g_return_if_fail (MANUALS_IS_SDK_INSTALLER (self));
   g_return_if_fail (MANUALS_IS_SDK_REFERENCE (ref));
+
+  g_signal_handlers_disconnect_by_func (ref,
+                                        G_CALLBACK (manuals_sdk_installer_notify_installed_cb),
+                                        self);
 
   n_items = g_list_model_get_n_items (G_LIST_MODEL (priv->refs));
 
