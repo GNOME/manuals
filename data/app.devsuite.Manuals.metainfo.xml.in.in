@@ -22,6 +22,25 @@
   <translation type="gettext">manuals</translation>
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
 
+  <screenshots>
+    <screenshot type="default">
+      <caption>Browse Documentation by SDK</caption>
+      <image width="2244" height="1644">https://gitlab.gnome.org/chergert/manuals/-/raw/907fe72db74d3aa083d8b0a9f618db71d0bbec56/data/screenshots/browse.png?inline=false</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>Free Form Search</caption>
+      <image width="2244" height="1644">https://gitlab.gnome.org/chergert/manuals/-/raw/907fe72db74d3aa083d8b0a9f618db71d0bbec56/data/screenshots/search.png?inline=false</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>Install SDK Documentation</caption>
+      <image width="1524" height="1396">https://gitlab.gnome.org/chergert/manuals/-/raw/907fe72db74d3aa083d8b0a9f618db71d0bbec56/data/screenshots/install.png?inline=false</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>Integrated Dark Mode</caption>
+      <image width="2244" height="1644">https://gitlab.gnome.org/chergert/manuals/-/raw/907fe72db74d3aa083d8b0a9f618db71d0bbec56/data/screenshots/dark.png?inline=false</image>
+    </screenshot>
+  </screenshots>
+
   <releases>
     <release version="46.0" date="2024-05-30">
       <description>
