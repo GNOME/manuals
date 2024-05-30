@@ -1,6 +1,9 @@
 # Manuals
 
-Browse and Search developer documentation
+Install, Browse, and Search developer documentation
+
+Manuals is an extraction of the Documentation component of GNOME Builder
+into a standalone application.
 
 ## Installation
 

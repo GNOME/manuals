@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>@APP_ID@.desktop</id>
+  <id>@APP_ID@</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <name>Manuals</name>
-  <summary>Browse and search developer manuals</summary>
+  <summary>Install, Browse, and Search Documentation</summary>
   <description>
     <p>
       Manuals indexes your developer manuals and provides robust browsing
       and searching capabilities.
     </p>
   </description>
-  <project_group>GNOME</project_group>
   <!-- developer_name tag deprecated with Appstream 1.0 -->
   <developer_name translatable="no">Christian Hergert</developer_name>
-  <developer id="gnome.org">
-    <name translatable="no">Christian Hergert</name>
-  </developer>
   <url type="homepage">https://gitlab.gnome.org/chergert/manuals</url>
   <url type="bugtracker">https://gitlab.gnome.org/chergert/manuals/issues</url>
   <url type="translate">https://gitlab.gnome.org/chergert/manuals/-/tree/main/po</url>
@@ -27,7 +23,12 @@
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
 
   <releases>
-    <release version="46.alpha" date="2024-02-16"/>
+    <release version="46.0" date="2024-05-30">
+      <description>
+        <p>This is the first release of Manuals which has been extracted from Builder into a standalone application.</p>
+        <p>Manuals can install developer documentation from Flatpak along with robust brosing and searching capabilities.</p>
+      </description>
+    </release>
   </releases>
 
   <content_rating type="oars-1.1" />
