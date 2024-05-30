@@ -100,6 +100,12 @@ manuals_flatpak_installer_monitor (ManualsFlatpakInstaller *self,
       if (!g_str_has_suffix (name, ".Docs"))
         continue;
 
+      /* Ignore KDE as we are extremely unlikely to have any
+       * data we can injest there.
+       */
+      if (g_str_has_prefix (name, "org.kde."))
+        continue;
+
       if (!g_str_equal (flatpak_ref_get_arch (ref),
                         flatpak_get_default_arch ()))
         continue;
