@@ -874,7 +874,8 @@ manuals_devhelp_importer_import_fiber (gpointer user_data)
     }
 
   /* Wait for all import files to complete */
-  dex_await (dex_future_allv ((DexFuture **)futures->pdata, futures->len), NULL);
+  if (futures->len > 0)
+    dex_await (dex_future_allv ((DexFuture **)futures->pdata, futures->len), NULL);
 
   return dex_future_new_for_boolean (TRUE);
 }
