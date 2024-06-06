@@ -45,7 +45,7 @@
     <release version="46.0" date="2024-05-30">
       <description>
         <p>This is the first release of Manuals which has been extracted from Builder into a standalone application.</p>
-        <p>Manuals can install developer documentation from Flatpak along with robust brosing and searching capabilities.</p>
+        <p>Manuals can install developer documentation from Flatpak along with robust browsing and searching capabilities.</p>
       </description>
     </release>
   </releases>
