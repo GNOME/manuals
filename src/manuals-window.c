@@ -76,6 +76,7 @@ manuals_window_update_stack_child (ManualsWindow *self)
 {
   g_autoptr(GtkSelectionModel) pages = NULL;
   ManualsApplication *app;
+  const char *old_child_name;
   const char *child_name;
   gboolean import_active;
   gboolean has_tabs;
@@ -86,6 +87,7 @@ manuals_window_update_stack_child (ManualsWindow *self)
   import_active = manuals_application_get_import_active (app);
   pages = adw_tab_view_get_pages (self->tab_view);
   has_tabs = g_list_model_get_n_items (G_LIST_MODEL (pages)) > 0;
+  old_child_name = gtk_stack_get_visible_child_name (self->stack);
 
   if (import_active)
     child_name = "loading";
@@ -100,6 +102,13 @@ manuals_window_update_stack_child (ManualsWindow *self)
                           g_str_equal (child_name, "tabs"));
   manuals_sidebar_set_enabled (self->sidebar,
                                !g_str_equal (child_name, "loading"));
+
+  if (g_strcmp0 (old_child_name, child_name) != 0 &&
+      g_str_equal (child_name, "empty"))
+    {
+      panel_dock_set_reveal_start (self->dock, TRUE);
+      manuals_sidebar_focus_search (self->sidebar);
+    }
 }
 
 static AdwTabPage *
