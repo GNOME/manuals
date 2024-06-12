@@ -95,6 +95,76 @@ manuals_tab_get_window (ManualsTab *self)
   return MANUALS_WINDOW (gtk_widget_get_ancestor (GTK_WIDGET (self), MANUALS_TYPE_WINDOW));
 }
 
+static gboolean
+manuals_tab_web_view_context_menu_cb (ManualsTab          *self,
+                                      WebKitContextMenu   *context_menu,
+                                      WebKitHitTestResult *hit_test_result,
+                                      WebKitWebView       *web_view)
+{
+  GList *items;
+  int i;
+
+  g_assert (MANUALS_IS_TAB (self));
+  g_assert (WEBKIT_IS_CONTEXT_MENU (context_menu));
+  g_assert (WEBKIT_IS_HIT_TEST_RESULT (hit_test_result));
+  g_assert (WEBKIT_IS_WEB_VIEW (web_view));
+
+start:
+  items = webkit_context_menu_get_items (context_menu);
+  i = 0;
+  for (; items; items = items->next)
+    {
+      WebKitContextMenuItem *item;
+      WebKitContextMenuAction action;
+
+      item = items->data;
+      action = webkit_context_menu_item_get_stock_action (item);
+
+      if (action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_LINK_TO_DISK ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_IMAGE_TO_DISK ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_VIDEO_TO_DISK ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_AUDIO_TO_DISK ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_LINK_IN_NEW_WINDOW ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_IMAGE_IN_NEW_WINDOW ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_FRAME_IN_NEW_WINDOW ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_VIDEO_IN_NEW_WINDOW ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_AUDIO_IN_NEW_WINDOW ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_STOP ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_RELOAD)
+        {
+          if (action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_LINK_IN_NEW_WINDOW)
+            {
+              WebKitContextMenuItem *new_item;
+              GAction *gaction;
+              const char *uri;
+
+              uri = webkit_hit_test_result_get_link_uri (hit_test_result);
+
+              gaction = g_action_map_lookup_action (G_ACTION_MAP (manuals_tab_get_window (self)), "open-uri-in-new-tab");
+              new_item = webkit_context_menu_item_new_from_gaction (gaction,
+                                                                    _("Open Link in New Tab"),
+                                                                    g_variant_new_string (uri));
+              webkit_context_menu_insert (context_menu, new_item, i);
+
+              gaction = g_action_map_lookup_action (G_ACTION_MAP (manuals_tab_get_window (self)), "open-uri-in-new-window");
+              new_item = webkit_context_menu_item_new_from_gaction (gaction,
+                                                                    _("Open Link in New Window"),
+                                                                    g_variant_new_string (uri));
+              webkit_context_menu_insert (context_menu, new_item, i + 1);
+            }
+
+          webkit_context_menu_remove (context_menu, item);
+
+          /* Start over from the beginning because we just deleted our position in the list. */
+          goto start;
+        }
+
+      i++;
+    }
+
+  return GDK_EVENT_PROPAGATE;
+}
+
 typedef struct _DecidePolicy
 {
   ManualsTab               *self;
@@ -621,6 +691,11 @@ manuals_tab_init (ManualsTab *self)
                            G_CALLBACK (manuals_tab_web_view_notify_title_cb),
                            self,
                            G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->web_view,
+                           "context-menu",
+                           G_CALLBACK (manuals_tab_web_view_context_menu_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
   g_signal_connect_object (back_forward_list,
                            "changed",
                            G_CALLBACK (manuals_tab_back_forward_list_changed_cb),
@@ -645,8 +720,13 @@ manuals_tab_duplicate (ManualsTab *self)
 
   if (self != NULL)
     {
-      /* TODO: Maybe copy backforward list here? */
+      g_autoptr(WebKitWebViewSessionState) state = NULL;
+
       manuals_tab_set_navigatable (copy, self->navigatable);
+
+      /* Create the new tab using the back/forward list of the original tab. */
+      state = webkit_web_view_get_session_state (self->web_view);
+      webkit_web_view_restore_session_state (copy->web_view, state);
     }
 
   return copy;

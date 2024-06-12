@@ -100,10 +100,7 @@ manuals_application_activate_cb (DexFuture *completed,
   g_application_release (G_APPLICATION (self));
 
   repository = dex_await_object (dex_ref (self->repository), NULL);
-  window = g_object_new (MANUALS_TYPE_WINDOW,
-                         "application", self,
-                         "repository", repository,
-                         NULL);
+  window = manuals_window_new (repository);
 
   gtk_window_present (GTK_WINDOW (window));
 

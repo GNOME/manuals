@@ -63,9 +63,12 @@ enum {
 static GParamSpec *properties [N_PROPS];
 
 ManualsWindow *
-manuals_window_new (void)
+manuals_window_new (ManualsRepository *repository)
 {
-  return g_object_new (MANUALS_TYPE_WINDOW, NULL);
+  return g_object_new (MANUALS_TYPE_WINDOW,
+                       "application", g_application_get_default (),
+                       "repository", repository,
+                       NULL);
 }
 
 static void
@@ -263,6 +266,76 @@ manuals_window_show_sdk_dialog_action (GtkWidget  *widget,
   manuals_sdk_dialog_present (dialog);
 }
 
+static ManualsTab *
+manuals_window_new_tab_for_uri_from_current_tab (ManualsWindow *self,
+                                                 const char    *uri)
+{
+  g_autoptr(ManualsNavigatable) navigatable = NULL;
+  ManualsTab *original_tab;
+  ManualsTab *new_tab;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+
+  if (g_strcmp0 ("file", g_uri_peek_scheme (uri)) != 0)
+    {
+      g_autoptr(GtkUriLauncher) launcher = gtk_uri_launcher_new (uri);
+      gtk_uri_launcher_launch (launcher, GTK_WINDOW (self), NULL, NULL, NULL);
+      return NULL;
+    }
+
+  original_tab = manuals_window_get_visible_tab (self);
+
+  if (original_tab)
+    new_tab = manuals_tab_duplicate (original_tab);
+  else
+    new_tab = manuals_tab_new ();
+
+  navigatable = manuals_navigatable_new ();
+  manuals_navigatable_set_uri (navigatable, uri);
+  manuals_tab_set_navigatable (new_tab, navigatable);
+
+  return new_tab;
+}
+
+static void
+manuals_window_open_uri_in_new_tab_action (GSimpleAction *action,
+                                           GVariant      *param,
+                                           gpointer       user_data)
+{
+  ManualsWindow *self = user_data;
+  ManualsTab *new_tab;
+
+  g_assert (G_IS_SIMPLE_ACTION (action));
+  g_assert (param);
+  g_assert (MANUALS_IS_WINDOW (self));
+
+  new_tab = manuals_window_new_tab_for_uri_from_current_tab (self, g_variant_get_string (param, NULL));
+  if (new_tab)
+    manuals_window_add_tab (self, new_tab);
+}
+
+static void
+manuals_window_open_uri_in_new_window_action (GSimpleAction *action,
+                                              GVariant      *param,
+                                              gpointer       user_data)
+{
+  ManualsWindow *self = user_data;
+  ManualsWindow *new_window;
+  ManualsTab *new_tab;
+
+  g_assert (G_IS_SIMPLE_ACTION (action));
+  g_assert (param);
+  g_assert (MANUALS_IS_WINDOW (self));
+
+  new_tab = manuals_window_new_tab_for_uri_from_current_tab (self, g_variant_get_string (param, NULL));
+  if (new_tab)
+    {
+      new_window = manuals_window_new (self->repository);
+      manuals_window_add_tab (new_window, new_tab);
+      gtk_window_present (GTK_WINDOW (new_window));
+    }
+}
+
 static void
 manuals_window_invalidate_contents_cb (ManualsWindow      *self,
                                        ManualsApplication *application)
@@ -449,6 +522,16 @@ manuals_window_class_init (ManualsWindowClass *klass)
 static void
 manuals_window_init (ManualsWindow *self)
 {
+  static const GActionEntry window_actions[] = {
+    { "open-uri-in-new-tab", manuals_window_open_uri_in_new_tab_action, "s" },
+    { "open-uri-in-new-window", manuals_window_open_uri_in_new_window_action, "s" },
+  };
+
+  g_action_map_add_action_entries (G_ACTION_MAP (self),
+                                   window_actions,
+                                   G_N_ELEMENTS (window_actions),
+                                   self);
+
   gtk_window_set_title (GTK_WINDOW (self), _("Manuals"));
 
   self->visible_tab_signals = g_signal_group_new (MANUALS_TYPE_TAB);
