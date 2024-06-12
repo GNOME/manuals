@@ -63,9 +63,12 @@ enum {
 static GParamSpec *properties [N_PROPS];
 
 ManualsWindow *
-manuals_window_new (void)
+manuals_window_new (ManualsRepository *repository)
 {
-  return g_object_new (MANUALS_TYPE_WINDOW, NULL);
+  return g_object_new (MANUALS_TYPE_WINDOW,
+                       "application", g_application_get_default (),
+                       "repository", repository,
+                       NULL);
 }
 
 static void
