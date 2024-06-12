@@ -102,6 +102,7 @@ manuals_tab_web_view_context_menu_cb (ManualsTab          *self,
                                       WebKitWebView       *web_view)
 {
   GList *items;
+  int i;
 
   g_assert (MANUALS_IS_TAB (self));
   g_assert (WEBKIT_IS_CONTEXT_MENU (context_menu));
@@ -110,6 +111,7 @@ manuals_tab_web_view_context_menu_cb (ManualsTab          *self,
 
 start:
   items = webkit_context_menu_get_items (context_menu);
+  i = 0;
   for (; items; items = items->next)
     {
       WebKitContextMenuItem *item;
@@ -121,13 +123,41 @@ start:
       if (action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_LINK_TO_DISK ||
           action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_IMAGE_TO_DISK ||
           action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_VIDEO_TO_DISK ||
-          action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_AUDIO_TO_DISK)
+          action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_AUDIO_TO_DISK ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_LINK_IN_NEW_WINDOW ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_IMAGE_IN_NEW_WINDOW ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_FRAME_IN_NEW_WINDOW ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_VIDEO_IN_NEW_WINDOW ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_AUDIO_IN_NEW_WINDOW)
         {
+          if (action == WEBKIT_CONTEXT_MENU_ACTION_OPEN_LINK_IN_NEW_WINDOW)
+            {
+              WebKitContextMenuItem *new_item;
+              GAction *gaction;
+              const char *uri;
+
+              uri = webkit_hit_test_result_get_link_uri (hit_test_result);
+
+              gaction = g_action_map_lookup_action (G_ACTION_MAP (manuals_tab_get_window (self)), "open-uri-in-new-tab");
+              new_item = webkit_context_menu_item_new_from_gaction (gaction,
+                                                                    _("Open Link in New Tab"),
+                                                                    g_variant_new_string (uri));
+              webkit_context_menu_insert (context_menu, new_item, i);
+
+              gaction = g_action_map_lookup_action (G_ACTION_MAP (manuals_tab_get_window (self)), "open-uri-in-new-window");
+              new_item = webkit_context_menu_item_new_from_gaction (gaction,
+                                                                    _("Open Link in New Window"),
+                                                                    g_variant_new_string (uri));
+              webkit_context_menu_insert (context_menu, new_item, i + 1);
+            }
+
           webkit_context_menu_remove (context_menu, item);
 
           /* Start over from the beginning because we just deleted our position in the list. */
           goto start;
         }
+
+      i++;
     }
 
   return GDK_EVENT_PROPAGATE;
