@@ -95,6 +95,44 @@ manuals_tab_get_window (ManualsTab *self)
   return MANUALS_WINDOW (gtk_widget_get_ancestor (GTK_WIDGET (self), MANUALS_TYPE_WINDOW));
 }
 
+static gboolean
+manuals_tab_web_view_context_menu_cb (ManualsTab          *self,
+                                      WebKitContextMenu   *context_menu,
+                                      WebKitHitTestResult *hit_test_result,
+                                      WebKitWebView       *web_view)
+{
+  GList *items;
+
+  g_assert (MANUALS_IS_TAB (self));
+  g_assert (WEBKIT_IS_CONTEXT_MENU (context_menu));
+  g_assert (WEBKIT_IS_HIT_TEST_RESULT (hit_test_result));
+  g_assert (WEBKIT_IS_WEB_VIEW (web_view));
+
+start:
+  items = webkit_context_menu_get_items (context_menu);
+  for (; items; items = items->next)
+    {
+      WebKitContextMenuItem *item;
+      WebKitContextMenuAction action;
+
+      item = items->data;
+      action = webkit_context_menu_item_get_stock_action (item);
+
+      if (action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_LINK_TO_DISK ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_IMAGE_TO_DISK ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_VIDEO_TO_DISK ||
+          action == WEBKIT_CONTEXT_MENU_ACTION_DOWNLOAD_AUDIO_TO_DISK)
+        {
+          webkit_context_menu_remove (context_menu, item);
+
+          /* Start over from the beginning because we just deleted our position in the list. */
+          goto start;
+        }
+    }
+
+  return GDK_EVENT_PROPAGATE;
+}
+
 typedef struct _DecidePolicy
 {
   ManualsTab               *self;
@@ -619,6 +657,11 @@ manuals_tab_init (ManualsTab *self)
   g_signal_connect_object (self->web_view,
                            "notify::title",
                            G_CALLBACK (manuals_tab_web_view_notify_title_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->web_view,
+                           "context-menu",
+                           G_CALLBACK (manuals_tab_web_view_context_menu_cb),
                            self,
                            G_CONNECT_SWAPPED);
   g_signal_connect_object (back_forward_list,
