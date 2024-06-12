@@ -720,8 +720,13 @@ manuals_tab_duplicate (ManualsTab *self)
 
   if (self != NULL)
     {
-      /* TODO: Maybe copy backforward list here? */
+      g_autoptr(WebKitWebViewSessionState) state = NULL;
+
       manuals_tab_set_navigatable (copy, self->navigatable);
+
+      /* Create the new tab using the back/forward list of the original tab. */
+      state = webkit_web_view_get_session_state (self->web_view);
+      webkit_web_view_restore_session_state (copy->web_view, state);
     }
 
   return copy;
