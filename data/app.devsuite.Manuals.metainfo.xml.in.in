@@ -42,6 +42,12 @@
   </screenshots>
 
   <releases>
+    <release version="46.1" date="2024-06-24">
+      <description>
+        <p>Adds improved navigation while searching for documentation.</p>
+        <p>Unnecessary WebKit actions have been removed from context menus.</p>
+      </description>
+    </release>
     <release version="46.0" date="2024-05-30">
       <description>
         <p>This is the first release of Manuals which has been extracted from Builder into a standalone application.</p>

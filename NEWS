@@ -1,3 +1,18 @@
+Manuals 46.1
+============
+
+Changes in this release:
+
+ * WebKit integration fixes which ensures only useful menu entries from WebKit
+   are included in context menus.
+ * Browser history is copied for new tabs.
+ * Ensure search entry is auto-focused in most situations.
+ * Improve sidebar styling.
+ * Add support for result navigation from the search entry with up/down arrows.
+ * Auto-select top search result as you type.
+
+Thanks to Michael Catanzaro for the WebKit related patches.
+
 Manuals 46.0
 ============
 
