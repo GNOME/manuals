@@ -30,6 +30,8 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (ManualsSearchModel, manuals_search_model, MANUALS, SEARCH_MODEL, GObject)
 
-ManualsSearchModel *manuals_search_model_new (GomResourceGroup *group);
+ManualsSearchModel *manuals_search_model_new      (GomResourceGroup   *group);
+DexFuture          *manuals_search_model_prefetch (ManualsSearchModel *self,
+                                                   guint               position);
 
 G_END_DECLS

@@ -242,3 +242,25 @@ manuals_search_model_init (ManualsSearchModel *self)
   self->prefetch = g_ptr_array_new_with_free_func (_dex_xunref);
   self->items = g_hash_table_new_full (NULL, NULL, NULL, g_object_unref);
 }
+
+DexFuture *
+manuals_search_model_prefetch (ManualsSearchModel *self,
+                               guint               position)
+{
+  g_autoptr(ManualsSearchResult) result = NULL;
+  DexFuture *prefetch;
+  guint fetch_index;
+
+  g_return_val_if_fail (MANUALS_IS_SEARCH_MODEL (self), NULL);
+
+  if (!(result = g_list_model_get_item (G_LIST_MODEL (self), position)))
+    return dex_future_new_for_boolean (TRUE);
+
+  fetch_index = position / PER_FETCH_GROUP;
+
+  g_assert (fetch_index < self->prefetch->len);
+
+  prefetch = g_ptr_array_index (self->prefetch, fetch_index);
+
+  return dex_ref (prefetch);
+}
