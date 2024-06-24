@@ -66,46 +66,8 @@ enum {
 static GParamSpec *properties[N_PROPS];
 
 static void
-manuals_sidebar_search_changed_cb (ManualsSidebar *self,
-                                   GtkSearchEntry *search_entry)
-{
-  g_autofree char *text = NULL;
-
-  g_assert (MANUALS_IS_SIDEBAR (self));
-  g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
-
-  dex_clear (&self->query);
-
-  text = g_strstrip (g_strdup (gtk_editable_get_text (GTK_EDITABLE (search_entry))));
-
-  if (_g_str_empty0 (text))
-    {
-      gtk_stack_set_visible_child_name (self->stack, "browse");
-      gtk_widget_set_visible (GTK_WIDGET (self->back_button), FALSE);
-    }
-  else
-    {
-      g_autoptr(ManualsSearchQuery) query = manuals_search_query_new ();
-      g_autoptr(GtkNoSelection) selection = NULL;
-
-      manuals_search_query_set_text (query, text);
-
-      /* Hold on to the future so we can cancel it by releasing when a
-       * new search comes in.
-       */
-      self->query = manuals_search_query_execute (query, self->repository);
-      selection = gtk_no_selection_new (g_object_ref (G_LIST_MODEL (query)));
-      gtk_list_view_set_model (self->search_view, GTK_SELECTION_MODEL (selection));
-
-      gtk_stack_set_visible_child_name (self->stack, "search");
-      gtk_widget_set_visible (GTK_WIDGET (self->back_button), TRUE);
-    }
-}
-
-static void
-manuals_sidebar_search_view_activate_cb (ManualsSidebar *self,
-                                         guint           position,
-                                         GtkListView    *list_view)
+manuals_sidebar_activate (ManualsSidebar *self,
+                          guint           position)
 {
   g_autoptr(ManualsSearchResult) result = NULL;
   ManualsNavigatable *navigatable;
@@ -114,9 +76,11 @@ manuals_sidebar_search_view_activate_cb (ManualsSidebar *self,
   ManualsTab *tab;
 
   g_assert (MANUALS_IS_SIDEBAR (self));
-  g_assert (GTK_IS_LIST_VIEW (list_view));
 
-  model = gtk_list_view_get_model (list_view);
+  if (position == GTK_INVALID_LIST_POSITION)
+    return;
+
+  model = gtk_list_view_get_model (self->search_view);
   result = g_list_model_get_item (G_LIST_MODEL (model), position);
   navigatable = manuals_search_result_get_item (result);
 
@@ -138,6 +102,158 @@ manuals_sidebar_search_view_activate_cb (ManualsSidebar *self,
     }
 
   manuals_tab_set_navigatable (tab, navigatable);
+}
+
+static void
+manuals_sidebar_selection_changed_cb (ManualsSidebar     *self,
+                                      guint               position,
+                                      guint               n_items,
+                                      GtkSingleSelection *selection)
+{
+  g_assert (MANUALS_IS_SIDEBAR (self));
+  g_assert (GTK_IS_SINGLE_SELECTION (selection));
+
+  manuals_sidebar_activate (self, position);
+}
+
+static gboolean
+manuals_sidebar_key_pressed_cb (ManualsSidebar        *self,
+                                guint                  keyval,
+                                guint                  keycode,
+                                GdkModifierType        state,
+                                GtkEventControllerKey *controller)
+{
+  g_assert (MANUALS_IS_SIDEBAR (self));
+  g_assert (GTK_IS_EVENT_CONTROLLER_KEY (controller));
+
+  switch (keyval)
+    {
+    case GDK_KEY_Down:
+    case GDK_KEY_KP_Down:
+      {
+        GtkSelectionModel *model = gtk_list_view_get_model (self->search_view);
+        guint selected = gtk_single_selection_get_selected (GTK_SINGLE_SELECTION (model));
+        guint n_items = g_list_model_get_n_items (G_LIST_MODEL (model));
+
+        if (n_items > 0 && selected + 1 == n_items)
+          return GDK_EVENT_PROPAGATE;
+
+        selected++;
+
+        gtk_single_selection_set_selected (GTK_SINGLE_SELECTION (model), selected);
+      }
+      return GDK_EVENT_STOP;
+
+    case GDK_KEY_Up:
+    case GDK_KEY_KP_Up:
+      {
+        GtkSelectionModel *model = gtk_list_view_get_model (self->search_view);
+        guint selected = gtk_single_selection_get_selected (GTK_SINGLE_SELECTION (model));
+
+        if (selected == 0)
+          return GDK_EVENT_PROPAGATE;
+
+        if (selected == GTK_INVALID_LIST_POSITION)
+          selected = 0;
+        else
+          selected--;
+
+        gtk_single_selection_set_selected (GTK_SINGLE_SELECTION (model), selected);
+      }
+      return GDK_EVENT_STOP;
+
+    default:
+      return GDK_EVENT_PROPAGATE;
+    }
+}
+
+static void
+manuals_sidebar_search_activate_cb (ManualsSidebar *self,
+                                    GtkSearchEntry *search_entry)
+{
+  GtkSelectionModel *model;
+  guint position;
+
+  g_assert (MANUALS_IS_SIDEBAR (self));
+  g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
+
+  model = gtk_list_view_get_model (self->search_view);
+  position = gtk_single_selection_get_selected (GTK_SINGLE_SELECTION (model));
+
+  manuals_sidebar_activate (self, position);
+}
+
+static DexFuture *
+manuals_sidebar_select_first (DexFuture *completed,
+                              gpointer   user_data)
+{
+  ManualsSidebar *self = user_data;
+
+  g_assert (MANUALS_IS_SIDEBAR (self));
+
+  manuals_sidebar_activate (self, 0);
+
+  return NULL;
+}
+
+static void
+manuals_sidebar_search_changed_cb (ManualsSidebar *self,
+                                   GtkSearchEntry *search_entry)
+{
+  g_autofree char *text = NULL;
+
+  g_assert (MANUALS_IS_SIDEBAR (self));
+  g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
+
+  dex_clear (&self->query);
+
+  text = g_strstrip (g_strdup (gtk_editable_get_text (GTK_EDITABLE (search_entry))));
+
+  if (_g_str_empty0 (text))
+    {
+      gtk_stack_set_visible_child_name (self->stack, "browse");
+      gtk_widget_set_visible (GTK_WIDGET (self->back_button), FALSE);
+    }
+  else
+    {
+      g_autoptr(ManualsSearchQuery) query = manuals_search_query_new ();
+      g_autoptr(GtkSelectionModel) selection = NULL;
+
+      manuals_search_query_set_text (query, text);
+
+      /* Hold on to the future so we can cancel it by releasing when a
+       * new search comes in.
+       */
+      selection = g_object_new (GTK_TYPE_SINGLE_SELECTION,
+                                "autoselect", FALSE,
+                                "can-unselect", TRUE,
+                                "model", query,
+                                NULL);
+      g_signal_connect_object (selection,
+                               "selection-changed",
+                               G_CALLBACK (manuals_sidebar_selection_changed_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+      gtk_list_view_set_model (self->search_view, selection);
+
+      self->query = manuals_search_query_execute (query, self->repository);
+
+      dex_future_disown (dex_future_then (dex_ref (self->query),
+                                          manuals_sidebar_select_first,
+                                          g_object_ref (self),
+                                          g_object_unref));
+
+      gtk_stack_set_visible_child_name (self->stack, "search");
+      gtk_widget_set_visible (GTK_WIDGET (self->back_button), TRUE);
+    }
+}
+
+static void
+manuals_sidebar_search_view_activate_cb (ManualsSidebar *self,
+                                         guint           position,
+                                         GtkListView    *list_view)
+{
+  manuals_sidebar_activate (self, position);
 }
 
 static void
@@ -255,6 +371,8 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, stack);
   gtk_widget_class_bind_template_child (widget_class, ManualsSidebar, tree);
 
+  gtk_widget_class_bind_template_callback (widget_class, manuals_sidebar_key_pressed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, manuals_sidebar_search_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_sidebar_search_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_sidebar_search_view_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, nonempty_to_boolean);

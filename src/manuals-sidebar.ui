@@ -45,7 +45,6 @@
                               <class name="search"/>
                             </style>
                             <signal name="activate" handler="manuals_sidebar_search_view_activate_cb" swapped="true"/>
-                            <property name="single-click-activate">true</property>
                             <property name="tab-behavior">item</property>
                             <property name="header-factory">
                               <object class="GtkBuilderListItemFactory">
@@ -184,11 +183,18 @@
             </child>
             <child>
               <object class="GtkSearchEntry" id="search_entry">
+                <signal name="activate" handler="manuals_sidebar_search_activate_cb" swapped="true"/>
                 <style>
                   <class name="statusbar"/>
                 </style>
                 <property name="placeholder-text" translatable="yes">Filter…</property>
                 <signal name="search-changed" handler="manuals_sidebar_search_changed_cb" swapped="true"/>
+                <child>
+                  <object class="GtkEventControllerKey">
+                    <property name="propagation-phase">capture</property>
+                    <signal name="key-pressed" swapped="true" handler="manuals_sidebar_key_pressed_cb"/>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
