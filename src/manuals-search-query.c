@@ -297,6 +297,7 @@ manuals_search_query_execute_fiber (gpointer user_data)
   g_autoptr(GListStore) store = NULL;
   g_autoptr(GPtrArray) futures = NULL;
   g_autoptr(GError) error = NULL;
+  g_autoptr(DexFuture) prefetch = NULL;
   Execute *execute = user_data;
   guint n_sdks;
 
@@ -362,7 +363,16 @@ manuals_search_query_execute_fiber (gpointer user_data)
       g_autoptr(ManualsSearchModel) wrapped = manuals_search_model_new (group);
 
       g_list_store_append (store, wrapped);
+
+      /* If there are any items, then wait for the first page to fetch so that
+       * UI can rely on results having non-null items at early positions.
+       */
+      if (i == 0 && g_list_model_get_n_items (G_LIST_MODEL (wrapped)) > 0)
+        prefetch = manuals_search_model_prefetch (wrapped, 0);
     }
+
+  if (prefetch)
+    dex_await (dex_ref (prefetch), NULL);
 
   return dex_future_new_take_object (gtk_flatten_list_model_new (g_object_ref (G_LIST_MODEL (store))));
 }
