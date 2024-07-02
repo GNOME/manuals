@@ -113,7 +113,7 @@ manuals_sidebar_selection_changed_cb (ManualsSidebar     *self,
   g_assert (MANUALS_IS_SIDEBAR (self));
   g_assert (GTK_IS_SINGLE_SELECTION (selection));
 
-  manuals_sidebar_activate (self, position);
+  manuals_sidebar_activate (self, gtk_single_selection_get_selected (selection));
 }
 
 static gboolean
