@@ -10,7 +10,7 @@ ABI_MICRO = 0
 
 glib_req_version = '2.78'
 gtk_req_version = '4.14'
-adw_req_version = '1.5'
+adw_req_version = '1.6'
 dex_req_version = '0.4'
 gom_req_version = '0.4'
 flatpak_req_version = '1.0'
