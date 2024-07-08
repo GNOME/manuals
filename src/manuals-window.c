@@ -265,14 +265,10 @@ manuals_window_show_sdk_dialog_action (GtkWidget  *widget,
 
   g_assert (MANUALS_IS_WINDOW (self));
 
-  dialog = g_object_new (MANUALS_TYPE_SDK_DIALOG,
-                         "application", MANUALS_APPLICATION_DEFAULT,
-                         "transient-for", self,
-                         NULL);
-
+  dialog = manuals_sdk_dialog_new ();
   flatpak = manuals_flatpak_installer_new ();
   manuals_sdk_dialog_add_installer (dialog, flatpak);
-  manuals_sdk_dialog_present (dialog);
+  manuals_sdk_dialog_present (dialog, GTK_WIDGET (self));
 }
 
 static ManualsTab *

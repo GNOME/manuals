@@ -29,7 +29,7 @@
 
 struct _ManualsSdkDialog
 {
-  AdwPreferencesWindow  parent_instance;
+  AdwPreferencesDialog  parent_instance;
 
   GListStore           *installers;
 
@@ -42,7 +42,7 @@ struct _ManualsSdkDialog
   GtkStack             *stack;
 };
 
-G_DEFINE_FINAL_TYPE (ManualsSdkDialog, manuals_sdk_dialog, ADW_TYPE_PREFERENCES_WINDOW)
+G_DEFINE_FINAL_TYPE (ManualsSdkDialog, manuals_sdk_dialog, ADW_TYPE_PREFERENCES_DIALOG)
 
 static DexFuture *
 manuals_sdk_dialog_cancel (DexFuture *completed,
@@ -332,7 +332,8 @@ manuals_sdk_dialog_present_cb (DexFuture *completed,
 }
 
 void
-manuals_sdk_dialog_present (ManualsSdkDialog *self)
+manuals_sdk_dialog_present (ManualsSdkDialog *self,
+                            GtkWidget        *parent)
 {
   g_autoptr(GPtrArray) futures = NULL;
   GListModel *model;
@@ -362,5 +363,5 @@ manuals_sdk_dialog_present (ManualsSdkDialog *self)
                                g_object_unref);
   dex_future_disown (future);
 
-  gtk_window_present (GTK_WINDOW (self));
+  adw_dialog_present (ADW_DIALOG (self), parent);
 }

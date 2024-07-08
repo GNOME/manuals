@@ -29,11 +29,12 @@ G_BEGIN_DECLS
 
 #define MANUALS_TYPE_SDK_DIALOG (manuals_sdk_dialog_get_type())
 
-G_DECLARE_FINAL_TYPE (ManualsSdkDialog, manuals_sdk_dialog, MANUALS, SDK_DIALOG, AdwPreferencesWindow)
+G_DECLARE_FINAL_TYPE (ManualsSdkDialog, manuals_sdk_dialog, MANUALS, SDK_DIALOG, AdwPreferencesDialog)
 
 ManualsSdkDialog *manuals_sdk_dialog_new           (void);
 void              manuals_sdk_dialog_add_installer (ManualsSdkDialog    *self,
                                                     ManualsSdkInstaller *installer);
-void              manuals_sdk_dialog_present       (ManualsSdkDialog    *self);
+void              manuals_sdk_dialog_present       (ManualsSdkDialog    *self,
+                                                    GtkWidget           *parent);
 
 G_END_DECLS

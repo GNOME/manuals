@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="ManualsSdkDialog" parent="AdwPreferencesWindow">
+  <template class="ManualsSdkDialog" parent="AdwPreferencesDialog">
     <property name="title" translatable="yes">Documentation</property>
     <property name="search-enabled">false</property>
-    <property name="content">
+    <property name="child">
       <object class="AdwToolbarView">
         <child type="top">
           <object class="AdwHeaderBar">
