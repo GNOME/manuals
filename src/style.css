@@ -29,14 +29,6 @@ searchview columnview listview row {
   min-height: 36px;
 }
 
-searchview columnview listview row:first-child {
-  margin-top: 12px;
-}
-
-searchview columnview listview row:last-child {
-  margin-bottom: 12px;
-}
-
 searchview columnview listview row > * {
   padding: 3px 6px;
 }
