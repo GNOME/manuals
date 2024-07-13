@@ -81,10 +81,9 @@ manuals_sidebar_activate (ManualsSidebar *self,
     return;
 
   model = gtk_list_view_get_model (self->search_view);
-  result = g_list_model_get_item (G_LIST_MODEL (model), position);
-  navigatable = manuals_search_result_get_item (result);
 
-  if (navigatable == NULL)
+  if (!(result = g_list_model_get_item (G_LIST_MODEL (model), position)) ||
+      !(navigatable = manuals_search_result_get_item (result)))
     return;
 
   window = MANUALS_WINDOW (gtk_widget_get_ancestor (GTK_WIDGET (self), MANUALS_TYPE_WINDOW));
