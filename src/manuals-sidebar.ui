@@ -188,6 +188,7 @@
                   <class name="statusbar"/>
                 </style>
                 <property name="placeholder-text" translatable="yes">Filter…</property>
+                <property name="search-delay">100</property>
                 <signal name="search-changed" handler="manuals_sidebar_search_changed_cb" swapped="true"/>
                 <child>
                   <object class="GtkEventControllerKey">
