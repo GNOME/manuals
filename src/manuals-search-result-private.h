@@ -1,5 +1,5 @@
 /*
- * manuals-search-model.h
+ * manuals-search-result-private.h
  *
  * Copyright 2024 Christian Hergert <chergert@redhat.com>
  *
@@ -21,18 +21,21 @@
 
 #pragma once
 
-#include <gio/gio.h>
-#include <gom/gom.h>
-#include <libdex.h>
+#include "manuals-search-result.h"
+#include "manuals-search-model.h"
 
 G_BEGIN_DECLS
 
-#define MANUALS_TYPE_SEARCH_MODEL (manuals_search_model_get_type())
+struct _ManualsSearchResult
+{
+  GObject             parent_instance;
+  GObject            *item;
+  guint               position;
+  ManualsSearchModel *model;
+  GList               link;
+};
 
-G_DECLARE_FINAL_TYPE (ManualsSearchModel, manuals_search_model, MANUALS, SEARCH_MODEL, GObject)
-
-ManualsSearchModel *manuals_search_model_new      (GomResourceGroup   *group);
-DexFuture          *manuals_search_model_prefetch (ManualsSearchModel *self,
-                                                   guint               position);
+void manuals_search_model_release (ManualsSearchModel  *self,
+                                   ManualsSearchResult *result);
 
 G_END_DECLS

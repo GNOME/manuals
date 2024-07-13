@@ -21,14 +21,7 @@
 
 #include "config.h"
 
-#include "manuals-search-result.h"
-
-struct _ManualsSearchResult
-{
-  GObject  parent_instance;
-  GObject *item;
-  guint    position;
-};
+#include "manuals-search-result-private.h"
 
 G_DEFINE_FINAL_TYPE (ManualsSearchResult, manuals_search_result, G_TYPE_OBJECT)
 
@@ -56,6 +49,12 @@ static void
 manuals_search_result_dispose (GObject *object)
 {
   ManualsSearchResult *self = (ManualsSearchResult *)object;
+
+  if (self->model)
+    manuals_search_model_release (self->model, self);
+
+  self->model = NULL;
+  self->link.data = NULL;
 
   g_clear_object (&self->item);
 
@@ -122,6 +121,7 @@ manuals_search_result_class_init (ManualsSearchResultClass *klass)
 static void
 manuals_search_result_init (ManualsSearchResult *self)
 {
+  self->link.data = self;
 }
 
 gpointer

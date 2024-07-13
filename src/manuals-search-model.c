@@ -24,7 +24,7 @@
 #include "manuals-gom.h"
 #include "manuals-navigatable.h"
 #include "manuals-search-model.h"
-#include "manuals-search-result.h"
+#include "manuals-search-result-private.h"
 
 #define PER_FETCH_GROUP 100
 
@@ -34,6 +34,7 @@ struct _ManualsSearchModel
   GomResourceGroup *group;
   GPtrArray        *prefetch;
   GHashTable       *items;
+  GQueue            known;
 };
 
 static void
@@ -124,11 +125,13 @@ manuals_search_model_get_item (GListModel *model,
     }
 
   result = manuals_search_result_new (position);
+  result->model = self;
+  g_queue_push_head_link (&self->known, &result->link);
 
   /* Make sure we have a stable item across get calls */
   g_hash_table_insert (self->items,
                        GUINT_TO_POINTER (position),
-                       g_object_ref (result));
+                       result);
 
   dex_future_disown (dex_future_then (dex_ref (fetch),
                                       manuals_search_model_fetch_item_cb,
@@ -171,6 +174,13 @@ static void
 manuals_search_model_dispose (GObject *object)
 {
   ManualsSearchModel *self = (ManualsSearchModel *)object;
+  GList *iter;
+
+  while ((iter = self->known.head))
+    {
+      ManualsSearchResult *result = iter->data;
+      manuals_search_model_release (self, result);
+    }
 
   g_clear_pointer (&self->prefetch, g_ptr_array_unref);
   g_clear_pointer (&self->items, g_hash_table_unref);
@@ -240,7 +250,7 @@ static void
 manuals_search_model_init (ManualsSearchModel *self)
 {
   self->prefetch = g_ptr_array_new_with_free_func (_dex_xunref);
-  self->items = g_hash_table_new_full (NULL, NULL, NULL, g_object_unref);
+  self->items = g_hash_table_new (NULL, NULL);
 }
 
 DexFuture *
@@ -263,4 +273,20 @@ manuals_search_model_prefetch (ManualsSearchModel *self,
   prefetch = g_ptr_array_index (self->prefetch, fetch_index);
 
   return dex_ref (prefetch);
+}
+
+void
+manuals_search_model_release (ManualsSearchModel  *self,
+                              ManualsSearchResult *result)
+{
+  g_return_if_fail (MANUALS_IS_SEARCH_MODEL (self));
+  g_return_if_fail (MANUALS_IS_SEARCH_RESULT (result));
+
+  if (self->items)
+    g_hash_table_remove (self->items,
+                         GUINT_TO_POINTER (result->position));
+
+  g_queue_unlink (&self->known, &result->link);
+
+  result->model = NULL;
 }
