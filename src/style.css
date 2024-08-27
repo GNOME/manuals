@@ -66,6 +66,8 @@ entry.statusbar {
 }
 
 panelstatusbar {
+  background: var(--view-bg-color);
+  color: var(--view-fg-color);
   min-height: 36px;
 }
 
