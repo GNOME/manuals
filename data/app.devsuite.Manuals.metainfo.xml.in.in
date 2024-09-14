@@ -46,6 +46,8 @@
   </screenshots>
 
   <releases>
+    <release version="47.0" date="2024-09-13">
+    </release>
     <release version="46.2" date="2024-07-07">
       <description>
         <p>Fix page navigation when selection changes in sidebar.</p>
