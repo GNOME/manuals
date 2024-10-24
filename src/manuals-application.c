@@ -50,6 +50,7 @@ enum {
   PROP_0,
   PROP_IMPORT_ACTIVE,
   PROP_IMPORT_PROGRESS,
+  PROP_PRIMARY_MENU,
   N_PROPS
 };
 
@@ -296,6 +297,10 @@ manuals_application_get_property (GObject    *object,
       g_value_set_double (value, manuals_application_get_import_progress (self));
       break;
 
+    case PROP_PRIMARY_MENU:
+      g_value_set_object (value, gtk_application_get_menu_by_id (GTK_APPLICATION (self), "primary_menu"));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -325,6 +330,11 @@ manuals_application_class_init (ManualsApplicationClass *klass)
                          0, 1, 0,
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_PRIMARY_MENU] =
+    g_param_spec_object ("primary-menu", NULL, NULL,
+                         G_TYPE_MENU_MODEL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 

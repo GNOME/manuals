@@ -26,4 +26,7 @@
     <file preprocess="xml-stripblanks">icons/scalable/actions/org.gnome.Sdk-symbolic.svg</file>
     <file>style.css</file>
   </gresource>
+  <gresource prefix="/app/devsuite/Manuals/gtk">
+    <file preprocess="xml-stripblanks">menus.ui</file>
+  </gresource>
 </gresources>
