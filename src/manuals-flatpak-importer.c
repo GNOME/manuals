@@ -185,7 +185,10 @@ manuals_flatpak_importer_import_fiber (gpointer user_data)
   for (guint i = 0; i < installations->len; i++)
     {
       FlatpakInstallation *installation = g_ptr_array_index (installations, i);
+      g_autoptr(GFile) path = flatpak_installation_get_path (installation);
       g_autoptr(GPtrArray) refs = NULL;
+
+      g_debug ("Found installation at '%s'", g_file_peek_path (path));
 
       if (!(refs = dex_await_boxed (list_installed_refs_by_kind (installation,
                                                                  FLATPAK_REF_KIND_RUNTIME),
