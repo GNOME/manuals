@@ -192,8 +192,18 @@ manuals_flatpak_importer_import_fiber (gpointer user_data)
 
       if (!(refs = dex_await_boxed (list_installed_refs_by_kind (installation,
                                                                  FLATPAK_REF_KIND_RUNTIME),
-                                    NULL)))
-        continue;
+                                    &error)))
+        {
+          g_warning ("Attempted to load runtime refs for '%s': %s",
+                     g_file_peek_path (path),
+                     error->message);
+          g_clear_error (&error);
+          continue;
+        }
+
+      g_debug ("Found %u refs in installation '%s'",
+               refs->len,
+               g_file_peek_path (path));
 
       for (guint j = 0; j < refs->len; j++)
         {
