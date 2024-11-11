@@ -37,7 +37,7 @@ load_installations_thread (gpointer data)
   if (g_file_test ("/.flatpak-info", G_FILE_TEST_EXISTS))
     {
       g_autoptr(GFile) user_path = g_file_new_build_filename (g_get_home_dir (), ".local", "share", "flatpak", NULL);
-      g_autoptr(GFile) host_path = g_file_new_for_path ("/var/run/host/var/lib/flatpak");
+      g_autoptr(GFile) host_path = g_file_new_for_path ("/var/lib/flatpak");
       g_autoptr(FlatpakInstallation) host = NULL;
 
       if ((user = flatpak_installation_new_for_path (user_path, TRUE, NULL, NULL)))
