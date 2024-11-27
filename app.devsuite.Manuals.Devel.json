@@ -13,10 +13,9 @@
     "finish-args" : [
         "--allow=devel",
         "--device=dri",
-        "--filesystem=/var/lib/flatpak",
-        "--filesystem=home:ro",
-        "--filesystem=host:ro",
+        "--filesystem=host",
         "--filesystem=~/.local/share/flatpak",
+        "--filesystem=/var/lib/flatpak",
         "--share=ipc",
         "--share=network",
         "--socket=fallback-x11",
