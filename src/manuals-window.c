@@ -402,7 +402,18 @@ manuals_window_size_allocate (GtkWidget *widget,
 
   GTK_WIDGET_CLASS (manuals_window_parent_class)->size_allocate (widget, width, height, baseline);
 
-  g_settings_set (self->settings, "window-size", "(ii)", width, height);
+  if (!gtk_window_is_maximized (GTK_WINDOW (self)))
+    g_settings_set (self->settings, "window-size", "(ii)", width, height);
+}
+
+static void
+manuals_window_notify_maximize (ManualsWindow *self)
+{
+  g_assert (MANUALS_IS_WINDOW (self));
+
+  g_settings_set_boolean (self->settings,
+                          "maximized",
+                          gtk_window_is_maximized (GTK_WINDOW (self)));
 }
 
 static void
@@ -433,6 +444,14 @@ manuals_window_constructed (GObject *object)
                            G_CALLBACK (manuals_window_save_sidebar_width),
                            self,
                            G_CONNECT_SWAPPED);
+
+  if (g_settings_get_boolean (self->settings, "maximized"))
+    gtk_window_maximize (GTK_WINDOW (self));
+
+  g_signal_connect (self,
+                    "notify::maximized",
+                    G_CALLBACK (manuals_window_notify_maximize),
+                    NULL);
 
   manuals_sidebar_set_repository (self->sidebar, self->repository);
   manuals_sidebar_focus_search (self->sidebar);

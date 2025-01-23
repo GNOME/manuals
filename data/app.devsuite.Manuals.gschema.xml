@@ -9,5 +9,9 @@
       <default>(1024,768)</default>
       <summary>Window dimensions</summary>
     </key>
+    <key name="maximized" type="b">
+      <default>false</default>
+      <summary>Window is Maximized</summary>
+    </key>
   </schema>
 </schemalist>
