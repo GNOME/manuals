@@ -38,6 +38,7 @@ manuals_purge_missing_import_fiber (gpointer data)
 {
   ManualsRepository *repository = data;
   g_autoptr(GListModel) books = NULL;
+  g_autoptr(GListModel) sdks = NULL;
 
   g_assert (MANUALS_IS_REPOSITORY (repository));
 
@@ -79,7 +80,34 @@ manuals_purge_missing_import_fiber (gpointer data)
         }
     }
 
-  /* TODO: Remove SDKs with no books */
+  sdks = dex_await_object (manuals_repository_list (repository, MANUALS_TYPE_SDK, NULL), NULL);
+
+  if (sdks != NULL)
+    {
+      guint n_items = g_list_model_get_n_items (sdks);
+
+      for (guint i = 0; i < n_items; i++)
+        {
+          g_autoptr(ManualsSdk) sdk = g_list_model_get_item (G_LIST_MODEL (sdks), i);
+          g_auto(GValue) sdk_id = G_VALUE_INIT;
+          g_autoptr(GomFilter) sdk_filter = NULL;
+          g_autoptr(GError) error = NULL;
+          guint count;
+
+          g_value_init (&sdk_id, G_TYPE_INT64);
+          g_value_set_int64 (&sdk_id, manuals_sdk_get_id (sdk));
+
+          sdk_filter = gom_filter_new_eq (MANUALS_TYPE_BOOK, "sdk-id", &sdk_id);
+
+          count = dex_await_uint (manuals_repository_count (repository, MANUALS_TYPE_BOOK, sdk_filter), &error);
+
+          if (error == NULL && count == 0)
+            {
+              g_autoptr(GomFilter) id_filter = gom_filter_new_eq (MANUALS_TYPE_SDK, "id", &sdk_id);
+              dex_await (manuals_repository_delete (repository, MANUALS_TYPE_SDK, id_filter), NULL);
+            }
+        }
+    }
 
   return dex_future_new_for_boolean (TRUE);
 }
