@@ -415,7 +415,7 @@ manuals_window_constructed (GObject *object)
 
   G_OBJECT_CLASS (manuals_window_parent_class)->constructed (object);
 
-#if 0
+#ifdef DEVELOPMENT_BUILD
   /* For some reason this causes librsvg to segfault */
   gtk_widget_add_css_class (GTK_WIDGET (object), "devel");
 #endif
