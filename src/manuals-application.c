@@ -141,33 +141,49 @@ manuals_application_activate (GApplication *app)
 }
 
 static DexFuture *
-manuals_application_import (DexFuture *completed,
-                            gpointer   user_data)
+manuals_application_after_purge (DexFuture *completed,
+                                 gpointer   user_data)
 {
   ManualsApplication *self = user_data;
   g_autoptr(ManualsRepository) repository = NULL;
-  g_autoptr(ManualsImporter) purge = NULL;
   g_autoptr(ManualsImporter) flatpak = NULL;
   g_autoptr(ManualsImporter) jhbuild = NULL;
   g_autoptr(ManualsImporter) system = NULL;
 
   g_assert (MANUALS_IS_APPLICATION (self));
 
-  repository = dex_await_object (dex_ref (completed), NULL);
-  purge = manuals_purge_missing_new ();
+  repository = dex_await_object (dex_ref (self->repository), NULL);
   flatpak = manuals_flatpak_importer_new ();
   system = manuals_system_importer_new ();
   jhbuild = manuals_jhbuild_importer_new ();
 
-  self->import_active = TRUE;
-  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_IMPORT_ACTIVE]);
-
-  return dex_future_all (manuals_importer_import (purge, repository, self->import_progress),
-                         manuals_importer_import (system, repository, self->import_progress),
+  return dex_future_all (manuals_importer_import (system, repository, self->import_progress),
                          manuals_importer_import (flatpak, repository, self->import_progress),
                          manuals_importer_import (jhbuild, repository, self->import_progress),
                          NULL);
 
+}
+
+static DexFuture *
+manuals_application_import (DexFuture *completed,
+                            gpointer   user_data)
+{
+  ManualsApplication *self = user_data;
+  g_autoptr(ManualsRepository) repository = NULL;
+  g_autoptr(ManualsImporter) purge = NULL;
+
+  g_assert (MANUALS_IS_APPLICATION (self));
+
+  repository = dex_await_object (dex_ref (completed), NULL);
+  purge = manuals_purge_missing_new ();
+
+  self->import_active = TRUE;
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_IMPORT_ACTIVE]);
+
+  return dex_future_finally (manuals_importer_import (purge, repository, self->import_progress),
+                             manuals_application_after_purge,
+                             g_object_ref (self),
+                             g_object_unref);
 }
 
 static int
