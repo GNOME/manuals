@@ -9,7 +9,7 @@ stages:
 .flatpak_vars:
   variables:
     MANIFEST_PATH: "app.devsuite.Manuals.Devel.json"
-    FLATPAK_MODULE: "ptyxis"
+    FLATPAK_MODULE: "manuals"
     RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
     APP_ID: "app.devsuite.Manuals.Devel"
   extends: ".flatpak"
