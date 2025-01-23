@@ -55,4 +55,9 @@ configure_file(
     install_dir: join_paths(get_option('datadir'), 'dbus-1', 'services'),
 )
 
+gnome.compile_schemas(build_by_default: true)
+install_data('app.devsuite.Manuals.gschema.xml',
+  install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
+)
+
 subdir('icons')

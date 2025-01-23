@@ -61,7 +61,6 @@
     </child>
     <property name="content">
       <object class="PanelDock" id="dock">
-        <property name="start-width">300</property>
         <child internal-child="center">
           <object class="PanelDockChild">
             <property name="top-edge">
@@ -238,4 +237,7 @@ Or, press Ctrl+W to close the window</property>
       </object>
     </property>
   </template>
+  <object class="GSettings" id="settings">
+    <property name="schema-id">app.devsuite.Manuals</property>
+  </object>
 </interface>

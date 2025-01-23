@@ -42,6 +42,7 @@ struct _ManualsWindow
 
   AdwWindowTitle       *title;
   PanelDock            *dock;
+  GSettings            *settings;
   PanelStatusbar       *statusbar;
   ManualsSidebar       *sidebar;
   AdwTabView           *tab_view;
@@ -379,10 +380,24 @@ on_tab_view_close_page_cb (ManualsWindow *self,
 }
 
 static void
+manuals_window_save_sidebar_width (ManualsWindow *self,
+                                   GParamSpec    *pspec,
+                                   GtkWidget     *widget)
+{
+  int width;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+
+  g_object_get (self->dock, "start-width", &width, NULL);
+  g_settings_set_uint (self->settings, "sidebar-width", MAX (100, width));
+}
+
+static void
 manuals_window_constructed (GObject *object)
 {
   ManualsWindow *self = (ManualsWindow *)object;
   ManualsApplication *app = MANUALS_APPLICATION (g_application_get_default ());
+  GtkWidget *widget;
 
   G_OBJECT_CLASS (manuals_window_parent_class)->constructed (object);
 
@@ -390,6 +405,17 @@ manuals_window_constructed (GObject *object)
   /* For some reason this causes librsvg to segfault */
   gtk_widget_add_css_class (GTK_WIDGET (object), "devel");
 #endif
+
+  panel_dock_set_start_width (self->dock,
+                              g_settings_get_uint (self->settings, "sidebar-width"));
+
+  widget = gtk_widget_get_ancestor (GTK_WIDGET (self->sidebar), g_type_from_name ("PanelResizer"));
+
+  g_signal_connect_object (widget,
+                           "notify::drag-position",
+                           G_CALLBACK (manuals_window_save_sidebar_width),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   manuals_sidebar_set_repository (self->sidebar, self->repository);
   manuals_sidebar_focus_search (self->sidebar);
@@ -503,6 +529,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
 
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, dock);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, progress);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, settings);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, sidebar);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, stack);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, statusbar);
