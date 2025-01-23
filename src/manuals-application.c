@@ -384,7 +384,7 @@ manuals_application_about_action (GSimpleAction *action,
                          "developer-name", "Christian Hergert",
                          "version", PACKAGE_VERSION,
                          "developers", developers,
-                         "copyright", "© 2024 Christian Hergert",
+                         "copyright", "© 2025 Christian Hergert",
                          "license-type", GTK_LICENSE_GPL_3_0,
                          NULL);
 }
