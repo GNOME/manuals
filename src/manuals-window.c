@@ -393,11 +393,25 @@ manuals_window_save_sidebar_width (ManualsWindow *self,
 }
 
 static void
+manuals_window_size_allocate (GtkWidget *widget,
+                              int        width,
+                              int        height,
+                              int        baseline)
+{
+  ManualsWindow *self = MANUALS_WINDOW (widget);
+
+  GTK_WIDGET_CLASS (manuals_window_parent_class)->size_allocate (widget, width, height, baseline);
+
+  g_settings_set (self->settings, "window-size", "(ii)", width, height);
+}
+
+static void
 manuals_window_constructed (GObject *object)
 {
   ManualsWindow *self = (ManualsWindow *)object;
   ManualsApplication *app = MANUALS_APPLICATION (g_application_get_default ());
   GtkWidget *widget;
+  guint width, height;
 
   G_OBJECT_CLASS (manuals_window_parent_class)->constructed (object);
 
@@ -405,6 +419,9 @@ manuals_window_constructed (GObject *object)
   /* For some reason this causes librsvg to segfault */
   gtk_widget_add_css_class (GTK_WIDGET (object), "devel");
 #endif
+
+  g_settings_get (self->settings, "window-size", "(ii)", &width, &height);
+  gtk_window_set_default_size (GTK_WINDOW (self), width, height);
 
   panel_dock_set_start_width (self->dock,
                               g_settings_get_uint (self->settings, "sidebar-width"));
@@ -508,6 +525,8 @@ manuals_window_class_init (ManualsWindowClass *klass)
   object_class->dispose = manuals_window_dispose;
   object_class->get_property = manuals_window_get_property;
   object_class->set_property = manuals_window_set_property;
+
+  widget_class->size_allocate = manuals_window_size_allocate;
 
   properties[PROP_REPOSITORY] =
     g_param_spec_object ("repository", NULL, NULL,

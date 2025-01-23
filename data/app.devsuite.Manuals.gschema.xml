@@ -5,5 +5,9 @@
       <default>300</default>
       <summary>Width of sidebar in application pixels</summary>
     </key>
+    <key name="window-size" type="(ii)">
+      <default>(1024,768)</default>
+      <summary>Window dimensions</summary>
+    </key>
   </schema>
 </schemalist>
