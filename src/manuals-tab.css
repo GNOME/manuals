@@ -4,10 +4,10 @@
 
 .toc { background: transparent !important; }
 
-:root { --body-bg: #ffffff !important; }
+:root { --body-bg: #fafafb !important; }
 
 @media (prefers-color-scheme: dark) {
-  :root { --body-bg: #1e1e1e !important; }
+  :root { --body-bg: #1d1d20 !important; }
 }
 
 /* https://github.com/workbenchdev/Biblioteca/blob/022ede135351cbff519e456ab38b6624e3938e0b/src/WebView.js#L95 */
