@@ -1,4 +1,4 @@
-<?xml version="1" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema id="app.devsuite.Manuals" path="/app/devsuite/Manuals/" gettext-domain="manuals">
     <key name="sidebar-width" type="u">
