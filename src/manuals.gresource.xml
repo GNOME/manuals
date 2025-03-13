@@ -22,7 +22,7 @@
     <file preprocess="xml-stripblanks">icons/scalable/actions/lang-signal-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/scalable/actions/lang-struct-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icons/scalable/actions/library-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/manuals.svg</file>
+    <file preprocess="xml-stripblanks" alias="icons/scalable/actions/manuals.svg">../data/icons/manuals.svg</file>
     <file preprocess="xml-stripblanks">icons/scalable/actions/org.gnome.Sdk-symbolic.svg</file>
     <file>style.css</file>
   </gresource>
