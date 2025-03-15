@@ -1,5 +1,5 @@
 project('manuals', 'c',
-          version: '48.alpha.2',
+          version: '48.0',
     meson_version: '>= 1.0.0',
   default_options: [ 'warning_level=2', 'werror=false', 'c_std=gnu11', ],
 )
