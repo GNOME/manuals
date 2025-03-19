@@ -38,7 +38,7 @@
                     <property name="vexpand">true</property>
                     <property name="icon-name">face-sad-symbolic</property>
                     <property name="title" translatable="yes">No SDKs Available</property>
-                    <property name="description" translatable="yes">Your system is not configured to access to any SDKs.</property>
+                    <property name="description" translatable="yes">Your system is not configured to access any SDKs.</property>
                   </object>
                 </property>
               </object>
