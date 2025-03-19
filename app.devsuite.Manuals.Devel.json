@@ -105,7 +105,7 @@
                 {
                     "type" : "git",
                     "url" : "https://github.com/ostreedev/ostree.git",
-                    "tag" : "v2024.9"
+                    "tag" : "v2025.1"
                 }
             ]
         },
