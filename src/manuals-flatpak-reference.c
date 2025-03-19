@@ -49,7 +49,13 @@ manuals_flatpak_reference_installed_cb (DexFuture *completed,
                                         gpointer   user_data)
 {
   ManualsFlatpakReference *self = user_data;
-  manuals_sdk_reference_set_installed (MANUALS_SDK_REFERENCE (self), TRUE);
+  g_autoptr(GError) error = NULL;
+
+  if (!dex_await (dex_ref (completed), &error))
+    g_warning ("Failed to install ref: %s", error->message);
+  else
+    manuals_sdk_reference_set_installed (MANUALS_SDK_REFERENCE (self), TRUE);
+
   return dex_ref (completed);
 }
 
@@ -69,10 +75,10 @@ manuals_flatpak_reference_install (ManualsSdkReference *reference,
                                                  FLATPAK_REMOTE_REF (self->ref),
                                                  progress,
                                                  cancellable);
-  future = dex_future_then (future,
-                            manuals_flatpak_reference_installed_cb,
-                            g_object_ref (self),
-                            g_object_unref);
+  future = dex_future_finally (future,
+                               manuals_flatpak_reference_installed_cb,
+                               g_object_ref (self),
+                               g_object_unref);
 
   return future;
 }
