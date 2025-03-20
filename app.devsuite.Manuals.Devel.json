@@ -13,7 +13,7 @@
     "finish-args" : [
         "--allow=devel",
         "--device=dri",
-        "--filesystem=host",
+        "--filesystem=host:ro",
         "--filesystem=~/.local/share/flatpak",
         "--filesystem=/var/lib/flatpak",
         "--filesystem=/var/tmp",
