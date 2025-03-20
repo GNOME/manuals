@@ -16,6 +16,7 @@
         "--filesystem=host",
         "--filesystem=~/.local/share/flatpak",
         "--filesystem=/var/lib/flatpak",
+        "--filesystem=/var/tmp",
         "--share=ipc",
         "--share=network",
         "--socket=fallback-x11",
