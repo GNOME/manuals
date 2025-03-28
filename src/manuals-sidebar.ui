@@ -34,6 +34,24 @@
             <property name="orientation">vertical</property>
             <property name="vexpand">true</property>
             <child>
+              <object class="GtkSearchEntry" id="search_entry">
+                <signal name="activate" handler="manuals_sidebar_search_activate_cb" swapped="true"/>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-end">6</property>
+                <property name="margin-start">6</property>
+                <property name="placeholder-text" translatable="yes">Filter…</property>
+                <property name="search-delay">100</property>
+                <signal name="search-changed" handler="manuals_sidebar_search_changed_cb" swapped="true"/>
+                <child>
+                  <object class="GtkEventControllerKey">
+                    <property name="propagation-phase">capture</property>
+                    <signal name="key-pressed" swapped="true" handler="manuals_sidebar_key_pressed_cb"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
               <object class="GtkStack" id="stack">
                 <child>
                   <object class="GtkStackPage" id="browse">
@@ -190,23 +208,6 @@
                         </child>
                       </object>
                     </property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkSearchEntry" id="search_entry">
-                <signal name="activate" handler="manuals_sidebar_search_activate_cb" swapped="true"/>
-                <style>
-                  <class name="statusbar"/>
-                </style>
-                <property name="placeholder-text" translatable="yes">Filter…</property>
-                <property name="search-delay">100</property>
-                <signal name="search-changed" handler="manuals_sidebar_search_changed_cb" swapped="true"/>
-                <child>
-                  <object class="GtkEventControllerKey">
-                    <property name="propagation-phase">capture</property>
-                    <signal name="key-pressed" swapped="true" handler="manuals_sidebar_key_pressed_cb"/>
                   </object>
                 </child>
               </object>
