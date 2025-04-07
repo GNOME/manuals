@@ -161,6 +161,10 @@ manuals_sidebar_key_pressed_cb (ManualsSidebar        *self,
       }
       return GDK_EVENT_STOP;
 
+    case GDK_KEY_Escape:
+      gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
+      return GDK_EVENT_STOP;
+
     default:
       return GDK_EVENT_PROPAGATE;
     }
