@@ -36,7 +36,6 @@ manuals_sources = [
   'manuals-tab.c',
   'manuals-tag.c',
   'manuals-tree-addin.c',
-  'manuals-tree-expander.c',
   'manuals-utils.c',
   'manuals-window.c',
   'main.c',

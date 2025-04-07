@@ -33,7 +33,6 @@
 #include "manuals-sidebar.h"
 #include "manuals-tag.h"
 #include "manuals-tree-addin.h"
-#include "manuals-tree-expander.h"
 #include "manuals-utils.h"
 #include "manuals-window.h"
 
@@ -392,7 +391,6 @@ manuals_sidebar_class_init (ManualsSidebarClass *klass)
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
-  g_type_ensure (MANUALS_TYPE_TREE_EXPANDER);
   g_type_ensure (MANUALS_TYPE_NAVIGATABLE);
   g_type_ensure (MANUALS_TYPE_SEARCH_RESULT);
   g_type_ensure (MANUALS_TYPE_TAG);
