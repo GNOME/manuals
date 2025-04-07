@@ -173,10 +173,11 @@ ide_tree_expander_click_released_cb (IdeTreeExpander *self,
       !gtk_tree_list_row_is_expandable (self->list_row))
     return;
 
-
   gtk_widget_activate_action (GTK_WIDGET (self), "listitem.select", "(bb)", FALSE, FALSE);
   gtk_widget_activate_action (GTK_WIDGET (self), "listitem.toggle-expand", NULL);
   gtk_gesture_set_state (GTK_GESTURE (click), GTK_EVENT_SEQUENCE_CLAIMED);
+
+  gtk_event_controller_reset (GTK_EVENT_CONTROLLER (click));
 }
 
 static void
