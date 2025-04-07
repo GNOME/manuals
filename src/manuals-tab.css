@@ -4,7 +4,7 @@
 
 .toc { background: transparent !important; }
 
-:root { --body-bg: #fafafb !important; }
+:root { --body-bg: #ffffff !important; }
 
 @media (prefers-color-scheme: dark) {
   :root { --body-bg: #1d1d20 !important; }
