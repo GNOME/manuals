@@ -175,6 +175,7 @@ ref_sorter (gconstpointer a,
   const char *title_b = manuals_sdk_reference_get_title (ref_b);
   gboolean a_is_gnome = strstr (title_a, "GNOME") != NULL;
   gboolean b_is_gnome = strstr (title_b, "GNOME") != NULL;
+  int ret;
 
   if (a_is_gnome && !b_is_gnome)
     return -1;
@@ -182,7 +183,15 @@ ref_sorter (gconstpointer a,
   if (!a_is_gnome && b_is_gnome)
     return 1;
 
-  return g_strcmp0 (title_a, title_b);
+  ret = g_strcmp0 (title_a, title_b);
+
+  /* Reverse sort */
+  if (ret < 0)
+    return 1;
+  else if (ret > 1)
+    return -1;
+  else
+    return 0;
 }
 
 static void
