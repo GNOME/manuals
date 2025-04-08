@@ -510,7 +510,7 @@ manuals_tab_css_changed (GtkWidget         *widget,
   g_assert (GTK_IS_WIDGET (widget));
 
   if (adw_style_manager_get_dark (adw_style_manager_get_default ()))
-    gdk_rgba_parse (&background, "#1e1e1e");
+    gdk_rgba_parse (&background, "#1d1d20");
   else
     gdk_rgba_parse (&background, "#ffffff");
 
