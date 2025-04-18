@@ -272,7 +272,7 @@ Or, press Ctrl+W to close the window</property>
                     <child>
                       <object class="GtkEventControllerKey">
                         <property name="propagation-phase">capture</property>
-                        <!--signal name="key-pressed" swapped="true" handler="manuals_sidebar_key_pressed_cb"/-->
+                        <signal name="key-pressed" swapped="true" handler="manuals_window_search_entry_key_pressed_cb"/>
                       </object>
                     </child>
                   </object>
@@ -351,7 +351,7 @@ Or, press Ctrl+W to close the window</property>
                                 </style>
                                 <property name="single-click-activate">true</property>
                                 <property name="model">
-                                  <object class="GtkNoSelection" id="search_selection">
+                                  <object class="GtkSingleSelection" id="search_selection">
                                   </object>
                                 </property>
                                 <signal name="activate" handler="manuals_window_search_list_activate_cb" swapped="true"/>

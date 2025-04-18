@@ -47,7 +47,8 @@ struct _ManualsWindow
   GtkStack             *stack;
   GtkStack             *sidebar_stack;
   GtkNoSelection       *selection;
-  GtkNoSelection       *search_selection;
+  GtkListView          *search_list_view;
+  GtkSingleSelection   *search_selection;
 
   guint                 stamp;
 
@@ -513,7 +514,7 @@ manuals_window_search_fiber (ManualsWindow *self,
       (model = dex_await_object (foundry_documentation_manager_query (manager, query), NULL)))
     {
       if (self->stamp == stamp)
-        gtk_no_selection_set_model (self->search_selection, model);
+        gtk_single_selection_set_model (self->search_selection, model);
     }
 
   return NULL;
@@ -560,6 +561,14 @@ manuals_window_search_activate_fiber (ManualsWindow        *self,
   g_assert (MANUALS_IS_WINDOW (self));
   g_assert (FOUNDRY_IS_DOCUMENTATION (documentation));
 
+  /* If we can find the same answer by doing a query for the URI
+   * specifically we gain a chance of getting a documentation item
+   * in the tree rather than a search result.
+   *
+   * This is useful so we can find siblings/parents for the navigation
+   * path bar rather than just "search result".
+   */
+
   if ((uri = foundry_documentation_dup_uri (documentation)) &&
       (context = dex_await_object (manuals_application_load_foundry (MANUALS_APPLICATION_DEFAULT), NULL)) &&
       (manager = foundry_context_dup_documentation_manager (context)) &&
@@ -569,6 +578,20 @@ manuals_window_search_activate_fiber (ManualsWindow        *self,
     manuals_window_navigate_to (self, documentation);
 
   return NULL;
+}
+
+static void
+manuals_window_activate_item (ManualsWindow        *self,
+                              FoundryDocumentation *documentation)
+{
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (FOUNDRY_IS_DOCUMENTATION (documentation));
+
+  dex_future_disown (foundry_scheduler_spawn (NULL, 0,
+                                              G_CALLBACK (manuals_window_search_activate_fiber),
+                                              2,
+                                              MANUALS_TYPE_WINDOW, self,
+                                              FOUNDRY_TYPE_DOCUMENTATION, documentation));
 }
 
 static void
@@ -583,25 +606,90 @@ manuals_window_search_list_activate_cb (ManualsWindow *self,
   g_assert (GTK_IS_LIST_VIEW (list_view));
 
   model = G_LIST_MODEL (gtk_list_view_get_model (list_view));
-  documentation = g_list_model_get_item (model, position);
 
-  if (documentation == NULL)
-    return;
-
-  dex_future_disown (foundry_scheduler_spawn (NULL, 0,
-                                              G_CALLBACK (manuals_window_search_activate_fiber),
-                                              2,
-                                              MANUALS_TYPE_WINDOW, self,
-                                              FOUNDRY_TYPE_DOCUMENTATION, documentation));
+  if ((documentation = g_list_model_get_item (model, position)))
+    manuals_window_activate_item (self, documentation);
 }
 
 static void
 manuals_window_search_entry_activate_cb (ManualsWindow  *self,
                                          GtkSearchEntry *search_entry)
 {
+  FoundryDocumentation *documentation;
+
   g_assert (MANUALS_IS_WINDOW (self));
   g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
 
+  if ((documentation = gtk_single_selection_get_selected_item (self->search_selection)))
+    manuals_window_activate_item (self, documentation);
+}
+
+static gboolean
+manuals_window_search_entry_key_pressed_cb (ManualsWindow         *self,
+                                            guint                  keyval,
+                                            guint                  keycode,
+                                            GdkModifierType        state,
+                                            GtkEventControllerKey *controller)
+{
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (GTK_IS_EVENT_CONTROLLER_KEY (controller));
+
+  switch (keyval)
+    {
+    case GDK_KEY_Down:
+    case GDK_KEY_KP_Down:
+      {
+        GtkSelectionModel *model = gtk_list_view_get_model (self->search_list_view);
+        guint selected = gtk_single_selection_get_selected (GTK_SINGLE_SELECTION (model));
+        guint n_items = g_list_model_get_n_items (G_LIST_MODEL (model));
+
+        if (n_items > 0 && selected + 1 == n_items)
+          return GDK_EVENT_PROPAGATE;
+
+        selected++;
+
+        gtk_list_view_scroll_to (self->search_list_view, selected, GTK_LIST_SCROLL_SELECT, NULL);
+      }
+      return GDK_EVENT_STOP;
+
+    case GDK_KEY_Up:
+    case GDK_KEY_KP_Up:
+      {
+        GtkSelectionModel *model = gtk_list_view_get_model (self->search_list_view);
+        guint selected = gtk_single_selection_get_selected (GTK_SINGLE_SELECTION (model));
+
+        if (selected == 0)
+          return GDK_EVENT_PROPAGATE;
+
+        if (selected == GTK_INVALID_LIST_POSITION)
+          selected = 0;
+        else
+          selected--;
+
+        gtk_list_view_scroll_to (self->search_list_view, selected, GTK_LIST_SCROLL_SELECT, NULL);
+      }
+      return GDK_EVENT_STOP;
+
+    case GDK_KEY_Escape:
+      gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
+      return GDK_EVENT_STOP;
+
+    case GDK_KEY_Return:
+      {
+        FoundryDocumentation *documentation;
+
+        if ((documentation = gtk_single_selection_get_selected_item (self->search_selection)))
+          {
+            manuals_window_activate_item (self, documentation);
+            return GDK_EVENT_STOP;
+          }
+
+        return GDK_EVENT_PROPAGATE;
+      }
+
+    default:
+      return GDK_EVENT_PROPAGATE;
+    }
 }
 
 static gboolean
@@ -704,6 +792,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
 
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, dock);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, selection);
+	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_list_view);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_selection);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_entry);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, settings);
@@ -720,6 +809,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, nonempty_to_boolean);
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_entry_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_entry_key_pressed_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_list_activate_cb);
 
   gtk_widget_class_install_action (widget_class, "sidebar.focus-search", NULL, manuals_window_sidebar_focus_search_action);
