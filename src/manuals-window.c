@@ -31,6 +31,8 @@
 #include "manuals-window.h"
 #include "manuals-wrapped-model.h"
 
+#define MAX_SEARCH_RESULTS 1000
+
 struct _ManualsWindow
 {
 	AdwApplicationWindow  parent_instance;
@@ -514,7 +516,11 @@ manuals_window_search_fiber (ManualsWindow *self,
       (model = dex_await_object (foundry_documentation_manager_query (manager, query), NULL)))
     {
       if (self->stamp == stamp)
-        gtk_single_selection_set_model (self->search_selection, model);
+        {
+          g_autoptr(GtkSliceListModel) slice = gtk_slice_list_model_new (g_object_ref (model), 0, MAX_SEARCH_RESULTS);
+
+          gtk_single_selection_set_model (self->search_selection, G_LIST_MODEL (slice));
+        }
     }
 
   return NULL;
