@@ -268,7 +268,7 @@ Or, press Ctrl+W to close the window</property>
                     <property name="margin-start">6</property>
                     <property name="placeholder-text" translatable="yes">Filter…</property>
                     <property name="search-delay">100</property>
-                    <!--signal name="search-changed" handler="manuals_window_search_changed_cb" swapped="true"/-->
+                    <signal name="search-changed" handler="manuals_window_search_changed_cb" swapped="true"/>
                     <child>
                       <object class="GtkEventControllerKey">
                         <property name="propagation-phase">capture</property>
@@ -362,6 +362,70 @@ Or, press Ctrl+W to close the window</property>
   <template class="GtkListItem">
     <property name="child">
       <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkImage">
+            <binding name="gicon">
+              <lookup name="icon" type="FoundryDocumentation">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="title">
+            <property name="hexpand">true</property>
+            <property name="xalign">0</property>
+            <property name="ellipsize">middle</property>
+            <binding name="label">
+              <lookup name="title" type="FoundryDocumentation">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="ManualsTag" id="since">
+            <style>
+              <class name="since"/>
+            </style>
+            <property name="valign">center</property>
+            <property name="visible">false</property>
+            <binding name="visible">
+              <closure function="nonempty_to_boolean" type="gboolean">
+                <closure function="query_since" type="gchararray">
+                  <lookup name="item">GtkListItem</lookup>
+                </closure>
+              </closure>
+            </binding>
+            <binding name="value">
+              <closure function="query_since" type="gchararray">
+                <lookup name="item">GtkListItem</lookup>
+              </closure>
+            </binding>
+          </object>
+        </child>
+        <child>
+          <object class="ManualsTag" id="deprecated">
+            <style>
+              <class name="deprecated"/>
+            </style>
+            <property name="valign">center</property>
+            <property name="visible">false</property>
+            <binding name="visible">
+              <closure function="nonempty_to_boolean" type="gboolean">
+                <closure function="query_deprecated" type="gchararray">
+                  <lookup name="item">GtkListItem</lookup>
+                </closure>
+              </closure>
+            </binding>
+            <binding name="value">
+              <closure function="query_deprecated" type="gchararray">
+                <lookup name="item">GtkListItem</lookup>
+              </closure>
+            </binding>
+          </object>
+        </child>
       </object>
     </property>
   </template>

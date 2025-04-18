@@ -45,7 +45,11 @@ struct _ManualsWindow
   GSettings            *settings;
   AdwToolbarView       *sidebar;
   GtkStack             *stack;
+  GtkStack             *sidebar_stack;
   GtkNoSelection       *selection;
+  GtkNoSelection       *search_selection;
+
+  guint                 stamp;
 
   guint                 disposed : 1;
 };
@@ -487,6 +491,94 @@ manuals_window_list_view_activate_cb (ManualsWindow *self,
   manuals_window_navigate_to (self, documentation);
 }
 
+static DexFuture *
+manuals_window_search_fiber (ManualsWindow *self,
+                             const char    *text,
+                             guint          stamp)
+{
+  g_autoptr(FoundryDocumentationManager) manager = NULL;
+  g_autoptr(FoundryDocumentationQuery) query = NULL;
+  g_autoptr(FoundryContext) context = NULL;
+  g_autoptr(GListModel) model = NULL;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (text != NULL);
+
+  query = foundry_documentation_query_new ();
+  foundry_documentation_query_set_keyword (query, text);
+
+  if ((context = dex_await_object (manuals_application_load_foundry (MANUALS_APPLICATION_DEFAULT), NULL)) &&
+      (manager = foundry_context_dup_documentation_manager (context)) &&
+      dex_await (foundry_service_when_ready (FOUNDRY_SERVICE (manager)), NULL) &&
+      (model = dex_await_object (foundry_documentation_manager_query (manager, query), NULL)))
+    {
+      if (self->stamp == stamp)
+        gtk_no_selection_set_model (self->search_selection, model);
+    }
+
+  return NULL;
+}
+
+static void
+manuals_window_search_changed_cb (ManualsWindow  *self,
+                                  GtkSearchEntry *search_entry)
+{
+  const char *text;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
+
+  text = gtk_editable_get_text (GTK_EDITABLE (search_entry));
+
+  self->stamp++;
+
+  if (text[0] == 0)
+    {
+      gtk_stack_set_visible_child_name (self->sidebar_stack, "browse");
+      return;
+    }
+
+  gtk_stack_set_visible_child_name (self->sidebar_stack, "search");
+
+  dex_future_disown (foundry_scheduler_spawn (NULL, 0,
+                                              G_CALLBACK (manuals_window_search_fiber),
+                                              3,
+                                              MANUALS_TYPE_WINDOW, self,
+                                              G_TYPE_STRING, text,
+                                              G_TYPE_UINT, self->stamp));
+}
+
+static gboolean
+nonempty_to_boolean (gpointer    instance,
+                     const char *data)
+{
+  return data && data[0];
+}
+
+static char *
+query_deprecated (gpointer              instance,
+                  FoundryDocumentation *documentation)
+{
+  g_assert (!documentation || FOUNDRY_IS_DOCUMENTATION (documentation));
+
+  if (documentation == NULL)
+    return NULL;
+
+  return foundry_documentation_query_attribute (documentation, FOUNDRY_DOCUMENTATION_ATTRIBUTE_DEPRECATED);
+}
+
+static char *
+query_since (gpointer              instance,
+             FoundryDocumentation *documentation)
+{
+  g_assert (!documentation || FOUNDRY_IS_DOCUMENTATION (documentation));
+
+  if (documentation == NULL)
+    return NULL;
+
+  return foundry_documentation_query_attribute (documentation, FOUNDRY_DOCUMENTATION_ATTRIBUTE_SINCE);
+}
+
 static void
 manuals_window_dispose (GObject *object)
 {
@@ -556,8 +648,10 @@ manuals_window_class_init (ManualsWindowClass *klass)
 
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, dock);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, selection);
+	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_selection);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_entry);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, settings);
+	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, sidebar_stack);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, stack);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, statusbar);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
@@ -565,6 +659,10 @@ manuals_window_class_init (ManualsWindowClass *klass)
 
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_list_view_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, query_deprecated);
+  gtk_widget_class_bind_template_callback (widget_class, query_since);
+  gtk_widget_class_bind_template_callback (widget_class, nonempty_to_boolean);
+  gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_changed_cb);
 
   gtk_widget_class_install_action (widget_class, "sidebar.focus-search", NULL, manuals_window_sidebar_focus_search_action);
   gtk_widget_class_install_action (widget_class, "tab.go-back", NULL, manuals_window_tab_go_back_action);
