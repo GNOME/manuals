@@ -261,7 +261,7 @@ Or, press Ctrl+W to close the window</property>
                 <property name="vexpand">true</property>
                 <child>
                   <object class="GtkSearchEntry" id="search_entry">
-                    <!--signal name="activate" handler="manuals_window_search_activate_cb" swapped="true"/-->
+                    <signal name="activate" handler="manuals_window_search_entry_activate_cb" swapped="true"/>
                     <property name="margin-top">6</property>
                     <property name="margin-bottom">6</property>
                     <property name="margin-end">6</property>
@@ -354,6 +354,7 @@ Or, press Ctrl+W to close the window</property>
                                   <object class="GtkNoSelection" id="search_selection">
                                   </object>
                                 </property>
+                                <signal name="activate" handler="manuals_window_search_list_activate_cb" swapped="true"/>
                                 <property name="factory">
                                   <object class="GtkBuilderListItemFactory">
                                     <property name="bytes"><![CDATA[

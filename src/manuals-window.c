@@ -548,6 +548,62 @@ manuals_window_search_changed_cb (ManualsWindow  *self,
                                               G_TYPE_UINT, self->stamp));
 }
 
+static DexFuture *
+manuals_window_search_activate_fiber (ManualsWindow        *self,
+                                      FoundryDocumentation *documentation)
+{
+  g_autoptr(FoundryDocumentationManager) manager = NULL;
+  g_autoptr(FoundryDocumentation) match = NULL;
+  g_autoptr(FoundryContext) context = NULL;
+  g_autofree char *uri = NULL;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (FOUNDRY_IS_DOCUMENTATION (documentation));
+
+  if ((uri = foundry_documentation_dup_uri (documentation)) &&
+      (context = dex_await_object (manuals_application_load_foundry (MANUALS_APPLICATION_DEFAULT), NULL)) &&
+      (manager = foundry_context_dup_documentation_manager (context)) &&
+      (match = dex_await_object (foundry_documentation_manager_find_by_uri (manager, uri), NULL)))
+    manuals_window_navigate_to (self, match);
+  else
+    manuals_window_navigate_to (self, documentation);
+
+  return NULL;
+}
+
+static void
+manuals_window_search_list_activate_cb (ManualsWindow *self,
+                                        guint          position,
+                                        GtkListView   *list_view)
+{
+  g_autoptr(FoundryDocumentation) documentation = NULL;
+  GListModel *model;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (GTK_IS_LIST_VIEW (list_view));
+
+  model = G_LIST_MODEL (gtk_list_view_get_model (list_view));
+  documentation = g_list_model_get_item (model, position);
+
+  if (documentation == NULL)
+    return;
+
+  dex_future_disown (foundry_scheduler_spawn (NULL, 0,
+                                              G_CALLBACK (manuals_window_search_activate_fiber),
+                                              2,
+                                              MANUALS_TYPE_WINDOW, self,
+                                              FOUNDRY_TYPE_DOCUMENTATION, documentation));
+}
+
+static void
+manuals_window_search_entry_activate_cb (ManualsWindow  *self,
+                                         GtkSearchEntry *search_entry)
+{
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
+
+}
+
 static gboolean
 nonempty_to_boolean (gpointer    instance,
                      const char *data)
@@ -663,6 +719,8 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, query_since);
   gtk_widget_class_bind_template_callback (widget_class, nonempty_to_boolean);
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_changed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_entry_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_list_activate_cb);
 
   gtk_widget_class_install_action (widget_class, "sidebar.focus-search", NULL, manuals_window_sidebar_focus_search_action);
   gtk_widget_class_install_action (widget_class, "tab.go-back", NULL, manuals_window_tab_go_back_action);
