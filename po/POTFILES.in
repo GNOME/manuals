@@ -1,0 +1,8 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+data/app.devsuite.Manuals.desktop.in
+data/app.devsuite.Manuals.metainfo.xml.in
+data/app.devsuite.Manuals.gschema.xml
+src/main.c
+src/manuals-window.c
+src/manuals-window.ui

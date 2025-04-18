@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=app.devsuite.Manuals
+Exec=@bindir@/manuals --gapplication-service
