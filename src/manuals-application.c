@@ -29,6 +29,7 @@ struct _ManualsApplication
   AdwApplication  parent_instance;
 
   DexFuture      *foundry;
+  DexFuture      *delayed_startup;
 
   guint           import_active : 1;
 };
@@ -73,17 +74,34 @@ manuals_application_control_is_pressed (void)
   return !!(modifiers & GDK_CONTROL_MASK);
 }
 
+static DexFuture *
+manuals_application_activate_cb (DexFuture *future,
+                                 gpointer   user_data)
+{
+  ManualsWindow *window = user_data;
+
+  g_assert (MANUALS_IS_WINDOW (window));
+
+  gtk_window_present (GTK_WINDOW (window));
+
+  return dex_ref (future);
+}
+
 static void
 manuals_application_activate (GApplication *app)
 {
+  ManualsApplication *self = MANUALS_APPLICATION (app);
   GtkWindow *window;
 
-  g_assert (MANUALS_IS_APPLICATION (app));
+  g_assert (MANUALS_IS_APPLICATION (self));
 
   if (!(window = gtk_application_get_active_window (GTK_APPLICATION (app))))
     window = GTK_WINDOW (manuals_window_new ());
 
-  gtk_window_present (window);
+  dex_future_disown (dex_future_finally (dex_ref (self->delayed_startup),
+                                         manuals_application_activate_cb,
+                                         g_object_ref_sink (window),
+                                         g_object_unref));
 }
 
 static void
@@ -111,6 +129,7 @@ manuals_application_shutdown (GApplication *app)
   G_APPLICATION_CLASS (manuals_application_parent_class)->shutdown (app);
 
   dex_clear (&self->foundry);
+  dex_clear (&self->delayed_startup);
 }
 
 static void
@@ -299,7 +318,7 @@ manuals_application_track_import (DexFuture *future,
 
   manuals_application_notify_indexing_cb (self, NULL, manager);
 
-  return dex_ref (future);
+  return foundry_documentation_manager_index (manager);
 }
 
 DexFuture *
@@ -310,10 +329,13 @@ manuals_application_load_foundry (ManualsApplication *self)
   if (self->foundry == NULL)
     {
       self->foundry = foundry_context_new_for_user (NULL);
-      dex_future_disown (dex_future_then (dex_ref (self->foundry),
-                                          manuals_application_track_import,
-                                          g_object_ref (self),
-                                          g_object_unref));
+      self->delayed_startup =
+        dex_future_first (dex_future_then (dex_ref (self->foundry),
+                                           manuals_application_track_import,
+                                           g_object_ref (self),
+                                           g_object_unref),
+                          dex_timeout_new_msec (500),
+                          NULL);
     }
 
   return dex_ref (self->foundry);
