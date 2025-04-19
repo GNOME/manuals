@@ -441,6 +441,21 @@ show_search_action (GtkWidget  *widget,
 }
 
 static void
+manuals_tab_update_background_color (ManualsTab *self)
+{
+  GdkRGBA background;
+
+  g_assert (MANUALS_IS_TAB (self));
+
+  if (adw_style_manager_get_dark (adw_style_manager_get_default ()))
+    gdk_rgba_parse (&background, "#1d1d20");
+  else
+    gdk_rgba_parse (&background, "#ffffff");
+
+  webkit_web_view_set_background_color (self->web_view, &background);
+}
+
+static void
 manuals_tab_constructed (GObject *object)
 {
   ManualsTab *self = (ManualsTab *)object;
@@ -498,23 +513,15 @@ manuals_tab_constructed (GObject *object)
                            G_CALLBACK (search_failed_to_find_text_cb),
                            self,
                            G_CONNECT_SWAPPED);
+
+  manuals_tab_update_background_color (self);
 }
 
 static void
 manuals_tab_css_changed (GtkWidget         *widget,
                          GtkCssStyleChange *change)
 {
-  ManualsTab *self = (ManualsTab *)widget;
-  GdkRGBA background;
-
-  g_assert (GTK_IS_WIDGET (widget));
-
-  if (adw_style_manager_get_dark (adw_style_manager_get_default ()))
-    gdk_rgba_parse (&background, "#1e1e1e");
-  else
-    gdk_rgba_parse (&background, "#ffffff");
-
-  webkit_web_view_set_background_color (self->web_view, &background);
+  manuals_tab_update_background_color (MANUALS_TAB (widget));
 }
 
 static void
