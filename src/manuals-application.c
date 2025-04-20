@@ -22,6 +22,7 @@
 #include <glib/gi18n.h>
 
 #include "manuals-application.h"
+#include "manuals-model-manager.h"
 #include "manuals-window.h"
 
 struct _ManualsApplication
@@ -262,13 +263,15 @@ static const GActionEntry app_actions[] = {
   { "new-window", manuals_application_new_window_action },
 };
 
+static const GOptionEntry main_entries[] = {
+  { "new-window", 0, 0, G_OPTION_ARG_NONE, NULL, N_("New manuals window") },
+  { NULL }
+};
+
 static void
 manuals_application_init (ManualsApplication *self)
 {
-  static const GOptionEntry main_entries[] = {
-    { "new-window", 0, 0, G_OPTION_ARG_NONE, NULL, N_("New manuals window") },
-    { NULL }
-  };
+  g_autoptr(FoundryModelManager) model_manager = NULL;
 
   g_application_set_default (G_APPLICATION (self));
   g_application_add_main_option_entries (G_APPLICATION (self), main_entries);
@@ -280,6 +283,9 @@ manuals_application_init (ManualsApplication *self)
   gtk_application_set_accels_for_action (GTK_APPLICATION (self),
                                          "app.quit",
                                          (const char *[]) { "<primary>q", NULL });
+
+  model_manager = manuals_model_manager_new ();
+  foundry_model_manager_set_default (model_manager);
 }
 
 static void

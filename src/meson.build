@@ -3,6 +3,7 @@ manuals_sources = [
   'manuals-application.c',
   'manuals-bundle-dialog.c',
   'manuals-install-button.c',
+  'manuals-model-manager.c',
   'manuals-path-bar.c',
   'manuals-path-button.c',
   'manuals-path-element.c',
