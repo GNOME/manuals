@@ -355,6 +355,29 @@ Or, press Ctrl+W to close the window</property>
                                   </object>
                                 </property>
                                 <signal name="activate" handler="manuals_window_search_list_activate_cb" swapped="true"/>
+                                <property name="header-factory">
+                                  <object class="GtkBuilderListItemFactory">
+                                    <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListHeader">
+    <property name="child">
+      <object class="GtkLabel">
+        <property name="xalign">0</property>
+        <property name="margin-start">6</property>
+        <binding name="label">
+          <lookup name="section-title" type="FoundryDocumentation">
+            <lookup name="item">GtkListHeader</lookup>
+          </lookup>
+        </binding>
+      </object>
+    </property>
+  </template>
+</interface>
+]]>
+                                    </property>
+                                  </object>
+                                </property>
                                 <property name="factory">
                                   <object class="GtkBuilderListItemFactory">
                                     <property name="bytes"><![CDATA[
