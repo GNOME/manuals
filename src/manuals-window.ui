@@ -417,15 +417,15 @@ Or, press Ctrl+W to close the window</property>
             <property name="visible">false</property>
             <binding name="visible">
               <closure function="nonempty_to_boolean" type="gboolean">
-                <closure function="query_since" type="gchararray">
+                <lookup name="since-version" type="FoundryDocumentation">
                   <lookup name="item">GtkListItem</lookup>
-                </closure>
+                </lookup>
               </closure>
             </binding>
             <binding name="value">
-              <closure function="query_since" type="gchararray">
+              <lookup name="since-version" type="FoundryDocumentation">
                 <lookup name="item">GtkListItem</lookup>
-              </closure>
+              </lookup>
             </binding>
           </object>
         </child>
