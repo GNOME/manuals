@@ -385,69 +385,59 @@ Or, press Ctrl+W to close the window</property>
 <interface>
   <template class="GtkListItem">
     <property name="child">
-      <object class="GtkBox">
-        <property name="spacing">6</property>
+      <object class="ManualsSearchRow">
+        <binding name="warning">
+          <closure function="nonempty_to_boolean" type="gboolean">
+            <lookup name="deprecated-in" type="FoundryDocumentation">
+              <lookup name="item">GtkListItem</lookup>
+            </lookup>
+          </closure>
+        </binding>
         <child>
-          <object class="GtkImage">
-            <binding name="gicon">
-              <lookup name="icon" type="FoundryDocumentation">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel" id="title">
-            <property name="hexpand">true</property>
-            <property name="xalign">0</property>
-            <property name="ellipsize">middle</property>
-            <binding name="label">
-              <lookup name="title" type="FoundryDocumentation">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
-          </object>
-        </child>
-        <child>
-          <object class="ManualsTag" id="since">
-            <style>
-              <class name="since"/>
-            </style>
-            <property name="valign">center</property>
-            <property name="visible">false</property>
-            <binding name="visible">
-              <closure function="nonempty_to_boolean" type="gboolean">
-                <lookup name="since-version" type="FoundryDocumentation">
-                  <lookup name="item">GtkListItem</lookup>
-                </lookup>
-              </closure>
-            </binding>
-            <binding name="value">
-              <lookup name="since-version" type="FoundryDocumentation">
-                <lookup name="item">GtkListItem</lookup>
-              </lookup>
-            </binding>
-          </object>
-        </child>
-        <child>
-          <object class="ManualsTag" id="deprecated">
-            <style>
-              <class name="deprecated"/>
-            </style>
-            <property name="valign">center</property>
-            <property name="visible">false</property>
-            <binding name="visible">
-              <closure function="nonempty_to_boolean" type="gboolean">
-                <closure function="query_deprecated" type="gchararray">
-                  <lookup name="item">GtkListItem</lookup>
-                </closure>
-              </closure>
-            </binding>
-            <binding name="value">
-              <closure function="query_deprecated" type="gchararray">
-                <lookup name="item">GtkListItem</lookup>
-              </closure>
-            </binding>
+          <object class="GtkBox">
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkImage">
+                <binding name="gicon">
+                  <lookup name="icon" type="FoundryDocumentation">
+                    <lookup name="item">GtkListItem</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="title">
+                <property name="hexpand">true</property>
+                <property name="xalign">0</property>
+                <property name="ellipsize">middle</property>
+                <binding name="label">
+                  <lookup name="title" type="FoundryDocumentation">
+                    <lookup name="item">GtkListItem</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="ManualsTag" id="since">
+                <style>
+                  <class name="since"/>
+                </style>
+                <property name="valign">center</property>
+                <property name="visible">false</property>
+                <binding name="visible">
+                  <closure function="nonempty_to_boolean" type="gboolean">
+                    <lookup name="since-version" type="FoundryDocumentation">
+                      <lookup name="item">GtkListItem</lookup>
+                    </lookup>
+                  </closure>
+                </binding>
+                <binding name="value">
+                  <lookup name="since-version" type="FoundryDocumentation">
+                    <lookup name="item">GtkListItem</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
           </object>
         </child>
       </object>

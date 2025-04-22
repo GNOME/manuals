@@ -27,6 +27,7 @@
 #include "manuals-application.h"
 #include "manuals-bundle-dialog.h"
 #include "manuals-path-bar.h"
+#include "manuals-search-row.h"
 #include "manuals-tree-expander.h"
 #include "manuals-window.h"
 #include "manuals-wrapped-model.h"
@@ -836,6 +837,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   g_type_ensure (MANUALS_TYPE_PATH_BAR);
+  g_type_ensure (MANUALS_TYPE_SEARCH_ROW);
   g_type_ensure (MANUALS_TYPE_TAB);
   g_type_ensure (MANUALS_TYPE_TREE_EXPANDER);
   g_type_ensure (PANEL_TYPE_STATUSBAR);

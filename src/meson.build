@@ -9,6 +9,7 @@ manuals_sources = [
   'manuals-path-element.c',
   'manuals-path-model.c',
   'manuals-search-entry.c',
+  'manuals-search-row.c',
   'manuals-tab.c',
   'manuals-tag.c',
   'manuals-tree-expander.c',
