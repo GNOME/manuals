@@ -501,9 +501,9 @@ manuals_window_search_fiber (ManualsWindow *self,
                              guint          stamp)
 {
   g_autoptr(FoundryDocumentationManager) manager = NULL;
+  g_autoptr(FoundryDocumentationMatches) matches = NULL;
   g_autoptr(FoundryDocumentationQuery) query = NULL;
   g_autoptr(FoundryContext) context = NULL;
-  g_autoptr(GListModel) model = NULL;
 
   g_assert (MANUALS_IS_WINDOW (self));
   g_assert (text != NULL);
@@ -514,13 +514,16 @@ manuals_window_search_fiber (ManualsWindow *self,
   if ((context = dex_await_object (manuals_application_load_foundry (MANUALS_APPLICATION_DEFAULT), NULL)) &&
       (manager = foundry_context_dup_documentation_manager (context)) &&
       dex_await (foundry_service_when_ready (FOUNDRY_SERVICE (manager)), NULL) &&
-      (model = dex_await_object (foundry_documentation_manager_query (manager, query), NULL)))
+      (matches = dex_await_object (foundry_documentation_manager_query (manager, query), NULL)))
     {
+      g_assert (FOUNDRY_IS_DOCUMENTATION_MATCHES (matches));
+
       if (self->stamp == stamp)
         {
-          g_autoptr(GtkSliceListModel) slice = gtk_slice_list_model_new (g_object_ref (model), 0, MAX_SEARCH_RESULTS);
+          g_autoptr(GListModel) sections = foundry_documentation_matches_list_sections (matches);
+          g_autoptr(GtkFlattenListModel) flatten = gtk_flatten_list_model_new (g_object_ref (sections));
 
-          gtk_single_selection_set_model (self->search_selection, G_LIST_MODEL (slice));
+          gtk_single_selection_set_model (self->search_selection, G_LIST_MODEL (flatten));
         }
     }
 
