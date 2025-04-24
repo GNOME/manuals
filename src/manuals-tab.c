@@ -21,30 +21,28 @@
 
 #include "config.h"
 
-#include <libdex.h>
+#include <foundry.h>
 #include <webkit/webkit.h>
 
 #include <glib/gi18n.h>
 
-#include "manuals-heading.h"
-#include "manuals-keyword.h"
+#include "manuals-application.h"
 #include "manuals-search-entry.h"
 #include "manuals-tab.h"
 #include "manuals-utils.h"
-#include "manuals-repository.h"
 #include "manuals-window.h"
 
 struct _ManualsTab
 {
-  GtkWidget           parent_instance;
+  GtkWidget             parent_instance;
 
-  ManualsNavigatable *navigatable;
+  FoundryDocumentation *navigatable;
 
-  WebKitWebView      *web_view;
-  ManualsSearchEntry *search_entry;
-  GtkRevealer        *search_revealer;
+  WebKitWebView        *web_view;
+  ManualsSearchEntry   *search_entry;
+  GtkRevealer          *search_revealer;
 
-  guint               search_dir : 1;
+  guint                 search_dir : 1;
 };
 
 G_DEFINE_FINAL_TYPE (ManualsTab, manuals_tab, GTK_TYPE_WIDGET)
@@ -185,9 +183,11 @@ manuals_tab_decide_policy_fiber (gpointer user_data)
 {
   WebKitNavigationPolicyDecision *navigation_decision;
   WebKitNavigationAction *navigation_action;
+  g_autoptr(FoundryDocumentationManager) doc_manager = NULL;
+  g_autoptr(FoundryDocumentation) documentation = NULL;
+  g_autoptr(FoundryContext) context = NULL;
   g_autoptr(GObject) resource = NULL;
   g_auto(GValue) uri_value = G_VALUE_INIT;
-  ManualsRepository *repository;
   ManualsWindow *window;
   DecidePolicy *state = user_data;
   const char *uri;
@@ -201,8 +201,6 @@ manuals_tab_decide_policy_fiber (gpointer user_data)
 
   if (!(window = manuals_tab_get_window (state->self)))
     goto ignore;
-
-  repository = manuals_window_get_repository (window);
 
   navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (state->decision);
   navigation_action = webkit_navigation_policy_decision_get_navigation_action (navigation_decision);
@@ -233,10 +231,10 @@ manuals_tab_decide_policy_fiber (gpointer user_data)
       goto ignore;
     }
 
-  if ((resource = dex_await_object (manuals_heading_find_by_uri (repository, uri), NULL)) ||
-      (resource = dex_await_object (manuals_keyword_find_by_uri (repository, uri), NULL)))
+  if ((context = dex_await_object (manuals_application_load_foundry (MANUALS_APPLICATION_DEFAULT), NULL)) &&
+      (doc_manager = foundry_context_dup_documentation_manager (context)) &&
+      (documentation = dex_await_object (foundry_documentation_manager_find_by_uri (doc_manager, uri), NULL)))
     {
-      g_autoptr(ManualsNavigatable) navigatable = NULL;
       ManualsTab *tab = manuals_window_get_visible_tab (window);
 
       if (open_new_tab)
@@ -245,8 +243,7 @@ manuals_tab_decide_policy_fiber (gpointer user_data)
           manuals_window_add_tab (window, tab);
         }
 
-      navigatable = manuals_navigatable_new_for_resource (resource);
-      manuals_tab_set_navigatable (tab, navigatable);
+      manuals_tab_set_navigatable (tab, documentation);
 
       goto ignore;
     }
@@ -479,14 +476,14 @@ manuals_tab_constructed (GObject *object)
 
   ucm = webkit_web_view_get_user_content_manager (self->web_view);
 
-  style_sheet_css = g_resources_lookup_data ("/app/devsuite/Manuals/manuals-tab.css", 0, NULL);
+  style_sheet_css = g_resources_lookup_data ("/app/devsuite/manuals/manuals-tab.css", 0, NULL);
   style_sheet = webkit_user_style_sheet_new ((const char *)g_bytes_get_data (style_sheet_css, NULL),
                                              WEBKIT_USER_CONTENT_INJECT_ALL_FRAMES,
                                              WEBKIT_USER_STYLE_LEVEL_USER,
                                              NULL, NULL);
   webkit_user_content_manager_add_style_sheet (ucm, style_sheet);
 
-  overshoot_js = g_resources_lookup_data ("/app/devsuite/Manuals/manuals-tab.js", 0, NULL);
+  overshoot_js = g_resources_lookup_data ("/app/devsuite/manuals/manuals-tab.js", 0, NULL);
   script = webkit_user_script_new ((const char *)g_bytes_get_data (overshoot_js, NULL),
                                    WEBKIT_USER_CONTENT_INJECT_ALL_FRAMES,
                                    WEBKIT_USER_SCRIPT_INJECT_AT_DOCUMENT_END,
@@ -571,7 +568,7 @@ manuals_tab_get_property (GObject    *object,
       break;
 
     case PROP_TITLE:
-      g_value_set_string (value, manuals_tab_get_title (self));
+      g_value_take_string (value, manuals_tab_dup_title (self));
       break;
 
     default:
@@ -637,7 +634,7 @@ manuals_tab_class_init (ManualsTabClass *klass)
 
   properties[PROP_NAVIGATABLE] =
     g_param_spec_object ("navigatable", NULL, NULL,
-                         MANUALS_TYPE_NAVIGATABLE,
+                         FOUNDRY_TYPE_DOCUMENTATION,
                          (G_PARAM_READWRITE |
                           G_PARAM_EXPLICIT_NOTIFY |
                           G_PARAM_STATIC_STRINGS));
@@ -650,7 +647,7 @@ manuals_tab_class_init (ManualsTabClass *klass)
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-tab.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-tab.ui");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
   gtk_widget_class_bind_template_child (widget_class, ManualsTab, web_view);
@@ -739,9 +736,10 @@ manuals_tab_duplicate (ManualsTab *self)
   return copy;
 }
 
-const char *
-manuals_tab_get_title (ManualsTab *self)
+char *
+manuals_tab_dup_title (ManualsTab *self)
 {
+  g_autofree char *tmp = NULL;
   const char *title;
 
   g_return_val_if_fail (MANUALS_IS_TAB (self), NULL);
@@ -749,12 +747,12 @@ manuals_tab_get_title (ManualsTab *self)
   title = webkit_web_view_get_title (self->web_view);
 
   if (_g_str_empty0 (title) && self->navigatable != NULL)
-    title = manuals_navigatable_get_title (self->navigatable);
+    title = tmp = foundry_documentation_dup_title (self->navigatable);
 
   if (_g_str_empty0 (title))
     title = _("Empty Page");
 
-  return title;
+  return g_strdup (title);
 }
 
 
@@ -811,7 +809,7 @@ manuals_tab_go_forward (ManualsTab *self)
   webkit_web_view_go_forward (self->web_view);
 }
 
-ManualsNavigatable *
+FoundryDocumentation *
 manuals_tab_get_navigatable (ManualsTab *self)
 {
   g_return_val_if_fail (MANUALS_IS_TAB (self), NULL);
@@ -820,24 +818,37 @@ manuals_tab_get_navigatable (ManualsTab *self)
 }
 
 void
-manuals_tab_set_navigatable (ManualsTab         *self,
-                             ManualsNavigatable *navigatable)
+manuals_tab_set_navigatable (ManualsTab           *self,
+                             FoundryDocumentation *navigatable)
 {
   g_return_if_fail (MANUALS_IS_TAB (self));
-  g_return_if_fail (!navigatable || MANUALS_IS_NAVIGATABLE (navigatable));
+  g_return_if_fail (!navigatable || FOUNDRY_IS_DOCUMENTATION (navigatable));
 
   if (g_set_object (&self->navigatable, navigatable))
     {
       const char *uri = NULL;
 
       if (navigatable != NULL)
-        uri = manuals_navigatable_get_uri (navigatable);
+        uri = foundry_documentation_dup_uri (navigatable);
 
       if (uri != NULL)
         webkit_web_view_load_uri (self->web_view, uri);
 
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NAVIGATABLE]);
     }
+}
+
+void
+manuals_tab_load_uri (ManualsTab *self,
+                      const char *uri)
+{
+  g_return_if_fail (MANUALS_IS_TAB (self));
+  g_return_if_fail (uri != NULL);
+
+  if (g_set_object (&self->navigatable, NULL))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NAVIGATABLE]);
+
+  webkit_web_view_load_uri (self->web_view, uri);
 }
 
 void

@@ -1,7 +1,7 @@
 /*
- * manuals-path-model.h
+ * manuals-wrapped-model.h
  *
- * Copyright 2024 Christian Hergert <chergert@redhat.com>
+ * Copyright 2025 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,16 +21,15 @@
 
 #pragma once
 
-#include <foundry.h>
+#include <libdex.h>
 
 G_BEGIN_DECLS
 
-#define MANUALS_TYPE_PATH_MODEL (manuals_path_model_get_type())
+#define MANUALS_TYPE_WRAPPED_MODEL (manuals_wrapped_model_get_type())
 
-G_DECLARE_FINAL_TYPE (ManualsPathModel, manuals_path_model, MANUALS, PATH_MODEL, GObject)
+G_DECLARE_FINAL_TYPE (ManualsWrappedModel, manuals_wrapped_model, MANUALS, WRAPPED_MODEL, GObject)
 
-ManualsPathModel *manuals_path_model_new             (void);
-void              manuals_path_model_set_navigatable (ManualsPathModel     *self,
-                                                      FoundryDocumentation *navigatable);
+GListModel *manuals_wrapped_model_new   (DexFuture           *future);
+DexFuture  *manuals_wrapped_model_await (ManualsWrappedModel *self);
 
 G_END_DECLS

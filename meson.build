@@ -8,30 +8,33 @@ ABI_MAJOR = 1
 ABI_MINOR = 0
 ABI_MICRO = 0
 
-glib_req_version = '2.78'
-gtk_req_version = '4.14'
-adw_req_version = '1.6'
+adw_req_version = '1.7'
 dex_req_version = '0.4'
-gom_req_version = '0.4'
 flatpak_req_version = '1.0'
+foundry_req_version = '1.0'
+glib_req_version = '2.78'
+gom_req_version = '0.4'
+gtk_req_version = '4.14'
 libpanel_req_version = '1.6'
 webkit_req_version = '2.42'
 
-glib_req = '>= @0@'.format(glib_req_version)
-gtk_req = '>= @0@'.format(gtk_req_version)
 adw_req = '>= @0@'.format(adw_req_version)
 dex_req = '>= @0@'.format(dex_req_version)
-gom_req = '>= @0@'.format(gom_req_version)
 flatpak_req = '>= @0@'.format(flatpak_req_version)
+foundry_req = '>= @0@'.format(foundry_req_version)
+glib_req = '>= @0@'.format(glib_req_version)
+gom_req = '>= @0@'.format(gom_req_version)
+gtk_req = '>= @0@'.format(gtk_req_version)
 libpanel_req = '>= @0@'.format(libpanel_req_version)
 webkit_req = '>= @0@'.format(webkit_req_version)
 
-glib_dep = dependency('glib-2.0', version: glib_req)
-gtk_dep = dependency('gtk4', version: gtk_req)
 adw_dep = dependency('libadwaita-1', version: adw_req)
 dex_dep = dependency('libdex-1', version: dex_req)
-gom_dep = dependency('gom-1.0', version: gom_req)
 flatpak_dep = dependency('flatpak', version: flatpak_req)
+foundry_dep = dependency('libfoundry-1', version: foundry_req)
+glib_dep = dependency('glib-2.0', version: glib_req)
+gom_dep = dependency('gom-1.0', version: gom_req)
+gtk_dep = dependency('gtk4', version: gtk_req)
 libpanel_dep = dependency('libpanel-1', version: libpanel_req)
 webkit_dep = dependency('webkitgtk-6.0', version: webkit_req)
 
@@ -71,7 +74,6 @@ test_c_args = [
   '-Werror=main',
   '-Werror=misleading-indentation',
   '-Werror=missing-braces',
-  '-Werror=missing-include-dirs',
   '-Werror=nonnull',
   '-Werror=overflow',
   '-Werror=parenthesis',
@@ -90,12 +92,12 @@ test_c_args = [
   '-Wlogical-op',
   '-Wmissing-declarations',
   '-Wmissing-format-attribute',
-  '-Wmissing-include-dirs',
   '-Wmissing-noreturn',
   '-Wnested-externs',
   '-Wno-cast-function-type',
   '-Wno-dangling-pointer',
   '-Wno-missing-field-initializers',
+  '-Wno-missing-include-dirs',
   '-Wno-sign-compare',
   '-Wno-unused-parameter',
   '-Wold-style-definition',

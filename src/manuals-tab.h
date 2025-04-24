@@ -22,8 +22,7 @@
 #pragma once
 
 #include <adwaita.h>
-
-#include "manuals-navigatable.h"
+#include <foundry.h>
 
 G_BEGIN_DECLS
 
@@ -31,18 +30,20 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (ManualsTab, manuals_tab, MANUALS, TAB, GtkWidget)
 
-ManualsTab         *manuals_tab_new             (void);
-ManualsTab         *manuals_tab_duplicate       (ManualsTab         *self);
-GIcon              *manuals_tab_dup_icon        (ManualsTab         *self);
-gboolean            manuals_tab_get_loading     (ManualsTab         *self);
-const char         *manuals_tab_get_title       (ManualsTab         *self);
-gboolean            manuals_tab_can_go_back     (ManualsTab         *self);
-gboolean            manuals_tab_can_go_forward  (ManualsTab         *self);
-void                manuals_tab_go_back         (ManualsTab         *self);
-void                manuals_tab_go_forward      (ManualsTab         *self);
-ManualsNavigatable *manuals_tab_get_navigatable (ManualsTab         *self);
-void                manuals_tab_set_navigatable (ManualsTab         *self,
-                                                 ManualsNavigatable *navigatable);
-void                manuals_tab_focus_search    (ManualsTab         *self);
+ManualsTab           *manuals_tab_new             (void);
+ManualsTab           *manuals_tab_duplicate       (ManualsTab           *self);
+GIcon                *manuals_tab_dup_icon        (ManualsTab           *self);
+gboolean              manuals_tab_get_loading     (ManualsTab           *self);
+char                 *manuals_tab_dup_title       (ManualsTab           *self);
+gboolean              manuals_tab_can_go_back     (ManualsTab           *self);
+gboolean              manuals_tab_can_go_forward  (ManualsTab           *self);
+void                  manuals_tab_go_back         (ManualsTab           *self);
+void                  manuals_tab_go_forward      (ManualsTab           *self);
+FoundryDocumentation *manuals_tab_get_navigatable (ManualsTab           *self);
+void                  manuals_tab_set_navigatable (ManualsTab           *self,
+                                                   FoundryDocumentation *documentation);
+void                  manuals_tab_load_uri        (ManualsTab           *self,
+                                                   const char           *uri);
+void                  manuals_tab_focus_search    (ManualsTab           *self);
 
 G_END_DECLS

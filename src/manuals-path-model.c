@@ -25,16 +25,14 @@
 
 #include <libdex.h>
 
-#include "manuals-navigatable.h"
 #include "manuals-path-element.h"
 #include "manuals-path-model.h"
-#include "manuals-search-result.h"
 
 struct _ManualsPathModel
 {
-  GObject             parent_instance;
-  GPtrArray          *items;
-  ManualsNavigatable *navigatable;
+  GObject               parent_instance;
+  GPtrArray            *items;
+  FoundryDocumentation *navigatable;
 };
 
 enum {
@@ -140,8 +138,10 @@ manuals_path_model_class_init (ManualsPathModelClass *klass)
 
   properties[PROP_NAVIGATABLE] =
     g_param_spec_object ("navigatable", NULL, NULL,
-                         MANUALS_TYPE_NAVIGATABLE,
-                         (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
+                         FOUNDRY_TYPE_DOCUMENTATION,
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
@@ -158,37 +158,25 @@ manuals_path_model_new (void)
   return g_object_new (MANUALS_TYPE_PATH_MODEL, NULL);
 }
 
-static ManualsNavigatable *
-find_parent (ManualsNavigatable *object)
+static FoundryDocumentation *
+find_parent (FoundryDocumentation *object)
 {
-  g_autoptr(ManualsNavigatable) freeme = object;
+  g_autoptr(FoundryDocumentation) freeme = object;
 
-  g_assert (MANUALS_IS_NAVIGATABLE (object));
+  g_assert (FOUNDRY_IS_DOCUMENTATION (object));
 
   if (object != NULL)
-    return dex_await_object (manuals_navigatable_find_parent (object), NULL);
+    return dex_await_object (foundry_documentation_find_parent (object), NULL);
 
   return NULL;
-}
-
-static char *
-get_title (ManualsNavigatable *object)
-{
-  return g_strdup (manuals_navigatable_get_title (object));
-}
-
-static GIcon *
-get_icon (ManualsNavigatable *navigatable)
-{
-  return manuals_navigatable_get_icon (navigatable);
 }
 
 static DexFuture *
 manuals_path_model_set_navigatable_fiber (gpointer user_data)
 {
   ManualsPathModel *self = user_data;
-  g_autoptr(ManualsNavigatable) navigatable = NULL;
-  g_autoptr(ManualsNavigatable) parent = NULL;
+  g_autoptr(FoundryDocumentation) navigatable = NULL;
+  g_autoptr(FoundryDocumentation) parent = NULL;
   g_autoptr(GPtrArray) items = NULL;
   ManualsPathElement *first;
   ManualsPathElement *last;
@@ -204,8 +192,8 @@ manuals_path_model_set_navigatable_fiber (gpointer user_data)
 
   while (parent != NULL)
     {
-      g_autofree char *title = get_title (parent);
-      GIcon *icon = get_icon (parent);
+      g_autofree char *title = foundry_documentation_dup_title (parent);
+      g_autoptr(GIcon) icon = foundry_documentation_dup_icon (parent);
 
       g_ptr_array_insert (items,
                           0,
@@ -240,11 +228,11 @@ complete:
 }
 
 void
-manuals_path_model_set_navigatable (ManualsPathModel   *self,
-                                    ManualsNavigatable *navigatable)
+manuals_path_model_set_navigatable (ManualsPathModel     *self,
+                                    FoundryDocumentation *navigatable)
 {
   g_return_if_fail (MANUALS_IS_PATH_MODEL (self));
-  g_return_if_fail (!navigatable || MANUALS_IS_NAVIGATABLE (navigatable));
+  g_return_if_fail (!navigatable || FOUNDRY_IS_DOCUMENTATION (navigatable));
 
   if (g_set_object (&self->navigatable, navigatable))
     {

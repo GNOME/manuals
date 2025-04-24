@@ -23,8 +23,6 @@
 
 #include "manuals-path-bar.h"
 #include "manuals-path-button.h"
-#include "manuals-sdk.h"
-#include "manuals-search-result.h"
 #include "manuals-window.h"
 
 struct _ManualsPathButton
@@ -56,7 +54,7 @@ manuals_path_button_list_item_activate_cb (ManualsPathButton *self,
                                            guint              position,
                                            GtkListView       *list_view)
 {
-  g_autoptr(ManualsNavigatable) navigatable = NULL;
+  g_autoptr(FoundryDocumentation) navigatable = NULL;
   GtkSelectionModel *model;
   ManualsWindow *window;
 
@@ -69,7 +67,7 @@ manuals_path_button_list_item_activate_cb (ManualsPathButton *self,
 
   gtk_popover_popdown (self->popover);
 
-  manuals_window_navigate_to (window, navigatable);
+  manuals_window_navigate_to (window, navigatable, TRUE);
 }
 
 static void
@@ -152,11 +150,11 @@ manuals_path_button_context_pressed_cb (ManualsPathButton *self,
 
   object = manuals_path_element_get_item (self->element);
 
-  g_assert (MANUALS_IS_NAVIGATABLE (object));
+  g_assert (FOUNDRY_IS_DOCUMENTATION (object));
 
   gtk_gesture_set_state (GTK_GESTURE (click), GTK_EVENT_SEQUENCE_CLAIMED);
 
-  future = manuals_navigatable_find_peers (MANUALS_NAVIGATABLE (object));
+  future = foundry_documentation_find_siblings (FOUNDRY_DOCUMENTATION (object));
   future = dex_future_then (future,
                             manuals_path_button_show_popover,
                             g_object_ref (self),
@@ -188,9 +186,9 @@ manuals_path_button_pressed_cb (ManualsPathButton *self,
   window = manuals_window_from_widget (GTK_WIDGET (self));
 
   g_assert (MANUALS_IS_WINDOW (window));
-  g_assert (MANUALS_IS_NAVIGATABLE (object));
+  g_assert (FOUNDRY_IS_DOCUMENTATION (object));
 
-  manuals_window_navigate_to (window, MANUALS_NAVIGATABLE (object));
+  manuals_window_navigate_to (window, FOUNDRY_DOCUMENTATION (object), TRUE);
 
   gtk_widget_unset_state_flags (GTK_WIDGET (self->box),
                                 GTK_STATE_FLAG_ACTIVE);
@@ -319,11 +317,13 @@ manuals_path_button_class_init (ManualsPathButtonClass *klass)
   properties[PROP_ELEMENT] =
     g_param_spec_object ("element", NULL, NULL,
                          MANUALS_TYPE_PATH_ELEMENT,
-                         (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-path-button.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-path-button.ui");
   gtk_widget_class_set_css_name (widget_class, "pathbutton");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 

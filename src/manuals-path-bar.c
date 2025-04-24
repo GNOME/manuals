@@ -29,16 +29,16 @@
 
 struct _ManualsPathBar
 {
-  GtkWidget           parent_instance;
+  GtkWidget             parent_instance;
 
-  ManualsNavigatable *navigatable;
-  ManualsPathModel   *model;
+  FoundryDocumentation *navigatable;
+  ManualsPathModel     *model;
 
-  GtkBox             *elements;
-  GtkScrolledWindow  *scroller;
+  GtkBox               *elements;
+  GtkScrolledWindow    *scroller;
 
-  int                 inhibit_scroll;
-  guint               scroll_source;
+  int                   inhibit_scroll;
+  guint                 scroll_source;
 };
 
 enum {
@@ -236,7 +236,7 @@ manuals_path_bar_class_init (ManualsPathBarClass *klass)
 
   properties[PROP_NAVIGATABLE] =
     g_param_spec_object ("navigatable", NULL, NULL,
-                         MANUALS_TYPE_NAVIGATABLE,
+                         FOUNDRY_TYPE_DOCUMENTATION,
                          (G_PARAM_READWRITE |
                           G_PARAM_EXPLICIT_NOTIFY |
                           G_PARAM_STATIC_STRINGS));
@@ -245,7 +245,7 @@ manuals_path_bar_class_init (ManualsPathBarClass *klass)
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "ManualsPathBar");
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-path-bar.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-path-bar.ui");
   gtk_widget_class_bind_template_child (widget_class, ManualsPathBar, elements);
   gtk_widget_class_bind_template_child (widget_class, ManualsPathBar, scroller);
 }
@@ -283,7 +283,7 @@ manuals_path_bar_new (void)
   return g_object_new (MANUALS_TYPE_PATH_BAR, NULL);
 }
 
-ManualsNavigatable *
+FoundryDocumentation *
 manuals_path_bar_get_navigatable (ManualsPathBar *self)
 {
   g_return_val_if_fail (MANUALS_IS_PATH_BAR (self), NULL);
@@ -292,8 +292,8 @@ manuals_path_bar_get_navigatable (ManualsPathBar *self)
 }
 
 void
-manuals_path_bar_set_navigatable (ManualsPathBar  *self,
-                                  ManualsNavigatable     *navigatable)
+manuals_path_bar_set_navigatable (ManualsPathBar       *self,
+                                  FoundryDocumentation *navigatable)
 {
   g_return_if_fail (MANUALS_IS_PATH_BAR (self));
 

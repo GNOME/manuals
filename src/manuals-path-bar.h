@@ -21,9 +21,8 @@
 
 #pragma once
 
+#include <foundry.h>
 #include <gtk/gtk.h>
-
-#include "manuals-navigatable.h"
 
 G_BEGIN_DECLS
 
@@ -31,12 +30,11 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (ManualsPathBar, manuals_path_bar, MANUALS, PATH_BAR, GtkWidget)
 
-ManualsPathBar     *manuals_path_bar_new              (void);
-ManualsNavigatable *manuals_path_bar_get_navigatable  (ManualsPathBar     *self);
-void                manuals_path_bar_set_navigatable  (ManualsPathBar     *self,
-                                                       ManualsNavigatable *navigatable);
-void                manuals_path_bar_inhibit_scroll   (ManualsPathBar     *self);
-void                manuals_path_bar_uninhibit_scroll (ManualsPathBar     *self);
+ManualsPathBar       *manuals_path_bar_new              (void);
+FoundryDocumentation *manuals_path_bar_get_navigatable  (ManualsPathBar       *self);
+void                  manuals_path_bar_set_navigatable  (ManualsPathBar       *self,
+                                                         FoundryDocumentation *navigatable);
+void                  manuals_path_bar_inhibit_scroll   (ManualsPathBar       *self);
+void                  manuals_path_bar_uninhibit_scroll (ManualsPathBar       *self);
 
 G_END_DECLS
-

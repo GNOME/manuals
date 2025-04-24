@@ -1,32 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/app/devsuite/Manuals">
+  <gresource prefix="/app/devsuite/manuals">
     <file>manuals-tab.css</file>
     <file>manuals-tab.js</file>
+    <file preprocess="xml-stripblanks">icons/manuals.svg</file>
+    <file preprocess="xml-stripblanks">manuals-bundle-dialog.ui</file>
     <file preprocess="xml-stripblanks">manuals-install-button.ui</file>
     <file preprocess="xml-stripblanks">manuals-path-bar.ui</file>
     <file preprocess="xml-stripblanks">manuals-path-button.ui</file>
-    <file preprocess="xml-stripblanks">manuals-sdk-dialog.ui</file>
     <file preprocess="xml-stripblanks">manuals-search-entry.ui</file>
-    <file preprocess="xml-stripblanks">manuals-sidebar.ui</file>
     <file preprocess="xml-stripblanks">manuals-tab.ui</file>
     <file preprocess="xml-stripblanks">manuals-window.ui</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/book-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/browse-documentation-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/funnel-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-class-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-constant-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-enum-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-function-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-macro-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-signal-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/lang-struct-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/library-symbolic.svg</file>
-    <file preprocess="xml-stripblanks" alias="icons/scalable/actions/manuals.svg">../data/icons/manuals.svg</file>
-    <file preprocess="xml-stripblanks">icons/scalable/actions/org.gnome.Sdk-symbolic.svg</file>
     <file>style.css</file>
-  </gresource>
-  <gresource prefix="/app/devsuite/Manuals/gtk">
-    <file preprocess="xml-stripblanks">menus.ui</file>
   </gresource>
 </gresources>

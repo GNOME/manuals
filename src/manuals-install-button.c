@@ -18,26 +18,29 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "manuals-install-button"
-
 #include "config.h"
 
+#include <glib/gi18n.h>
+
+#include <foundry.h>
+
+#include "manuals-application.h"
 #include "manuals-install-button.h"
-#include "manuals-progress.h"
 
 struct _ManualsInstallButton
 {
-  GtkWidget        parent_instance;
+  GtkWidget         parent_instance;
 
-  GCancellable    *cancellable;
-  ManualsProgress *progress;
+  GCancellable     *cancellable;
+  FoundryOperation *operation;
+  DexFuture        *installing;
 
-  GtkStack        *stack;
-  GtkButton       *install;
-  GtkButton       *cancel;
-  GtkCssProvider  *css;
+  GtkStack         *stack;
+  GtkButton        *install;
+  GtkButton        *cancel;
+  GtkCssProvider   *css;
 
-  guint            disposed : 1;
+  guint             disposed : 1;
 };
 
 enum {
@@ -60,16 +63,16 @@ static guint signals [N_SIGNALS];
 static void
 progress_changed_cb (ManualsInstallButton *self,
                      GParamSpec           *pspec,
-                     ManualsProgress      *progress)
+                     FoundryOperation     *operation)
 {
   g_autofree gchar *css = NULL;
   double fraction;
   guint percentage;
 
   g_assert (MANUALS_IS_INSTALL_BUTTON (self));
-  g_assert (MANUALS_IS_PROGRESS (progress));
+  g_assert (FOUNDRY_IS_OPERATION (operation));
 
-  fraction = manuals_progress_get_fraction (progress);
+  fraction = foundry_operation_get_progress (operation);
   percentage = CLAMP (fraction * 100., .0, 100.);
 
   if (percentage == 0)
@@ -84,9 +87,41 @@ progress_changed_cb (ManualsInstallButton *self,
   if (fraction >= 1.)
     {
       g_clear_object (&self->cancellable);
-      g_clear_object (&self->progress);
+      g_clear_object (&self->operation);
       gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->install));
     }
+}
+
+static DexFuture *
+manuals_install_button_install_fiber (gpointer data)
+{
+  ManualsInstallButton *self = data;
+  g_autoptr(FoundryOperationManager) operation_manager = NULL;
+  g_autoptr(FoundryContext) context = NULL;
+
+  if (!(context = dex_await_object (manuals_application_load_foundry (MANUALS_APPLICATION_DEFAULT), NULL)) ||
+      !(operation_manager = foundry_context_dup_operation_manager (context)) ||
+      !dex_await (foundry_service_when_ready (FOUNDRY_SERVICE (operation_manager)), NULL))
+    return NULL;
+
+  g_clear_object (&self->cancellable);
+  g_clear_object (&self->operation);
+
+  self->operation = foundry_operation_manager_begin (operation_manager, _("Installing Documentation"));
+  self->cancellable = g_cancellable_new ();
+
+  g_signal_connect_object (self->operation,
+                           "notify::progress",
+                           G_CALLBACK (progress_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_emit (self, signals[INSTALL], 0, self->operation, self->cancellable);
+
+  if (self->operation != NULL)
+    progress_changed_cb (self, NULL, self->operation);
+
+  return dex_future_new_true ();
 }
 
 static void
@@ -95,22 +130,12 @@ install_clicked_cb (ManualsInstallButton *self,
 {
   g_assert (MANUALS_IS_INSTALL_BUTTON (self));
 
-  g_clear_object (&self->cancellable);
-  g_clear_object (&self->progress);
+  dex_clear (&self->installing);
 
-  self->cancellable = g_cancellable_new ();
-  self->progress = manuals_progress_new ();
-
-  g_signal_connect_object (self->progress,
-                           "notify::fraction",
-                           G_CALLBACK (progress_changed_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  g_signal_emit (self, signals [INSTALL], 0, self->progress, self->cancellable);
-
-  if (self->progress != NULL)
-    progress_changed_cb (self, NULL, self->progress);
+  self->installing = dex_scheduler_spawn (NULL, 0,
+                                          manuals_install_button_install_fiber,
+                                          g_object_ref (self),
+                                          g_object_unref);
 }
 
 static void
@@ -119,16 +144,19 @@ cancel_clicked_cb (ManualsInstallButton *self,
 {
   g_assert (MANUALS_IS_INSTALL_BUTTON (self));
 
-  g_signal_emit (self, signals [CANCEL], 0, self->progress, self->cancellable);
+  g_cancellable_cancel (self->cancellable);
+  dex_clear (&self->installing);
+
+  g_signal_emit (self, signals [CANCEL], 0, self->operation, self->cancellable);
 }
 
 static void
 real_install (ManualsInstallButton *self,
-              ManualsProgress      *progress,
+              FoundryOperation     *operation,
               GCancellable         *cancellable)
 {
   g_assert (MANUALS_IS_INSTALL_BUTTON (self));
-  g_assert (MANUALS_IS_PROGRESS (progress));
+  g_assert (FOUNDRY_IS_OPERATION (operation));
   g_assert (G_IS_CANCELLABLE (cancellable));
 
   gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->cancel));
@@ -136,17 +164,17 @@ real_install (ManualsInstallButton *self,
 
 static void
 real_cancel (ManualsInstallButton *self,
-             ManualsProgress      *progress,
+             FoundryOperation     *operation,
              GCancellable         *cancellable)
 {
   g_assert (MANUALS_IS_INSTALL_BUTTON (self));
-  g_assert (!progress || MANUALS_IS_PROGRESS (progress));
+  g_assert (!operation || FOUNDRY_IS_OPERATION (operation));
   g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
 
   g_cancellable_cancel (cancellable);
 
   g_clear_object (&self->cancellable);
-  g_clear_object (&self->progress);
+  g_clear_object (&self->operation);
 
   gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->install));
 }
@@ -159,8 +187,12 @@ manuals_install_button_dispose (GObject *object)
 
   self->disposed = TRUE;
 
+  g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
-  g_clear_object (&self->progress);
+
+  g_clear_object (&self->operation);
+
+  dex_clear (&self->installing);
 
   while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
     gtk_widget_unparent (child);
@@ -170,9 +202,9 @@ manuals_install_button_dispose (GObject *object)
 
 static void
 manuals_install_button_get_property (GObject    *object,
-                                 guint       prop_id,
-                                 GValue     *value,
-                                 GParamSpec *pspec)
+                                     guint       prop_id,
+                                     GValue     *value,
+                                     GParamSpec *pspec)
 {
   ManualsInstallButton *self = MANUALS_INSTALL_BUTTON (object);
 
@@ -189,9 +221,9 @@ manuals_install_button_get_property (GObject    *object,
 
 static void
 manuals_install_button_set_property (GObject      *object,
-                                 guint         prop_id,
-                                 const GValue *value,
-                                 GParamSpec   *pspec)
+                                     guint         prop_id,
+                                     const GValue *value,
+                                     GParamSpec   *pspec)
 {
   ManualsInstallButton *self = MANUALS_INSTALL_BUTTON (object);
 
@@ -230,7 +262,7 @@ manuals_install_button_class_init (ManualsInstallButtonClass *klass)
                                 G_CALLBACK (real_install),
                                 NULL, NULL,
                                 NULL,
-                                G_TYPE_NONE, 2, MANUALS_TYPE_PROGRESS, G_TYPE_CANCELLABLE);
+                                G_TYPE_NONE, 2, FOUNDRY_TYPE_OPERATION, G_TYPE_CANCELLABLE);
 
   signals [CANCEL] =
     g_signal_new_class_handler ("cancel",
@@ -239,9 +271,9 @@ manuals_install_button_class_init (ManualsInstallButtonClass *klass)
                                 G_CALLBACK (real_cancel),
                                 NULL, NULL,
                                 NULL,
-                                G_TYPE_NONE, 2, MANUALS_TYPE_PROGRESS, G_TYPE_CANCELLABLE);
+                                G_TYPE_NONE, 2, FOUNDRY_TYPE_OPERATION, G_TYPE_CANCELLABLE);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/Manuals/manuals-install-button.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-install-button.ui");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_bind_template_child (widget_class, ManualsInstallButton, cancel);
   gtk_widget_class_bind_template_child (widget_class, ManualsInstallButton, css);

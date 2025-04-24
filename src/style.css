@@ -79,7 +79,9 @@ ManualsPathBar {
 ManualsPathBar pathbutton button {
   padding: 3px 9px;
 }
-
+ManualsPathBar pathbutton.root button {
+  background: transparent;
+}
 ManualsPathBar pathbutton:not(.leaf) button > * {
   opacity: 0.55;
 }

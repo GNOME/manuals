@@ -1,6 +1,6 @@
 /* manuals-application.h
  *
- * Copyright 2024 Christian Hergert
+ * Copyright 2025 Christian Hergert
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 #pragma once
 
 #include <adwaita.h>
+#include <foundry.h>
 
 G_BEGIN_DECLS
 
@@ -29,10 +30,11 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (ManualsApplication, manuals_application, MANUALS, APPLICATION, AdwApplication)
 
-ManualsApplication *manuals_application_new                 (const char         *application_id,
-                                                             GApplicationFlags   flags);
-gboolean            manuals_application_get_import_active   (ManualsApplication *self);
-double              manuals_application_get_import_progress (ManualsApplication *self);
-gboolean            manuals_application_control_is_pressed  (void);
+ManualsApplication *manuals_application_new                (const char         *application_id,
+                                                            GApplicationFlags   flags);
+DexFuture          *manuals_application_load_foundry       (ManualsApplication *self) G_GNUC_WARN_UNUSED_RESULT;
+gboolean            manuals_application_get_import_active  (ManualsApplication *self);
+gboolean            manuals_application_control_is_pressed (void);
+void                manuals_application_reload_content     (ManualsApplication *self);
 
 G_END_DECLS

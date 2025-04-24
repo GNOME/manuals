@@ -29,11 +29,11 @@
   <template class="GtkListItem">
     <property name="child">
       <object class="GtkBox">
-        <property name="spacing">9</property>
+        <property name="spacing">6</property>
         <child>
           <object class="GtkImage" id="image">
             <binding name="gicon">
-              <lookup name="menu-icon" type="ManualsNavigatable">
+              <lookup name="menu-icon" type="FoundryDocumentation">
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
             </binding>
@@ -43,7 +43,7 @@
           <object class="GtkLabel" id="title">
             <property name="ellipsize">middle</property>
             <binding name="label">
-              <lookup name="menu-title" type="ManualsNavigatable">
+              <lookup name="menu-title" type="FoundryDocumentation">
                 <lookup name="item">GtkListItem</lookup>
               </lookup>
             </binding>
@@ -69,6 +69,8 @@
           <object class="GtkLabel" id="separator">
             <property name="focusable">false</property>
             <property name="label">/</property>
+            <property name="margin-start">3</property>
+            <property name="margin-end">3</property>
             <style>
               <class name="dim-label"/>
             </style>
@@ -84,7 +86,7 @@
         <child>
           <object class="GtkBox" id="box">
             <property name="css-name">button</property>
-            <property name="spacing">3</property>
+            <property name="spacing">6</property>
             <property name="focusable">true</property>
             <property name="receives-default">true</property>
             <style>

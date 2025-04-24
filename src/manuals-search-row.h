@@ -1,7 +1,7 @@
 /*
- * manuals-path-model.h
+ * manuals-search-row.h
  *
- * Copyright 2024 Christian Hergert <chergert@redhat.com>
+ * Copyright 2025 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,16 +21,16 @@
 
 #pragma once
 
-#include <foundry.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
-#define MANUALS_TYPE_PATH_MODEL (manuals_path_model_get_type())
+#define MANUALS_TYPE_SEARCH_ROW (manuals_search_row_get_type())
 
-G_DECLARE_FINAL_TYPE (ManualsPathModel, manuals_path_model, MANUALS, PATH_MODEL, GObject)
+G_DECLARE_FINAL_TYPE (ManualsSearchRow, manuals_search_row, MANUALS, SEARCH_ROW, GtkWidget)
 
-ManualsPathModel *manuals_path_model_new             (void);
-void              manuals_path_model_set_navigatable (ManualsPathModel     *self,
-                                                      FoundryDocumentation *navigatable);
+gboolean manuals_search_row_get_warning (ManualsSearchRow *self);
+void     manuals_search_row_set_warning (ManualsSearchRow *self,
+                                         gboolean          warning);
 
 G_END_DECLS

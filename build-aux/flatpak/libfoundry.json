@@ -1,0 +1,120 @@
+{
+    "name" : "foundry",
+    "buildsystem" : "meson",
+    "config-opts" : [
+        "-Dplugin-deviced=false"
+    ],
+    "sources" : [
+        {
+            "type" : "git",
+            "url" : "https://gitlab.gnome.org/chergert/foundry.git",
+            "branch" : "main"
+        }
+    ],
+    "modules" : [
+        "libflatpak.json",
+        {
+            "name" : "libssh2",
+            "buildsystem" : "cmake-ninja",
+            "config-opts" : [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
+                "-DBUILD_SHARED_LIBS:BOOL=ON"
+            ],
+            "cleanup" : [
+                "/share/doc"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/libssh2/libssh2.git",
+                    "tag" : "libssh2-1.10.0"
+                }
+            ]
+        },
+        {
+            "name" : "libgit2",
+            "buildsystem" : "cmake-ninja",
+            "config-opts" : [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
+                "-DBUILD_SHARED_LIBS:BOOL=ON",
+                "-DUSE_SSH:BOOL=ON",
+                "-DUSE_THREADS:BOOL=ON"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/libgit2/libgit2.git",
+                    "tag" : "v1.6.4"
+                }
+            ]
+        },
+        {
+            "name" : "libyaml",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/yaml/libyaml.git",
+                    "branch" : "master"
+                }
+            ]
+        },
+        {
+            "name" : "libdex",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "--buildtype=debugoptimized",
+                "-Ddocs=false",
+                "-Dintrospection=enabled",
+                "-Dexamples=false",
+                "-Dtests=false",
+                "-Dsysprof=false"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libdex.git",
+                    "branch" : "main"
+                }
+            ]
+        },
+        {
+            "name" : "jsonrpc-glib",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/jsonrpc-glib.git",
+                    "branch" : "main"
+                }
+            ]
+        },
+        {
+            "name" : "gom",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/gom.git",
+                    "branch" : "master"
+                }
+            ]
+        },
+        {
+            "name" : "libpeas",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dlua51=false",
+                "-Dpython3=false"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libpeas.git",
+                    "branch" : "main"
+                }
+            ]
+        }
+    ]
+}

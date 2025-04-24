@@ -1,7 +1,7 @@
 /*
  * manuals-utils.h
  *
- * Copyright 2024 Christian Hergert <chergert@redhat.com>
+ * Copyright 2025 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,11 +19,11 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#include <gdk/gdk.h>
+#pragma once
+
+#include <glib.h>
 
 G_BEGIN_DECLS
-
-char *manuals_get_os_info (const char *key_name);
 
 static inline gboolean
 _g_str_empty0 (const char *str)
