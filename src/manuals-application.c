@@ -195,7 +195,8 @@ manuals_application_about_action (GSimpleAction *action,
 
   g_assert (MANUALS_IS_APPLICATION (self));
 
-  window = gtk_application_get_active_window (GTK_APPLICATION (self));
+  if (!(window = gtk_application_get_active_window (GTK_APPLICATION (self))))
+    window = GTK_WINDOW (manuals_window_new ());
 
   debug_info = g_string_new (NULL);
 
@@ -232,6 +233,7 @@ manuals_application_about_action (GSimpleAction *action,
                                   _("Create GNOME Applications"));
 
   adw_dialog_present (dialog, GTK_WIDGET (window));
+  gtk_window_present (GTK_WINDOW (window));
 }
 
 static void
