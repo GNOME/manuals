@@ -29,6 +29,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (ManualsWrappedModel, manuals_wrapped_model, MANUALS, WRAPPED_MODEL, GObject)
 
-GListModel *manuals_wrapped_model_new (DexFuture *future);
+GListModel *manuals_wrapped_model_new   (DexFuture           *future);
+DexFuture  *manuals_wrapped_model_await (ManualsWrappedModel *self);
 
 G_END_DECLS

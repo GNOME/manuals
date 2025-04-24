@@ -27,6 +27,7 @@ struct _ManualsWrappedModel
 {
   GObject     parent_instance;
   GListModel *model;
+  DexFuture  *future;
 };
 
 static GType
@@ -74,6 +75,7 @@ manuals_wrapped_model_finalize (GObject *object)
 {
   ManualsWrappedModel *self = (ManualsWrappedModel *)object;
 
+  dex_clear (&self->future);
   g_clear_object (&self->model);
 
   G_OBJECT_CLASS (manuals_wrapped_model_parent_class)->finalize (object);
@@ -125,10 +127,20 @@ manuals_wrapped_model_new (DexFuture *future)
 {
   ManualsWrappedModel *self = g_object_new (MANUALS_TYPE_WRAPPED_MODEL, NULL);
 
+  self->future = dex_ref (future);
+
   dex_future_disown (dex_future_then (dex_ref (future),
                                       apply_model,
                                       g_object_ref (self),
                                       g_object_unref));
 
   return G_LIST_MODEL (self);
+}
+
+DexFuture *
+manuals_wrapped_model_await (ManualsWrappedModel *self)
+{
+  dex_return_error_if_fail (MANUALS_IS_WRAPPED_MODEL (self));
+
+  return dex_ref (self->future);
 }
