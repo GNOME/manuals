@@ -39,7 +39,8 @@ ManualsTab    *manuals_window_get_visible_tab (ManualsWindow        *self);
 void           manuals_window_set_visible_tab (ManualsWindow        *self,
                                                ManualsTab           *tab);
 void           manuals_window_navigate_to     (ManualsWindow        *self,
-                                               FoundryDocumentation *documentation);
+                                               FoundryDocumentation *documentation,
+                                               gboolean              reveal);
 void           manuals_window_reveal          (ManualsWindow        *self,
                                                FoundryDocumentation *documentation,
                                                gboolean              expand);

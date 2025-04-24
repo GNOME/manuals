@@ -50,6 +50,7 @@ struct _ManualsWindow
   GtkStack             *stack;
   GtkStack             *sidebar_stack;
   GtkNoSelection       *selection;
+  GtkListView          *list_view;
   GtkListView          *search_list_view;
   GtkSingleSelection   *search_selection;
 
@@ -492,7 +493,7 @@ manuals_window_list_view_activate_cb (ManualsWindow *self,
   row = g_list_model_get_item (G_LIST_MODEL (model), position);
   documentation = gtk_tree_list_row_get_item (row);
 
-  manuals_window_navigate_to (self, documentation);
+  manuals_window_navigate_to (self, documentation, FALSE);
 }
 
 static DexFuture *
@@ -583,9 +584,9 @@ manuals_window_search_activate_fiber (ManualsWindow        *self,
       (context = dex_await_object (manuals_application_load_foundry (MANUALS_APPLICATION_DEFAULT), NULL)) &&
       (manager = foundry_context_dup_documentation_manager (context)) &&
       (match = dex_await_object (foundry_documentation_manager_find_by_uri (manager, uri), NULL)))
-    manuals_window_navigate_to (self, match);
+    manuals_window_navigate_to (self, match, FALSE);
   else
-    manuals_window_navigate_to (self, documentation);
+    manuals_window_navigate_to (self, documentation, FALSE);
 
   return NULL;
 }
@@ -801,6 +802,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
 	gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-window.ui");
 
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, dock);
+	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, list_view);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, selection);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_list_view);
 	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_selection);
@@ -984,16 +986,131 @@ manuals_window_from_widget (GtkWidget *widget)
   return MANUALS_WINDOW (window);
 }
 
+static GtkTreeListRow *
+get_child_row (GObject *parent,
+               guint    position)
+{
+
+  if (GTK_IS_TREE_LIST_MODEL (parent))
+    return gtk_tree_list_model_get_child_row (GTK_TREE_LIST_MODEL (parent), position);
+  else if (GTK_IS_TREE_LIST_ROW (parent))
+    return gtk_tree_list_row_get_child_row (GTK_TREE_LIST_ROW (parent), position);
+
+  g_return_val_if_reached (NULL);
+}
+
+static GtkTreeListRow *
+manuals_window_expand (GtkTreeListModel      *tree_model,
+                       FoundryDocumentation **chain,
+                       guint                  chain_len)
+{
+  g_autoptr(GObject) parent = NULL;
+  gpointer rowptr;
+  guint position = 0;
+  guint chain_pos = 0;
+
+  if (chain_len == 0)
+    return NULL;
+
+  parent = g_object_ref (G_OBJECT (tree_model));
+
+  while ((rowptr = get_child_row (G_OBJECT (parent), position++)))
+    {
+      FoundryDocumentation *iter = chain[chain_pos];
+      g_autoptr(GtkTreeListRow) row = rowptr;
+      g_autoptr(FoundryDocumentation) documentation = gtk_tree_list_row_get_item (row);
+
+      if (foundry_documentation_equal (iter, documentation))
+        {
+          GListModel *children;
+
+          if (gtk_tree_list_row_is_expandable (row))
+            gtk_tree_list_row_set_expanded (row, TRUE);
+
+          g_set_object (&parent, G_OBJECT (row));
+          position = 0;
+
+          if ((children = gtk_tree_list_row_get_children (row)))
+            dex_await (manuals_wrapped_model_await (MANUALS_WRAPPED_MODEL (children)), NULL);
+
+          chain_pos++;
+
+          if (chain_pos >= chain_len)
+            return g_steal_pointer (&row);
+        }
+    }
+
+  return NULL;
+}
+
+static DexFuture *
+manuals_window_reveal_fiber (ManualsWindow        *self,
+                             FoundryDocumentation *documentation,
+                             gboolean              expand)
+{
+  g_autoptr(FoundryDocumentation) parent = NULL;
+  g_autoptr(GtkTreeListRow) row = NULL;
+  g_autoptr(GPtrArray) chain = NULL;
+  GtkTreeListModel *tree_model;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (FOUNDRY_IS_DOCUMENTATION (documentation));
+
+  if (!(tree_model = GTK_TREE_LIST_MODEL (gtk_no_selection_get_model (self->selection))))
+    return NULL;
+
+  chain = g_ptr_array_new_with_free_func (g_object_unref);
+  parent = g_object_ref (documentation);
+
+  while (parent != NULL)
+    {
+      g_ptr_array_insert (chain, 0, parent);
+      parent = dex_await_object (foundry_documentation_find_parent (parent), NULL);
+    }
+
+  g_ptr_array_remove_index (chain, 0);
+
+#if 0
+  for (guint i = 0; i < chain->len; i++)
+    {
+      g_autofree char *title = foundry_documentation_dup_title (chain->pdata[i]);
+      g_message ("Tree[%u]: %s", i, title);
+    }
+#endif
+
+  if ((row = manuals_window_expand (tree_model, (FoundryDocumentation **)chain->pdata, chain->len)))
+    {
+      guint position = gtk_tree_list_row_get_position (row);
+
+      gtk_list_view_scroll_to (self->list_view,
+                               position,
+                               GTK_LIST_SCROLL_FOCUS,
+                               NULL);
+    }
+
+  return NULL;
+}
+
 void
 manuals_window_reveal (ManualsWindow        *self,
                        FoundryDocumentation *documentation,
                        gboolean              expand)
 {
+  g_return_if_fail (MANUALS_IS_WINDOW (self));
+  g_return_if_fail (FOUNDRY_IS_DOCUMENTATION (documentation));
+
+  dex_future_disown (foundry_scheduler_spawn (NULL, 0,
+                                              G_CALLBACK (manuals_window_reveal_fiber),
+                                              3,
+                                              MANUALS_TYPE_WINDOW, self,
+                                              FOUNDRY_TYPE_DOCUMENTATION, documentation,
+                                              G_TYPE_BOOLEAN, expand));
 }
 
 void
 manuals_window_navigate_to (ManualsWindow        *self,
-                            FoundryDocumentation *navigatable)
+                            FoundryDocumentation *navigatable,
+                            gboolean              reveal)
 {
   g_autofree char *uri = NULL;
 
@@ -1017,6 +1134,8 @@ manuals_window_navigate_to (ManualsWindow        *self,
   else
     {
       panel_dock_set_reveal_start (self->dock, TRUE);
-      manuals_window_reveal (self, navigatable, TRUE);
     }
+
+  if (reveal)
+    manuals_window_reveal (self, navigatable, TRUE);
 }

@@ -67,7 +67,7 @@ manuals_path_button_list_item_activate_cb (ManualsPathButton *self,
 
   gtk_popover_popdown (self->popover);
 
-  manuals_window_navigate_to (window, navigatable);
+  manuals_window_navigate_to (window, navigatable, TRUE);
 }
 
 static void
@@ -188,7 +188,7 @@ manuals_path_button_pressed_cb (ManualsPathButton *self,
   g_assert (MANUALS_IS_WINDOW (window));
   g_assert (FOUNDRY_IS_DOCUMENTATION (object));
 
-  manuals_window_navigate_to (window, FOUNDRY_DOCUMENTATION (object));
+  manuals_window_navigate_to (window, FOUNDRY_DOCUMENTATION (object), TRUE);
 
   gtk_widget_unset_state_flags (GTK_WIDGET (self->box),
                                 GTK_STATE_FLAG_ACTIVE);
