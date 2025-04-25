@@ -36,27 +36,28 @@
 
 struct _ManualsWindow
 {
-	AdwApplicationWindow  parent_instance;
+  AdwApplicationWindow    parent_instance;
 
-  GSignalGroup         *visible_tab_signals;
+  GSignalGroup           *visible_tab_signals;
 
-  PanelDock            *dock;
-  PanelStatusbar       *statusbar;
-  AdwTabView           *tab_view;
-  AdwWindowTitle       *title;
-  GtkSearchEntry       *search_entry;
-  GSettings            *settings;
-  AdwToolbarView       *sidebar;
-  GtkStack             *stack;
-  GtkStack             *sidebar_stack;
-  GtkNoSelection       *selection;
-  GtkListView          *list_view;
-  GtkListView          *search_list_view;
-  GtkSingleSelection   *search_selection;
+  PanelDock              *dock;
+  PanelStatusbar         *statusbar;
+  AdwTabView             *tab_view;
+  AdwWindowTitle         *title;
+  GtkSearchEntry         *search_entry;
+  GSettings              *settings;
+  AdwToolbarView         *sidebar;
+  GtkStack               *stack;
+  GtkStack               *sidebar_stack;
+  GtkNoSelection         *selection;
+  GtkListView            *list_view;
+  GtkListView            *search_list_view;
+  GtkSingleSelection     *search_selection;
+  AdwNavigationSplitView *split_view;
 
-  guint                 stamp;
+  guint                   stamp;
 
-  guint                 disposed : 1;
+  guint                   disposed : 1;
 };
 
 G_DEFINE_FINAL_TYPE (ManualsWindow, manuals_window, ADW_TYPE_APPLICATION_WINDOW)
@@ -796,7 +797,7 @@ static void
 manuals_window_class_init (ManualsWindowClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->constructed = manuals_window_constructed;
   object_class->dispose = manuals_window_dispose;
@@ -805,20 +806,21 @@ manuals_window_class_init (ManualsWindowClass *klass)
 
   widget_class->size_allocate = manuals_window_size_allocate;
 
-	gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-window.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-window.ui");
 
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, dock);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, list_view);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, selection);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_list_view);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_selection);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_entry);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, settings);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, sidebar_stack);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, stack);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, statusbar);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
-	gtk_widget_class_bind_template_child (widget_class, ManualsWindow, title);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, dock);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, list_view);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, selection);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_list_view);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_selection);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, search_entry);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, settings);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, sidebar_stack);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, split_view);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, stack);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, statusbar);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
+  gtk_widget_class_bind_template_child (widget_class, ManualsWindow, title);
 
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_list_view_activate_cb);
@@ -1139,11 +1141,14 @@ manuals_window_navigate_to (ManualsWindow        *self,
         }
 
       manuals_tab_set_navigatable (tab, navigatable);
+      adw_navigation_split_view_set_show_content (self->split_view, TRUE);
+
       gtk_widget_grab_focus (GTK_WIDGET (tab));
     }
   else
     {
       panel_dock_set_reveal_start (self->dock, TRUE);
+      adw_navigation_split_view_set_show_content (self->split_view, FALSE);
     }
 
   if (reveal)
