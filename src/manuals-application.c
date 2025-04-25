@@ -309,6 +309,37 @@ manuals_application_notify_indexing_cb (ManualsApplication          *self,
     }
 }
 
+static DexFuture *
+after_reindex (DexFuture *future,
+               gpointer   user_data)
+{
+  ManualsApplication *self = user_data;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (MANUALS_IS_APPLICATION (self));
+
+  if (!dex_await (dex_ref (future), &error))
+    g_warning ("Failed to re-index documentation: %s", error->message);
+
+  manuals_application_reload_content (self);
+
+  return dex_future_new_true ();
+}
+
+static void
+manuals_application_documentation_changed_cb (ManualsApplication          *self,
+                                              FoundryDocumentationManager *manager)
+{
+  g_assert (MANUALS_IS_APPLICATION (self));
+  g_assert (FOUNDRY_IS_DOCUMENTATION_MANAGER (manager));
+
+  g_debug ("Requesting that documentation be re-indexed");
+
+  dex_future_disown (dex_future_finally (foundry_documentation_manager_index (manager),
+                                         after_reindex,
+                                         g_object_ref (self),
+                                         g_object_unref));
+}
 
 static DexFuture *
 manuals_application_track_import (DexFuture *future,
@@ -321,6 +352,12 @@ manuals_application_track_import (DexFuture *future,
   g_signal_connect_object (manager,
                            "notify::indexing",
                            G_CALLBACK (manuals_application_notify_indexing_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (manager,
+                           "changed",
+                           G_CALLBACK (manuals_application_documentation_changed_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
@@ -361,6 +398,8 @@ void
 manuals_application_reload_content (ManualsApplication *self)
 {
   g_assert (MANUALS_IS_APPLICATION (self));
+
+  g_debug ("Requesting windows reload their documentation");
 
   g_signal_emit (self, signals[INVALIDATE_CONTENTS], 0);
 }

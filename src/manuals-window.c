@@ -455,13 +455,19 @@ manuals_window_reload_fiber (gpointer user_data)
     {
       g_autoptr(GtkTreeListModel) tree = NULL;
 
+      g_debug ("Window has new list of documentation, reloading tree");
+
       tree = gtk_tree_list_model_new (g_object_ref (children),
                                       FALSE,
                                       FALSE,
                                       manuals_window_create_child_model,
                                       NULL, NULL);
       gtk_no_selection_set_model (self->selection, G_LIST_MODEL (tree));
+
+      return NULL;
     }
+
+  g_debug ("Failed to query updated documentation");
 
   return NULL;
 }
