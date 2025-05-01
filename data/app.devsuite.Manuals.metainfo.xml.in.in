@@ -73,5 +73,20 @@
     </release>
   </releases>
 
+  <requires>
+    <display_length compare="ge">360</display_length>
+    <internet>offline-only</internet>
+  </requires>
+
+  <recommends>
+    <internet>always</internet>
+    <control>keyboard</control>
+  </recommends>
+
+  <supports>
+    <control>pointing</control>
+    <control>touch</control>
+  </supports>
+
   <content_rating type="oars-1.1" />
 </component>
