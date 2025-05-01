@@ -26,6 +26,11 @@
   <translation type="gettext">manuals</translation>
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
 
+  <branding>
+    <color type="primary" scheme_preference="light">#c061cb</color>
+    <color type="primary" scheme_preference="dark">#813d9c</color>
+  </branding>
+
   <screenshots>
     <screenshot type="default">
       <caption>Browse Documentation by SDK</caption>
