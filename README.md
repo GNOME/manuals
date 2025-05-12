@@ -41,6 +41,10 @@ purge the existing indexed contents and re-index that specific documentation.
  * Sphinx documentation format used by Builder and GNOME HIG
  * Indexing online-based documentation
 
+## Code of Conduct
+
+When interacting with the project, the [GNOME Code Of Conduct](https://conduct.gnome.org/) applies.
+
 ## Screenshots
 
 ![Empty](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/empty.png)
