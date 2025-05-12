@@ -53,6 +53,6 @@ purge the existing indexed contents and re-index that specific documentation.
 
 ![Dark](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/dark.png)
 
-![Mobile Friendly Search](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/mobile-search.png)
+![Mobile Friendly Search](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/mobile-search.png){width=482px}
 
-![Mobile Friendly Reading](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/mobile-display.png)
+![Mobile Friendly Reading](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/mobile-display.png){width=482px}
