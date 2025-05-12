@@ -43,12 +43,16 @@ purge the existing indexed contents and re-index that specific documentation.
 
 ## Screenshots
 
-![Empty](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/empty.png)
+![Empty](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/empty.png)
 
-![Browse](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/browse.png)
+![Browse](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/browse.png)
 
-![Search](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/search.png)
+![Search](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/search.png)
 
-![Installing SDKs](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/install.png)
+![Installing SDKs](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/install.png)
 
-![Dark](https://gitlab.gnome.org/chergert/manuals/-/raw/main/data/screenshots/dark.png)
+![Dark](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/dark.png)
+
+![Mobile Friendly Search](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/mobile-search.png)
+
+![Mobile Friendly Reading](https://gitlab.gnome.org/GNOME/manuals/-/raw/main/data/screenshots/mobile-display.png)
