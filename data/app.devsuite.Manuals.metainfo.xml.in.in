@@ -48,6 +48,14 @@
       <caption>Integrated Dark Mode</caption>
       <image width="2244" height="1644">https://gitlab.gnome.org/chergert/manuals/-/raw/907fe72db74d3aa083d8b0a9f618db71d0bbec56/data/screenshots/dark.png?inline=false</image>
     </screenshot>
+    <screenshot>
+      <caption>Mobile Search</caption>
+      <image width="482" height="879">https://gitlab.gnome.org/GNOME/manuals/-/raw/ba3219501a8908d7e23f5f263c918751871ddb3b/data/screenshots/mobile-search.png?inline=false</image>
+    </screenshot>
+    <screenshot>
+      <caption>Adaptable Documentation</caption>
+      <image width="482" height="879">https://gitlab.gnome.org/GNOME/manuals/-/raw/ba3219501a8908d7e23f5f263c918751871ddb3b/data/screenshots/mobile-display.png?inline=false</image>
+    </screenshot>
   </screenshots>
 
   <releases>
