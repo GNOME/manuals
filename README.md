@@ -44,9 +44,7 @@ flatpak install --user flathub org.gnome.Sdk.Docs//45
 ## Dependencies
 
  * GLib/GObject/Gio/etc
- * Flatpak
- * libdex-1
- * gom-1.0
+ * libfoundry
 
 ## How it works
 
