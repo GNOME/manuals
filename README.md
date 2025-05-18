@@ -5,6 +5,30 @@ Install, Browse, and Search developer documentation
 Manuals is an extraction of the Documentation component of GNOME Builder
 into a standalone application.
 
+## Feature Requests and Design Changes
+
+Manuals uses the issue tracker for tracking engineering defects only.
+
+Feature requests tend to be long, drawn out, and never fully solvable.
+Therefore we request that you file an issue with the
+[Whiteboards project](https://gitlab.gnome.org/Teams/Design/whiteboards/)
+and progress towards designing the feature you'd like to see. I will not design
+the feature for you.
+
+The outcome of the design process should be a specification which includes:
+
+ * How the feature should work
+ * How the feature should not work
+ * How the feature interacts with the existing features
+ * If any existing features should be changed or removed
+ * Any necessary migration strategies for existing users
+ * UI mock-ups (if necessary)
+ * How the feature should be tested
+ * What are the risks and security gotchas involved?
+ * Who is going to implement the feature
+
+After that process has completed, you may file an issue referencing it.
+
 ## Installation
 
 Currently you need to install by grabbing a Flatpak artifact from CI.
