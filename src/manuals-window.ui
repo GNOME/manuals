@@ -381,6 +381,11 @@ Or, press Ctrl+W to close the window</property>
                                 </binding>
                               </object>
                             </property>
+                            <binding name="show-start-title-buttons">
+                              <closure function="invert_boolean" type="gboolean">
+                                <lookup name="reveal-start">dock</lookup>
+                              </closure>
+                            </binding>
                             <child type="start">
                               <object class="PanelToggleButton">
                                 <property name="dock">dock</property>
