@@ -2,6 +2,7 @@
     "name" : "foundry",
     "buildsystem" : "meson",
     "config-opts" : [
+        "-Dgtk=false",
         "-Dplugin-deviced=false"
     ],
     "sources" : [
