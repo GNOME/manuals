@@ -2,7 +2,8 @@
     "name" : "foundry",
     "buildsystem" : "meson",
     "config-opts" : [
-        "-Dplugin-deviced=false"
+        "-Dplugin-deviced=false",
+        "-Dgtk=false"
     ],
     "sources" : [
         {
@@ -112,6 +113,17 @@
                 {
                     "type" : "git",
                     "url" : "https://gitlab.gnome.org/GNOME/libpeas.git",
+                    "branch" : "main"
+                }
+            ]
+        },
+        {
+            "name" : "libspelling",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libspelling.git",
                     "branch" : "main"
                 }
             ]
