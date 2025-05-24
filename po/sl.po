@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
 "POT-Creation-Date: 2025-05-23 20:27+0000\n"
-"PO-Revision-Date: 2025-05-24 00:46+0200\n"
+"PO-Revision-Date: 2025-05-24 06:12+0200\n"
 "Language-Team: \n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -85,9 +85,8 @@ msgid "Integrated Dark Mode"
 msgstr "Integrirani temni način"
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:52
-#, fuzzy
 msgid "Mobile Search"
-msgstr "Iskanje v mobilnih napravah"
+msgstr "Iskanje na mobilnih napravah"
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:56
 msgid "Adaptable Documentation"
