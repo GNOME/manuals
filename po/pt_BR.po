@@ -2,34 +2,50 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the app.devsuite.Manuals package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Juliano de Souza Camargo <julianosc@pm.me>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: app.devsuite.Manuals 1.0\n"
-"Report-Msgid-Bugs-To: your-email@example.com\n"
-"POT-Creation-Date: 2025-02-14 00:58-0300\n"
-"PO-Revision-Date: 2025-02-17 22:55-0300\n"
-"Last-Translator: johnpeter19 <johnppetersa@gmail.com>\n"
-"Language-Team: \n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
+"POT-Creation-Date: 2025-05-27 03:54+0000\n"
+"PO-Revision-Date: 2025-05-28 09:45-0300\n"
+"Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
+"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Gtranslator 48.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:2
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:6
+#: data/app.devsuite.Manuals.desktop.in.in:3
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
+#: src/manuals-window.c:876 src/manuals-window.ui:6 src/manuals-window.ui:460
+#: src/manuals-window.ui:496
 msgid "Manuals"
 msgstr "Manuais"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
+#: data/app.devsuite.Manuals.desktop.in.in:4
 msgid "Install, Browse, and Search Documentation"
 msgstr "Instale, navegue e pesquise documentação"
 
-#: data/app.devsuite.Manuals.desktop.in.in:13
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/app.devsuite.Manuals.desktop.in.in:14
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "documentação; manuais; API; referência; documentos; desenvolvedor;"
+
+#: data/app.devsuite.Manuals.gschema.xml:6
+msgid "Width of sidebar in application pixels"
+msgstr "Largura da barra lateral em pixels de aplicação"
+
+#: data/app.devsuite.Manuals.gschema.xml:10
+msgid "Window dimensions"
+msgstr "Dimensões da janela"
+
+#: data/app.devsuite.Manuals.gschema.xml:14
+msgid "Window is Maximized"
+msgstr "A janela é maximizada"
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:7
 msgid "Read developer documentation"
@@ -51,110 +67,125 @@ msgstr ""
 "Ele suporta o formato de documentação devhelp usado por muitas bibliotecas "
 "que se integram à plataforma GTK."
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:19
-msgid "Christian Hergert"
-msgstr "Christian Hergert"
-
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:31
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
 msgstr "Navegue pela documentação do SDK"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:35
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:40
 msgid "Free Form Search"
 msgstr "Pesquisa de formulário livre"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:39
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:44
 msgid "Install SDK Documentation"
 msgstr "Instale a documentação do SDK"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:43
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:48
 msgid "Integrated Dark Mode"
 msgstr "Modo escuro integrado"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:53
-msgid "Fix page navigation when selection changes in sidebar."
-msgstr ""
-"Corrige a navegação na página quando a seleção muda na barra lateral."
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:52
+msgid "Mobile Search"
+msgstr "Busca móvel"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:58
-msgid "Adds improved navigation while searching for documentation."
-msgstr "Adiciona a navegação aprimorada enquanto procura documentação."
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:56
+msgid "Adaptable Documentation"
+msgstr "Documentação adaptável"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:59
-msgid "Unnecessary WebKit actions have been removed from context menus."
-msgstr ""
-"As ações desnecessárias do webkit foram removidas dos menus de contexto."
+#: src/manuals-application.c:227
+msgid "translator-credits"
+msgstr "Juliano de Souza Camargo <julianosc@pm.me>"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:64
-msgid ""
-"This is the first release of Manuals which has been extracted from Builder "
-"into a standalone application."
-msgstr ""
-"Este é o primeiro lançamento de manuais que foram extraídos do construtor "
-"para um aplicativo independente."
+#: src/manuals-application.c:232
+msgid "Builder"
+msgstr "Builder"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:65
-msgid ""
-"Manuals can install developer documentation from Flatpak along with robust "
-"browsing and searching capabilities."
-msgstr ""
-"manuais podem instalar a documentação do desenvolvedor da Flatpak, "
-"juntamente com os recursos robustos de navegação e pesquisa."
+#: src/manuals-application.c:233
+msgid "Create GNOME Applications"
+msgstr "Crie aplicações GNOME"
 
-#: data/app.devsuite.Manuals.gschema.xml:6
-msgid "Width of sidebar in application pixels"
-msgstr "Largura da barra lateral em pixels de aplicação"
+#: src/manuals-application.c:269
+msgid "New manuals window"
+msgstr "Nova janela do manuais"
 
-#: data/app.devsuite.Manuals.gschema.xml:10
-msgid "Window dimensions"
-msgstr "Dimensões da janela"
+#: src/manuals-bundle-dialog.c:148
+msgid "Install"
+msgstr "Instalar"
 
-#: data/app.devsuite.Manuals.gschema.xml:14
-msgid "Window is Maximized"
-msgstr "A janela é maximizada"
+#: src/manuals-bundle-dialog.ui:4
+msgid "Documentation"
+msgstr "Documentação"
 
-#: src/menus.ui:7
-msgid "New _Tab"
-msgstr "Novo _aba"
+#: src/manuals-bundle-dialog.ui:28
+msgid "Loading SDKs…"
+msgstr "Carregando SDKs…"
 
-#: src/menus.ui:12
-msgid "New _Window"
-msgstr "Nova _janela"
+#: src/manuals-bundle-dialog.ui:29
+msgid "Please wait while we locate the SDKs on your system"
+msgstr "Por favor, espere enquanto nós localizamos o SDKs em seu sistema"
 
-#: src/menus.ui:18
-msgid "_Install Documentation…"
-msgstr "_Instale a documentação…"
+#: src/manuals-bundle-dialog.ui:41
+msgid "No SDKs Available"
+msgstr "Nenhum SDKs disponível"
 
-#: src/menus.ui:24
-msgid "_About Manuals"
-msgstr "_Sobre manuais"
+#: src/manuals-bundle-dialog.ui:42
+msgid "Your system is not configured to access any SDKs."
+msgstr "Seu sistema não está configurado para acessar quaisquer SDKs."
 
-#: src/manuals-window.ui:87
-msgid "Toggle Sidebar"
-msgstr "Alterne a barra lateral"
+#: src/manuals-bundle-dialog.ui:54
+msgid "Installed SDKs"
+msgstr "SDKs instalados"
 
-#: src/manuals-window.ui:110 src/manuals-sidebar.ui:20
-msgid "Main Menu"
-msgstr "Menu principal"
+#: src/manuals-bundle-dialog.ui:67
+msgid "Available SDKs"
+msgstr "SDKs disponível"
 
-#: src/manuals-window.ui:122
+#: src/manuals-install-button.c:110
+msgid "Installing Documentation"
+msgstr "Instalando a documentação"
+
+#: src/manuals-install-button.ui:16
+msgid "_Install"
+msgstr "_Instalar"
+
+#: src/manuals-install-button.ui:31
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/manuals-search-entry.c:182
+#, c-format
+msgid "%u of %u"
+msgstr "%u de %u"
+
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:421
 msgid "Search"
 msgstr "Procurar"
 
-#: src/manuals-window.ui:168
+#: src/manuals-tab.c:143
+msgid "Open Link in New Tab"
+msgstr "Abrir link em nova aba"
+
+#: src/manuals-tab.c:149
+msgid "Open Link in New Window"
+msgstr "Abrir link em nova janela"
+
+#: src/manuals-tab.c:753
+msgid "Empty Page"
+msgstr "Página vazia"
+
+#: src/manuals-window.ui:97
 msgid "Loading…"
 msgstr "Carregando…"
 
-#: src/manuals-window.ui:169
+#: src/manuals-window.ui:98
 msgid "One moment please while we locate your documentation"
 msgstr "Um momento, por favor, enquanto localizamos sua documentação"
 
-#: src/manuals-window.ui:187
+#: src/manuals-window.ui:116
 msgid "Browse Documentation"
 msgstr "Procure documentação"
 
-#: src/manuals-window.ui:194
+#: src/manuals-window.ui:123
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -166,14 +197,66 @@ msgstr ""
 "\n"
 "Ou pressione Ctrl+W para fechar a janela"
 
-#: src/manuals-window.ui:203
+#: src/manuals-window.ui:132
 msgid "Install Documentation…"
 msgstr "Instale a documentação…"
 
-#: src/manuals-sidebar.ui:13
-msgid "Back to Manuals"
-msgstr "De volta aos manuais"
-
-#: src/manuals-sidebar.ui:203
+#: src/manuals-window.ui:168
 msgid "Filter…"
 msgstr "Filtro…"
+
+#: src/manuals-window.ui:388
+msgid "Toggle Sidebar"
+msgstr "Alterne a barra lateral"
+
+#: src/manuals-window.ui:413 src/manuals-window.ui:466
+#: src/manuals-window.ui:504 src/manuals-window.ui:533
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: src/manuals-window.ui:598 src/manuals-window.ui:627
+msgid "New _Tab"
+msgstr "Novo _aba"
+
+#: src/manuals-window.ui:603 src/manuals-window.ui:632
+msgid "New _Window"
+msgstr "Nova _janela"
+
+#: src/manuals-window.ui:609 src/manuals-window.ui:638
+msgid "_Install Documentation…"
+msgstr "_Instale a documentação…"
+
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
+msgid "_About Manuals"
+msgstr "_Sobre manuais"
+
+#~ msgid "Christian Hergert"
+#~ msgstr "Christian Hergert"
+
+#~ msgid "Fix page navigation when selection changes in sidebar."
+#~ msgstr ""
+#~ "Corrige a navegação na página quando a seleção muda na barra lateral."
+
+#~ msgid "Adds improved navigation while searching for documentation."
+#~ msgstr "Adiciona a navegação aprimorada enquanto procura documentação."
+
+#~ msgid "Unnecessary WebKit actions have been removed from context menus."
+#~ msgstr ""
+#~ "As ações desnecessárias do webkit foram removidas dos menus de contexto."
+
+#~ msgid ""
+#~ "This is the first release of Manuals which has been extracted from "
+#~ "Builder into a standalone application."
+#~ msgstr ""
+#~ "Este é o primeiro lançamento de manuais que foram extraídos do construtor "
+#~ "para um aplicativo independente."
+
+#~ msgid ""
+#~ "Manuals can install developer documentation from Flatpak along with "
+#~ "robust browsing and searching capabilities."
+#~ msgstr ""
+#~ "manuais podem instalar a documentação do desenvolvedor da Flatpak, "
+#~ "juntamente com os recursos robustos de navegação e pesquisa."
+
+#~ msgid "Back to Manuals"
+#~ msgstr "De volta aos manuais"
