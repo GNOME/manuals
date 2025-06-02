@@ -70,6 +70,13 @@ enum {
 
 static GParamSpec *properties[N_PROPS];
 
+static gboolean
+invert_boolean (gpointer object,
+                gboolean value)
+{
+  return !value;
+}
+
 static void
 manuals_window_update_actions (ManualsWindow *self)
 {
@@ -831,6 +838,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_entry_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_entry_key_pressed_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_search_list_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, invert_boolean);
 
   gtk_widget_class_install_action (widget_class, "sidebar.focus-search", NULL, manuals_window_sidebar_focus_search_action);
   gtk_widget_class_install_action (widget_class, "tab.go-back", NULL, manuals_window_tab_go_back_action);
