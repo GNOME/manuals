@@ -224,13 +224,9 @@ manuals_tab_decide_policy_fiber (gpointer user_data)
       goto ignore;
     }
 
-  if (g_strcmp0 ("file", g_uri_peek_scheme (uri)) != 0)
-    {
-      g_autoptr(GtkUriLauncher) launcher = gtk_uri_launcher_new (uri);
-      gtk_uri_launcher_launch (launcher, GTK_WINDOW (window), NULL, NULL, NULL);
-      goto ignore;
-    }
-
+  /* If we can find the documentation locally then use that instead of following
+   * the link directly.
+   */
   if ((context = dex_await_object (manuals_application_load_foundry (MANUALS_APPLICATION_DEFAULT), NULL)) &&
       (doc_manager = foundry_context_dup_documentation_manager (context)) &&
       (documentation = dex_await_object (foundry_documentation_manager_find_by_uri (doc_manager, uri), NULL)))
@@ -245,6 +241,16 @@ manuals_tab_decide_policy_fiber (gpointer user_data)
 
       manuals_tab_set_navigatable (tab, documentation);
 
+      goto ignore;
+    }
+
+  /* Now if the link is not a file:/// link and we got here, defer to an
+   * actual web browser rather than our internal browser.
+   */
+  if (g_strcmp0 ("file", g_uri_peek_scheme (uri)) != 0)
+    {
+      g_autoptr(GtkUriLauncher) launcher = gtk_uri_launcher_new (uri);
+      gtk_uri_launcher_launch (launcher, GTK_WINDOW (window), NULL, NULL, NULL);
       goto ignore;
     }
 
