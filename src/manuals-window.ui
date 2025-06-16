@@ -165,7 +165,7 @@ Or, press Ctrl+W to close the window</property>
                 <property name="margin-bottom">6</property>
                 <property name="margin-end">6</property>
                 <property name="margin-start">6</property>
-                <property name="placeholder-text" translatable="yes">Filter…</property>
+                <property name="placeholder-text" translatable="yes" comments="Translators: This is a verb, not a noun">Filter…</property>
                 <property name="search-delay">100</property>
                 <signal name="search-changed" handler="manuals_window_search_changed_cb" swapped="true"/>
                 <child>
@@ -390,7 +390,7 @@ Or, press Ctrl+W to close the window</property>
                               <object class="PanelToggleButton">
                                 <property name="dock">dock</property>
                                 <property name="area">start</property>
-                                <property name="tooltip-text" translatable="yes">Toggle Sidebar</property>
+                                <property name="tooltip-text" translatable="yes" comments="Translators: This is a verb, not a noun">Toggle Sidebar</property>
                               </object>
                             </child>
                             <child type="start">

@@ -266,7 +266,7 @@ static const GActionEntry app_actions[] = {
 };
 
 static const GOptionEntry main_entries[] = {
-  { "new-window", 0, 0, G_OPTION_ARG_NONE, NULL, N_("New manuals window") },
+  { "new-window", 0, 0, G_OPTION_ARG_NONE, NULL, N_("Open a new Manuals window") },
   { NULL }
 };
 
