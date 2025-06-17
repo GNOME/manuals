@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-06-14 15:37+0000\n"
-"PO-Revision-Date: 2025-06-18 01:44+0200\n"
+"POT-Creation-Date: 2025-06-17 23:46+0000\n"
+"PO-Revision-Date: 2025-06-18 01:52+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <Czech>\n"
 "Language: cs\n"
@@ -103,8 +103,8 @@ msgid "Create GNOME Applications"
 msgstr "Vytváření aplikací GNOME"
 
 #: src/manuals-application.c:269
-msgid "New manuals window"
-msgstr "Nové okno manuálů"
+msgid "Open a new Manuals window"
+msgstr "Otevřít nové okno Manuálů"
 
 #: src/manuals-bundle-dialog.c:148
 msgid "Install"
@@ -120,7 +120,7 @@ msgstr "Načítání sad SDK…"
 
 #: src/manuals-bundle-dialog.ui:29
 msgid "Please wait while we locate the SDKs on your system"
-msgstr "Počkejte prosím, než vyhledáme sady SDK ve vašem systému."
+msgstr "Počkejte prosím, než vyhledáme sady SDK ve vašem systému"
 
 #: src/manuals-bundle-dialog.ui:41
 msgid "No SDKs Available"
@@ -168,7 +168,7 @@ msgstr "Otevřít odkaz v nové kartě"
 msgid "Open Link in New Window"
 msgstr "Otevřít odkaz v novém okně"
 
-#: src/manuals-tab.c:753
+#: src/manuals-tab.c:759
 msgid "Empty Page"
 msgstr "Prázdná stránka"
 
@@ -200,10 +200,12 @@ msgstr ""
 msgid "Install Documentation…"
 msgstr "Instalovat dokumentaci…"
 
+#. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:168
 msgid "Filter…"
 msgstr "Filtrovat…"
 
+#. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:393
 msgid "Toggle Sidebar"
 msgstr "Přepnout postranní lištu"
