@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-05-23 17:52+0000\n"
-"PO-Revision-Date: 2025-05-23 22:26+0200\n"
+"POT-Creation-Date: 2025-06-17 23:46+0000\n"
+"PO-Revision-Date: 2025-06-18 06:10+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "Language: ka\n"
@@ -19,8 +19,8 @@ msgstr ""
 
 #: data/app.devsuite.Manuals.desktop.in.in:3
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:876 src/manuals-window.ui:6 src/manuals-window.ui:460
-#: src/manuals-window.ui:496
+#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "სახელმძღვანელოები"
 
@@ -102,8 +102,8 @@ msgid "Create GNOME Applications"
 msgstr "შექმენით GNOME-ის აპლიკაციები"
 
 #: src/manuals-application.c:269
-msgid "New manuals window"
-msgstr "ახალი სახელმძღვანელოების ფანჯარა"
+msgid "Open a new Manuals window"
+msgstr "ახალი Manuals-ის ფანჯრის გახსნა"
 
 #: src/manuals-bundle-dialog.c:148
 msgid "Install"
@@ -155,7 +155,7 @@ msgstr "გაუ_ქმება"
 msgid "%u of %u"
 msgstr "%u %u-დან"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:421
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
 msgid "Search"
 msgstr "ძებნა"
 
@@ -167,7 +167,7 @@ msgstr "ბმულის გახსნა ახალ ჩანართშ
 msgid "Open Link in New Window"
 msgstr "ბმულის ახალ ფანჯარაში გახსნა"
 
-#: src/manuals-tab.c:753
+#: src/manuals-tab.c:759
 msgid "Empty Page"
 msgstr "ცარიელი გვერდი"
 
@@ -199,31 +199,33 @@ msgstr ""
 msgid "Install Documentation…"
 msgstr "დოკუმენტაციის დაყენება…"
 
+#. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:168
 msgid "Filter…"
 msgstr "ფილტრი…"
 
-#: src/manuals-window.ui:388
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:393
 msgid "Toggle Sidebar"
 msgstr "გვერდითი პანელის ჩვენების ჩართ/გამორთ"
 
-#: src/manuals-window.ui:413 src/manuals-window.ui:466
-#: src/manuals-window.ui:504 src/manuals-window.ui:533
+#: src/manuals-window.ui:418 src/manuals-window.ui:471
+#: src/manuals-window.ui:509 src/manuals-window.ui:538
 msgid "Main Menu"
 msgstr "მთავარი მენიუ"
 
-#: src/manuals-window.ui:598 src/manuals-window.ui:627
+#: src/manuals-window.ui:603 src/manuals-window.ui:632
 msgid "New _Tab"
 msgstr "ახალი _ჩანართი"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:608 src/manuals-window.ui:637
 msgid "New _Window"
 msgstr "ახალი ფანჯარა"
 
-#: src/manuals-window.ui:609 src/manuals-window.ui:638
+#: src/manuals-window.ui:614 src/manuals-window.ui:643
 msgid "_Install Documentation…"
 msgstr "დოკუმენტაცი_ის დაყენება…"
 
-#: src/manuals-window.ui:615 src/manuals-window.ui:644
+#: src/manuals-window.ui:620 src/manuals-window.ui:649
 msgid "_About Manuals"
 msgstr "Manuals-ის შეს_ახებ"
