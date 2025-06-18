@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-05-24 13:58+0000\n"
-"PO-Revision-Date: 2025-05-24 18:34+0300\n"
+"POT-Creation-Date: 2025-06-17 23:46+0000\n"
+"PO-Revision-Date: 2025-06-18 21:04+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/app.devsuite.Manuals.desktop.in.in:3
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:876 src/manuals-window.ui:6 src/manuals-window.ui:460
-#: src/manuals-window.ui:496
+#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Підручники"
 
@@ -34,8 +34,8 @@ msgstr "Встановлення документації, навігація і
 #: data/app.devsuite.Manuals.desktop.in.in:14
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr ""
-"documentation;manuals;api;reference;docs;developer;документація;підручники;ін"
-"терфейс;довідник;доки;розробник;"
+"documentation;manuals;api;reference;docs;developer;документація;підручники;"
+"інтерфейс;довідник;доки;розробник;"
 
 #: data/app.devsuite.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -58,16 +58,16 @@ msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
 msgstr ""
-"«Підручники» індексують ваші підручники для розробників і надають у ваше"
-" розпорядження стійку систему навігації і пошуку."
+"«Підручники» індексують ваші підручники для розробників і надають у ваше "
+"розпорядження стійку систему навігації і пошуку."
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:13
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
 msgstr ""
-"У програмі передбачено підтримку формату документації devhelp, який"
-" використовується у багатьох бібліотеках, які інтегровано з платформою GTK."
+"У програмі передбачено підтримку формату документації devhelp, який "
+"використовується у багатьох бібліотеках, які інтегровано з платформою GTK."
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
@@ -106,8 +106,9 @@ msgid "Create GNOME Applications"
 msgstr "Створення програм GNOME"
 
 #: src/manuals-application.c:269
-msgid "New manuals window"
-msgstr "Нове вікно підручників"
+#| msgid "New manuals window"
+msgid "Open a new Manuals window"
+msgstr "Відкрити нове вікно «Підручників»"
 
 #: src/manuals-bundle-dialog.c:148
 msgid "Install"
@@ -159,7 +160,7 @@ msgstr "_Скасувати"
 msgid "%u of %u"
 msgstr "%u з %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:421
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
 msgid "Search"
 msgstr "Пошук"
 
@@ -171,7 +172,7 @@ msgstr "Відкрити посилання у новій вкладці"
 msgid "Open Link in New Window"
 msgstr "Відкрити посилання у новому вікні"
 
-#: src/manuals-tab.c:753
+#: src/manuals-tab.c:759
 msgid "Empty Page"
 msgstr "Порожня сторінка"
 
@@ -203,31 +204,33 @@ msgstr ""
 msgid "Install Documentation…"
 msgstr "Встановити документацію…"
 
+#. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:168
 msgid "Filter…"
 msgstr "Фільтрувати…"
 
-#: src/manuals-window.ui:388
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:393
 msgid "Toggle Sidebar"
 msgstr "Увімкнути або вимкнути бічну панель"
 
-#: src/manuals-window.ui:413 src/manuals-window.ui:466
-#: src/manuals-window.ui:504 src/manuals-window.ui:533
+#: src/manuals-window.ui:418 src/manuals-window.ui:471
+#: src/manuals-window.ui:509 src/manuals-window.ui:538
 msgid "Main Menu"
 msgstr "Головне меню"
 
-#: src/manuals-window.ui:598 src/manuals-window.ui:627
+#: src/manuals-window.ui:603 src/manuals-window.ui:632
 msgid "New _Tab"
 msgstr "Нова _вкладка"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:608 src/manuals-window.ui:637
 msgid "New _Window"
 msgstr "Створити _вікно"
 
-#: src/manuals-window.ui:609 src/manuals-window.ui:638
+#: src/manuals-window.ui:614 src/manuals-window.ui:643
 msgid "_Install Documentation…"
 msgstr "_Встановити документацію…"
 
-#: src/manuals-window.ui:615 src/manuals-window.ui:644
+#: src/manuals-window.ui:620 src/manuals-window.ui:649
 msgid "_About Manuals"
 msgstr "_Про «Підручники»"
