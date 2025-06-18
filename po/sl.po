@@ -7,8 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-05-23 20:27+0000\n"
-"PO-Revision-Date: 2025-05-24 06:12+0200\n"
+"POT-Creation-Date: 2025-06-17 23:46+0000\n"
+"PO-Revision-Date: 2025-06-18 09:19+0200\n"
+"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: \n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -16,14 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
 "%100<=4 ? 2 : 3);\n"
-"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: data/app.devsuite.Manuals.desktop.in.in:3
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:876 src/manuals-window.ui:6 src/manuals-window.ui:460
-#: src/manuals-window.ui:496
+#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Priročniki"
 
@@ -105,8 +105,8 @@ msgid "Create GNOME Applications"
 msgstr "Ustvarite programe GNOME"
 
 #: src/manuals-application.c:269
-msgid "New manuals window"
-msgstr "Novo okno priročnikov"
+msgid "Open a new Manuals window"
+msgstr "Odprite novo okno Priročnikov"
 
 #: src/manuals-bundle-dialog.c:148
 msgid "Install"
@@ -159,7 +159,7 @@ msgstr "Pre_kliči"
 msgid "%u of %u"
 msgstr "%u od %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:421
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
 msgid "Search"
 msgstr "Iskanje"
 
@@ -171,7 +171,7 @@ msgstr "Odpri povezavo v novem zavihku"
 msgid "Open Link in New Window"
 msgstr "Odpri povezavo v novem oknu"
 
-#: src/manuals-tab.c:753
+#: src/manuals-tab.c:759
 msgid "Empty Page"
 msgstr "Prazna stran"
 
@@ -203,31 +203,33 @@ msgstr ""
 msgid "Install Documentation…"
 msgstr "Namesti dokumentacijo ..."
 
+#. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:168
 msgid "Filter…"
 msgstr "Filtriraj …"
 
-#: src/manuals-window.ui:388
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:393
 msgid "Toggle Sidebar"
 msgstr "Preklopi stransko vrstico"
 
-#: src/manuals-window.ui:413 src/manuals-window.ui:466
-#: src/manuals-window.ui:504 src/manuals-window.ui:533
+#: src/manuals-window.ui:418 src/manuals-window.ui:471
+#: src/manuals-window.ui:509 src/manuals-window.ui:538
 msgid "Main Menu"
 msgstr "Glavni meni"
 
-#: src/manuals-window.ui:598 src/manuals-window.ui:627
+#: src/manuals-window.ui:603 src/manuals-window.ui:632
 msgid "New _Tab"
 msgstr "Nov za_vihek"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:608 src/manuals-window.ui:637
 msgid "New _Window"
 msgstr "Novo _okno"
 
-#: src/manuals-window.ui:609 src/manuals-window.ui:638
+#: src/manuals-window.ui:614 src/manuals-window.ui:643
 msgid "_Install Documentation…"
 msgstr "_Namesti dokumentacijo ..."
 
-#: src/manuals-window.ui:615 src/manuals-window.ui:644
+#: src/manuals-window.ui:620 src/manuals-window.ui:649
 msgid "_About Manuals"
 msgstr "_O programu Priročniki"
