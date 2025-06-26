@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: app.devsuite.Manuals 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-05-27 03:54+0000\n"
-"PO-Revision-Date: 2025-05-28 09:45-0300\n"
+"POT-Creation-Date: 2025-06-25 15:29+0000\n"
+"PO-Revision-Date: 2025-06-26 09:38-0300\n"
 "Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/app.devsuite.Manuals.desktop.in.in:3
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:876 src/manuals-window.ui:6 src/manuals-window.ui:460
-#: src/manuals-window.ui:496
+#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Manuais"
 
@@ -104,8 +104,8 @@ msgid "Create GNOME Applications"
 msgstr "Crie aplicações GNOME"
 
 #: src/manuals-application.c:269
-msgid "New manuals window"
-msgstr "Nova janela do manuais"
+msgid "Open a new Manuals window"
+msgstr "Abrir uma nova janela do manuais"
 
 #: src/manuals-bundle-dialog.c:148
 msgid "Install"
@@ -157,7 +157,7 @@ msgstr "_Cancelar"
 msgid "%u of %u"
 msgstr "%u de %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:421
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
 msgid "Search"
 msgstr "Procurar"
 
@@ -169,7 +169,7 @@ msgstr "Abrir link em nova aba"
 msgid "Open Link in New Window"
 msgstr "Abrir link em nova janela"
 
-#: src/manuals-tab.c:753
+#: src/manuals-tab.c:759
 msgid "Empty Page"
 msgstr "Página vazia"
 
@@ -201,32 +201,34 @@ msgstr ""
 msgid "Install Documentation…"
 msgstr "Instale a documentação…"
 
+#. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:168
 msgid "Filter…"
 msgstr "Filtro…"
 
-#: src/manuals-window.ui:388
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:393
 msgid "Toggle Sidebar"
 msgstr "Alterne a barra lateral"
 
-#: src/manuals-window.ui:413 src/manuals-window.ui:466
-#: src/manuals-window.ui:504 src/manuals-window.ui:533
+#: src/manuals-window.ui:418 src/manuals-window.ui:471
+#: src/manuals-window.ui:509 src/manuals-window.ui:538
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: src/manuals-window.ui:598 src/manuals-window.ui:627
+#: src/manuals-window.ui:603 src/manuals-window.ui:632
 msgid "New _Tab"
 msgstr "Novo _aba"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:608 src/manuals-window.ui:637
 msgid "New _Window"
 msgstr "Nova _janela"
 
-#: src/manuals-window.ui:609 src/manuals-window.ui:638
+#: src/manuals-window.ui:614 src/manuals-window.ui:643
 msgid "_Install Documentation…"
 msgstr "_Instale a documentação…"
 
-#: src/manuals-window.ui:615 src/manuals-window.ui:644
+#: src/manuals-window.ui:620 src/manuals-window.ui:649
 msgid "_About Manuals"
 msgstr "_Sobre manuais"
 
