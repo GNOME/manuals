@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-06-09 14:06+0000\n"
-"PO-Revision-Date: 2025-06-10 08:40+0300\n"
+"POT-Creation-Date: 2025-06-17 23:46+0000\n"
+"PO-Revision-Date: 2025-06-27 22:35+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -100,8 +100,8 @@ msgid "Create GNOME Applications"
 msgstr "יצירת יישומי GNOME"
 
 #: src/manuals-application.c:269
-msgid "New manuals window"
-msgstr "חלון מדריכים חדש"
+msgid "Open a new Manuals window"
+msgstr "פתיחת חלון מדריכים חדש"
 
 #: src/manuals-bundle-dialog.c:148
 msgid "Install"
@@ -165,7 +165,7 @@ msgstr "פתיחת קישור בלשונית חדשה"
 msgid "Open Link in New Window"
 msgstr "פתיחת קישור בחלון חדש"
 
-#: src/manuals-tab.c:753
+#: src/manuals-tab.c:759
 msgid "Empty Page"
 msgstr "עמוד ריק"
 
@@ -197,10 +197,12 @@ msgstr ""
 msgid "Install Documentation…"
 msgstr "התקנת תיעוד…"
 
+#. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:168
 msgid "Filter…"
 msgstr "סינון…"
 
+#. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:393
 msgid "Toggle Sidebar"
 msgstr "הצגת/הסתרת סרגל צד"
