@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-05-23 17:52+0000\n"
-"PO-Revision-Date: 2025-05-23 23:52+0300\n"
+"POT-Creation-Date: 2025-06-17 23:46+0000\n"
+"PO-Revision-Date: 2025-06-19 14:42+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/app.devsuite.Manuals.desktop.in.in:3
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:876 src/manuals-window.ui:6 src/manuals-window.ui:460
-#: src/manuals-window.ui:496
+#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Справочник"
 
@@ -33,7 +33,9 @@ msgstr "Установка, просмотр и поиск документац�
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/app.devsuite.Manuals.desktop.in.in:14
 msgid "documentation;manuals;api;reference;docs;developer;"
-msgstr "документация;руководства;api;справочник;docs;разработчик;documentation;manuals;reference;developer;"
+msgstr ""
+"документация;руководства;api;справочник;docs;разработчик;documentation;"
+"manuals;reference;developer;"
 
 #: data/app.devsuite.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -104,8 +106,8 @@ msgid "Create GNOME Applications"
 msgstr "Создание приложений для GNOME"
 
 #: src/manuals-application.c:269
-msgid "New manuals window"
-msgstr "Новое окно справочника"
+msgid "Open a new Manuals window"
+msgstr "Открыть новое окно Справочника"
 
 #: src/manuals-bundle-dialog.c:148
 msgid "Install"
@@ -157,7 +159,7 @@ msgstr "_Отменить"
 msgid "%u of %u"
 msgstr "%u из %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:421
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
 msgid "Search"
 msgstr "Поиск"
 
@@ -169,7 +171,7 @@ msgstr "Открыть ссылку в новой вкладке"
 msgid "Open Link in New Window"
 msgstr "Открыть ссылку в новом окне"
 
-#: src/manuals-tab.c:753
+#: src/manuals-tab.c:759
 msgid "Empty Page"
 msgstr "Пустая страница"
 
@@ -201,31 +203,33 @@ msgstr ""
 msgid "Install Documentation…"
 msgstr "Установить документацию…"
 
+#. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:168
 msgid "Filter…"
-msgstr "Фильтр…"
+msgstr "Фильтровать…"
 
-#: src/manuals-window.ui:388
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:393
 msgid "Toggle Sidebar"
 msgstr "Переключить боковую панель"
 
-#: src/manuals-window.ui:413 src/manuals-window.ui:466
-#: src/manuals-window.ui:504 src/manuals-window.ui:533
+#: src/manuals-window.ui:418 src/manuals-window.ui:471
+#: src/manuals-window.ui:509 src/manuals-window.ui:538
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: src/manuals-window.ui:598 src/manuals-window.ui:627
+#: src/manuals-window.ui:603 src/manuals-window.ui:632
 msgid "New _Tab"
 msgstr "Новая _вкладка"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:608 src/manuals-window.ui:637
 msgid "New _Window"
 msgstr "Новое о_кно"
 
-#: src/manuals-window.ui:609 src/manuals-window.ui:638
+#: src/manuals-window.ui:614 src/manuals-window.ui:643
 msgid "_Install Documentation…"
 msgstr "_Установить документацию…"
 
-#: src/manuals-window.ui:615 src/manuals-window.ui:644
+#: src/manuals-window.ui:620 src/manuals-window.ui:649
 msgid "_About Manuals"
 msgstr "_О приложении"
