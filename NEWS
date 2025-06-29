@@ -1,3 +1,19 @@
+Manuals 49.alpha
+================
+
+This release contains a rebase of much of the application internals to depend
+on the same abstractions which have been pushed into libfoundry¹. This allows
+for applications like GNOME Builder to share a common base for developer
+tooling to reduce duplication of effort.
+
+ * Some UI layout and styling has changed
+ * Improved sorting of search results and SDKs
+ * Improved responsiveness
+ * Handle Escape from search entry
+ * Many translations have been added
+
+¹ https://gitlab.gnome.org/chergert/foundry
+
 Manuals 48.0
 ============
 

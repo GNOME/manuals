@@ -59,26 +59,7 @@
   </screenshots>
 
   <releases>
-    <release version="48.0" date="2025-03-15"/>
-    <release version="47.0" date="2024-09-13">
-    </release>
-    <release version="46.2" date="2024-07-07">
-      <description>
-        <p>Fix page navigation when selection changes in sidebar.</p>
-      </description>
-    </release>
-    <release version="46.1" date="2024-06-24">
-      <description>
-        <p>Adds improved navigation while searching for documentation.</p>
-        <p>Unnecessary WebKit actions have been removed from context menus.</p>
-      </description>
-    </release>
-    <release version="46.0" date="2024-05-30">
-      <description>
-        <p>This is the first release of Manuals which has been extracted from Builder into a standalone application.</p>
-        <p>Manuals can install developer documentation from Flatpak along with robust browsing and searching capabilities.</p>
-      </description>
-    </release>
+    <release version="49.alpha" date="2025-06-28"/>
   </releases>
 
   <requires>
