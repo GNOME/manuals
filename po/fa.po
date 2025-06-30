@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-05-23 22:47+0000\n"
-"PO-Revision-Date: 2025-05-24 17:27+0330\n"
+"POT-Creation-Date: 2025-06-17 23:46+0000\n"
+"PO-Revision-Date: 2025-06-30 11:02+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -19,8 +19,8 @@ msgstr ""
 
 #: data/app.devsuite.Manuals.desktop.in.in:3
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:876 src/manuals-window.ui:6 src/manuals-window.ui:460
-#: src/manuals-window.ui:496
+#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "دفترچه‌های راهنما"
 
@@ -54,16 +54,16 @@ msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
 msgstr ""
-"دفترچه‌های راهنما راهنماهای توسعه‌دهندگانتان را نمایه کرده و قابلیت‌های جست‌وجو "
-"و مرور را فراهم می‌کند."
+"دفترچه‌های راهنما راهنماهای توسعه‌دهندگانتان را نمایه کرده و قابلیت‌های جست‌وجو و "
+"مرور را فراهم می‌کند."
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:13
 msgid ""
-"It supports the devhelp documentation format used by many libraries "
-"integrating with the GTK platform."
+"It supports the devhelp documentation format used by many libraries integrating "
+"with the GTK platform."
 msgstr ""
-"این برنامه از قالب مستندات devhelp که از سوی بسیاری از کتابخانه‌های یکپارچه "
-"با بن‌سازهٔ GTL استفاده می‌شود پشتیبانی می‌کند."
+"این برنامه از قالب مستندات devhelp که از سوی بسیاری از کتابخانه‌های یکپارچه با "
+"بن‌سازهٔ GTL استفاده می‌شود پشتیبانی می‌کند."
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
@@ -102,8 +102,8 @@ msgid "Create GNOME Applications"
 msgstr "ایجاد برنامه‌های گنوم"
 
 #: src/manuals-application.c:269
-msgid "New manuals window"
-msgstr "پنجرهٔ جدید دفترچه‌های راهنما"
+msgid "Open a new Manuals window"
+msgstr "گشودن پنجرهٔ جدید دفترچه‌های راهنما"
 
 #: src/manuals-bundle-dialog.c:148
 msgid "Install"
@@ -119,7 +119,7 @@ msgstr "بار کردن SDK‌ها…"
 
 #: src/manuals-bundle-dialog.ui:29
 msgid "Please wait while we locate the SDKs on your system"
-msgstr "لطفاُ تا یافتن مکان SDKها روی سامانه‌تان شکیبا باشید."
+msgstr "لطفاُ تا یافتن مکان SDKها روی سامانه‌تان شکیبا باشید"
 
 #: src/manuals-bundle-dialog.ui:41
 msgid "No SDKs Available"
@@ -155,7 +155,7 @@ msgstr "_لغو"
 msgid "%u of %u"
 msgstr "%Iu از %Iu"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:421
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
 msgid "Search"
 msgstr "جست‌وجو"
 
@@ -167,7 +167,7 @@ msgstr "گشودن پیوند در زبانهٔ جدید"
 msgid "Open Link in New Window"
 msgstr "گشودن پیوند در پنجرهٔ جدید"
 
-#: src/manuals-tab.c:753
+#: src/manuals-tab.c:759
 msgid "Empty Page"
 msgstr "صفحهٔ خالی"
 
@@ -199,31 +199,33 @@ msgstr ""
 msgid "Install Documentation…"
 msgstr "نصب مستندات…"
 
+#. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:168
 msgid "Filter…"
 msgstr "پالایش…"
 
-#: src/manuals-window.ui:388
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:393
 msgid "Toggle Sidebar"
 msgstr "تغییر وضعیت نوار کناری"
 
-#: src/manuals-window.ui:413 src/manuals-window.ui:466
-#: src/manuals-window.ui:504 src/manuals-window.ui:533
+#: src/manuals-window.ui:418 src/manuals-window.ui:471 src/manuals-window.ui:509
+#: src/manuals-window.ui:538
 msgid "Main Menu"
 msgstr "فهرست اصلی"
 
-#: src/manuals-window.ui:598 src/manuals-window.ui:627
+#: src/manuals-window.ui:603 src/manuals-window.ui:632
 msgid "New _Tab"
 msgstr "_‌زبانهٔ جدید"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:608 src/manuals-window.ui:637
 msgid "New _Window"
 msgstr "_پنجرهٔ جدید"
 
-#: src/manuals-window.ui:609 src/manuals-window.ui:638
+#: src/manuals-window.ui:614 src/manuals-window.ui:643
 msgid "_Install Documentation…"
 msgstr "_نصب مستندات…"
 
-#: src/manuals-window.ui:615 src/manuals-window.ui:644
+#: src/manuals-window.ui:620 src/manuals-window.ui:649
 msgid "_About Manuals"
 msgstr "_دربارهٔ دفترچه‌های راهنما"
