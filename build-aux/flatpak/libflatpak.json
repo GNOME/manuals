@@ -34,7 +34,7 @@
         {
             "type" : "git",
             "url" : "https://github.com/flatpak/flatpak.git",
-            "tag" : "1.16.0"
+            "tag" : "1.16.1"
         }
     ],
     "modules" : [
@@ -95,7 +95,7 @@
                 {
                     "type" : "git",
                     "url" : "https://github.com/ostreedev/ostree.git",
-                    "tag" : "v2024.1"
+                    "tag" : "v2025.2"
                 }
             ]
         }
