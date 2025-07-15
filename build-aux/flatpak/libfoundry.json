@@ -11,6 +11,8 @@
         "-Dfeature-dap=false",
         "-Dfeature-lsp=false",
         "-Dfeature-llm=false",
+        "-Dfeature-text=false",
+        "-Dfeature-vcs=false",
         "-Dplugin-deviced=false"
     ],
     "sources" : [
