@@ -3,6 +3,14 @@
     "buildsystem" : "meson",
     "config-opts" : [
         "-Dgtk=false",
+        "-Dwebkit=false",
+        "-Dcommonmark=false",
+        "-Dfeature-flatpak=true",
+        "-Dfeature-git=false",
+        "-Dfeature-mcp=false",
+        "-Dfeature-dap=false",
+        "-Dfeature-lsp=false",
+        "-Dfeature-llm=false",
         "-Dplugin-deviced=false"
     ],
     "sources" : [
