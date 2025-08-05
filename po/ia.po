@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-06-25 15:29+0000\n"
-"PO-Revision-Date: 2025-07-07 22:53-0400\n"
+"POT-Creation-Date: 2025-07-29 16:53+0000\n"
+"PO-Revision-Date: 2025-08-04 22:48-0400\n"
 "Last-Translator: Emilio Sepúlveda <emism.translations@gmail.com>\n"
 "Language-Team: Interlingua <softinterlingua@gmail.com>\n"
 "Language: ia\n"
@@ -24,19 +24,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Gtranslator 48.0\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
+#: data/app.devsuite.Manuals.desktop.in.in:2
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
 #: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Manuales"
 
-#: data/app.devsuite.Manuals.desktop.in.in:4
+#: data/app.devsuite.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Installa, naviga e recerca documentation"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/app.devsuite.Manuals.desktop.in.in:14
+#: data/app.devsuite.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "documentation;manuales;api;referentia;docs;disveloppator;"
 
@@ -78,7 +78,7 @@ msgstr "Navigar documentation per SDK"
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:40
 msgid "Free Form Search"
-msgstr ""
+msgstr "Recerca de forma libere"
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:44
 msgid "Install SDK Documentation"
@@ -98,15 +98,15 @@ msgstr "Documentation adaptabile"
 
 #: src/manuals-application.c:227
 msgid "translator-credits"
-msgstr ""
+msgstr "Emilio Sepúlveda <emism.translations@gmail.com>"
 
 #: src/manuals-application.c:232
 msgid "Builder"
-msgstr ""
+msgstr "Builder"
 
 #: src/manuals-application.c:233
 msgid "Create GNOME Applications"
-msgstr ""
+msgstr "Crea applicationes de GNOME"
 
 #: src/manuals-application.c:269
 msgid "Open a new Manuals window"
@@ -126,7 +126,7 @@ msgstr "Cargante SDKs…"
 
 #: src/manuals-bundle-dialog.ui:29
 msgid "Please wait while we locate the SDKs on your system"
-msgstr ""
+msgstr "Attende durante que nos localisa le SDKs in tu systema"
 
 #: src/manuals-bundle-dialog.ui:41
 msgid "No SDKs Available"
@@ -184,7 +184,7 @@ msgstr "Cargante…"
 
 #: src/manuals-window.ui:98
 msgid "One moment please while we locate your documentation"
-msgstr ""
+msgstr "Attende un momento durante que nos localisa tu documentation"
 
 #: src/manuals-window.ui:116
 msgid "Browse Documentation"
@@ -197,6 +197,10 @@ msgid ""
 "\n"
 "Or, press Ctrl+W to close the window"
 msgstr ""
+"• Preme Ctrl+K pro cercar classes e plus\n"
+"• Preme Ctrl+T pro aperir un nove scheda\n"
+"\n"
+"O preme Ctrl+W pro clauder le fenestra"
 
 #: src/manuals-window.ui:132
 msgid "Install Documentation…"
@@ -223,7 +227,7 @@ msgstr "Nove _scheda"
 
 #: src/manuals-window.ui:608 src/manuals-window.ui:637
 msgid "New _Window"
-msgstr "Nove_fenestra"
+msgstr "Nove _fenestra"
 
 #: src/manuals-window.ui:614 src/manuals-window.ui:643
 msgid "_Install Documentation…"
