@@ -5,7 +5,6 @@
         "-Dgtk=false",
         "-Dwebkit=false",
         "-Dcommonmark=false",
-        "-Dfeature-dap=false",
         "-Dfeature-debugger=false",
         "-Dfeature-flatpak=true",
         "-Dfeature-git=false",
