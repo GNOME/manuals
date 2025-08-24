@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-06-21 08:02+0000\n"
-"PO-Revision-Date: 2025-06-25 18:28+0300\n"
+"POT-Creation-Date: 2025-08-10 22:36+0000\n"
+"PO-Revision-Date: 2025-08-24 14:04+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <Finnish>\n"
 "Language: fi\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
+#: data/app.devsuite.Manuals.desktop.in.in:2
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
 #: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Manuaalit"
 
-#: data/app.devsuite.Manuals.desktop.in.in:4
+#: data/app.devsuite.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Asenna, selaa ja etsi dokumentaatioita"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/app.devsuite.Manuals.desktop.in.in:14
+#: data/app.devsuite.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "documentation;manuals;api;reference;docs;developer;dokumentaatio;ohje;kehittäjä;"
 
@@ -52,15 +52,19 @@ msgstr "Lue kehittäjädokumentaatiota"
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:9
 msgid ""
-"Manuals indexes your developer manuals and provides robust browsing and "
-"searching capabilities."
+"Manuals indexes your developer manuals and provides robust browsing and searching "
+"capabilities."
 msgstr ""
+"Manuaalit indeksoi kehittäjille tarkoitetut ohjekirjat ja tarjoaa selaus- ja "
+"hakutoiminallisuudet."
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:13
 msgid ""
-"It supports the devhelp documentation format used by many libraries "
-"integrating with the GTK platform."
+"It supports the devhelp documentation format used by many libraries integrating with "
+"the GTK platform."
 msgstr ""
+"Se tukee monien kirjastojen käyttämää devhelp-dokumentaatiomuotoa ja siten integroituu "
+"GTK-alustaan."
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
@@ -68,7 +72,7 @@ msgstr "Selaa dokumentaatiota SDK:n mukaan"
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:40
 msgid "Free Form Search"
-msgstr ""
+msgstr "Vapaahaku"
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:44
 msgid "Install SDK Documentation"
@@ -84,7 +88,7 @@ msgstr "Mobiilihaku"
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:56
 msgid "Adaptable Documentation"
-msgstr ""
+msgstr "Mukautuva dokumentaatio"
 
 #: src/manuals-application.c:227
 msgid "translator-credits"
@@ -116,8 +120,7 @@ msgstr "Ladataan SDK-ohjelmistokehityspaketteja…"
 
 #: src/manuals-bundle-dialog.ui:29
 msgid "Please wait while we locate the SDKs on your system"
-msgstr ""
-"Pieni hetki, kun ohjelmistokehityspaketteja paikannetaan järjestelmästä"
+msgstr "Pieni hetki, kun ohjelmistokehityspaketteja paikannetaan järjestelmästä"
 
 #: src/manuals-bundle-dialog.ui:41
 msgid "No SDKs Available"
@@ -125,8 +128,7 @@ msgstr "Ei SDK:ita saatavilla"
 
 #: src/manuals-bundle-dialog.ui:42
 msgid "Your system is not configured to access any SDKs."
-msgstr ""
-"Järjestelmääsi ei ole määritetty käyttämään SDK-ohjelmistokehityspaketteja."
+msgstr "Järjestelmääsi ei ole määritetty käyttämään SDK-ohjelmistokehityspaketteja."
 
 #: src/manuals-bundle-dialog.ui:54
 msgid "Installed SDKs"
@@ -208,8 +210,8 @@ msgstr "Suodata…"
 msgid "Toggle Sidebar"
 msgstr "Sivupalkki päällä/pois"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:418 src/manuals-window.ui:471 src/manuals-window.ui:509
+#: src/manuals-window.ui:538
 msgid "Main Menu"
 msgstr "Päävalikko"
 
