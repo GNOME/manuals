@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
 "POT-Creation-Date: 2025-06-17 23:46+0000\n"
-"PO-Revision-Date: 2025-06-20 21:27+0200\n"
+"PO-Revision-Date: 2025-09-05 21:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: Catalan <Catalan>\n"
 "Language: ca\n"
@@ -104,7 +104,7 @@ msgstr "Crear aplicacions del GNOME"
 
 #: src/manuals-application.c:269
 msgid "Open a new Manuals window"
-msgstr "Obre una nova del Manuals"
+msgstr "Obre una nova finestra del Manuals"
 
 #: src/manuals-bundle-dialog.c:148
 msgid "Install"
@@ -132,7 +132,7 @@ msgstr "El vostre sistema no està configurat per accedir a cap SDK."
 
 #: src/manuals-bundle-dialog.ui:54
 msgid "Installed SDKs"
-msgstr "S'han instal·lat els SDKs"
+msgstr "SDKs instal·lats"
 
 #: src/manuals-bundle-dialog.ui:67
 msgid "Available SDKs"
