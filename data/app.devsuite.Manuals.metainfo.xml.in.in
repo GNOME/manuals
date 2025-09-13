@@ -59,8 +59,7 @@
   </screenshots>
 
   <releases>
-    <release version="49.alpha.1" date="2025-07-02"/>
-    <release version="49.alpha" date="2025-06-28"/>
+    <release version="49.0" date="2025-09-12"/>
   </releases>
 
   <requires>
