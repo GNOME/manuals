@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-06-17 23:46+0000\n"
-"PO-Revision-Date: 2025-06-18 01:52+0200\n"
+"POT-Creation-Date: 2025-09-10 21:41+0000\n"
+"PO-Revision-Date: 2025-09-19 12:52+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <Czech>\n"
 "Language: cs\n"
@@ -16,21 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
+#: data/app.devsuite.Manuals.desktop.in.in:2
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
 #: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Manuály"
 
-#: data/app.devsuite.Manuals.desktop.in.in:4
+#: data/app.devsuite.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Instalujte, procházejte a prohledávejte dokumentaci"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/app.devsuite.Manuals.desktop.in.in:14
+#: data/app.devsuite.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "dokumentace;manuály;api;reference;dokumenty;vývojář;"
 
@@ -203,7 +203,7 @@ msgstr "Instalovat dokumentaci…"
 #. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:168
 msgid "Filter…"
-msgstr "Filtrovat…"
+msgstr "filtrovat…"
 
 #. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:393
