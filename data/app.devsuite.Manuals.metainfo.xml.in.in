@@ -17,9 +17,9 @@
   </description>
   <!-- developer_name tag deprecated with Appstream 1.0 -->
   <developer_name translatable="no">Christian Hergert</developer_name>
-  <url type="homepage">https://gitlab.gnome.org/GNOME/manuals</url>
+  <url type="homepage">https://apps.gnome.org/Manuals/</url>
   <url type="bugtracker">https://gitlab.gnome.org/GNOME/manuals/issues</url>
-  <url type="translate">https://gitlab.gnome.org/GNOME/manuals/-/tree/main/po</url>
+  <url type="translate">https://l10n.gnome.org/module/Manuals/</url>
   <url type="vcs-browser">https://gitlab.gnome.org/GNOME/manuals</url>
 
   <update_contact>chergert@gnome.org</update_contact>
