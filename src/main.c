@@ -42,7 +42,7 @@ main (int   argc,
 
   panel_init ();
 
-	app = manuals_application_new ("app.devsuite.Manuals", G_APPLICATION_DEFAULT_FLAGS);
+	app = manuals_application_new ("app.devsuite.Manuals", G_APPLICATION_HANDLES_COMMAND_LINE);
 	ret = g_application_run (G_APPLICATION (app), argc, argv);
 
 	return ret;

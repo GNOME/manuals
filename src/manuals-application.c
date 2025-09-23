@@ -105,6 +105,26 @@ manuals_application_activate (GApplication *app)
                                          g_object_unref));
 }
 
+static gint
+manuals_application_command_line (GApplication            *app,
+                                  GApplicationCommandLine *command_line)
+{
+  GVariantDict *options;
+  gboolean new_window = FALSE;
+
+  g_assert (G_IS_APPLICATION (app));
+  g_assert (G_IS_APPLICATION_COMMAND_LINE (command_line));
+
+  options = g_application_command_line_get_options_dict (command_line);
+
+  if (g_variant_dict_lookup (options, "new-window", "b", &new_window) && new_window)
+    g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
+  else
+    g_application_activate (app);
+
+  return EXIT_SUCCESS;
+}
+
 static void
 manuals_application_startup (GApplication *app)
 {
@@ -161,6 +181,7 @@ manuals_application_class_init (ManualsApplicationClass *klass)
   object_class->get_property = manuals_application_get_property;
 
   app_class->activate = manuals_application_activate;
+  app_class->command_line = manuals_application_command_line;
   app_class->startup = manuals_application_startup;
   app_class->shutdown = manuals_application_shutdown;
 
