@@ -1,3 +1,11 @@
+Manuals 49.1
+============
+
+ * Implement new-window action
+ * Fix component to be desktop-application
+ * Fix APP_ID usage when doing test/development builds
+ * Translation updates
+
 Manuals 49.0
 ============
 
