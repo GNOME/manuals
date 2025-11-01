@@ -134,10 +134,21 @@ create_bundle_row (gpointer item,
       for (guint i = 0; tags[i]; i++)
         adw_action_row_add_suffix (ADW_ACTION_ROW (row),
                                    g_object_new (MANUALS_TYPE_TAG,
-                                                 "css-classes", (const char * const []) { "installation", NULL },
+                                                 "css-classes", FOUNDRY_STRV_INIT ("installation"),
                                                  "value", tags[i],
                                                  "valign", GTK_ALIGN_CENTER,
                                                  NULL));
+    }
+
+  if (foundry_documentation_bundle_get_eol (bundle))
+    {
+      gtk_widget_add_css_class (GTK_WIDGET (row), "warning");
+      adw_action_row_add_suffix (ADW_ACTION_ROW (row),
+                                 g_object_new (MANUALS_TYPE_TAG,
+                                               "css-classes", FOUNDRY_STRV_INIT ("installation"),
+                                               "value", _("End of Life"),
+                                               "valign", GTK_ALIGN_CENTER,
+                                               NULL));
     }
 
   if (!foundry_documentation_bundle_get_installed (bundle))
