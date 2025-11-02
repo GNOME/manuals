@@ -7,6 +7,7 @@
         "-Dcommonmark=false",
         "-Dfeature-debugger=false",
         "-Dfeature-flatpak=true",
+        "-Dfeature-forge=false",
         "-Dfeature-git=false",
         "-Dfeature-llm=false",
         "-Dfeature-lsp=false",
