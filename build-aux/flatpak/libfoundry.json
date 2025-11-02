@@ -19,7 +19,7 @@
         {
             "type" : "git",
             "url" : "https://gitlab.gnome.org/GNOME/foundry.git",
-            "branch" : "main"
+            "branch" : "foundry-1-0"
         }
     ],
     "modules" : [
