@@ -41,11 +41,23 @@ struct _ManualsBundleDialog
   AdwPreferencesGroup  *available_group;
   GtkListBox           *available_list_box;
   GtkStack             *stack;
+  GtkFilter            *show_eol_filter;
+  GtkFilter            *hide_eol_filter;
+
+  guint                 show_eol : 1;
 };
 
 G_DEFINE_FINAL_TYPE (ManualsBundleDialog, manuals_bundle_dialog, ADW_TYPE_PREFERENCES_DIALOG)
 
 static void manuals_bundle_dialog_reload (ManualsBundleDialog *self);
+
+enum {
+  PROP_0,
+  PROP_SHOW_EOL,
+  N_PROPS
+};
+
+static GParamSpec *properties[N_PROPS];
 
 static DexFuture *
 manuals_bundle_dialog_cancel (DexFuture *completed,
@@ -247,6 +259,43 @@ available_items_changed_cb (ManualsBundleDialog *self,
 }
 
 static void
+manuals_bundle_dialog_set_show_eol (ManualsBundleDialog *self,
+                                    gboolean             show_eol)
+{
+  g_assert (MANUALS_IS_BUNDLE_DIALOG (self));
+
+  show_eol = !!show_eol;
+
+  if (self->show_eol != show_eol)
+    {
+      self->show_eol = show_eol;
+
+      if (show_eol)
+        gtk_filter_list_model_set_filter (self->available, self->show_eol_filter);
+      else
+        gtk_filter_list_model_set_filter (self->available, self->hide_eol_filter);
+
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_SHOW_EOL]);
+    }
+}
+
+static void
+hide_eol_action (GtkWidget  *widget,
+                 const char *action_name,
+                 GVariant   *param)
+{
+  manuals_bundle_dialog_set_show_eol (MANUALS_BUNDLE_DIALOG (widget), FALSE);
+}
+
+static void
+show_eol_action (GtkWidget  *widget,
+                 const char *action_name,
+                 GVariant   *param)
+{
+  manuals_bundle_dialog_set_show_eol (MANUALS_BUNDLE_DIALOG (widget), TRUE);
+}
+
+static void
 manuals_bundle_dialog_dispose (GObject *object)
 {
   ManualsBundleDialog *self = (ManualsBundleDialog *)object;
@@ -257,12 +306,61 @@ manuals_bundle_dialog_dispose (GObject *object)
 }
 
 static void
+manuals_bundle_dialog_get_property (GObject    *object,
+                                    guint       prop_id,
+                                    GValue     *value,
+                                    GParamSpec *pspec)
+{
+  ManualsBundleDialog *self = MANUALS_BUNDLE_DIALOG (object);
+
+  switch (prop_id)
+    {
+    case PROP_SHOW_EOL:
+      g_value_set_boolean (value, self->show_eol);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+manuals_bundle_dialog_set_property (GObject      *object,
+                                    guint         prop_id,
+                                    const GValue *value,
+                                    GParamSpec   *pspec)
+{
+  ManualsBundleDialog *self = MANUALS_BUNDLE_DIALOG (object);
+
+  switch (prop_id)
+    {
+    case PROP_SHOW_EOL:
+      manuals_bundle_dialog_set_show_eol (self, g_value_get_boolean (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
 manuals_bundle_dialog_class_init (ManualsBundleDialogClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->dispose = manuals_bundle_dialog_dispose;
+  object_class->get_property = manuals_bundle_dialog_get_property;
+  object_class->set_property = manuals_bundle_dialog_set_property;
+
+  properties[PROP_SHOW_EOL] =
+    g_param_spec_boolean ("show-eol", NULL, NULL,
+                          FALSE,
+                          (G_PARAM_READWRITE |
+                           G_PARAM_EXPLICIT_NOTIFY |
+                           G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-bundle-dialog.ui");
 
@@ -273,6 +371,11 @@ manuals_bundle_dialog_class_init (ManualsBundleDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ManualsBundleDialog, installed_group);
   gtk_widget_class_bind_template_child (widget_class, ManualsBundleDialog, installed_list_box);
   gtk_widget_class_bind_template_child (widget_class, ManualsBundleDialog, stack);
+  gtk_widget_class_bind_template_child (widget_class, ManualsBundleDialog, show_eol_filter);
+  gtk_widget_class_bind_template_child (widget_class, ManualsBundleDialog, hide_eol_filter);
+
+  gtk_widget_class_install_action (widget_class, "hide-eol", NULL, hide_eol_action);
+  gtk_widget_class_install_action (widget_class, "show-eol", NULL, show_eol_action);
 
   g_type_ensure (FOUNDRY_TYPE_DOCUMENTATION_BUNDLE);
 }

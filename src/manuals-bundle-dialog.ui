@@ -75,6 +75,34 @@
                         </child>
                       </object>
                     </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <child>
+                          <object class="GtkButton">
+                            <property name="visible" bind-source="ManualsBundleDialog" bind-property="show-eol" bind-flags="sync-create"/>
+                            <property name="label" translatable="yes">Hide Legacy SDKs</property>
+                            <property name="halign">center</property>
+                            <property name="action-name">hide-eol</property>
+                            <style>
+                              <class name="pill"/>
+                              <class name="large-button"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="visible" bind-source="ManualsBundleDialog" bind-property="show-eol" bind-flags="sync-create|invert-boolean"/>
+                            <property name="label" translatable="yes">View Legacy SDKs</property>
+                            <property name="halign">center</property>
+                            <property name="action-name">show-eol</property>
+                            <style>
+                              <class name="pill"/>
+                              <class name="large-button"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                   </object>
                 </property>
               </object>
@@ -94,14 +122,34 @@
     </property>
   </object>
   <object class="GtkFilterListModel" id="available">
-    <property name="filter">
+    <property name="filter">hide_eol_filter</property>
+  </object>
+  <object class="GtkEveryFilter" id="hide_eol_filter">
+    <child>
       <object class="GtkBoolFilter">
         <property name="invert">true</property>
         <property name="expression">
           <lookup name="installed" type="FoundryDocumentationBundle"/>
         </property>
       </object>
-    </property>
+    </child>
+    <child>
+      <object class="GtkBoolFilter">
+        <property name="invert">true</property>
+        <property name="expression">
+          <lookup name="eol" type="FoundryDocumentationBundle"/>
+        </property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkEveryFilter" id="show_eol_filter">
+    <child>
+      <object class="GtkBoolFilter">
+        <property name="invert">true</property>
+        <property name="expression">
+          <lookup name="installed" type="FoundryDocumentationBundle"/>
+        </property>
+      </object>
+    </child>
   </object>
 </interface>
-
