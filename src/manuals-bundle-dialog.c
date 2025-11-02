@@ -203,6 +203,8 @@ ref_sorter (gconstpointer a,
   FoundryDocumentationBundle *ref_b = (gpointer)b;
   g_autofree char *title_a = foundry_documentation_bundle_dup_title (ref_a);
   g_autofree char *title_b = foundry_documentation_bundle_dup_title (ref_b);
+  g_autofree char *collate_a = g_utf8_collate_key_for_filename (title_a, -1);
+  g_autofree char *collate_b = g_utf8_collate_key_for_filename (title_b, -1);
   gboolean a_is_gnome = strstr (title_a, "GNOME") != NULL;
   gboolean b_is_gnome = strstr (title_b, "GNOME") != NULL;
   int ret;
@@ -213,7 +215,7 @@ ref_sorter (gconstpointer a,
   if (!a_is_gnome && b_is_gnome)
     return 1;
 
-  ret = g_strcmp0 (title_a, title_b);
+  ret = strcmp (collate_a, collate_b);
 
   /* Reverse sort */
   if (ret < 0)
