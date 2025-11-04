@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-09-10 21:41+0000\n"
-"PO-Revision-Date: 2025-09-19 12:52+0200\n"
+"POT-Creation-Date: 2025-11-02 10:46+0000\n"
+"PO-Revision-Date: 2025-11-04 21:50+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <Czech>\n"
 "Language: cs\n"
@@ -16,10 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/app.devsuite.Manuals.desktop.in.in:2
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
 #: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
@@ -33,6 +33,10 @@ msgstr "Instalujte, procházejte a prohledávejte dokumentaci"
 #: data/app.devsuite.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "dokumentace;manuály;api;reference;dokumenty;vývojář;"
+
+#: data/app.devsuite.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Nové okno"
 
 #: data/app.devsuite.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -90,23 +94,27 @@ msgstr "Mobilní vyhledávání"
 msgid "Adaptable Documentation"
 msgstr "Přizpůsobitelná dokumentace"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
 msgstr "Daniel Rusek <mail@asciiwolf.com>"
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "Builder"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "Vytváření aplikací GNOME"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "Otevřít nové okno Manuálů"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr ""
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "Instalovat"
 
@@ -137,6 +145,14 @@ msgstr "Nainstalované sady SDK"
 #: src/manuals-bundle-dialog.ui:67
 msgid "Available SDKs"
 msgstr "Dostupné sady SDK"
+
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr ""
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr ""
 
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
