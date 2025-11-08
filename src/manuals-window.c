@@ -333,6 +333,7 @@ manuals_window_sidebar_focus_search_action (GtkWidget  *widget,
 
   panel_dock_set_reveal_start (self->dock, TRUE);
   gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
+  gtk_editable_select_region (GTK_EDITABLE (self->search_entry), 0, -1);
 }
 
 static void
