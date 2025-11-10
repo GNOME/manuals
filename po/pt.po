@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-08-25 07:10+0000\n"
-"PO-Revision-Date: 2025-08-25 15:13+0100\n"
+"POT-Creation-Date: 2025-11-09 18:09+0000\n"
+"PO-Revision-Date: 2025-11-10 13:03+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "Language: pt\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/app.devsuite.Manuals.desktop.in.in:2
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:885 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Manuais"
@@ -33,6 +33,10 @@ msgstr "Instale, navegue e pesquise documentação"
 #: data/app.devsuite.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "documentação;manuais;api;referência;documentos;programador;"
+
+#: data/app.devsuite.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Nova janela"
 
 #: data/app.devsuite.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -90,19 +94,19 @@ msgstr "Pesquisa móvel"
 msgid "Adaptable Documentation"
 msgstr "Documentação adaptável"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
 msgstr "Hugo Carvalho <hugokarvalho@hotmail.com>"
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "Compilador"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "Crie aplicações GNOME"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "Abrir uma nova janela do Manuais"
 
@@ -229,4 +233,4 @@ msgstr "_Instale a documentação…"
 
 #: src/manuals-window.ui:620 src/manuals-window.ui:649
 msgid "_About Manuals"
-msgstr "_Acerca de Manuais"
+msgstr "_Sobre o Manuais"
