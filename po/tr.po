@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-08-10 22:36+0000\n"
-"PO-Revision-Date: 2025-08-28 21:54+0300\n"
+"POT-Creation-Date: 2025-11-02 10:46+0000\n"
+"PO-Revision-Date: 2025-11-02 20:30+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -16,9 +16,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:2 data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
+#: data/app.devsuite.Manuals.desktop.in.in:2 data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
 #: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465 src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Kılavuzlar"
@@ -31,6 +31,10 @@ msgstr "Belgelendirme Kur, Göz At ve Ara"
 #: data/app.devsuite.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "documentation;manuals;api;reference;docs;developer;belgelendirme;belgeleme;kılavuzlar;upa;referans;atıf;el;kitapçık;geliştirici;"
+
+#: data/app.devsuite.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Yeni Pencere"
 
 #: data/app.devsuite.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -80,23 +84,27 @@ msgstr "Mobil Arama"
 msgid "Adaptable Documentation"
 msgstr "Uyarlanır Belgelendirme"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
 msgstr "Emin Tufan Çetin <etcetin@gmail.com>"
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "Builder"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "GNOME Uygulamaları Oluştur"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "Yeni Kılavuzlar penceresi aç"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "Ömrünü Doldurmuş"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "Kur"
 
@@ -127,6 +135,14 @@ msgstr "Kurulu SDK’ler"
 #: src/manuals-bundle-dialog.ui:67
 msgid "Available SDKs"
 msgstr "Kullanılabilir SDK’ler"
+
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "Eski Yazılım Geliştirme Kitlerini Gizle"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "Eski Yazılım Geliştirme Kitlerini Göster"
 
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
