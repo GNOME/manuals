@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-09-06 20:57+0000\n"
-"PO-Revision-Date: 2025-09-07 22:57+0300\n"
+"POT-Creation-Date: 2025-11-09 18:09+0000\n"
+"PO-Revision-Date: 2025-11-11 23:18+0200\n"
 "Last-Translator: Aurimas Černius <aurimas.cernius@mailo.com>\n"
 "Language-Team: Lithuanian <Lithuanian>\n"
 "Language: lt\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/app.devsuite.Manuals.desktop.in.in:2
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:885 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Aprašymai"
@@ -34,6 +34,10 @@ msgstr "Įdiekite, naršykite ir ieškokite dokumentacijos"
 #: data/app.devsuite.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "dokumentacija;aprašymai;api;aprašymas;kūrėjas;"
+
+#: data/app.devsuite.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Naujas langas"
 
 #: data/app.devsuite.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -91,21 +95,19 @@ msgstr "Mobilioji paieška"
 msgid "Adaptable Documentation"
 msgstr "Pritaikoma dokumentacija"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
-msgstr ""
-"Išvertė:\n"
-"Aurimas Černius <aurimas.cernius@mailo.com>"
+msgstr "Aurimas Černius <aurimas.cernius@mailo.com>"
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "Kūrėjas"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "Sukurti GNOME programas"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "Atverti naują aprašymų langą"
 
