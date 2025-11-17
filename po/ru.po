@@ -7,35 +7,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-06-17 23:46+0000\n"
-"PO-Revision-Date: 2025-06-19 14:42+0300\n"
+"POT-Creation-Date: 2025-11-05 00:21+0000\n"
+"PO-Revision-Date: 2025-11-16 19:58+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.6\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || "
+"n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: data/app.devsuite.Manuals.desktop.in.in:2 data/app.devsuite.Manuals.metainfo.xml.in.in:6
+#: src/manuals-application.c:238 src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Справочник"
 
-#: data/app.devsuite.Manuals.desktop.in.in:4
+#: data/app.devsuite.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Установка, просмотр и поиск документации"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/app.devsuite.Manuals.desktop.in.in:14
+#: data/app.devsuite.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
-msgstr ""
-"документация;руководства;api;справочник;docs;разработчик;documentation;"
-"manuals;reference;developer;"
+msgstr "документация;руководства;api;справочник;docs;разработчик;documentation;manuals;reference;developer;"
+
+#: data/app.devsuite.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Новое окно"
 
 #: data/app.devsuite.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -54,20 +55,17 @@ msgid "Read developer documentation"
 msgstr "Чтение документации разработчика"
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:9
-msgid ""
-"Manuals indexes your developer manuals and provides robust browsing and "
-"searching capabilities."
+msgid "Manuals indexes your developer manuals and provides robust browsing and searching capabilities."
 msgstr ""
-"Приложение индексирует ваши руководства для разработчиков и предоставляет "
-"широкие возможности просмотра и поиска."
+"Приложение индексирует ваши руководства для разработчиков и предоставляет широкие возможности просмотра и "
+"поиска."
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:13
 msgid ""
-"It supports the devhelp documentation format used by many libraries "
-"integrating with the GTK platform."
+"It supports the devhelp documentation format used by many libraries integrating with the GTK platform."
 msgstr ""
-"Оно поддерживает формат документации devhelp, используемый многими "
-"библиотеками, интегрированными с платформой GTK."
+"Оно поддерживает формат документации devhelp, используемый многими библиотеками, интегрированными с "
+"платформой GTK."
 
 #: data/app.devsuite.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
@@ -93,23 +91,27 @@ msgstr "Мобильный поиск"
 msgid "Adaptable Documentation"
 msgstr "Адаптивная документация"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
 msgstr "Artur So <arturios2005@mail.ru>"
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "Builder"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "Создание приложений для GNOME"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "Открыть новое окно Справочника"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "Завершение поддержки"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "Установка"
 
@@ -140,6 +142,14 @@ msgstr "Установленные SDK"
 #: src/manuals-bundle-dialog.ui:67
 msgid "Available SDKs"
 msgstr "Доступные SDK"
+
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "Скрыть устаревшие SDK"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "Посмотреть устаревшие SDK"
 
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
@@ -213,8 +223,7 @@ msgstr "Фильтровать…"
 msgid "Toggle Sidebar"
 msgstr "Переключить боковую панель"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:418 src/manuals-window.ui:471 src/manuals-window.ui:509 src/manuals-window.ui:538
 msgid "Main Menu"
 msgstr "Главное меню"
 
