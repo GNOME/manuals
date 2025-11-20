@@ -194,6 +194,8 @@ manuals_tab_decide_policy_fiber (gpointer user_data)
   gboolean open_new_tab = FALSE;
   int button;
   int modifiers;
+  gboolean is_back_forward = FALSE;
+  WebKitNavigationType navigation_type;
 
   g_assert (state != NULL);
   g_assert (MANUALS_IS_TAB (state->self));
@@ -211,8 +213,12 @@ manuals_tab_decide_policy_fiber (gpointer user_data)
   modifiers = webkit_navigation_action_get_modifiers (navigation_action);
   open_new_tab = (button == 2 || (button == 1 && modifiers == GDK_CONTROL_MASK));
 
+  /* update navigatable in history navigation */
+  navigation_type = webkit_navigation_action_get_navigation_type (navigation_action);
+  is_back_forward = navigation_type == WEBKIT_NAVIGATION_TYPE_BACK_FORWARD;
+
   /* Pass-through API requested things */
-  if (button == 0 && modifiers == 0)
+  if (!is_back_forward && button == 0 && modifiers == 0)
     {
       webkit_policy_decision_use (state->decision);
       return dex_future_new_for_boolean (TRUE);
@@ -237,17 +243,17 @@ manuals_tab_decide_policy_fiber (gpointer user_data)
         {
           tab = manuals_tab_duplicate (tab);
           manuals_window_add_tab (window, tab);
+          manuals_tab_set_navigatable (tab, documentation);
+          goto ignore;
         }
 
-      manuals_tab_set_navigatable (tab, documentation);
-
-      goto ignore;
+      if (g_set_object(&tab->navigatable, documentation))
+        g_object_notify_by_pspec (G_OBJECT (tab), properties[PROP_NAVIGATABLE]);
     }
-
   /* Now if the link is not a file:/// link and we got here, defer to an
    * actual web browser rather than our internal browser.
    */
-  if (g_strcmp0 ("file", g_uri_peek_scheme (uri)) != 0)
+  else if (g_strcmp0 ("file", g_uri_peek_scheme (uri)) != 0)
     {
       g_autoptr(GtkUriLauncher) launcher = gtk_uri_launcher_new (uri);
       gtk_uri_launcher_launch (launcher, GTK_WINDOW (window), NULL, NULL, NULL);
@@ -864,3 +870,4 @@ manuals_tab_focus_search (ManualsTab *self)
 
   gtk_widget_activate_action (GTK_WIDGET (self), "search.show", NULL);
 }
+
