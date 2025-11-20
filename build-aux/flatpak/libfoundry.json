@@ -11,6 +11,7 @@
         "-Dfeature-git=false",
         "-Dfeature-llm=false",
         "-Dfeature-lsp=false",
+        "-Dfeature-mcp=false",
         "-Dfeature-templates=false",
         "-Dfeature-text=false",
         "-Dfeature-vcs=false",
