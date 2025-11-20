@@ -150,6 +150,36 @@ manuals_window_notify_import_active_cb (ManualsWindow      *self,
   manuals_window_update_stack_child (self);
 }
 
+static void
+on_mouse_button_pressed_cb (ManualsWindow   *self,
+                            gint             n_press,
+                            gdouble          x,
+                            gdouble          y,
+                            GtkGestureClick *gesture_click)
+{
+  ManualsTab *tab;
+
+  g_assert (MANUALS_IS_WINDOW (self));
+  g_assert (GTK_IS_GESTURE_CLICK (gesture_click));
+
+  if (!(tab = manuals_window_get_visible_tab (self)))
+    return;
+
+  switch (gtk_gesture_single_get_current_button (GTK_GESTURE_SINGLE (gesture_click)))
+    {
+    case 8:
+      manuals_tab_go_back (tab);
+      break;
+
+    case 9:
+      manuals_tab_go_forward (tab);
+      break;
+
+    default:
+      return;
+    }
+}
+
 static gboolean
 on_tab_view_close_page_cb (ManualsWindow *self,
                            AdwTabPage    *page,
@@ -830,6 +860,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, tab_view);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, title);
 
+  gtk_widget_class_bind_template_callback (widget_class, on_mouse_button_pressed_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
   gtk_widget_class_bind_template_callback (widget_class, manuals_window_list_view_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, query_deprecated);

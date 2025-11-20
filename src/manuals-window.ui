@@ -18,6 +18,13 @@
       <class name="view"/>
     </style>
     <child>
+      <object class="GtkGestureClick">
+        <property name="button">0</property>
+        <property name="propagation-phase">capture</property>
+        <signal name="pressed" handler="on_mouse_button_pressed_cb" swapped="true"/>
+      </object>
+    </child>
+    <child>
       <object class="GtkShortcutController">
         <property name="propagation-phase">capture</property>
         <child>
