@@ -1,0 +1,236 @@
+# Italian translation for Manuals.
+# Copyright (C) 2025 Manuals's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Manuals package.
+# macca . <macca@maccacomputer.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Manuals gnome-49\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
+"POT-Creation-Date: 2025-11-09 18:10+0000\n"
+"PO-Revision-Date: 2025-11-30 11:10+0100\n"
+"Last-Translator: Erick Daniel Parra Delgado <macca@maccacomputer.com>\n"
+"Language-Team: Italian <Italian>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/app.devsuite.Manuals.desktop.in.in:2
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:885 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: src/manuals-window.ui:501
+msgid "Manuals"
+msgstr "Manuali"
+
+#: data/app.devsuite.Manuals.desktop.in.in:3
+msgid "Install, Browse, and Search Documentation"
+msgstr "Installare, sfogliare e scoprire le documentazioni"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/app.devsuite.Manuals.desktop.in.in:13
+msgid "documentation;manuals;api;reference;docs;developer;"
+msgstr "documentazione;manuali;api;riferimenti;reference,documenti;sviluppatori;"
+
+#: data/app.devsuite.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Nuova finestra"
+
+#: data/app.devsuite.Manuals.gschema.xml:6
+msgid "Width of sidebar in application pixels"
+msgstr "Larghezza della barra laterale in pixel dell'applicazione"
+
+#: data/app.devsuite.Manuals.gschema.xml:10
+msgid "Window dimensions"
+msgstr "Dimensioni della finestra"
+
+#: data/app.devsuite.Manuals.gschema.xml:14
+msgid "Window is Maximized"
+msgstr "La finestra è massimizzata"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
+msgid "Read developer documentation"
+msgstr "Leggere le documentazioni per sviluppatori"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
+msgid ""
+"Manuals indexes your developer manuals and provides robust browsing and "
+"searching capabilities."
+msgstr ""
+"Manuals indicizza i manuali per sviluppatori e offre solide funzionalità di "
+"navigazione e ricerca."
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
+msgid ""
+"It supports the devhelp documentation format used by many libraries "
+"integrating with the GTK platform."
+msgstr ""
+"Supporta il formato di documentazione devhelp usato da molte librerie "
+"integrate con la piattaforma GTK"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:36
+msgid "Browse Documentation by SDK"
+msgstr "Consultazione delle documentazioni per SDK"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:40
+msgid "Free Form Search"
+msgstr "Ricerca libera"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:44
+msgid "Install SDK Documentation"
+msgstr "Installazione della documentazione degli SDK"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:48
+msgid "Integrated Dark Mode"
+msgstr "Modalità scura integrata"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:52
+msgid "Mobile Search"
+msgstr "Ricerca su dispositivi mobili"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:56
+msgid "Adaptable Documentation"
+msgstr "Documentazione adattiva"
+
+#: src/manuals-application.c:248
+msgid "translator-credits"
+msgstr "macca . <macca@maccacomputer.com>"
+
+# [DF] È il nome della nota app di GNOME
+#: src/manuals-application.c:253
+msgid "Builder"
+msgstr "Builder"
+
+#: src/manuals-application.c:254
+msgid "Create GNOME Applications"
+msgstr "Crea applicazioni per GNOME"
+
+#: src/manuals-application.c:290
+msgid "Open a new Manuals window"
+msgstr "Apri una nuova finestra di Manuali"
+
+#: src/manuals-bundle-dialog.c:148
+msgid "Install"
+msgstr "Installa"
+
+#: src/manuals-bundle-dialog.ui:4
+msgid "Documentation"
+msgstr "Documentazione"
+
+#: src/manuals-bundle-dialog.ui:28
+msgid "Loading SDKs…"
+msgstr "Caricamento SDK…"
+
+#: src/manuals-bundle-dialog.ui:29
+msgid "Please wait while we locate the SDKs on your system"
+msgstr "Attendere mentre gli SDK vengono cercati nel sistema"
+
+#: src/manuals-bundle-dialog.ui:41
+msgid "No SDKs Available"
+msgstr "Nessun SDK disponibile"
+
+#: src/manuals-bundle-dialog.ui:42
+msgid "Your system is not configured to access any SDKs."
+msgstr "Il sistema non è configurato per accedere a nessun SDK."
+
+#: src/manuals-bundle-dialog.ui:54
+msgid "Installed SDKs"
+msgstr "SDK installati"
+
+#: src/manuals-bundle-dialog.ui:67
+msgid "Available SDKs"
+msgstr "SDK disponibili"
+
+#: src/manuals-install-button.c:110
+msgid "Installing Documentation"
+msgstr "Installazione della documentazione"
+
+#: src/manuals-install-button.ui:16
+msgid "_Install"
+msgstr "_Installa"
+
+#: src/manuals-install-button.ui:31
+msgid "_Cancel"
+msgstr "A_nnulla"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/manuals-search-entry.c:182
+#, c-format
+msgid "%u of %u"
+msgstr "%u di %u"
+
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+msgid "Search"
+msgstr "Cerca"
+
+#: src/manuals-tab.c:143
+msgid "Open Link in New Tab"
+msgstr "Apri collegamento in una nuova scheda"
+
+#: src/manuals-tab.c:149
+msgid "Open Link in New Window"
+msgstr "Apri collegamento in una nuova finestra"
+
+#: src/manuals-tab.c:759
+msgid "Empty Page"
+msgstr "Pagina vuota"
+
+#: src/manuals-window.ui:97
+msgid "Loading…"
+msgstr "Caricamento…"
+
+#: src/manuals-window.ui:98
+msgid "One moment please while we locate your documentation"
+msgstr "Attendere mentre le documentazioni vengono cercate"
+
+#: src/manuals-window.ui:116
+msgid "Browse Documentation"
+msgstr "Sfoglia la documentazione"
+
+#: src/manuals-window.ui:123
+msgid ""
+"• Press Ctrl+K to search for classes and more\n"
+"• Press Ctrl+T to open a new tab\n"
+"\n"
+"Or, press Ctrl+W to close the window"
+msgstr ""
+"• Premere Ctrl+K per cercare classi ed altro\n"
+"• Premere Ctrl+T per aprire una nuova scheda\n"
+"\n"
+"Oppure, premere Ctrl+W per chiudere la finestra"
+
+#: src/manuals-window.ui:132
+msgid "Install Documentation…"
+msgstr "Installa documentazione…"
+
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:168
+msgid "Filter…"
+msgstr "Filtra…"
+
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:393
+msgid "Toggle Sidebar"
+msgstr "Attiva/disattiva la barra laterale"
+
+#: src/manuals-window.ui:418 src/manuals-window.ui:471
+#: src/manuals-window.ui:509 src/manuals-window.ui:538
+msgid "Main Menu"
+msgstr "Menù principale"
+
+#: src/manuals-window.ui:603 src/manuals-window.ui:632
+msgid "New _Tab"
+msgstr "Nuova sc_heda"
+
+#: src/manuals-window.ui:608 src/manuals-window.ui:637
+msgid "New _Window"
+msgstr "Nuova _finestra"
+
+#: src/manuals-window.ui:614 src/manuals-window.ui:643
+msgid "_Install Documentation…"
+msgstr "_Installa documentazione…"
+
+#: src/manuals-window.ui:620 src/manuals-window.ui:649
+msgid "_About Manuals"
+msgstr "Inform_azioni su Manuali"
