@@ -19,39 +19,39 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 24.12.3\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:2
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
+#: data/org.gnome.Manuals.desktop.in.in:2
+#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
 #: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Kézikönyvek"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
+#: data/org.gnome.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Dokumentáció telepítése, böngészése és keresése"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/app.devsuite.Manuals.desktop.in.in:13
+#: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "dokumentáció;kézikönyv;útmutató;api;referencia;fejlesztői;"
 
-#: data/app.devsuite.Manuals.gschema.xml:6
+#: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
 msgstr "Az oldalsáv szélessége az alkalmazás képpontjaiban"
 
-#: data/app.devsuite.Manuals.gschema.xml:10
+#: data/org.gnome.Manuals.gschema.xml:10
 msgid "Window dimensions"
 msgstr "Ablakméretek"
 
-#: data/app.devsuite.Manuals.gschema.xml:14
+#: data/org.gnome.Manuals.gschema.xml:14
 msgid "Window is Maximized"
 msgstr "Az ablak teljes méretű"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:7
 msgid "Read developer documentation"
 msgstr "Fejlesztői dokumentáció olvasása"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9
 msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
@@ -59,7 +59,7 @@ msgstr ""
 "A Kézikönyvek indexeli a fejlesztői kézikönyveket, és megbízható böngészési és"
 " keresési képességeket biztosít."
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:13
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
@@ -67,27 +67,27 @@ msgstr ""
 "Támogatja a devhelp dokumentációs formátumot, amelyet számos, a GTK "
 "platformmal integráló programkönyvtár használ."
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:36
+#: data/org.gnome.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
 msgstr "Dokumentáció böngészése SDK szerint"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:40
+#: data/org.gnome.Manuals.metainfo.xml.in.in:40
 msgid "Free Form Search"
 msgstr "Szabad szöveges keresés"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:44
 msgid "Install SDK Documentation"
 msgstr "SDK dokumentáció telepítése"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:48
 msgid "Integrated Dark Mode"
 msgstr "Integrált sötét mód"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:52
 msgid "Mobile Search"
 msgstr "Mobilos keresés"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:56
 msgid "Adaptable Documentation"
 msgstr "Alkalmazkodó megjelenésű dokumentáció"
 

@@ -48,9 +48,9 @@ config_h = configuration_data()
 
 if get_option('development')
   config_h.set10('DEVELOPMENT_BUILD', true)
-  app_id = 'app.devsuite.Manuals.Devel'
+  app_id = 'org.gnome.Manuals.Devel'
 else
-  app_id = 'app.devsuite.Manuals'
+  app_id = 'org.gnome.Manuals'
 endif
 
 config_h.set_quoted('APP_ID', app_id)

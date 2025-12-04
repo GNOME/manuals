@@ -245,7 +245,7 @@ manuals_path_bar_class_init (ManualsPathBarClass *klass)
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "ManualsPathBar");
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-path-bar.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/manuals/manuals-path-bar.ui");
   gtk_widget_class_bind_template_child (widget_class, ManualsPathBar, elements);
   gtk_widget_class_bind_template_child (widget_class, ManualsPathBar, scroller);
 }

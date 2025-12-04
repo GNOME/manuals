@@ -323,7 +323,7 @@ manuals_path_button_class_init (ManualsPathButtonClass *klass)
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-path-button.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/manuals/manuals-path-button.ui");
   gtk_widget_class_set_css_name (widget_class, "pathbutton");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 

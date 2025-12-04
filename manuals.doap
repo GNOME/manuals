@@ -8,9 +8,9 @@
   <name xml:lang="en">Manuals</name>
   <shortdesc xml:lang="en">Read Documentation</shortdesc>
   <description xml:lang="en">Install, Browse, and Read Documentation</description>
-  <homepage rdf:resource="https://gitlab.gnome.org/chergert/manuals" />
-  <download-page rdf:resource="https://devsuite.app/sources/manuals/" />
-  <bug-database rdf:resource="https://gitlab.gnome.org/chergert/manuals/issues" />
+  <homepage rdf:resource="https://gitlab.gnome.org/GNOME/manuals" />
+  <download-page rdf:resource="https://download.gnome.org/sources/manuals/" />
+  <bug-database rdf:resource="https://gitlab.gnome.org/GNOME/manuals/issues" />
   <developer-forum rdf:resource="https://discourse.gnome.org/tag/manuals" />
 
   <category rdf:resource="http://api.gnome.org/doap-extensions#apps" />

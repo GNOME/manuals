@@ -18,69 +18,69 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.8\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:2 data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: data/org.gnome.Manuals.desktop.in.in:2 data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
 #: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465 src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Kılavuzlar"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
+#: data/org.gnome.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Belgelendirme Kur, Göz At ve Ara"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/app.devsuite.Manuals.desktop.in.in:13
+#: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "documentation;manuals;api;reference;docs;developer;belgelendirme;belgeleme;kılavuzlar;upa;referans;atıf;el;kitapçık;geliştirici;"
 
-#: data/app.devsuite.Manuals.desktop.in.in:18
+#: data/org.gnome.Manuals.desktop.in.in:18
 msgid "New Window"
 msgstr "Yeni Pencere"
 
-#: data/app.devsuite.Manuals.gschema.xml:6
+#: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
 msgstr "Uygulama piksellerinde kenar çubuğun genişliği"
 
-#: data/app.devsuite.Manuals.gschema.xml:10
+#: data/org.gnome.Manuals.gschema.xml:10
 msgid "Window dimensions"
 msgstr "Pencere boyutları"
 
-#: data/app.devsuite.Manuals.gschema.xml:14
+#: data/org.gnome.Manuals.gschema.xml:14
 msgid "Window is Maximized"
 msgstr "Pencere Tam Ekranda"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:7
 msgid "Read developer documentation"
 msgstr "Geliştirici belgelendirmesini oku"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9
 msgid "Manuals indexes your developer manuals and provides robust browsing and searching capabilities."
 msgstr "Kılavuzlar geliştirici kılavuzlarınızı dizinler ve güçlü göz atma ve arama yetenekleri sağlar."
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:13
 msgid "It supports the devhelp documentation format used by many libraries integrating with the GTK platform."
 msgstr "GTK platformuyla tümleşen birçok kütüphanece kullanılan devhelp belgelendirme biçimini destekler."
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:36
+#: data/org.gnome.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
 msgstr "SDK’ye Göre Belgelendirme Göz At"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:40
+#: data/org.gnome.Manuals.metainfo.xml.in.in:40
 msgid "Free Form Search"
 msgstr "Serbest Biçim Arama"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:44
 msgid "Install SDK Documentation"
 msgstr "SDK Belgelendirme Kur"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:48
 msgid "Integrated Dark Mode"
 msgstr "Tümleşik Koyu Kip"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:52
 msgid "Mobile Search"
 msgstr "Mobil Arama"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:56
 msgid "Adaptable Documentation"
 msgstr "Uyarlanır Belgelendirme"
 

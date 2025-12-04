@@ -844,7 +844,7 @@ manuals_window_class_init (ManualsWindowClass *klass)
 
   widget_class->size_allocate = manuals_window_size_allocate;
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-window.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/manuals/manuals-window.ui");
 
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, dock);
   gtk_widget_class_bind_template_child (widget_class, ManualsWindow, list_view);

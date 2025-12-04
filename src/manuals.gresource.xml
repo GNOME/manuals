@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/app/devsuite/manuals">
+  <gresource prefix="/org/gnome/manuals">
     <file>manuals-tab.css</file>
     <file>manuals-tab.js</file>
     <file preprocess="xml-stripblanks">icons/manuals.svg</file>

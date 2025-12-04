@@ -17,43 +17,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:2
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: data/org.gnome.Manuals.desktop.in.in:2
+#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
 #: src/manuals-window.c:885 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Manuali"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
+#: data/org.gnome.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Installare, sfogliare e scoprire le documentazioni"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/app.devsuite.Manuals.desktop.in.in:13
+#: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "documentazione;manuali;api;riferimenti;reference,documenti;sviluppatori;"
 
-#: data/app.devsuite.Manuals.desktop.in.in:18
+#: data/org.gnome.Manuals.desktop.in.in:18
 msgid "New Window"
 msgstr "Nuova finestra"
 
-#: data/app.devsuite.Manuals.gschema.xml:6
+#: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
 msgstr "Larghezza della barra laterale in pixel dell'applicazione"
 
-#: data/app.devsuite.Manuals.gschema.xml:10
+#: data/org.gnome.Manuals.gschema.xml:10
 msgid "Window dimensions"
 msgstr "Dimensioni della finestra"
 
-#: data/app.devsuite.Manuals.gschema.xml:14
+#: data/org.gnome.Manuals.gschema.xml:14
 msgid "Window is Maximized"
 msgstr "La finestra è massimizzata"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:7
 msgid "Read developer documentation"
 msgstr "Leggere le documentazioni per sviluppatori"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9
 msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
@@ -61,7 +61,7 @@ msgstr ""
 "Manuals indicizza i manuali per sviluppatori e offre solide funzionalità di "
 "navigazione e ricerca."
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:13
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
@@ -69,27 +69,27 @@ msgstr ""
 "Supporta il formato di documentazione devhelp usato da molte librerie "
 "integrate con la piattaforma GTK"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:36
+#: data/org.gnome.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
 msgstr "Consultazione delle documentazioni per SDK"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:40
+#: data/org.gnome.Manuals.metainfo.xml.in.in:40
 msgid "Free Form Search"
 msgstr "Ricerca libera"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:44
 msgid "Install SDK Documentation"
 msgstr "Installazione della documentazione degli SDK"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:48
 msgid "Integrated Dark Mode"
 msgstr "Modalità scura integrata"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:52
 msgid "Mobile Search"
 msgstr "Ricerca su dispositivi mobili"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:56
 msgid "Adaptable Documentation"
 msgstr "Documentazione adattiva"
 

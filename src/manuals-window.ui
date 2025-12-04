@@ -630,7 +630,7 @@ Or, press Ctrl+W to close the window</property>
     </section>
   </menu>
   <object class="GSettings" id="settings">
-    <property name="schema-id">app.devsuite.Manuals</property>
+    <property name="schema-id">org.gnome.Manuals</property>
   </object>
   <menu id="primary_menu">
     <section>

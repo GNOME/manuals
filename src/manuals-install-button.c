@@ -273,7 +273,7 @@ manuals_install_button_class_init (ManualsInstallButtonClass *klass)
                                 NULL,
                                 G_TYPE_NONE, 2, FOUNDRY_TYPE_OPERATION, G_TYPE_CANCELLABLE);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-install-button.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/manuals/manuals-install-button.ui");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_bind_template_child (widget_class, ManualsInstallButton, cancel);
   gtk_widget_class_bind_template_child (widget_class, ManualsInstallButton, css);

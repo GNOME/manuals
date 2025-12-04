@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="app.devsuite.Manuals" path="/app/devsuite/Manuals/" gettext-domain="manuals">
+  <schema id="org.gnome.Manuals" path="/org/gnome/Manuals/" gettext-domain="manuals">
     <key name="sidebar-width" type="u">
       <default>300</default>
       <summary>Width of sidebar in application pixels</summary>

@@ -364,7 +364,7 @@ manuals_bundle_dialog_class_init (ManualsBundleDialogClass *klass)
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-bundle-dialog.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/manuals/manuals-bundle-dialog.ui");
 
   gtk_widget_class_bind_template_child (widget_class, ManualsBundleDialog, available);
   gtk_widget_class_bind_template_child (widget_class, ManualsBundleDialog, available_group);

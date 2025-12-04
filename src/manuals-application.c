@@ -60,7 +60,7 @@ manuals_application_new (const char        *application_id,
   return g_object_new (MANUALS_TYPE_APPLICATION,
                        "application-id", APP_ID,
                        "flags", flags,
-                       "resource-base-path", "/app/devsuite/manuals",
+                       "resource-base-path", "/org/gnome/manuals",
                        NULL);
 }
 
@@ -243,8 +243,8 @@ manuals_application_about_action (GSimpleAction *action,
                          "developers", developers,
                          "copyright", "© 2025 Christian Hergert",
                          "license-type", GTK_LICENSE_GPL_3_0,
-                         "website", "https://devsuite.app/manuals",
-                         "issue-url", "https://gitlab.gnome.org/chergert/manuals/issues",
+                         "website", "https://apps.gnome.org/Manuals/",
+                         "issue-url", "https://gitlab.gnome.org/GNOME/manuals/issues",
                          "translator-credits", _("translator-credits"),
                          NULL);
 

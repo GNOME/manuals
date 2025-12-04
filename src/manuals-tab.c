@@ -488,14 +488,14 @@ manuals_tab_constructed (GObject *object)
 
   ucm = webkit_web_view_get_user_content_manager (self->web_view);
 
-  style_sheet_css = g_resources_lookup_data ("/app/devsuite/manuals/manuals-tab.css", 0, NULL);
+  style_sheet_css = g_resources_lookup_data ("/org/gnome/manuals/manuals-tab.css", 0, NULL);
   style_sheet = webkit_user_style_sheet_new ((const char *)g_bytes_get_data (style_sheet_css, NULL),
                                              WEBKIT_USER_CONTENT_INJECT_ALL_FRAMES,
                                              WEBKIT_USER_STYLE_LEVEL_USER,
                                              NULL, NULL);
   webkit_user_content_manager_add_style_sheet (ucm, style_sheet);
 
-  overshoot_js = g_resources_lookup_data ("/app/devsuite/manuals/manuals-tab.js", 0, NULL);
+  overshoot_js = g_resources_lookup_data ("/org/gnome/manuals/manuals-tab.js", 0, NULL);
   script = webkit_user_script_new ((const char *)g_bytes_get_data (overshoot_js, NULL),
                                    WEBKIT_USER_CONTENT_INJECT_ALL_FRAMES,
                                    WEBKIT_USER_SCRIPT_INJECT_AT_DOCUMENT_END,
@@ -659,7 +659,7 @@ manuals_tab_class_init (ManualsTabClass *klass)
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/app/devsuite/manuals/manuals-tab.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/manuals/manuals-tab.ui");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 
   gtk_widget_class_bind_template_child (widget_class, ManualsTab, web_view);

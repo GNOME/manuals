@@ -19,75 +19,75 @@ msgstr ""
 "n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 3.8\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:2 data/app.devsuite.Manuals.metainfo.xml.in.in:6
+#: data/org.gnome.Manuals.desktop.in.in:2 data/org.gnome.Manuals.metainfo.xml.in.in:6
 #: src/manuals-application.c:238 src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Справочник"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
+#: data/org.gnome.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Установка, просмотр и поиск документации"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/app.devsuite.Manuals.desktop.in.in:13
+#: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "документация;руководства;api;справочник;docs;разработчик;documentation;manuals;reference;developer;"
 
-#: data/app.devsuite.Manuals.desktop.in.in:18
+#: data/org.gnome.Manuals.desktop.in.in:18
 msgid "New Window"
 msgstr "Новое окно"
 
-#: data/app.devsuite.Manuals.gschema.xml:6
+#: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
 msgstr "Ширина боковой панели в приложении в пикселях"
 
-#: data/app.devsuite.Manuals.gschema.xml:10
+#: data/org.gnome.Manuals.gschema.xml:10
 msgid "Window dimensions"
 msgstr "Размеры окна"
 
-#: data/app.devsuite.Manuals.gschema.xml:14
+#: data/org.gnome.Manuals.gschema.xml:14
 msgid "Window is Maximized"
 msgstr "Окно развернуто"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:7
 msgid "Read developer documentation"
 msgstr "Чтение документации разработчика"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9
 msgid "Manuals indexes your developer manuals and provides robust browsing and searching capabilities."
 msgstr ""
 "Приложение индексирует ваши руководства для разработчиков и предоставляет широкие возможности просмотра и "
 "поиска."
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:13
 msgid ""
 "It supports the devhelp documentation format used by many libraries integrating with the GTK platform."
 msgstr ""
 "Оно поддерживает формат документации devhelp, используемый многими библиотеками, интегрированными с "
 "платформой GTK."
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:36
+#: data/org.gnome.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
 msgstr "Просмотр документации по SDK"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:40
+#: data/org.gnome.Manuals.metainfo.xml.in.in:40
 msgid "Free Form Search"
 msgstr "Поиск в свободной форме"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:44
 msgid "Install SDK Documentation"
 msgstr "Установка документации SDK"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:48
 msgid "Integrated Dark Mode"
 msgstr "Встроенный темный режим"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:52
 msgid "Mobile Search"
 msgstr "Мобильный поиск"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:56
 msgid "Adaptable Documentation"
 msgstr "Адаптивная документация"
 
