@@ -1,3 +1,18 @@
+Manuals 50.alpha
+================
+
+ * Application renamed from app.devsuite.Manuals to org.gnome.Manuals
+ * Add mouse navigation support (back/forward with mouse keys 8 and 9)
+ * Improve navigation state updates when using history back/forward
+ * Make Ctrl+K focus search and select all text for easier re-searching
+ * Bundle dialog improvements:
+   - Use collate key for filename sorting
+   - Add button to show/hide legacy SDKs
+   - Denote EOL SDKs and show warnings
+ * Build system improvements
+ * Translation updates
+ * New translations: Kazakh, Italian, Serbian, Serbian (Latin)
+
 Manuals 49.1
 ============
 
