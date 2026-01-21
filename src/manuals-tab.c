@@ -42,7 +42,7 @@ struct _ManualsTab
   ManualsSearchEntry   *search_entry;
   GtkRevealer          *search_revealer;
 
-  guint                 search_dir : 1;
+  gint                  search_dir;
 };
 
 G_DEFINE_FINAL_TYPE (ManualsTab, manuals_tab, GTK_TYPE_WIDGET)
