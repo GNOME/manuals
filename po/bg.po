@@ -1,14 +1,14 @@
 # Bulgarian translation of manuals po-file.
 # Copyright (C) 2025 twlvnn kraftwerk <kraft_werk@tutanota.com>.
 # This file is distributed under the same license as the Manuals package.
-# twlvnn kraftwerk <kraft_werk@tutanota.com>,  2025.
+# twlvnn kraftwerk <kraft_werk@tutanota.com>, 2025, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-07-08 02:54+0000\n"
-"PO-Revision-Date: 2025-07-13 10:42+0200\n"
+"POT-Creation-Date: 2025-11-08 00:18+0000\n"
+"PO-Revision-Date: 2026-01-22 10:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian <Bulgarian>\n"
 "Language: bg\n"
@@ -16,25 +16,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: data/app.devsuite.Manuals.desktop.in.in:2
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:885 src/manuals-window.ui:6 src/manuals-window.ui:465
 #: src/manuals-window.ui:501
 msgid "Manuals"
 msgstr "Ръководства"
 
-#: data/app.devsuite.Manuals.desktop.in.in:4
+#: data/app.devsuite.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Инсталиране, разглеждане и търсене в документацията"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/app.devsuite.Manuals.desktop.in.in:14
+#: data/app.devsuite.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr ""
 "документация;ръководства;програмен "
 "интерфейс;разработчик;documentation;manuals;api;reference;docs;developer;"
+
+#: data/app.devsuite.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Нов прозорец"
 
 #: data/app.devsuite.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -92,7 +96,7 @@ msgstr "Търсачка за мобилни устройства"
 msgid "Adaptable Documentation"
 msgstr "Документация с адаптивен интерфейс"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
 msgstr ""
 "twlvnn kraftwerk &lt;<a "
@@ -105,15 +109,15 @@ msgstr ""
 "Докладвайте за грешки в превода в <a href='https://fsa-bg.org/project/gtp/"
 "newticket'>съответния раздел</a>."
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "Разработчик"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "Създаване на програми на GNOME"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "Отваряне на нов прозорец за ръководства"
 
@@ -204,7 +208,8 @@ msgid ""
 msgstr ""
 "• Натиснете Ctrl+K за търсене на класове и др.;\n"
 "• Натиснете Ctrl+T за отваряне на нов подпрозорец;\n"
-"• Натиснете Ctrl+W за затваряне на прозореца."
+"\n"
+"• Натиснете Ctrl+W за затваряне на прозореца"
 
 #: src/manuals-window.ui:132
 msgid "Install Documentation…"
