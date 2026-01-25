@@ -1,37 +1,40 @@
 # Georgian translation for Manuals.
 # Copyright (C) 2025 Manuals's authors.
 # This file is distributed under the same license as the Manuals package.
-# Ekaterine Papava <papava.e@gtu.ge>, 2025.
+# Ekaterine Papava <papava.e@gtu.ge>, 2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-06-17 23:46+0000\n"
-"PO-Revision-Date: 2025-06-18 06:10+0200\n"
+"POT-Creation-Date: 2025-12-04 20:44+0000\n"
+"PO-Revision-Date: 2026-01-25 11:02+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/org.gnome.Manuals.desktop.in.in:3
-#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
-#: src/manuals-window.ui:501
+#: data/org.gnome.Manuals.desktop.in.in:2 data/org.gnome.Manuals.metainfo.xml.in.in:6
+#: src/manuals-application.c:238 src/manuals-window.c:916 src/manuals-window.ui:6
+#: src/manuals-window.ui:472 src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "სახელმძღვანელოები"
 
-#: data/org.gnome.Manuals.desktop.in.in:4
+#: data/org.gnome.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "დააყენეთ, დაათვალიერეთ და მოძებნეთ დოკუმენტაცია"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Manuals.desktop.in.in:14
+#: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "documentation;manuals;api;reference;docs;developer;დოკუმენტაცია;სახელმძღვანელოები;პროგრამისტი;"
+
+#: data/org.gnome.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "ახალი ფანჯარა"
 
 #: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -50,20 +53,17 @@ msgid "Read developer documentation"
 msgstr "პროგრამისტის დოკუმენტაციის წაკითხვა"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:9
-msgid ""
-"Manuals indexes your developer manuals and provides robust browsing and "
-"searching capabilities."
+msgid "Manuals indexes your developer manuals and provides robust browsing and searching capabilities."
 msgstr ""
-"Manuals აინდექსებს თქვენს სახელმძღვანელოებს და გაწვდით მძლავრ თვალიერებისა "
-"და ძებნის შესაძლებლობებს."
+"Manuals აინდექსებს თქვენს სახელმძღვანელოებს და გაწვდით მძლავრ თვალიერებისა და ძებნის შესაძლებლობებს."
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:13
 msgid ""
-"It supports the devhelp documentation format used by many libraries "
-"integrating with the GTK platform."
+"It supports the devhelp documentation format used by many libraries integrating with the GTK "
+"platform."
 msgstr ""
-"აქვს devhelp დოკუმენტაციის ფორმატის მხარდაჭერა, რომელსაც GTK-ის პლატფორმაში "
-"ინტეგრირებულ ბევრ ბიბლიოთეკას გააჩნია."
+"აქვს devhelp დოკუმენტაციის ფორმატის მხარდაჭერა, რომელსაც GTK-ის პლატფორმაში ინტეგრირებულ ბევრ "
+"ბიბლიოთეკას გააჩნია."
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
@@ -89,23 +89,27 @@ msgstr "მობილური ძებნა"
 msgid "Adaptable Documentation"
 msgstr "ადაპტირებადი დოკუმენტაცია"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
 msgstr "ეკატერინე პაპავა"
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "ამგები"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "შექმენით GNOME-ის აპლიკაციები"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "ახალი Manuals-ის ფანჯრის გახსნა"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "ძალიან ძველი"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "დაყენება"
 
@@ -137,6 +141,14 @@ msgstr "დაყენებული SDK-ები"
 msgid "Available SDKs"
 msgstr "ხელმისაწვდომი SDK-ები"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "მოძველებული SDK-ების დამალვა"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "მოძველებული SDK-ების ნახვა"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "მიმდინარეობს დოკუმენტაციის დაყენება"
@@ -155,7 +167,7 @@ msgstr "გაუ_ქმება"
 msgid "%u of %u"
 msgstr "%u %u-დან"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "ძებნა"
 
@@ -167,23 +179,23 @@ msgstr "ბმულის გახსნა ახალ ჩანართშ
 msgid "Open Link in New Window"
 msgstr "ბმულის ახალ ფანჯარაში გახსნა"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:765
 msgid "Empty Page"
 msgstr "ცარიელი გვერდი"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "ჩატვირთვა…"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "მოითმინეთ, სანამ ვეძებ თქვენ დოკუმენტაციას"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "დოკუმენტაციის დათვალიერება"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -195,37 +207,37 @@ msgstr ""
 "\n"
 "ან დააჭირეთ Ctrl+W ფანჯრის დასახურად"
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "დოკუმენტაციის დაყენება…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "ფილტრი…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "გვერდითი პანელის ჩვენების ჩართ/გამორთ"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478 src/manuals-window.ui:516
+#: src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "მთავარი მენიუ"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "ახალი _ჩანართი"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "ახალი ფანჯარა"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "დოკუმენტაცი_ის დაყენება…"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "Manuals-ის შეს_ახებ"
