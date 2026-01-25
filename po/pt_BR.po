@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the org.gnome.Manuals package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Juliano de Souza Camargo <julianosc@pm.me>, 2025.
+# Juliano de Souza Camargo <julianosc@pm.me>, 2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: org.gnome.Manuals 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-11-02 10:47+0000\n"
-"PO-Revision-Date: 2025-11-05 10:37-0300\n"
+"POT-Creation-Date: 2025-12-04 20:44+0000\n"
+"PO-Revision-Date: 2026-01-25 19:17-0300\n"
 "Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao/>\n"
 "Language: pt_BR\n"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/org.gnome.Manuals.desktop.in.in:2
 #: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
-#: src/manuals-window.ui:501
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "Manuais"
 
@@ -111,7 +111,11 @@ msgstr "Crie aplicações GNOME"
 msgid "Open a new Manuals window"
 msgstr "Abrir uma nova janela do manuais"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "Fim de vida"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "Instalar"
 
@@ -143,6 +147,14 @@ msgstr "SDKs instalados"
 msgid "Available SDKs"
 msgstr "SDKs disponível"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "Esconder SDKs legados"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "Ver SDKs legados"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "Instalando a documentação"
@@ -161,7 +173,7 @@ msgstr "_Cancelar"
 msgid "%u of %u"
 msgstr "%u de %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "Procurar"
 
@@ -173,23 +185,23 @@ msgstr "Abrir link em nova aba"
 msgid "Open Link in New Window"
 msgstr "Abrir link em nova janela"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:765
 msgid "Empty Page"
 msgstr "Página vazia"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "Carregando…"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "Um momento, por favor, enquanto localizamos sua documentação"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "Procure documentação"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -201,38 +213,38 @@ msgstr ""
 "\n"
 "Ou pressione Ctrl+W para fechar a janela"
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "Instale a documentação…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "Filtro…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "Alterne a barra lateral"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "Novo _aba"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "Nova _janela"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "_Instale a documentação…"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "_Sobre manuais"
 
