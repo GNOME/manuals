@@ -7,19 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-09-11 00:42-0400\n"
-"PO-Revision-Date: 2025-09-21 17:27-0400\n"
+"POT-Creation-Date: 2025-12-04 20:44+0000\n"
+"PO-Revision-Date: 2026-01-26 11:00-0500\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: \n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/org.gnome.Manuals.desktop.in.in:2 data/org.gnome.Manuals.metainfo.xml.in.in:6
-#: src/manuals-application.c:217 src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
-#: src/manuals-window.ui:501
+#: data/org.gnome.Manuals.desktop.in.in:2
+#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "قوللانما"
 
@@ -30,7 +31,13 @@ msgstr "ئورنىتىش، كۆز يۈگۈرتۈش ۋە ئىزدىنىش قول�
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
-msgstr "documentation;manuals;api;reference;docs;developer;قوللانما؛پۈتۈك؛ئېغىز؛نەقىل؛ئىجادكار؛"
+msgstr ""
+"documentation;manuals;api;reference;docs;developer;قوللانما؛پۈتۈك؛ئېغىز؛"
+"نەقىل؛ئىجادكار؛"
+
+#: data/org.gnome.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "يېڭى كۆزنەك"
 
 #: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -49,12 +56,20 @@ msgid "Read developer documentation"
 msgstr "ئىجادكار قوللانمىسىنى ئوقۇش"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:9
-msgid "Manuals indexes your developer manuals and provides robust browsing and searching capabilities."
-msgstr "قوللانما ئىندېكىسى ئىجادىيەت قوللانمىڭىز بولۇپ، مۇقىم كۆز يۈگۈرتۈش ۋە ئىزدەش ئىقتىدارى بىلەن تەمىنلەيدۇ."
+msgid ""
+"Manuals indexes your developer manuals and provides robust browsing and "
+"searching capabilities."
+msgstr ""
+"قوللانما ئىندېكىسى ئىجادىيەت قوللانمىڭىز بولۇپ، مۇقىم كۆز يۈگۈرتۈش ۋە ئىزدەش "
+"ئىقتىدارى بىلەن تەمىنلەيدۇ."
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:13
-msgid "It supports the devhelp documentation format used by many libraries integrating with the GTK platform."
-msgstr "ئۇ GTK سۇپىسى بىلەن توپلاشتۇرۇلغان نۇرغۇن ھەمبەھىر ئامبارلار ئىشلىتىدىغان devhelp پۈتۈكى بىلەن تەمىنلەيدۇ."
+msgid ""
+"It supports the devhelp documentation format used by many libraries "
+"integrating with the GTK platform."
+msgstr ""
+"ئۇ GTK سۇپىسى بىلەن توپلاشتۇرۇلغان نۇرغۇن ھەمبەھىر ئامبارلار ئىشلىتىدىغان "
+"devhelp پۈتۈكى بىلەن تەمىنلەيدۇ."
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
@@ -80,25 +95,29 @@ msgstr "كۆچمە ئىزدەش"
 msgid "Adaptable Documentation"
 msgstr "ماسلىشىشچان پۈتۈك"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
 msgstr ""
 "تەرجىمان تۆھپىسى\n"
 "ئابدۇقادىر ئابلىز <sahranbay@gmail.com>"
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "قۇرغۇچ"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "GNOME پىروگراممىسى قۇر"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "يېڭى قوللانما كۆزنىكى ئاچ"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "ھاياتىنىڭ ئاخىرى"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "ئورنات"
 
@@ -130,6 +149,14 @@ msgstr "ئورنىتىلغان SDK"
 msgid "Available SDKs"
 msgstr "ئىشلەتكىلى بولىدىغان SDK"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "كونا SDK نى يوشۇر"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "كونا SDK نى كۆرسەت"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "قوللانما ئورنىتىۋاتىدۇ"
@@ -148,7 +175,7 @@ msgstr "ۋاز كەچ(_C)"
 msgid "%u of %u"
 msgstr "%u/ %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "ئىزدە"
 
@@ -160,23 +187,23 @@ msgstr "ئۇلانمىنى يېڭى بەتكۈچتە ئاچ"
 msgid "Open Link in New Window"
 msgstr "ئۇلانمىنى يېڭى كۆزنەكتە ئاچ"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:765
 msgid "Empty Page"
 msgstr "بوش بەت"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "يۈكلەۋاتىدۇ…"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "قوللانما ئورنىنى بىكىتىۋاتقاندا سەل كۈتۈڭ"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "قوللانمىغا كۆز يۈگۈرت"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -188,36 +215,37 @@ msgstr ""
 "\n"
 "ياكى يېڭى كۆزنەك ئېچىشتا Ctrl+W بېسىلىدۇ"
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "قوللانما ئورنىتىۋاتىدۇ…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "سۈزگۈچ…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "يان بالداق ئالماشتۇر"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471 src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "ئاساسىي تىزىملىك"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "يېڭى بەتكۈچ(_T)"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "يېڭى كۆزنەك(_W)"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "قوللانما ئورنىتىۋاتىدۇ(_I)…"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "قوللانما ھەققىدە(_A)"
