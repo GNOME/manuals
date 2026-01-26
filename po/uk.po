@@ -2,13 +2,13 @@
 # Copyright (C) 2025 Manuals's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Manuals package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>,  2025.
+# Yuri Chornoivan <yurchor@ukr.net>,  2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-11-02 10:47+0000\n"
-"PO-Revision-Date: 2025-11-02 15:42+0200\n"
+"POT-Creation-Date: 2025-12-04 20:44+0000\n"
+"PO-Revision-Date: 2026-01-26 03:10+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/org.gnome.Manuals.desktop.in.in:2
 #: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
-#: src/manuals-window.ui:501
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "Підручники"
 
@@ -38,7 +38,6 @@ msgstr ""
 "терфейс;довідник;доки;розробник;"
 
 #: data/org.gnome.Manuals.desktop.in.in:18
-#| msgid "New _Window"
 msgid "New Window"
 msgstr "Нове вікно"
 
@@ -114,7 +113,11 @@ msgstr "Створення програм GNOME"
 msgid "Open a new Manuals window"
 msgstr "Відкрити нове вікно «Підручників»"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "Завершено термін підтримки"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "Встановити"
 
@@ -146,6 +149,14 @@ msgstr "Встановлені SDK"
 msgid "Available SDKs"
 msgstr "Доступні набори засобів розробки"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "Приховати застарілі SDK"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "Переглянути застарілі SDK"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "Встановлення документації"
@@ -164,7 +175,7 @@ msgstr "_Скасувати"
 msgid "%u of %u"
 msgstr "%u з %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "Пошук"
 
@@ -176,23 +187,23 @@ msgstr "Відкрити посилання у новій вкладці"
 msgid "Open Link in New Window"
 msgstr "Відкрити посилання у новому вікні"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:765
 msgid "Empty Page"
 msgstr "Порожня сторінка"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "Завантаження…"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "Хвилиночку, будь ласка — шукаємо документацію"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "Навігація документацією"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -204,37 +215,37 @@ msgstr ""
 "\n"
 "Або натисніть Ctrl+W, щоб закрити це вікно"
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "Встановити документацію…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "Фільтрувати…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "Увімкнути або вимкнути бічну панель"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "Головне меню"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "Нова _вкладка"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "Створити _вікно"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "_Встановити документацію…"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "_Про «Підручники»"
