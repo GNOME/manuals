@@ -1,0 +1,255 @@
+# Cornish translation for Manuals.
+# Copyright (C) 2026 Manuals's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Manuals package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Flynn Peck <cirilla@tuta.io>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Manuals main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
+"POT-Creation-Date: 2025-12-04 20:44+0000\n"
+"PO-Revision-Date: 2026-01-27 14:42+0000\n"
+"Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
+"Language-Team: kw\n"
+"Language: kw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-VCS-Web: https://gitlab.gnome.org/GNOME/manuals\n"
+"X-DL-Lang: kw\n"
+"X-DL-Module: Manuals\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 49.0\n"
+
+#: data/org.gnome.Manuals.desktop.in.in:2
+#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
+msgid "Manuals"
+msgstr "Kowethlyvrow"
+
+#: data/org.gnome.Manuals.desktop.in.in:3
+msgid "Install, Browse, and Search Documentation"
+msgstr "Lea, Peuri, ha Hwilas Kowethlyvrow"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Manuals.desktop.in.in:13
+msgid "documentation;manuals;api;reference;docs;developer;"
+msgstr "kowethlyvrow;kowethlyver;api;kampollans;docs;awtour;kod;"
+
+#: data/org.gnome.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Fenester Nowydh"
+
+#: data/org.gnome.Manuals.gschema.xml:6
+msgid "Width of sidebar in application pixels"
+msgstr "Lester a'n bordh lestri yn pyksels app"
+
+#: data/org.gnome.Manuals.gschema.xml:10
+msgid "Window dimensions"
+msgstr "Braster fenester"
+
+#: data/org.gnome.Manuals.gschema.xml:14
+msgid "Window is Maximized"
+msgstr "Fenester yw Kowlvoghhys"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:7
+msgid "Read developer documentation"
+msgstr "Redya kowethlyvrow kod"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9
+msgid ""
+"Manuals indexes your developer manuals and provides robust browsing and "
+"searching capabilities."
+msgstr ""
+"Kowethlyvrow redya dha kowethlyvrow kod ha provia gallosow peuryans ha "
+"hwithrans nerthek."
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:13
+msgid ""
+"It supports the devhelp documentation format used by many libraries "
+"integrating with the GTK platform."
+msgstr ""
+"Yth skoodhya an furvas kowethlyver devhelp devnydhys gans meur a lyvervaow "
+"oberi gans an bynk GTK."
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:36
+msgid "Browse Documentation by SDK"
+msgstr "Peuri Kowethlyvrow gans SDK"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:40
+msgid "Free Form Search"
+msgstr "Hwithrans Rydh"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:44
+msgid "Install SDK Documentation"
+msgstr "Lea Kowethlyvrow SDK"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:48
+msgid "Integrated Dark Mode"
+msgstr "Fordh Du Pervedhek"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:52
+msgid "Mobile Search"
+msgstr "Hwithrans Gwayadow"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:56
+msgid "Adaptable Documentation"
+msgstr "Kowethlyvrow Desedhadow"
+
+#: src/manuals-application.c:248
+msgid "translator-credits"
+msgstr "Flynn"
+
+#: src/manuals-application.c:253
+msgid "Builder"
+msgstr "Drehever"
+
+#: src/manuals-application.c:254
+msgid "Create GNOME Applications"
+msgstr "Gul Appys GNOME"
+
+#: src/manuals-application.c:290
+msgid "Open a new Manuals window"
+msgstr "Ygeri unn fenester Kowethlyvrow nowydh"
+
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "Marow"
+
+#: src/manuals-bundle-dialog.c:171
+msgid "Install"
+msgstr "Lea"
+
+#: src/manuals-bundle-dialog.ui:4
+msgid "Documentation"
+msgstr "Kowethlyvrow"
+
+#: src/manuals-bundle-dialog.ui:28
+msgid "Loading SDKs…"
+msgstr "Ow Karga SDKs…"
+
+#: src/manuals-bundle-dialog.ui:29
+msgid "Please wait while we locate the SDKs on your system"
+msgstr "Mar pleg gortos ha ni kavos an SDKs war dha system"
+
+#: src/manuals-bundle-dialog.ui:41
+msgid "No SDKs Available"
+msgstr "SDKs Kavadow Vyth"
+
+#: src/manuals-bundle-dialog.ui:42
+msgid "Your system is not configured to access any SDKs."
+msgstr "Dha system ny selys rag drehedhes neb SDKs."
+
+#: src/manuals-bundle-dialog.ui:54
+msgid "Installed SDKs"
+msgstr "SDKs Leys"
+
+#: src/manuals-bundle-dialog.ui:67
+msgid "Available SDKs"
+msgstr "SDKs Kavadow"
+
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "Kudha SDKs Marow"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "Gweles SDKs Marow"
+
+#: src/manuals-install-button.c:110
+msgid "Installing Documentation"
+msgstr "Ow Lea Kowethlyvrow"
+
+#: src/manuals-install-button.ui:16
+msgid "_Install"
+msgstr "_Lea"
+
+#: src/manuals-install-button.ui:31
+msgid "_Cancel"
+msgstr "_Hedhi"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/manuals-search-entry.c:182
+#, c-format
+msgid "%u of %u"
+msgstr "%u a %u"
+
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
+msgid "Search"
+msgstr "Hwilas"
+
+#: src/manuals-tab.c:143
+msgid "Open Link in New Tab"
+msgstr "Ygeri Gorgevren y'n Tabb Nowydh"
+
+#: src/manuals-tab.c:149
+msgid "Open Link in New Window"
+msgstr "Ygeri Gorgevren y'n Fenester Nowydh"
+
+#: src/manuals-tab.c:765
+msgid "Empty Page"
+msgstr "Folen Gwag"
+
+#: src/manuals-window.ui:104
+msgid "Loading…"
+msgstr "Ow Karga…"
+
+#: src/manuals-window.ui:105
+msgid "One moment please while we locate your documentation"
+msgstr "Unn tecken, mar pleg, ha ni kavos dha kowethlyvrow"
+
+#: src/manuals-window.ui:123
+msgid "Browse Documentation"
+msgstr "Peuri Kowthlyvrow"
+
+#: src/manuals-window.ui:130
+msgid ""
+"• Press Ctrl+K to search for classes and more\n"
+"• Press Ctrl+T to open a new tab\n"
+"\n"
+"Or, press Ctrl+W to close the window"
+msgstr ""
+"• Tava Ctrl+K rag hwilas rag klassys ha moy\n"
+"• Tava Ctrl+T rag ygeri unn tabb nowydh\n"
+"\n"
+"Po, tava Ctrl+W rag degea an fenester"
+
+#: src/manuals-window.ui:139
+msgid "Install Documentation…"
+msgstr "Lea Kowethlyvrow"
+
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:175
+msgid "Filter…"
+msgstr "Sidhla…"
+
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:400
+msgid "Toggle Sidebar"
+msgstr "Dewis Bordh Lestri"
+
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
+msgid "Main Menu"
+msgstr "Rol Chif"
+
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
+msgid "New _Tab"
+msgstr "_Tabb Nowydh"
+
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
+msgid "New _Window"
+msgstr "_Fenester Nowydh"
+
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
+msgid "_Install Documentation…"
+msgstr "_Lea Kowethlyvrow…"
+
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
+msgid "_About Manuals"
+msgstr "_A-dro Kowethlyvrow"
