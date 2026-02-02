@@ -2,6 +2,28 @@
 <interface>
   <template class="ManualsTab" parent="GtkWidget">
     <child>
+      <object class="GtkShortcutController">
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;ctrl&gt;plus</property>
+            <property name="action">action(zoom.zoom-in)</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;ctrl&gt;minus</property>
+            <property name="action">action(zoom.zoom-out)</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;ctrl&gt;0</property>
+            <property name="action">action(zoom.zoom-one)</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <property name="vexpand">true</property>

@@ -32,6 +32,10 @@
 #include "manuals-utils.h"
 #include "manuals-window.h"
 
+#define ZOOM_LEVEL_X10_MIN  1u
+#define ZOOM_LEVEL_X10_ONE  10u
+#define ZOOM_LEVEL_X10_MAX  10000u
+
 struct _ManualsTab
 {
   GtkWidget             parent_instance;
@@ -43,6 +47,7 @@ struct _ManualsTab
   GtkRevealer          *search_revealer;
 
   gint                  search_dir;
+  guint                 zoom_level_x10;
 };
 
 G_DEFINE_FINAL_TYPE (ManualsTab, manuals_tab, GTK_TYPE_WIDGET)
@@ -55,6 +60,7 @@ enum {
   PROP_LOADING,
   PROP_NAVIGATABLE,
   PROP_TITLE,
+  PROP_ZOOM_LEVEL,
   N_PROPS
 };
 
@@ -450,6 +456,82 @@ show_search_action (GtkWidget  *widget,
 }
 
 static void
+manuals_tab_update_zoom_action_state (ManualsTab *self)
+{
+  g_assert (MANUALS_IS_TAB (self));
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "zoom.zoom-in",
+                                 self->zoom_level_x10 < ZOOM_LEVEL_X10_MAX);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "zoom.zoom-out",
+                                 self->zoom_level_x10 > ZOOM_LEVEL_X10_MIN);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "zoom.zoom-one",
+                                 self->zoom_level_x10 != ZOOM_LEVEL_X10_ONE);
+}
+
+static void
+manuals_tab_apply_zoom_level (ManualsTab *self)
+{
+  double level;
+
+  g_assert (MANUALS_IS_TAB (self));
+
+  level = (double) self->zoom_level_x10 / 10.0;
+  if (self->web_view != NULL)
+    webkit_web_view_set_zoom_level (self->web_view, level);
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_ZOOM_LEVEL]);
+  if (self->web_view != NULL)
+    manuals_tab_update_zoom_action_state (self);
+}
+
+static void
+zoom_in_action (GtkWidget  *widget,
+                const char *action_name,
+                GVariant   *param)
+{
+  ManualsTab *self = (ManualsTab *)widget;
+
+  g_assert (MANUALS_IS_TAB (self));
+
+  if (self->zoom_level_x10 < ZOOM_LEVEL_X10_MAX)
+    {
+      self->zoom_level_x10++;
+      manuals_tab_apply_zoom_level (self);
+    }
+}
+
+static void
+zoom_out_action (GtkWidget  *widget,
+                 const char *action_name,
+                 GVariant   *param)
+{
+  ManualsTab *self = (ManualsTab *)widget;
+
+  g_assert (MANUALS_IS_TAB (self));
+
+  if (self->zoom_level_x10 > ZOOM_LEVEL_X10_MIN)
+    {
+      self->zoom_level_x10--;
+      manuals_tab_apply_zoom_level (self);
+    }
+}
+
+static void
+zoom_one_action (GtkWidget  *widget,
+                 const char *action_name,
+                 GVariant   *param)
+{
+  ManualsTab *self = (ManualsTab *)widget;
+
+  g_assert (MANUALS_IS_TAB (self));
+
+  if (self->zoom_level_x10 != ZOOM_LEVEL_X10_ONE)
+    {
+      self->zoom_level_x10 = ZOOM_LEVEL_X10_ONE;
+      manuals_tab_apply_zoom_level (self);
+    }
+}
+
+static void
 manuals_tab_update_background_color (ManualsTab *self)
 {
   GdkRGBA background;
@@ -524,6 +606,10 @@ manuals_tab_constructed (GObject *object)
                            G_CONNECT_SWAPPED);
 
   manuals_tab_update_background_color (self);
+
+  webkit_web_view_set_zoom_level (self->web_view,
+                                  (double) self->zoom_level_x10 / 10.0);
+  manuals_tab_update_zoom_action_state (self);
 }
 
 static void
@@ -583,6 +669,10 @@ manuals_tab_get_property (GObject    *object,
       g_value_take_string (value, manuals_tab_dup_title (self));
       break;
 
+    case PROP_ZOOM_LEVEL:
+      g_value_set_double (value, manuals_tab_get_zoom_level (self));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -600,6 +690,10 @@ manuals_tab_set_property (GObject      *object,
     {
     case PROP_NAVIGATABLE:
       manuals_tab_set_navigatable (self, g_value_get_object (value));
+      break;
+
+    case PROP_ZOOM_LEVEL:
+      manuals_tab_set_zoom_level (self, g_value_get_double (value));
       break;
 
     default:
@@ -657,6 +751,13 @@ manuals_tab_class_init (ManualsTabClass *klass)
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
+  properties[PROP_ZOOM_LEVEL] =
+    g_param_spec_double ("zoom-level", NULL, NULL,
+                         0.1, 1000.0, 1.0,
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/manuals/manuals-tab.ui");
@@ -673,6 +774,9 @@ manuals_tab_class_init (ManualsTabClass *klass)
   gtk_widget_class_install_action (widget_class, "search.show", NULL, show_search_action);
   gtk_widget_class_install_action (widget_class, "search.move-next", NULL, search_next_action);
   gtk_widget_class_install_action (widget_class, "search.move-previous", NULL, search_previous_action);
+  gtk_widget_class_install_action (widget_class, "zoom.zoom-in", NULL, zoom_in_action);
+  gtk_widget_class_install_action (widget_class, "zoom.zoom-out", NULL, zoom_out_action);
+  gtk_widget_class_install_action (widget_class, "zoom.zoom-one", NULL, zoom_one_action);
 
   g_type_ensure (MANUALS_TYPE_SEARCH_ENTRY);
   g_type_ensure (WEBKIT_TYPE_WEB_VIEW);
@@ -682,6 +786,8 @@ static void
 manuals_tab_init (ManualsTab *self)
 {
   WebKitBackForwardList *back_forward_list;
+
+  self->zoom_level_x10 = ZOOM_LEVEL_X10_ONE;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
@@ -739,10 +845,13 @@ manuals_tab_duplicate (ManualsTab *self)
       g_autoptr(WebKitWebViewSessionState) state = NULL;
 
       manuals_tab_set_navigatable (copy, self->navigatable);
+      copy->zoom_level_x10 = self->zoom_level_x10;
 
       /* Create the new tab using the back/forward list of the original tab. */
       state = webkit_web_view_get_session_state (self->web_view);
       webkit_web_view_restore_session_state (copy->web_view, state);
+
+      manuals_tab_apply_zoom_level (copy);
     }
 
   return copy;
@@ -869,5 +978,32 @@ manuals_tab_focus_search (ManualsTab *self)
   g_return_if_fail (MANUALS_IS_TAB (self));
 
   gtk_widget_activate_action (GTK_WIDGET (self), "search.show", NULL);
+}
+
+double
+manuals_tab_get_zoom_level (ManualsTab *self)
+{
+  g_return_val_if_fail (MANUALS_IS_TAB (self), 1.0);
+
+  return (double) self->zoom_level_x10 / 10.0;
+}
+
+void
+manuals_tab_set_zoom_level (ManualsTab *self,
+                            double       zoom_level)
+{
+  guint x10;
+
+  g_return_if_fail (MANUALS_IS_TAB (self));
+
+  zoom_level = CLAMP (zoom_level, 0.1, 1000.0);
+  x10 = (guint) (zoom_level * 10.0 + 0.5);
+  x10 = CLAMP (x10, ZOOM_LEVEL_X10_MIN, ZOOM_LEVEL_X10_MAX);
+
+  if (self->zoom_level_x10 != x10)
+    {
+      self->zoom_level_x10 = x10;
+      manuals_tab_apply_zoom_level (self);
+    }
 }
 

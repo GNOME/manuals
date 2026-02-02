@@ -45,5 +45,8 @@ void                  manuals_tab_set_navigatable (ManualsTab           *self,
 void                  manuals_tab_load_uri        (ManualsTab           *self,
                                                    const char           *uri);
 void                  manuals_tab_focus_search    (ManualsTab           *self);
+double                manuals_tab_get_zoom_level  (ManualsTab           *self);
+void                  manuals_tab_set_zoom_level  (ManualsTab           *self,
+                                                   double                zoom_level);
 
 G_END_DECLS
