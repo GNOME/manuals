@@ -1,14 +1,14 @@
 # Bulgarian translation of manuals po-file.
-# Copyright (C) 2025 twlvnn kraftwerk <kraft_werk@tutanota.com>.
+# Copyright (C) 2025, 2026 twlvnn kraftwerk <kraft_werk@tutanota.com>.
 # This file is distributed under the same license as the Manuals package.
-# twlvnn kraftwerk <kraft_werk@tutanota.com>,  2025.
+# twlvnn kraftwerk <kraft_werk@tutanota.com>,  2025, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-07-08 02:54+0000\n"
-"PO-Revision-Date: 2025-07-13 10:42+0200\n"
+"POT-Creation-Date: 2026-01-23 20:27+0000\n"
+"PO-Revision-Date: 2026-02-03 22:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian <Bulgarian>\n"
 "Language: bg\n"
@@ -16,25 +16,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/org.gnome.Manuals.desktop.in.in:3
-#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
-#: src/manuals-window.ui:501
+#: data/org.gnome.Manuals.desktop.in.in:2
+#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "Ръководства"
 
-#: data/org.gnome.Manuals.desktop.in.in:4
+#: data/org.gnome.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Инсталиране, разглеждане и търсене в документацията"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Manuals.desktop.in.in:14
+#: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr ""
 "документация;ръководства;програмен "
 "интерфейс;разработчик;documentation;manuals;api;reference;docs;developer;"
+
+#: data/org.gnome.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Нов прозорец"
 
 #: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -92,7 +96,7 @@ msgstr "Търсачка за мобилни устройства"
 msgid "Adaptable Documentation"
 msgstr "Документация с адаптивен интерфейс"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
 msgstr ""
 "twlvnn kraftwerk &lt;<a "
@@ -105,19 +109,23 @@ msgstr ""
 "Докладвайте за грешки в превода в <a href='https://fsa-bg.org/project/gtp/"
 "newticket'>съответния раздел</a>."
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "Разработчик"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "Създаване на програми на GNOME"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "Отваряне на нов прозорец за ръководства"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "Не получава обновления"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "Инсталиране"
 
@@ -149,6 +157,14 @@ msgstr "Инсталирани пакети на SDK"
 msgid "Available SDKs"
 msgstr "Налични пакети на SDK"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "Скриване на старите SDK"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "Преглед на старите SDK"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "Инсталиране на документацията"
@@ -167,7 +183,7 @@ msgstr "_Отказване"
 msgid "%u of %u"
 msgstr "%u от %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "Търсене"
 
@@ -179,64 +195,65 @@ msgstr "Отваряне на връзката в нов подпрозорец"
 msgid "Open Link in New Window"
 msgstr "Отваряне на връзката в нов прозорец"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:765
 msgid "Empty Page"
 msgstr "Празна страница"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "Зареждане…"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "Изчакайте за намиране на документацията"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "Разглеждане на документация"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
 "\n"
 "Or, press Ctrl+W to close the window"
 msgstr ""
-"• Натиснете Ctrl+K за търсене на класове и др.;\n"
-"• Натиснете Ctrl+T за отваряне на нов подпрозорец;\n"
-"• Натиснете Ctrl+W за затваряне на прозореца."
+"• Натиснете Ctrl+K за търсене на класове и др.\n"
+"• Натиснете Ctrl+T за отваряне на нов подпрозорец\n"
+"\n"
+"• Натиснете Ctrl+W за затваряне на прозореца"
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "Инсталиране на документацията…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "Филтриране…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "Превключване на страничната лента"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "Основно меню"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "Нов _подпрозорец"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "Нов _прозорец"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "_Инсталиране на документацията…"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "_Относно „Ръководства“"
