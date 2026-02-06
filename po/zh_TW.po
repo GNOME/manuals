@@ -1,0 +1,272 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GNOME xx\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
+"POT-Creation-Date: 2026-01-23 20:27+0000\n"
+"PO-Revision-Date: 2026-02-05 23:13+0800\n"
+"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
+"Language-Team: Traditional Chinese\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: data/org.gnome.Manuals.desktop.in.in:2
+#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
+#, fuzzy
+msgid "Manuals"
+msgstr "手動"
+
+#: data/org.gnome.Manuals.desktop.in.in:3
+msgid "Install, Browse, and Search Documentation"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Manuals.desktop.in.in:13
+msgid "documentation;manuals;api;reference;docs;developer;"
+msgstr ""
+
+#: data/org.gnome.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "新視窗"
+
+#: data/org.gnome.Manuals.gschema.xml:6
+#, fuzzy
+msgid "Width of sidebar in application pixels"
+msgstr "左邊邊界的寬度，以像素數目表示"
+
+#: data/org.gnome.Manuals.gschema.xml:10
+#, fuzzy
+msgid "Window dimensions"
+msgstr "Windows 圖示"
+
+#: data/org.gnome.Manuals.gschema.xml:14
+#, fuzzy
+msgid "Window is Maximized"
+msgstr "視窗最大化"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:7
+#, fuzzy
+msgid "Read developer documentation"
+msgstr "文件"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9
+msgid ""
+"Manuals indexes your developer manuals and provides robust browsing and "
+"searching capabilities."
+msgstr ""
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:13
+msgid ""
+"It supports the devhelp documentation format used by many libraries "
+"integrating with the GTK platform."
+msgstr ""
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:36
+#, fuzzy
+msgid "Browse Documentation by SDK"
+msgstr "文件撰寫者"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:40
+#, fuzzy
+msgid "Free Form Search"
+msgstr "執行搜尋"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:44
+#, fuzzy
+msgid "Install SDK Documentation"
+msgstr "文件"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:48
+#, fuzzy
+msgid "Integrated Dark Mode"
+msgstr "整合的韌體"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:52
+#, fuzzy
+msgid "Mobile Search"
+msgstr "啟動搜尋"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:56
+#, fuzzy
+msgid "Adaptable Documentation"
+msgstr "文件"
+
+# (freddy)新版 Libadwaita About Dialog 不支援留言功能，原文如下：
+# 如對翻譯有任何意見，請送一封電子郵件給
+# 以下地址，GNOME 翻譯團隊會盡快回覆您：
+# zh-l10n@lists.linux.org.tw
+#: src/manuals-application.c:248
+msgid "translator-credits"
+msgstr ""
+"Ching-Hung Lin <billlin@wshlab2.ee.kuas.edu.tw>, 2006\n"
+"Lin-Chieh Shangkuan <r93066@csie.ntu.edu.tw>, 2006\n"
+"Woodman Tuen <wmtuen@gmail.com>, 2005\n"
+"Roy Chan <roy.chan@linux.org.hk>, 2004\n"
+"Abel Cheung <abel@oaka.org>, 2001-2004\n"
+"Ming-Yen Hsu <myhsu@cyberdude.com>, 1999\n"
+"Freddy Cheng <freddy4212@gmail.com>, 2022.\n"
+"Yi-Jyun Pan <me@pan93.com>, 2024."
+
+#: src/manuals-application.c:253
+msgid "Builder"
+msgstr "Builder"
+
+#: src/manuals-application.c:254
+#, fuzzy
+msgid "Create GNOME Applications"
+msgstr "GNOME 應用程式"
+
+#: src/manuals-application.c:290
+#, fuzzy
+msgid "Open a new Manuals window"
+msgstr "開啟新視窗"
+
+#: src/manuals-bundle-dialog.c:161
+#, fuzzy
+msgid "End of Life"
+msgstr "表格的結尾"
+
+#: src/manuals-bundle-dialog.c:171
+msgid "Install"
+msgstr "安裝"
+
+#: src/manuals-bundle-dialog.ui:4
+msgid "Documentation"
+msgstr "文件"
+
+#: src/manuals-bundle-dialog.ui:28
+#, fuzzy
+msgid "Loading SDKs…"
+msgstr "正在載入…"
+
+#: src/manuals-bundle-dialog.ui:29
+msgid "Please wait while we locate the SDKs on your system"
+msgstr ""
+
+#: src/manuals-bundle-dialog.ui:41
+#, fuzzy
+msgid "No SDKs Available"
+msgstr "沒有可用的應用程式"
+
+#: src/manuals-bundle-dialog.ui:42
+msgid "Your system is not configured to access any SDKs."
+msgstr ""
+
+#: src/manuals-bundle-dialog.ui:54
+#, fuzzy
+msgid "Installed SDKs"
+msgstr "安裝大小"
+
+#: src/manuals-bundle-dialog.ui:67
+#, fuzzy
+msgid "Available SDKs"
+msgstr "可用的程式"
+
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr ""
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr ""
+
+#: src/manuals-install-button.c:110
+#, fuzzy
+msgid "Installing Documentation"
+msgstr "文件"
+
+#: src/manuals-install-button.ui:16
+msgid "_Install"
+msgstr "安裝(_I)"
+
+#: src/manuals-install-button.ui:31
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/manuals-search-entry.c:182
+#, c-format
+msgid "%u of %u"
+msgstr "%u / %u"
+
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
+msgid "Search"
+msgstr "搜尋"
+
+#: src/manuals-tab.c:143
+#, fuzzy
+msgid "Open Link in New Tab"
+msgstr "在新分頁中開啟連結(_T)"
+
+#: src/manuals-tab.c:149
+#, fuzzy
+msgid "Open Link in New Window"
+msgstr "在新視窗中開啟連結(_W)"
+
+#: src/manuals-tab.c:765
+#, fuzzy
+msgid "Empty Page"
+msgstr "空位元"
+
+#: src/manuals-window.ui:104
+msgid "Loading…"
+msgstr "正在載入…"
+
+#: src/manuals-window.ui:105
+msgid "One moment please while we locate your documentation"
+msgstr ""
+
+#: src/manuals-window.ui:123
+#, fuzzy
+msgid "Browse Documentation"
+msgstr "文件"
+
+#: src/manuals-window.ui:130
+msgid ""
+"• Press Ctrl+K to search for classes and more\n"
+"• Press Ctrl+T to open a new tab\n"
+"\n"
+"Or, press Ctrl+W to close the window"
+msgstr ""
+
+#: src/manuals-window.ui:139
+#, fuzzy
+msgid "Install Documentation…"
+msgstr "文件"
+
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:175
+msgid "Filter…"
+msgstr "篩選…"
+
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:400
+msgid "Toggle Sidebar"
+msgstr "切換側邊欄"
+
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
+msgid "Main Menu"
+msgstr "主要選單"
+
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
+msgid "New _Tab"
+msgstr "新增分頁(_T)"
+
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
+msgid "New _Window"
+msgstr "開新視窗(_W)"
+
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
+#, fuzzy
+msgid "_Install Documentation…"
+msgstr "文件"
+
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
+#, fuzzy
+msgid "_About Manuals"
+msgstr "關於通話(_A)"
