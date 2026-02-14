@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-11-09 18:09+0000\n"
-"PO-Revision-Date: 2025-11-11 23:18+0200\n"
+"POT-Creation-Date: 2026-02-02 19:44+0000\n"
+"PO-Revision-Date: 2026-02-14 14:43+0200\n"
 "Last-Translator: Aurimas Černius <aurimas.cernius@mailo.com>\n"
 "Language-Team: Lithuanian <Lithuanian>\n"
 "Language: lt\n"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/org.gnome.Manuals.desktop.in.in:2
 #: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
-#: src/manuals-window.c:885 src/manuals-window.ui:6 src/manuals-window.ui:465
-#: src/manuals-window.ui:501
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "Aprašymai"
 
@@ -111,7 +111,11 @@ msgstr "Sukurti GNOME programas"
 msgid "Open a new Manuals window"
 msgstr "Atverti naują aprašymų langą"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "Nebepalaikoma"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "Įdiegti"
 
@@ -143,6 +147,14 @@ msgstr "Įdiegti SDK"
 msgid "Available SDKs"
 msgstr "Prieinami SDK"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "Slėpti pasenusius SDK"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "Rodyti pasenusius SDK"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "Diegiama dokumentacija"
@@ -161,35 +173,35 @@ msgstr "_Atsisakyti"
 msgid "%u of %u"
 msgstr "%u iš %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "Ieškoti"
 
-#: src/manuals-tab.c:143
+#: src/manuals-tab.c:149
 msgid "Open Link in New Tab"
 msgstr "Atverti saitą naujoje kortelėje"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:155
 msgid "Open Link in New Window"
 msgstr "Atverti saitą naujame lange"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:874
 msgid "Empty Page"
 msgstr "Tuščias puslapis"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "Įkeliama…"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "Minutėlę, ieškome jūsų dokumentacijos"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "Naršyti dokumentaciją"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -201,37 +213,37 @@ msgstr ""
 "\n"
 "Arba spauskite Vald+W langui užverti"
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "Įdiegti dokumentaciją…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "Filtruoti…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "Perjungti šoninę juostą"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "Pagrindinis meniu"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "Nauja _kortelė"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "Naujas _langas"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "Į_diegti dokumentaciją…"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "_Apie Aprašymus"
