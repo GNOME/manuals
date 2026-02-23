@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles García <daniel.mustieles@gmail.com>, 2025.
+# Daniel Mustieles García <daniel.mustieles@gmail.com>, 2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-09-09 18:42+0000\n"
-"PO-Revision-Date: 2025-09-11 11:29+0200\n"
+"POT-Creation-Date: 2026-02-02 19:44+0000\n"
+"PO-Revision-Date: 2026-02-23 15:46+0100\n"
 "Last-Translator: Daniel Mustieles García <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 48.0\n"
+"X-Generator: Gtranslator 49.0\n"
 
 #: data/org.gnome.Manuals.desktop.in.in:2
-#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
-#: src/manuals-window.ui:501
+#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "Manuales"
 
@@ -30,10 +30,15 @@ msgstr "Manuales"
 msgid "Install, Browse, and Search Documentation"
 msgstr "Instalar, explorar y buscar documentación"
 
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "documentación;manuales;api;referencia;docs;desarrollador;programador;"
+
+#: data/org.gnome.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Ventana nueva"
 
 #: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -91,23 +96,27 @@ msgstr "Búsqueda móvil"
 msgid "Adaptable Documentation"
 msgstr "Doumentación adaptable"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
 msgstr "Daniel Mustieles <Daniel.mustieles@gmail.com>, 2025"
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "Builder"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "Crear aplicaciones de GNOME"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "Abrir una ventana de Manuales nueva"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "Fin de vida"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "Instalar"
 
@@ -139,6 +148,14 @@ msgstr "SDK instalados"
 msgid "Available SDKs"
 msgstr "SDK disponibles"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "Ocultar SDK heredados"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "Ver SDK heredados"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "Instalando documentación"
@@ -151,41 +168,42 @@ msgstr "_Instalar"
 msgid "_Cancel"
 msgstr "C_ancelar"
 
-#. translators: the first %u is replaced with the current position, the second with the number of search results
+#. translators: the first %u is replaced with the current position, the second
+#. with the number of search results
 #: src/manuals-search-entry.c:182
 #, c-format
 msgid "%u of %u"
 msgstr "%u de %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "Buscar"
 
-#: src/manuals-tab.c:143
+#: src/manuals-tab.c:149
 msgid "Open Link in New Tab"
 msgstr "Abrir enlace en una pestaña nueva"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:155
 msgid "Open Link in New Window"
 msgstr "Abrir enlace en una ventana nueva"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:874
 msgid "Empty Page"
 msgstr "Página vacía"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "Cargando…"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "Un momento mientras busco su documentación"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "Explorar la documentación"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -197,37 +215,37 @@ msgstr ""
 "\n"
 "O pulse Ctrl+W para cerrar la ventana."
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "Instalar documentación…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "Filtrar…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "Conmutar barra lateral"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "_Pestaña nueva"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "_Ventana nueva"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "_Instalar documentación…"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "Acerca _de Manuales"
