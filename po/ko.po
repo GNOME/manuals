@@ -1,14 +1,14 @@
 # Korean translation for Manuals.
-# Copyright (C) 2025 Manuals's COPYRIGHT HOLDER
+# Copyright (C) 2025-2026 Manuals's all of contributors.
 # This file is distributed under the same license as the Manuals package.
-# Seong-ho Cho <shcho@gnome.org>,  2025.
+# Seong-ho Cho <shcho@gnome.org>,  2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-09-05 16:49+0000\n"
-"PO-Revision-Date: 2025-09-06 15:00+0900\n"
+"POT-Creation-Date: 2026-02-02 19:44+0000\n"
+"PO-Revision-Date: 2026-02-22 20:49+0900\n"
 "Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -19,9 +19,9 @@ msgstr ""
 "X-Generator: Poedit 3.7\n"
 
 #: data/org.gnome.Manuals.desktop.in.in:2
-#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
-#: src/manuals-window.ui:501
+#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "설명서"
 
@@ -36,9 +36,13 @@ msgstr ""
 "documentation;문서;manuals;메뉴얼;설명서;api;reference;참고서;레퍼런"
 "스;docs;developer;개발자;디벨로퍼;"
 
+#: data/org.gnome.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "새 창"
+
 #: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
-msgstr "프로그램의 가장자리 창 픽셀 단위 너비입니다."
+msgstr "프로그램의 가장자리 창 픽셀 단위 너비입니다"
 
 #: data/org.gnome.Manuals.gschema.xml:10
 msgid "Window dimensions"
@@ -57,13 +61,15 @@ msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
 msgstr ""
-"설명서는 개발자 설명서를 색인 정리하며, 견실한 탐색, 검색 기능을 제공합니다."
+"설명서는 개발자 설명서를 색인 정리하며, 견실한 탐색, 검색 기능을 제공합니"
+"다."
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:13
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
-msgstr "GTK 플랫폼에 통합한 여러 라이브러리의 devhelp 문서 형식을 지원합니다."
+msgstr ""
+"GTK 플랫폼에 통합한 여러 라이브러리의 devhelp 문서 형식을 지원합니다."
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
@@ -89,23 +95,27 @@ msgstr "모바일 검색"
 msgid "Adaptable Documentation"
 msgstr "적응형 문서"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
-msgstr "조성호 <shcho@gnome.org>, 2025."
+msgstr "조성호 <shcho@gnome.org>, 2025-2026."
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "빌더"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "그놈 앱 만들기"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "새 설명서 창 열기"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "지원만기"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "설치"
 
@@ -137,6 +147,14 @@ msgstr "설치한 SDK"
 msgid "Available SDKs"
 msgstr "가용 SDK"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "이전 SDK 숨김"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "이전 SDK 보기"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "문서 설치 중"
@@ -155,35 +173,35 @@ msgstr "취소(_C)"
 msgid "%u of %u"
 msgstr "%u/%u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "검색"
 
-#: src/manuals-tab.c:143
+#: src/manuals-tab.c:149
 msgid "Open Link in New Tab"
 msgstr "새 탭에 링크 열기"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:155
 msgid "Open Link in New Window"
 msgstr "새 창에 링크 열기"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:874
 msgid "Empty Page"
 msgstr "빈 페이지"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "읽어들이는 중…"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "문서를 찾는 동안 잠시만 기다리십시오"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "문서 탐색"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -195,37 +213,37 @@ msgstr ""
 "\n"
 "또는, 창을 닫으려면 Ctrl+W 키를 누르십시오"
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "문서 설치…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "선별 검색…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "가장 자리창 표시 전환"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "기본 메뉴"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "새 탭(_T)"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "새 창(_W)"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "문서 설치(_I)…"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "설명서 정보(_A)"
