@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>@APP_ID@</id>
+  <replaces>
+    <id>app.devsuite.Manuals</id>
+  </replaces>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <name>Manuals</name>
@@ -21,6 +24,10 @@
   <url type="bugtracker">https://gitlab.gnome.org/GNOME/manuals/issues</url>
   <url type="translate">https://l10n.gnome.org/module/Manuals/</url>
   <url type="vcs-browser">https://gitlab.gnome.org/GNOME/manuals</url>
+
+  <provides>
+    <binary>manuals</binary>
+  </provides>
 
   <update_contact>chergert@gnome.org</update_contact>
   <translation type="gettext">manuals</translation>
