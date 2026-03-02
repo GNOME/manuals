@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Manuals gnome-49\n"
+"Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-11-08 00:18+0000\n"
-"PO-Revision-Date: 2026-03-03 04:39+0700\n"
+"POT-Creation-Date: 2026-02-23 19:42+0000\n"
+"PO-Revision-Date: 2026-03-03 04:45+0700\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian <Indonesian>\n"
 "Language: id\n"
@@ -17,43 +17,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.8\n"
 
-#: data/app.devsuite.Manuals.desktop.in.in:2
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
-#: src/manuals-window.c:885 src/manuals-window.ui:6 src/manuals-window.ui:465
-#: src/manuals-window.ui:501
+#: data/org.gnome.Manuals.desktop.in.in:2
+#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "Manuals"
 
-#: data/app.devsuite.Manuals.desktop.in.in:3
+#: data/org.gnome.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Pasang, Ramban, dan Cari Dokumentasi"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/app.devsuite.Manuals.desktop.in.in:13
+#: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "dokumentasi;manual;api;acuan;dok;pengembang;"
 
-#: data/app.devsuite.Manuals.desktop.in.in:18
+#: data/org.gnome.Manuals.desktop.in.in:18
 msgid "New Window"
 msgstr "Jendela Baru"
 
-#: data/app.devsuite.Manuals.gschema.xml:6
+#: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
 msgstr "Lebar bilah sisi dalam piksel aplikasi"
 
-#: data/app.devsuite.Manuals.gschema.xml:10
+#: data/org.gnome.Manuals.gschema.xml:10
 msgid "Window dimensions"
 msgstr "Dimensi jendela"
 
-#: data/app.devsuite.Manuals.gschema.xml:14
+#: data/org.gnome.Manuals.gschema.xml:14
 msgid "Window is Maximized"
 msgstr "Jendela Dimaksimalkan"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:7
 msgid "Read developer documentation"
 msgstr "Baca dokumentasi pengembang"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9
 msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
@@ -61,7 +61,7 @@ msgstr ""
 "Manuals mengindeks manual pengembang Anda dan menyediakan kapabilitas "
 "meramban dan mencari yang handal."
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:13
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
@@ -69,27 +69,27 @@ msgstr ""
 "Ini mendukung format dokumentasi devhelp yang dipakai oleh banyak pustaka "
 "yang terintegrasi dengan platform GTK."
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:36
+#: data/org.gnome.Manuals.metainfo.xml.in.in:36
 msgid "Browse Documentation by SDK"
 msgstr "Ramban Dokumentasi menurut SDK"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:40
+#: data/org.gnome.Manuals.metainfo.xml.in.in:40
 msgid "Free Form Search"
 msgstr "Pencarian Bentuk Bebas"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:44
 msgid "Install SDK Documentation"
 msgstr "Pasang Dokumentasi SDK"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:48
 msgid "Integrated Dark Mode"
 msgstr "Mode Gelap Terintegrasi"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:52
 msgid "Mobile Search"
 msgstr "Pencarian Seluler"
 
-#: data/app.devsuite.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:56
 msgid "Adaptable Documentation"
 msgstr "Dokumentasi Yang Dapat Diadaptasi"
 
@@ -109,7 +109,11 @@ msgstr "Membuat Aplikasi GNOME"
 msgid "Open a new Manuals window"
 msgstr "Buka jendela baru Manuals"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "Akhir Masa Berlaku"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "Pasang"
 
@@ -141,6 +145,14 @@ msgstr "SDK Terpasang"
 msgid "Available SDKs"
 msgstr "SDK Tersedia"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "Sembunyikan SDK Warisan"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "Lihat SDK Warisan"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "Memasang Dokumentasi"
@@ -159,35 +171,35 @@ msgstr "_Batal"
 msgid "%u of %u"
 msgstr "%u dari %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "Cari"
 
-#: src/manuals-tab.c:143
+#: src/manuals-tab.c:149
 msgid "Open Link in New Tab"
 msgstr "Buka Tautan di Tab Baru"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:155
 msgid "Open Link in New Window"
 msgstr "Buka Tautan di Jendela Baru"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:874
 msgid "Empty Page"
 msgstr "Halaman Kosong"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "Memuat…"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "Tunggu sejenak saat kami mencari dokumentasi Anda"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "Ramban Dokumentasi"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -199,37 +211,37 @@ msgstr ""
 "\n"
 "Atau, tekan Ctrl+W untuk menutup jendela"
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "Pasang Dokumentasi…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "Filter…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "Jungkitkan Bilah Sisi"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "Menu Utama"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "_Tab Baru"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "_Jendela Baru"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "Pasang Dokumentas_i…"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "Tent_ang Manuals"
