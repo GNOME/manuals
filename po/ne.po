@@ -1,0 +1,248 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Gnome Nepali Translation \n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
+"POT-Creation-Date: 2026-02-02 19:44+0000\n"
+"PO-Revision-Date: 2026-03-02 17:29+0545\n"
+"Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
+"Language-Team: Nepali Language Translation <chautari@gmail.com>\n"
+"Language: ne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: data/org.gnome.Manuals.desktop.in.in:2
+#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
+#: src/manuals-window.ui:508
+msgid "Manuals"
+msgstr "म्यानुअल"
+
+#: data/org.gnome.Manuals.desktop.in.in:3
+msgid "Install, Browse, and Search Documentation"
+msgstr "कागजातहरू स्थापना गर्नुहोस्, ब्राउज गर्नुहोस् र खोज्नुहोस्"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Manuals.desktop.in.in:13
+msgid "documentation;manuals;api;reference;docs;developer;"
+msgstr "documentation;manuals;api;reference;docs;developer;"
+
+#: data/org.gnome.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "नयाँ सञ्झ्याल"
+
+#: data/org.gnome.Manuals.gschema.xml:6
+msgid "Width of sidebar in application pixels"
+msgstr "अनुप्रयोग पिक्सेलमा छेउपट्टिको चौडाइ"
+
+#: data/org.gnome.Manuals.gschema.xml:10
+msgid "Window dimensions"
+msgstr "झ्यालको आयामहरू"
+
+#: data/org.gnome.Manuals.gschema.xml:14
+msgid "Window is Maximized"
+msgstr "सत्य यदि सञ्झ्याल अधिकतम छ"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:7
+msgid "Read developer documentation"
+msgstr "विकासकर्ता कागजात पढ्नुहोस्"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9
+msgid ""
+"Manuals indexes your developer manuals and provides robust browsing and "
+"searching capabilities."
+msgstr ""
+"म्यानुअलहरूले तपाईंको विकासकर्ता म्यानुअलहरूलाई अनुक्रमणिका बनाउँछ र बलियो ब्राउजिङ र "
+"खोजी क्षमताहरू प्रदान गर्दछ।"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:13
+msgid ""
+"It supports the devhelp documentation format used by many libraries "
+"integrating with the GTK platform."
+msgstr ""
+"यसले GTK प्लेटफर्मसँग एकीकृत हुने धेरै पुस्तकालयहरूले प्रयोग गर्ने devhelp कागजात ढाँचालाई "
+"समर्थन गर्दछ।"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:36
+msgid "Browse Documentation by SDK"
+msgstr "SDK द्वारा कागजात ब्राउज गर्नुहोस्"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:40
+msgid "Free Form Search"
+msgstr "नि:शुल्क फारम खोज"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:44
+msgid "Install SDK Documentation"
+msgstr "SDK कागजात स्थापना गर्नुहोस्"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:48
+msgid "Integrated Dark Mode"
+msgstr "एकीकृत अंधेरो शैलि"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:52
+msgid "Mobile Search"
+msgstr "मोबाइल खोज"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:56
+msgid "Adaptable Documentation"
+msgstr "अनुकूलनीय कागजात"
+
+#: src/manuals-application.c:248
+msgid "translator-credits"
+msgstr "<chautari@gmail.com> Pawan Chitrakar"
+
+#: src/manuals-application.c:253
+msgid "Builder"
+msgstr "बिल्डर"
+
+#: src/manuals-application.c:254
+msgid "Create GNOME Applications"
+msgstr "जिनोम अनुप्रयोगहरू सिर्जना गर्नुहोस्"
+
+#: src/manuals-application.c:290
+msgid "Open a new Manuals window"
+msgstr "नयाँ म्यानुअल विन्डो खोल्नुहोस्"
+
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "जीवनको अन्त"
+
+#: src/manuals-bundle-dialog.c:171
+msgid "Install"
+msgstr "स्थापना गर्नुहोस्"
+
+#: src/manuals-bundle-dialog.ui:4
+msgid "Documentation"
+msgstr "अभिलेखीकरण"
+
+#: src/manuals-bundle-dialog.ui:28
+msgid "Loading SDKs…"
+msgstr "SDK हरू लोड गर्दै…"
+
+#: src/manuals-bundle-dialog.ui:29
+msgid "Please wait while we locate the SDKs on your system"
+msgstr "तपाईंको प्रणालीमा SDK हरू पत्ता लगाउँदासम्म कृपया पर्खनुहोस्"
+
+#: src/manuals-bundle-dialog.ui:41
+msgid "No SDKs Available"
+msgstr "कुनै SDK हरू उपलब्ध छैनन्"
+
+#: src/manuals-bundle-dialog.ui:42
+msgid "Your system is not configured to access any SDKs."
+msgstr "तपाईंको प्रणाली कुनै पनि SDK हरू पहुँच गर्न कन्फिगर गरिएको छैन।."
+
+#: src/manuals-bundle-dialog.ui:54
+msgid "Installed SDKs"
+msgstr "स्थापित SDK हरू"
+
+#: src/manuals-bundle-dialog.ui:67
+msgid "Available SDKs"
+msgstr "उपलब्ध SDK हरू"
+
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "लिगेसी SDK हरू लुकाउनुहोस्"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "लिगेसी SDK हरू हेर्नुहोस्"
+
+#: src/manuals-install-button.c:110
+msgid "Installing Documentation"
+msgstr "कागजात स्थापना गर्दै"
+
+#: src/manuals-install-button.ui:16
+msgid "_Install"
+msgstr "स्थापना गर्नुहोस्"
+
+#: src/manuals-install-button.ui:31
+msgid "_Cancel"
+msgstr "_रद्द"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/manuals-search-entry.c:182
+#, c-format
+msgid "%u of %u"
+msgstr "%u of %u"
+
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
+msgid "Search"
+msgstr "खोजी गर्नुहोस्"
+
+#: src/manuals-tab.c:149
+msgid "Open Link in New Tab"
+msgstr "नयाँ ट्याबमा लिङ्क खोल्नुहोस्"
+
+#: src/manuals-tab.c:155
+msgid "Open Link in New Window"
+msgstr "नयाँ सञ्झ्यालमा लिङ्क खोल्नुहोस्"
+
+#: src/manuals-tab.c:874
+msgid "Empty Page"
+msgstr "खाली पृष्ठ"
+
+#: src/manuals-window.ui:104
+msgid "Loading…"
+msgstr "लोड गर्दै…"
+
+#: src/manuals-window.ui:105
+msgid "One moment please while we locate your documentation"
+msgstr "तपाईंको कागजातहरू हामीले फेला पार्दासम्म कृपया एकछिन समय दिनुहोस्"
+
+#: src/manuals-window.ui:123
+msgid "Browse Documentation"
+msgstr "कागजात ब्राउज गर्नुहोस्"
+
+#: src/manuals-window.ui:130
+msgid ""
+"• Press Ctrl+K to search for classes and more\n"
+"• Press Ctrl+T to open a new tab\n"
+"\n"
+"Or, press Ctrl+W to close the window"
+msgstr ""
+"• कक्षाहरू र थप कुराहरू खोज्न Ctrl+K थिच्नुहोस्\n"
+"• नयाँ ट्याब खोल्न Ctrl+T थिच्नुहोस्\n"
+"\n"
+"वा, विन्डो बन्द गर्न Ctrl+W थिच्नुहोस्"
+
+#: src/manuals-window.ui:139
+msgid "Install Documentation…"
+msgstr "कागजात स्थापना गर्दै…"
+
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:175
+msgid "Filter…"
+msgstr "फिल्टर…"
+
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:400
+msgid "Toggle Sidebar"
+msgstr "साइडबार टगल गर्नुहोस्"
+
+#: src/manuals-window.ui:425 src/manuals-window.ui:478
+#: src/manuals-window.ui:516 src/manuals-window.ui:545
+msgid "Main Menu"
+msgstr "मुख्य मेनु"
+
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
+msgid "New _Tab"
+msgstr "नयाँ ट्याब"
+
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
+msgid "New _Window"
+msgstr "नयाँ सञ्झ्याल"
+
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
+msgid "_Install Documentation…"
+msgstr "कागजात स्थापना गर्दै…"
+
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
+msgid "_About Manuals"
+msgstr "म्यानुअलको बारेमा"
