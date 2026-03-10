@@ -1,0 +1,147 @@
+# Hungarian translation for Manuals.
+# Copyright (C) 2025, 2026 Free Software Foundation, Inc.
+# This file is distributed under the same license as the Manuals package.
+#
+# Balázs Meskó <mesko.balazs at fsf dot hu>, 2025.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2025, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: Manuals gnome-48\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
+"POT-Creation-Date: 2025-04-08 21:14+0000\n"
+"PO-Revision-Date: 2026-03-11 00:12+0100\n"
+"Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
+"Language-Team: Hungarian <openscope at fsf dot hu>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 25.08.1\n"
+
+#: data/app.devsuite.Manuals.desktop.in.in:2
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-window.c:605
+msgid "Manuals"
+msgstr "Kézikönyvek"
+
+#: data/app.devsuite.Manuals.desktop.in.in:3
+msgid "Install, Browse, and Search Documentation"
+msgstr "Dokumentáció telepítése, böngészése és keresése"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/app.devsuite.Manuals.desktop.in.in:13
+msgid "documentation;manuals;api;reference;docs;developer;"
+msgstr "dokumentáció;kézikönyv;útmutató;api;referencia;fejlesztői;"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
+msgid "Read developer documentation"
+msgstr "Fejlesztői dokumentáció olvasása"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
+msgid ""
+"Manuals indexes your developer manuals and provides robust browsing and "
+"searching capabilities."
+msgstr ""
+"A Kézikönyvek indexeli a fejlesztői kézikönyveket, és megbízható böngészési "
+"és keresési képességeket biztosít."
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
+msgid ""
+"It supports the devhelp documentation format used by many libraries "
+"integrating with the GTK platform."
+msgstr ""
+"Támogatja a devhelp dokumentációs formátumot, amelyet számos, a GTK "
+"platformmal integráló programkönyvtár használ."
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:31
+msgid "Browse Documentation by SDK"
+msgstr "Dokumentáció böngészése SDK szerint"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:35
+msgid "Free Form Search"
+msgstr "Szabad szöveges keresés"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:39
+msgid "Install SDK Documentation"
+msgstr "SDK dokumentáció telepítése"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:43
+msgid "Integrated Dark Mode"
+msgstr "Integrált sötét mód"
+
+#: data/app.devsuite.Manuals.gschema.xml:6
+msgid "Width of sidebar in application pixels"
+msgstr "Az oldalsáv szélessége az alkalmazás képpontjaiban"
+
+#: data/app.devsuite.Manuals.gschema.xml:10
+msgid "Window dimensions"
+msgstr "Ablakméretek"
+
+#: data/app.devsuite.Manuals.gschema.xml:14
+msgid "Window is Maximized"
+msgstr "Az ablak teljes méretű"
+
+#: src/menus.ui:7
+msgid "New _Tab"
+msgstr "Új _lap"
+
+#: src/menus.ui:12
+msgid "New _Window"
+msgstr "Új _ablak"
+
+#: src/menus.ui:18
+msgid "_Install Documentation…"
+msgstr "Dokumentáció _telepítése…"
+
+#: src/menus.ui:24
+msgid "_About Manuals"
+msgstr "A Kézikönyvek _névjegye"
+
+#: src/manuals-window.ui:87
+msgid "Toggle Sidebar"
+msgstr "Oldalsáv be- és kikapcsolása"
+
+#: src/manuals-window.ui:110 src/manuals-sidebar.ui:20
+msgid "Main Menu"
+msgstr "Főmenü"
+
+#: src/manuals-window.ui:122
+msgid "Search"
+msgstr "Keresés"
+
+#: src/manuals-window.ui:168
+msgid "Loading…"
+msgstr "Betöltés…"
+
+#: src/manuals-window.ui:169
+msgid "One moment please while we locate your documentation"
+msgstr "Kis türelmet, amíg megkeressük a dokumentációit"
+
+#: src/manuals-window.ui:187
+msgid "Browse Documentation"
+msgstr "Dokumentáció böngészése"
+
+#: src/manuals-window.ui:194
+msgid ""
+"• Press Ctrl+K to search for classes and more\n"
+"• Press Ctrl+T to open a new tab\n"
+"\n"
+"Or, press Ctrl+W to close the window"
+msgstr ""
+"• Nyomja meg a Ctrl+K billentyűkombinációt az osztályok és egyebek "
+"kereséséhez\n"
+"• Nyomja meg a Ctrl+T billentyűkombinációt egy új lap megnyitásához\n"
+"\n"
+"Vagy nyomja meg a Ctrl+W billentyűkombinációt az ablak bezárásához"
+
+#: src/manuals-window.ui:203
+msgid "Install Documentation…"
+msgstr "Dokumentáció telepítése…"
+
+#: src/manuals-sidebar.ui:13
+msgid "Back to Manuals"
+msgstr "Vissza a Kézikönyvekhez"
+
+#: src/manuals-sidebar.ui:203
+msgid "Filter…"
+msgstr "Szűrő…"
