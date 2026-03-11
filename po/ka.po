@@ -1,0 +1,144 @@
+# Georgian translation for Manuals.
+# Copyright (C) 2026 Manuals's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Manuals package.
+# Ekaterine Papava <papava.e@gtu.ge>,  2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Manuals gnome-48\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
+"POT-Creation-Date: 2025-04-08 21:14+0000\n"
+"PO-Revision-Date: 2026-03-11 06:17+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
+"Language-Team: Georgian <ka@li.org>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: data/app.devsuite.Manuals.desktop.in.in:2
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-window.c:605
+msgid "Manuals"
+msgstr "სახელმძღვანელოები"
+
+#: data/app.devsuite.Manuals.desktop.in.in:3
+msgid "Install, Browse, and Search Documentation"
+msgstr "დააყენეთ, დაათვალიერეთ და მოძებნეთ დოკუმენტაცია"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/app.devsuite.Manuals.desktop.in.in:13
+msgid "documentation;manuals;api;reference;docs;developer;"
+msgstr "documentation;manuals;api;reference;docs;developer;დოკუმენტაცია;სახელმძღვანელოები;პროგრამისტი;"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
+msgid "Read developer documentation"
+msgstr "პროგრამისტის დოკუმენტაციის წაკითხვა"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
+msgid ""
+"Manuals indexes your developer manuals and provides robust browsing and "
+"searching capabilities."
+msgstr ""
+"Manuals აინდექსებს თქვენს სახელმძღვანელოებს და გაწვდით მძლავრ "
+"თვალიერებისა და ძებნის შესაძლებლობებს."
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
+msgid ""
+"It supports the devhelp documentation format used by many libraries "
+"integrating with the GTK platform."
+msgstr ""
+"აქვს devhelp დოკუმენტაციის ფორმატის მხარდაჭერა, რომელსაც GTK-ის "
+"პლატფორმაში ინტეგრირებულ ბევრ ბიბლიოთეკას გააჩნია."
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:31
+msgid "Browse Documentation by SDK"
+msgstr "დოკუმენტაციის დათვალიერება SDK-ის მიხედვით"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:35
+msgid "Free Form Search"
+msgstr "ძებნის თავისუფალი ფორმა"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:39
+msgid "Install SDK Documentation"
+msgstr "SDK დოკუმენტაციის დაყენება"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:43
+msgid "Integrated Dark Mode"
+msgstr "ჩაშენებული მუქი რეჟიმი"
+
+#: data/app.devsuite.Manuals.gschema.xml:6
+msgid "Width of sidebar in application pixels"
+msgstr "გვერდითი პანელის სიგანე აპლიკაციის პიქსელებში"
+
+#: data/app.devsuite.Manuals.gschema.xml:10
+msgid "Window dimensions"
+msgstr "ფანჯრის ზომები"
+
+#: data/app.devsuite.Manuals.gschema.xml:14
+msgid "Window is Maximized"
+msgstr "ფანჯარა გაშლილია"
+
+#: src/menus.ui:7
+msgid "New _Tab"
+msgstr "ახალი _ჩანართი"
+
+#: src/menus.ui:12
+msgid "New _Window"
+msgstr "ახალი _ფანჯარა"
+
+#: src/menus.ui:18
+msgid "_Install Documentation…"
+msgstr "დოკუმენტაცი_ის დაყენება…"
+
+#: src/menus.ui:24
+msgid "_About Manuals"
+msgstr "Manuals-ის შეს_ახებ"
+
+#: src/manuals-window.ui:87
+msgid "Toggle Sidebar"
+msgstr "გვერდითი პანელის ჩვენების გადართვა"
+
+#: src/manuals-window.ui:110 src/manuals-sidebar.ui:20
+msgid "Main Menu"
+msgstr "მთავარი მენიუ"
+
+#: src/manuals-window.ui:122
+msgid "Search"
+msgstr "ძებნა"
+
+#: src/manuals-window.ui:168
+msgid "Loading…"
+msgstr "ჩატვირთვა…"
+
+#: src/manuals-window.ui:169
+msgid "One moment please while we locate your documentation"
+msgstr "მოითმინეთ, სანამ ვეძებ თქვენ დოკუმენტაციას"
+
+#: src/manuals-window.ui:187
+msgid "Browse Documentation"
+msgstr "დოკუმენტაციის დათვალიერება"
+
+#: src/manuals-window.ui:194
+msgid ""
+"• Press Ctrl+K to search for classes and more\n"
+"• Press Ctrl+T to open a new tab\n"
+"\n"
+"Or, press Ctrl+W to close the window"
+msgstr ""
+"• Press Ctrl+K კლასების და ა.შ. საძებნელად\n"
+"• Press Ctrl+T ახალი ჩანართის გასახსნელად\n"
+"\n"
+"ან დააჭირეთ Ctrl+W ფანჯრის დასახურად"
+
+#: src/manuals-window.ui:203
+msgid "Install Documentation…"
+msgstr "დოკუმენტაციის დაყენება…"
+
+#: src/manuals-sidebar.ui:13
+msgid "Back to Manuals"
+msgstr "სახელმძღვანელოებზე დაბრუნება"
+
+#: src/manuals-sidebar.ui:203
+msgid "Filter…"
+msgstr "ფილტრი…"
