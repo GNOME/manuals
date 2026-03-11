@@ -1,0 +1,146 @@
+# Romanian translation for Manuals.
+# Copyright (C) 2025 Manuals's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Manuals package.
+# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025-2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Manuals main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
+"POT-Creation-Date: 2025-04-08 21:14+0000\n"
+"PO-Revision-Date: 2026-03-11 10:31+0100\n"
+"Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
+"Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);\n"
+"X-Generator: Gtranslator 48.0\n"
+
+#: data/app.devsuite.Manuals.desktop.in.in:2
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-window.c:605
+msgid "Manuals"
+msgstr "Manuale"
+
+#: data/app.devsuite.Manuals.desktop.in.in:3
+msgid "Install, Browse, and Search Documentation"
+msgstr "Instalează, răsfoiește și caută documentația"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/app.devsuite.Manuals.desktop.in.in:13
+msgid "documentation;manuals;api;reference;docs;developer;"
+msgstr "documentation;manuals;api;reference;docs;developer;documentație;manuale;instrucțiuni;trimitere;programator;"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
+msgid "Read developer documentation"
+msgstr "Citește documentația programatorului"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
+msgid ""
+"Manuals indexes your developer manuals and provides robust browsing and "
+"searching capabilities."
+msgstr ""
+"Aplicația „Manuale” indexează manualele programatorilor și oferă capacități "
+"robuste de răsfoire și căutare."
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
+msgid ""
+"It supports the devhelp documentation format used by many libraries "
+"integrating with the GTK platform."
+msgstr ""
+"Acceptă formatul de documentație devhelp utilizat de multe biblioteci care "
+"se integrează cu platforma GTK."
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:31
+msgid "Browse Documentation by SDK"
+msgstr "Răsfoiește documentația SDK"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:35
+msgid "Free Form Search"
+msgstr "Căutare liberă"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:39
+msgid "Install SDK Documentation"
+msgstr "Instalează documentația SDK"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:43
+msgid "Integrated Dark Mode"
+msgstr "Aspect întunecos integrat"
+
+#: data/app.devsuite.Manuals.gschema.xml:6
+msgid "Width of sidebar in application pixels"
+msgstr "Lățimea panoului lateral în pixeli"
+
+#: data/app.devsuite.Manuals.gschema.xml:10
+msgid "Window dimensions"
+msgstr "Dimensiunile ferestrei"
+
+#: data/app.devsuite.Manuals.gschema.xml:14
+msgid "Window is Maximized"
+msgstr "Fereastra e maximizată"
+
+#: src/menus.ui:7
+msgid "New _Tab"
+msgstr "Filă _nouă"
+
+#: src/menus.ui:12
+msgid "New _Window"
+msgstr "_Fereastră nouă"
+
+#: src/menus.ui:18
+msgid "_Install Documentation…"
+msgstr "_Instalează documentația…"
+
+#: src/menus.ui:24
+msgid "_About Manuals"
+msgstr "_Despre Manuale"
+
+#: src/manuals-window.ui:87
+msgid "Toggle Sidebar"
+msgstr "Arată/Ascunde Panoul lateral"
+
+#: src/manuals-window.ui:110 src/manuals-sidebar.ui:20
+msgid "Main Menu"
+msgstr "Opțiuni"
+
+#: src/manuals-window.ui:122
+msgid "Search"
+msgstr "Caută"
+
+#: src/manuals-window.ui:168
+msgid "Loading…"
+msgstr "Se încarcă…"
+
+#: src/manuals-window.ui:169
+msgid "One moment please while we locate your documentation"
+msgstr "Un moment până se găsește documentația"
+
+#: src/manuals-window.ui:187
+msgid "Browse Documentation"
+msgstr "Răsfoiește documentația"
+
+#: src/manuals-window.ui:194
+msgid ""
+"• Press Ctrl+K to search for classes and more\n"
+"• Press Ctrl+T to open a new tab\n"
+"\n"
+"Or, press Ctrl+W to close the window"
+msgstr ""
+"• Apasă Ctrl+K pentru a căuta categorii și altele\n"
+"• Apasă Ctrl+T pentru a deschide o filă nouă\n"
+"\n"
+"Sau, apasă Ctrl+W pentru a închide fereastra"
+
+#: src/manuals-window.ui:203
+msgid "Install Documentation…"
+msgstr "Instalează documentația…"
+
+#: src/manuals-sidebar.ui:13
+msgid "Back to Manuals"
+msgstr "Înapoi la Manuale"
+
+#: src/manuals-sidebar.ui:203
+msgid "Filter…"
+msgstr "Filtrează…"
