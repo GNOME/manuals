@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
-"POT-Creation-Date: 2026-03-02 17:17+0000\n"
-"PO-Revision-Date: 2025-11-02 13:23+0100\n"
+"POT-Creation-Date: 2025-04-08 21:14+0000\n"
+"PO-Revision-Date: 2026-03-11 09:21+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: \n"
 "Language: sl\n"
@@ -20,43 +20,25 @@ msgstr ""
 "X-Generator: Poedit 3.8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: data/org.gnome.Manuals.desktop.in.in:2
-#: data/org.gnome.Manuals.metainfo.xml.in.in:9 src/manuals-application.c:238
-#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
-#: src/manuals-window.ui:508
+#: data/app.devsuite.Manuals.desktop.in.in:2
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-window.c:605
 msgid "Manuals"
 msgstr "Priročniki"
 
-#: data/org.gnome.Manuals.desktop.in.in:3
+#: data/app.devsuite.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Namestite, prebrskajte in iščite po dokumentaciji"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Manuals.desktop.in.in:13
+#: data/app.devsuite.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "dokumentacija;priročniki;api;referenčni;docs;dokuji;razvijalec;"
 
-#: data/org.gnome.Manuals.desktop.in.in:18
-msgid "New Window"
-msgstr "Novo okno"
-
-#: data/org.gnome.Manuals.gschema.xml:6
-msgid "Width of sidebar in application pixels"
-msgstr "Širina stranske vrstice v slikovnih točkah programa"
-
-#: data/org.gnome.Manuals.gschema.xml:10
-msgid "Window dimensions"
-msgstr "Mere okna"
-
-#: data/org.gnome.Manuals.gschema.xml:14
-msgid "Window is Maximized"
-msgstr "Okno je razpeto"
-
-#: data/org.gnome.Manuals.metainfo.xml.in.in:10
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
 msgid "Read developer documentation"
 msgstr "Preberite dokumentacijo za razvijalce"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:12
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
 msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
@@ -64,7 +46,7 @@ msgstr ""
 "Priročniki indeksirajo priročnike za razvijalce in zagotavljajo stanovite "
 "zmogljivosti brskanja in iskanja."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:16
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
@@ -72,138 +54,75 @@ msgstr ""
 "Podpira obliko dokumentacije za razvijalce devhelp, ki jo uporabljajo "
 "številne knjižnice, ki se integrirajo s platformo GTK."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:43
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:31
 msgid "Browse Documentation by SDK"
 msgstr "Prebrskaj dokumentacijo iz SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:47
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:35
 msgid "Free Form Search"
 msgstr "Iskanje v prosti obliki"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:51
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:39
 msgid "Install SDK Documentation"
 msgstr "Namesti dokumentacijo kompleta SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:55
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:43
 msgid "Integrated Dark Mode"
 msgstr "Integrirani temni način"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:59
-msgid "Mobile Search"
-msgstr "Iskanje na mobilnih napravah"
+#: data/app.devsuite.Manuals.gschema.xml:6
+msgid "Width of sidebar in application pixels"
+msgstr "Širina stranske vrstice v slikovnih točkah programa"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:63
-msgid "Adaptable Documentation"
-msgstr "Prilagodljiva dokumentacija"
+#: data/app.devsuite.Manuals.gschema.xml:10
+msgid "Window dimensions"
+msgstr "Mere okna"
 
-#: src/manuals-application.c:248
-msgid "translator-credits"
-msgstr "Martin Srebotnjak <miles@filmsi.net>"
+#: data/app.devsuite.Manuals.gschema.xml:14
+msgid "Window is Maximized"
+msgstr "Okno je razpeto"
 
-#: src/manuals-application.c:253
-msgid "Builder"
-msgstr "Izgrajevalnik"
+#: src/menus.ui:7
+msgid "New _Tab"
+msgstr "Nov za_vihek"
 
-#: src/manuals-application.c:254
-msgid "Create GNOME Applications"
-msgstr "Ustvarite programe GNOME"
+#: src/menus.ui:12
+msgid "New _Window"
+msgstr "Novo _okno"
 
-#: src/manuals-application.c:290
-msgid "Open a new Manuals window"
-msgstr "Odprite novo okno Priročnikov"
+#: src/menus.ui:18
+msgid "_Install Documentation…"
+msgstr "_Namesti dokumentacijo ..."
 
-#: src/manuals-bundle-dialog.c:161
-msgid "End of Life"
-msgstr "Konec življenjske dobe"
+#: src/menus.ui:24
+msgid "_About Manuals"
+msgstr "_O programu Priročniki"
 
-#: src/manuals-bundle-dialog.c:171
-msgid "Install"
-msgstr "Namesti"
+#: src/manuals-window.ui:87
+msgid "Toggle Sidebar"
+msgstr "Preklopi stransko vrstico"
 
-#: src/manuals-bundle-dialog.ui:4
-msgid "Documentation"
-msgstr "Dokumentacija"
+#: src/manuals-window.ui:110 src/manuals-sidebar.ui:20
+msgid "Main Menu"
+msgstr "Glavni meni"
 
-#: src/manuals-bundle-dialog.ui:28
-msgid "Loading SDKs…"
-msgstr "Nalaganje SDK-jev ..."
-
-#: src/manuals-bundle-dialog.ui:29
-msgid "Please wait while we locate the SDKs on your system"
-msgstr "Prosimo, počakajte, da poiščemo SDK-je v vašem sistemu"
-
-#: src/manuals-bundle-dialog.ui:41
-msgid "No SDKs Available"
-msgstr "SDK-ji niso na voljo"
-
-#: src/manuals-bundle-dialog.ui:42
-msgid "Your system is not configured to access any SDKs."
-msgstr ""
-"Vaš sistem ni prilagojen za dostop do kompletov za razvoj programske opreme."
-
-#: src/manuals-bundle-dialog.ui:54
-msgid "Installed SDKs"
-msgstr "Nameščeni kompleti za razvoj programske opreme"
-
-#: src/manuals-bundle-dialog.ui:67
-msgid "Available SDKs"
-msgstr "Razpoložljive zbirke SDK"
-
-#: src/manuals-bundle-dialog.ui:83
-msgid "Hide Legacy SDKs"
-msgstr "Skrij opuščene SDK-je"
-
-#: src/manuals-bundle-dialog.ui:95
-msgid "View Legacy SDKs"
-msgstr "Pokaži opuščene SDK-je"
-
-#: src/manuals-install-button.c:110
-msgid "Installing Documentation"
-msgstr "Nameščanje Dokumentacije"
-
-#: src/manuals-install-button.ui:16
-msgid "_Install"
-msgstr "_Namesti"
-
-#: src/manuals-install-button.ui:31
-msgid "_Cancel"
-msgstr "Pre_kliči"
-
-#. translators: the first %u is replaced with the current position, the second with the number of search results
-#: src/manuals-search-entry.c:182
-#, c-format
-msgid "%u of %u"
-msgstr "%u od %u"
-
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
+#: src/manuals-window.ui:122
 msgid "Search"
 msgstr "Iskanje"
 
-#: src/manuals-tab.c:149
-msgid "Open Link in New Tab"
-msgstr "Odpri povezavo v novem zavihku"
-
-#: src/manuals-tab.c:155
-msgid "Open Link in New Window"
-msgstr "Odpri povezavo v novem oknu"
-
-#: src/manuals-tab.c:874
-msgid "Empty Page"
-msgstr "Prazna stran"
-
-#: src/manuals-window.ui:104
+#: src/manuals-window.ui:168
 msgid "Loading…"
 msgstr "Nalaganje …"
 
-#: src/manuals-window.ui:105
+#: src/manuals-window.ui:169
 msgid "One moment please while we locate your documentation"
 msgstr "Trenutek, prosimo, medtem ko iščemo vašo dokumentacijo"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:187
 msgid "Browse Documentation"
 msgstr "Prebrskaj dokumentacijo"
 
-#: src/manuals-window.ui:130
+#: src/manuals-window.ui:194
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -215,37 +134,14 @@ msgstr ""
 "\n"
 "Ali pa pritisnite krmilka+W, da zaprete okno"
 
-#: src/manuals-window.ui:139
+#: src/manuals-window.ui:203
 msgid "Install Documentation…"
 msgstr "Namesti dokumentacijo ..."
 
-#. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:175
+#: src/manuals-sidebar.ui:13
+msgid "Back to Manuals"
+msgstr "Nazaj k Priročnikom"
+
+#: src/manuals-sidebar.ui:203
 msgid "Filter…"
 msgstr "Filtriraj …"
-
-#. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:400
-msgid "Toggle Sidebar"
-msgstr "Preklopi stransko vrstico"
-
-#: src/manuals-window.ui:425 src/manuals-window.ui:478
-#: src/manuals-window.ui:516 src/manuals-window.ui:545
-msgid "Main Menu"
-msgstr "Glavni meni"
-
-#: src/manuals-window.ui:610 src/manuals-window.ui:639
-msgid "New _Tab"
-msgstr "Nov za_vihek"
-
-#: src/manuals-window.ui:615 src/manuals-window.ui:644
-msgid "New _Window"
-msgstr "Novo _okno"
-
-#: src/manuals-window.ui:621 src/manuals-window.ui:650
-msgid "_Install Documentation…"
-msgstr "_Namesti dokumentacijo ..."
-
-#: src/manuals-window.ui:627 src/manuals-window.ui:656
-msgid "_About Manuals"
-msgstr "_O programu Priročniki"
