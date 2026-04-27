@@ -1,25 +1,26 @@
 # Persian translation for Manuals.
 # Copyright (C) 2025 Manuals's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Manuals package.
-# Danial Behzadi <dani.behzi@ubuntu.com>,  2025.
+# Danial Behzadi <dani.behzi@ubuntu.com>,  2025-2026.
+# Goudarz Jafari <me@goudarzjafari.com>,  2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-11-02 10:47+0000\n"
-"PO-Revision-Date: 2025-11-06 16:04+0330\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
+"POT-Creation-Date: 2026-03-02 17:17+0000\n"
+"PO-Revision-Date: 2026-04-27 23:39+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
-#: data/org.gnome.Manuals.desktop.in.in:2 data/org.gnome.Manuals.metainfo.xml.in.in:6
-#: src/manuals-application.c:238 src/manuals-window.c:884 src/manuals-window.ui:6
-#: src/manuals-window.ui:465 src/manuals-window.ui:501
+#: data/org.gnome.Manuals.desktop.in.in:2 data/org.gnome.Manuals.metainfo.xml.in.in:9
+#: src/manuals-application.c:238 src/manuals-window.c:916 src/manuals-window.ui:6
+#: src/manuals-window.ui:472 src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "دفترچه‌های راهنما"
 
@@ -48,16 +49,16 @@ msgstr "ابعاد پنجره"
 msgid "Window is Maximized"
 msgstr "پنجره بیشینه است"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:10
 msgid "Read developer documentation"
 msgstr "خواندن مستندات توسعه‌دهنده"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:12
 msgid "Manuals indexes your developer manuals and provides robust browsing and searching capabilities."
 msgstr ""
 "دفترچه‌های راهنما راهنماهای توسعه‌دهندگانتان را نمایه کرده و قابلیت‌های جست‌وجو و مرور را فراهم می‌کند."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:16
 msgid ""
 "It supports the devhelp documentation format used by many libraries integrating with the GTK "
 "platform."
@@ -65,33 +66,35 @@ msgstr ""
 "این برنامه از قالب مستندات devhelp که از سوی بسیاری از کتابخانه‌های یکپارچه با بن‌سازهٔ GTL استفاده "
 "می‌شود پشتیبانی می‌کند."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:36
+#: data/org.gnome.Manuals.metainfo.xml.in.in:43
 msgid "Browse Documentation by SDK"
 msgstr "مرور مستندات بر اساس SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:40
+#: data/org.gnome.Manuals.metainfo.xml.in.in:47
 msgid "Free Form Search"
 msgstr "جست‌وجوی آزادانه"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:51
 msgid "Install SDK Documentation"
 msgstr "نصب مستندات SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:55
 msgid "Integrated Dark Mode"
 msgstr "حالت تیرهٔ یکپارچه"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:59
 msgid "Mobile Search"
 msgstr "جست‌وجوی همراه"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:63
 msgid "Adaptable Documentation"
 msgstr "مستندات سازوارپذیر"
 
 #: src/manuals-application.c:248
 msgid "translator-credits"
-msgstr "دانیال بهزادی <dani.behzi@ubuntu.com>"
+msgstr ""
+"دانیال بهزادی <dani.behzi@ubuntu.com>\n"
+"گودرز جعفری <me@goudarzjafari.com>"
 
 #: src/manuals-application.c:253
 msgid "Builder"
@@ -105,7 +108,11 @@ msgstr "ایجاد برنامه‌های گنوم"
 msgid "Open a new Manuals window"
 msgstr "گشودن پنجرهٔ جدید دفترچه‌های راهنما"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "پایان عمر"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "نصب"
 
@@ -137,6 +144,14 @@ msgstr "SDK‌های نصب شده"
 msgid "Available SDKs"
 msgstr "SDK‌های موجود"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "نهفتن SDKهای قدیمی"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "نمایش SDKهای قدیمی"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "نصب کردن مستندات"
@@ -155,35 +170,35 @@ msgstr "_لغو"
 msgid "%u of %u"
 msgstr "%Iu از %Iu"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "جست‌وجو"
 
-#: src/manuals-tab.c:143
+#: src/manuals-tab.c:149
 msgid "Open Link in New Tab"
 msgstr "گشودن پیوند در زبانهٔ جدید"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:155
 msgid "Open Link in New Window"
 msgstr "گشودن پیوند در پنجرهٔ جدید"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:874
 msgid "Empty Page"
 msgstr "صفحهٔ خالی"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "بار کردن…"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "یک لحظه زمان برای یافتن مکان مستنداتتان"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "مرور مستندات"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -195,37 +210,37 @@ msgstr ""
 "\n"
 "یا زدن مهار+W برای بستن پنجره"
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "نصب مستندات…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "پالایش…"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "تغییر وضعیت نوار کناری"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471 src/manuals-window.ui:509
-#: src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478 src/manuals-window.ui:516
+#: src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "فهرست اصلی"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "_‌زبانهٔ جدید"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "_پنجرهٔ جدید"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "_نصب مستندات…"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "_دربارهٔ دفترچه‌های راهنما"
