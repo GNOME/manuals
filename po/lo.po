@@ -1,0 +1,222 @@
+# Lao translation for Manuals.
+# Copyright (C) 2025 Manuals's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Manuals package.
+# bone NI <bounkirdni@gmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Manuals main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
+"POT-Creation-Date: 2025-09-15 07:57+0000\n"
+"PO-Revision-Date: 2025-09-15 07:57+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Lao <lo@li.org>\n"
+"Language: lo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/app.devsuite.Manuals.desktop.in.in:2
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
+#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
+#: src/manuals-window.ui:501
+msgid "Manuals"
+msgstr "ຄູ່ມື"
+
+#: data/app.devsuite.Manuals.desktop.in.in:3
+msgid "Install, Browse, and Search Documentation"
+msgstr "ຕິດຕັ້ງ, ເປີດເບິ່ງ, ແລະ ຄົ້ນຫາເອກະສານ"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/app.devsuite.Manuals.desktop.in.in:13
+msgid "documentation;manuals;api;reference;docs;developer;"
+msgstr "ເອກະສານ;ຄູ່ມື;api;ອ້າງອີງ;docs;ຜູ້ພັດທະນາ;"
+
+#: data/app.devsuite.Manuals.gschema.xml:6
+msgid "Width of sidebar in application pixels"
+msgstr "ຄວາມກວ້າງຂອງແຖບຂ້າງເປັນພິກເຊວຂອງແອັບພລິເຄຊັນ"
+
+#: data/app.devsuite.Manuals.gschema.xml:10
+msgid "Window dimensions"
+msgstr "ຂະໜາດຂອງໜ້າຕ່າງ"
+
+#: data/app.devsuite.Manuals.gschema.xml:14
+msgid "Window is Maximized"
+msgstr "ຂະຫຍາຍໜ້າຕ່າງໃຫ້ໃຫຍ່ສຸດ"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:7
+msgid "Read developer documentation"
+msgstr "ອ່ານເອກະສານຂອງຜູ້ພັດທະນາ"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:9
+msgid ""
+"Manuals indexes your developer manuals and provides robust browsing and "
+"searching capabilities."
+msgstr "ຄູ່ມືຈະລວບລວມຄູ່ມືຂອງຜູ້ພັດທະນາຂອງທ່ານ ແລະ ມີຄວາມສາມາດໃນການເປີດເບິ່ງ ແລະ ຄົ້ນຫາທີ່ເຂັ້ມແຂງ."
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:13
+msgid ""
+"It supports the devhelp documentation format used by many libraries "
+"integrating with the GTK platform."
+msgstr "ມັນຮອງຮັບຮູບແບບເອກະສານ devhelp ທີ່ນຳໃຊ້ໂດຍຫຼາຍໆຫໍສະໝຸດທີ່ລວມເຂົ້າກັບແພລັດຟອມ GTK."
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:36
+msgid "Browse Documentation by SDK"
+msgstr "ເປີດເບິ່ງເອກະສານຕາມ SDK"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:40
+msgid "Free Form Search"
+msgstr "ຄົ້ນຫາແບບອິດສະຫຼະ"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:44
+msgid "Install SDK Documentation"
+msgstr "ຕິດຕັ້ງເອກະສານ SDK"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:48
+msgid "Integrated Dark Mode"
+msgstr "ຮູບແບບມືດໃນຕົວ"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:52
+msgid "Mobile Search"
+msgstr "ຄົ້ນຫາແບບມືຖື"
+
+#: data/app.devsuite.Manuals.metainfo.xml.in.in:56
+msgid "Adaptable Documentation"
+msgstr "ເອກະສານທີ່ປັບປ່ຽນໄດ້"
+
+#: src/manuals-application.c:227
+msgid "translator-credits"
+msgstr "ຜູ້ແປ"
+
+#: src/manuals-application.c:232
+msgid "Builder"
+msgstr "ຕົວສ້າງ"
+
+#: src/manuals-application.c:233
+msgid "Create GNOME Applications"
+msgstr "ສ້າງແອັບພລິເຄຊັນ GNOME"
+
+#: src/manuals-application.c:269
+msgid "Open a new Manuals window"
+msgstr "ເປີດໜ້າຕ່າງຄູ່ມືໃໝ່"
+
+#: src/manuals-bundle-dialog.c:148
+msgid "Install"
+msgstr "ຕິດຕັ້ງ"
+
+#: src/manuals-bundle-dialog.ui:4
+msgid "Documentation"
+msgstr "ເອກະສານ"
+
+#: src/manuals-bundle-dialog.ui:28
+msgid "Loading SDKs…"
+msgstr "ກຳລັງໂຫຼດ SDKs…"
+
+#: src/manuals-bundle-dialog.ui:29
+msgid "Please wait while we locate the SDKs on your system"
+msgstr "ກະລຸນາລໍຖ້າໃນຂະນະທີ່ພວກເຮົາຊອກຫາ SDKs ໃນລະບົບຂອງທ່ານ"
+
+#: src/manuals-bundle-dialog.ui:41
+msgid "No SDKs Available"
+msgstr "ບໍ່ມີ SDKs ໃຫ້ໃຊ້"
+
+#: src/manuals-bundle-dialog.ui:42
+msgid "Your system is not configured to access any SDKs."
+msgstr "ລະບົບຂອງທ່ານບໍ່ໄດ້ຖືກຕັ້ງຄ່າເພື່ອເຂົ້າເຖິງ SDKs ໃດໆ."
+
+#: src/manuals-bundle-dialog.ui:54
+msgid "Installed SDKs"
+msgstr "SDKs ທີ່ຕິດຕັ້ງແລ້ວ"
+
+#: src/manuals-bundle-dialog.ui:67
+msgid "Available SDKs"
+msgstr "SDKs ທີ່ມີໃຫ້"
+
+#: src/manuals-install-button.c:110
+msgid "Installing Documentation"
+msgstr "ກຳລັງຕິດຕັ້ງເອກະສານ"
+
+#: src/manuals-install-button.ui:16
+msgid "_Install"
+msgstr "ຕິດຕັ້ງ"
+
+#: src/manuals-install-button.ui:31
+msgid "_Cancel"
+msgstr "ຍົກເລີກ"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/manuals-search-entry.c:182
+#, c-format
+msgid "%u of %u"
+msgstr "%u ຈາກ %u"
+
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+msgid "Search"
+msgstr "ຄົ້ນຫາ"
+
+#: src/manuals-tab.c:143
+msgid "Open Link in New Tab"
+msgstr "ເປີດລິ້ງໃນແຖັບໃໝ່"
+
+#: src/manuals-tab.c:149
+msgid "Open Link in New Window"
+msgstr "ເປີດລິ້ງໃນໜ້າຕ່າງໃໝ່"
+
+#: src/manuals-tab.c:759
+msgid "Empty Page"
+msgstr "ໜ້າຫວ່າງເປົ່າ"
+
+#: src/manuals-window.ui:97
+msgid "Loading…"
+msgstr "ກຳລັງໂຫຼດ…"
+
+#: src/manuals-window.ui:98
+msgid "One moment please while we locate your documentation"
+msgstr "ກະລຸນາລໍຖ້າຄາວໜຶ່ງໃນຂະນະທີ່ພວກເຮົາກຳລັງຊອກຫາເອກະສານຂອງທ່ານ"
+
+#: src/manuals-window.ui:116
+msgid "Browse Documentation"
+msgstr "ເປີດເບິ່ງເອກະສານ"
+
+#: src/manuals-window.ui:123
+msgid ""
+"• Press Ctrl+K to search for classes and more\n"
+"• Press Ctrl+T to open a new tab\n"
+"\n"
+"Or, press Ctrl+W to close the window"
+msgstr "• ກົດ Ctrl+K ເພື່ອຄົ້ນຫາຄລາສ ແລະ ອື່ນໆ\n• ກົດ Ctrl+T ເພື່ອເປີດແຖັບໃໝ່\n\nຫຼື, ກົດ Ctrl+W ເພື່ອປິດໜ້າຕ່າງ"
+
+#: src/manuals-window.ui:132
+msgid "Install Documentation…"
+msgstr "ຕິດຕັ້ງເອກະສານ…"
+
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:168
+msgid "Filter…"
+msgstr "ກັ່ນຕອງ…"
+
+#. Translators: This is a verb, not a noun
+#: src/manuals-window.ui:393
+msgid "Toggle Sidebar"
+msgstr "ສະຫຼັບແຖບຂ້າງ"
+
+#: src/manuals-window.ui:418 src/manuals-window.ui:471
+#: src/manuals-window.ui:509 src/manuals-window.ui:538
+msgid "Main Menu"
+msgstr "ເມນູຫຼັກ"
+
+#: src/manuals-window.ui:603 src/manuals-window.ui:632
+msgid "New _Tab"
+msgstr "ແຖັບໃໝ່"
+
+#: src/manuals-window.ui:608 src/manuals-window.ui:637
+msgid "New _Window"
+msgstr "ໜ້າຕ່າງໃໝ່"
+
+#: src/manuals-window.ui:614 src/manuals-window.ui:643
+msgid "_Install Documentation…"
+msgstr "ຕິດຕັ້ງເອກະສານ…"
+
+#: src/manuals-window.ui:620 src/manuals-window.ui:649
+msgid "_About Manuals"
+msgstr "ກ່ຽວກັບຄູ່ມື"
