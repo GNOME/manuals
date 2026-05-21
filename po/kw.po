@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-12-04 20:44+0000\n"
-"PO-Revision-Date: 2026-01-27 14:42+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
+"POT-Creation-Date: 2026-03-17 00:35+0000\n"
+"PO-Revision-Date: 2026-05-21 16:46+0100\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -23,10 +23,10 @@ msgstr ""
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 49.0\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/org.gnome.Manuals.desktop.in.in:2
-#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9 src/manuals-application.c:238
 #: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
 #: src/manuals-window.ui:508
 msgid "Manuals"
@@ -57,49 +57,49 @@ msgstr "Braster fenester"
 msgid "Window is Maximized"
 msgstr "Fenester yw Kowlvoghhys"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:10
 msgid "Read developer documentation"
-msgstr "Redya kowethlyvrow kod"
+msgstr "Redya kowethlyvrow god"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:12
 msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
 msgstr ""
-"Kowethlyvrow redya dha kowethlyvrow kod ha provia gallosow peuryans ha "
+"Kowethlyvrow a red agas kowethlyvrow god hag a brow gallosow beuryans ha "
 "hwithrans nerthek."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:16
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
 msgstr ""
-"Yth skoodhya an furvas kowethlyver devhelp devnydhys gans meur a lyvervaow "
-"oberi gans an bynk GTK."
+"Y a skoodh an furvas kowethlyver devhelp devnydhys gans meur a lyvervaow ow "
+"kesoberi gans an vynk GTK."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:36
+#: data/org.gnome.Manuals.metainfo.xml.in.in:43
 msgid "Browse Documentation by SDK"
 msgstr "Peuri Kowethlyvrow gans SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:40
+#: data/org.gnome.Manuals.metainfo.xml.in.in:47
 msgid "Free Form Search"
-msgstr "Hwithrans Rydh"
+msgstr "Hwithrans Rydh-Furv"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:51
 msgid "Install SDK Documentation"
 msgstr "Lea Kowethlyvrow SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:55
 msgid "Integrated Dark Mode"
-msgstr "Fordh Du Pervedhek"
+msgstr "Fordh Dhu A-bervedh"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:59
 msgid "Mobile Search"
-msgstr "Hwithrans Gwayadow"
+msgstr "Hwithrans Klapkodh"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:63
 msgid "Adaptable Documentation"
-msgstr "Kowethlyvrow Desedhadow"
+msgstr "Kowethlyvrow Dhesedhadow"
 
 #: src/manuals-application.c:248
 msgid "translator-credits"
@@ -111,11 +111,11 @@ msgstr "Drehever"
 
 #: src/manuals-application.c:254
 msgid "Create GNOME Applications"
-msgstr "Gul Appys GNOME"
+msgstr "Gwruthyl Appys GNOME"
 
 #: src/manuals-application.c:290
 msgid "Open a new Manuals window"
-msgstr "Ygeri unn fenester Kowethlyvrow nowydh"
+msgstr "Ygeri fenester Gowethlyvrow nowydh"
 
 #: src/manuals-bundle-dialog.c:161
 msgid "End of Life"
@@ -135,15 +135,15 @@ msgstr "Ow Karga SDKs…"
 
 #: src/manuals-bundle-dialog.ui:29
 msgid "Please wait while we locate the SDKs on your system"
-msgstr "Mar pleg gortos ha ni kavos an SDKs war dha system"
+msgstr "Gortewgh ha ni a dhesedh an SDKs war agas system mar pleg"
 
 #: src/manuals-bundle-dialog.ui:41
 msgid "No SDKs Available"
-msgstr "SDKs Kavadow Vyth"
+msgstr "Nyns eus SDKs Kavadow"
 
 #: src/manuals-bundle-dialog.ui:42
 msgid "Your system is not configured to access any SDKs."
-msgstr "Dha system ny selys rag drehedhes neb SDKs."
+msgstr "Agas system nag yw selys rag drehedhes neb SDKs."
 
 #: src/manuals-bundle-dialog.ui:54
 msgid "Installed SDKs"
@@ -183,17 +183,17 @@ msgstr "%u a %u"
 msgid "Search"
 msgstr "Hwilas"
 
-#: src/manuals-tab.c:143
+#: src/manuals-tab.c:149
 msgid "Open Link in New Tab"
 msgstr "Ygeri Gorgevren y'n Tabb Nowydh"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:155
 msgid "Open Link in New Window"
 msgstr "Ygeri Gorgevren y'n Fenester Nowydh"
 
-#: src/manuals-tab.c:765
+#: src/manuals-tab.c:874
 msgid "Empty Page"
-msgstr "Folen Gwag"
+msgstr "Folen Wag"
 
 #: src/manuals-window.ui:104
 msgid "Loading…"
@@ -201,7 +201,7 @@ msgstr "Ow Karga…"
 
 #: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
-msgstr "Unn tecken, mar pleg, ha ni kavos dha kowethlyvrow"
+msgstr "Unn tecken, mar pleg, ha ni a dhesedh agas kowethlyvrow"
 
 #: src/manuals-window.ui:123
 msgid "Browse Documentation"
@@ -214,14 +214,14 @@ msgid ""
 "\n"
 "Or, press Ctrl+W to close the window"
 msgstr ""
-"• Tava Ctrl+K rag hwilas rag klassys ha moy\n"
-"• Tava Ctrl+T rag ygeri unn tabb nowydh\n"
+"• Tevewgh Ctrl+K rag hwilas rag klassys ha moy\n"
+"• Tevewgh Ctrl+T rag ygeri tabb nowydh\n"
 "\n"
-"Po, tava Ctrl+W rag degea an fenester"
+"Po, tevewgh Ctrl+W rag degea an fenester"
 
 #: src/manuals-window.ui:139
 msgid "Install Documentation…"
-msgstr "Lea Kowethlyvrow"
+msgstr "Lea Kowethlyvrow…"
 
 #. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:175
@@ -236,7 +236,7 @@ msgstr "Dewis Bordh Lestri"
 #: src/manuals-window.ui:425 src/manuals-window.ui:478
 #: src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
-msgstr "Rol Chif"
+msgstr "Pennrol"
 
 #: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
@@ -252,4 +252,4 @@ msgstr "_Lea Kowethlyvrow…"
 
 #: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
-msgstr "_A-dro Kowethlyvrow"
+msgstr "_A-dro dhe Gowethlyvrow"
