@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
 "POT-Creation-Date: 2026-03-17 00:35+0000\n"
-"PO-Revision-Date: 2026-05-21 16:46+0100\n"
+"PO-Revision-Date: 2026-06-15 10:33+0100\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -59,14 +59,14 @@ msgstr "Fenester yw Kowlvoghhys"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:10
 msgid "Read developer documentation"
-msgstr "Redya kowethlyvrow god"
+msgstr "Redya kowethlyvrow kod"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:12
 msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
 msgstr ""
-"Kowethlyvrow a red agas kowethlyvrow god hag a brow gallosow beuryans ha "
+"Kowethlyvrow a red agas kowethlyvrow kod hag a brow gallosow peuryans ha "
 "hwithrans nerthek."
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:16
@@ -99,7 +99,7 @@ msgstr "Hwithrans Klapkodh"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:63
 msgid "Adaptable Documentation"
-msgstr "Kowethlyvrow Dhesedhadow"
+msgstr "Kowethlyvrow Desedhadow"
 
 #: src/manuals-application.c:248
 msgid "translator-credits"
@@ -107,7 +107,7 @@ msgstr "Flynn"
 
 #: src/manuals-application.c:253
 msgid "Builder"
-msgstr "Drehever"
+msgstr "Drehevell"
 
 #: src/manuals-application.c:254
 msgid "Create GNOME Applications"
@@ -115,7 +115,7 @@ msgstr "Gwruthyl Appys GNOME"
 
 #: src/manuals-application.c:290
 msgid "Open a new Manuals window"
-msgstr "Ygeri fenester Gowethlyvrow nowydh"
+msgstr "Ygeri fenester Kowethlyvrow nowydh"
 
 #: src/manuals-bundle-dialog.c:161
 msgid "End of Life"
