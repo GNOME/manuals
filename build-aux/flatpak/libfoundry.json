@@ -6,6 +6,7 @@
         "-Dgtk=false",
         "-Dwebkit=false",
         "-Dcommonmark=false",
+        "-Dfeature-acp=false",
         "-Dfeature-debugger=false",
         "-Dfeature-flatpak=true",
         "-Dfeature-forge=false",
