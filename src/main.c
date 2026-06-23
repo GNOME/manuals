@@ -38,6 +38,8 @@ main (int   argc,
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
+  dex_init ();
+
   dex_future_disown (foundry_init ());
 
   panel_init ();
