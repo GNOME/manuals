@@ -4,12 +4,6 @@
 
 .toc { background: transparent !important; }
 
-:root { --body-bg: #ffffff !important; }
-
-@media (prefers-color-scheme: dark) {
-  :root { --body-bg: #1d1d20 !important; }
-}
-
 /* https://github.com/workbenchdev/Biblioteca/blob/022ede135351cbff519e456ab38b6624e3938e0b/src/WebView.js#L95 */
 .overshoot-overlay-bottom {
   height: 100%;
