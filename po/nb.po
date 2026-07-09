@@ -1,15 +1,15 @@
 # Norwegian Bokmål translation for Manuals.
 # Copyright (C) 2026 Manuals's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Manuals package.
-# Kjartan Maraas <kjartan.maraas@proton.me>, 2026.
+# Kjartan Maraas <kmaraas@gnome.org>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
 "POT-Creation-Date: 2026-03-17 00:35+0000\n"
-"PO-Revision-Date: 2026-05-13 09:04+0200\n"
-"Last-Translator: Kjartan Maraas <kjartan.maraas@proton.me>\n"
+"PO-Revision-Date: 2026-07-09 11:37+0200\n"
+"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <nb@li.org>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
@@ -39,55 +39,55 @@ msgstr "Nytt vindu"
 
 #: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
-msgstr ""
+msgstr "Bredde på sideline i piksler"
 
 #: data/org.gnome.Manuals.gschema.xml:10
 msgid "Window dimensions"
-msgstr ""
+msgstr "Vindusdimensjoner"
 
 #: data/org.gnome.Manuals.gschema.xml:14
 msgid "Window is Maximized"
-msgstr ""
+msgstr "Vindu er maksimert"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:10
 msgid "Read developer documentation"
-msgstr ""
+msgstr "Les utviklerdokumentasjon"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:12
 msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
-msgstr ""
+msgstr "Håndbøker indekserer dine utviklerhåndbøker og gir robuste lese og søkefunksjoner."
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:16
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
-msgstr ""
+msgstr "Det støtter devhelp dokumentasjonsformatet og brukes av mange biblioteker som integrerer med GTK-plattformen."
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:43
 msgid "Browse Documentation by SDK"
-msgstr ""
+msgstr "Les dokumentasjon etter SDK"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:47
 msgid "Free Form Search"
-msgstr ""
+msgstr "Friformsøk"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:51
 msgid "Install SDK Documentation"
-msgstr ""
+msgstr "Installer SDK-dokumentasjon"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:55
 msgid "Integrated Dark Mode"
-msgstr ""
+msgstr "Integrert mørk modus"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:59
 msgid "Mobile Search"
-msgstr ""
+msgstr "Mobilsøk"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:63
 msgid "Adaptable Documentation"
-msgstr ""
+msgstr "Tilpasset dokumentasjon"
 
 #: src/manuals-application.c:248
 msgid "translator-credits"
@@ -95,19 +95,19 @@ msgstr "Kjartan Maraas <kjartan.maraas@proton.me>"
 
 #: src/manuals-application.c:253
 msgid "Builder"
-msgstr ""
+msgstr "Bygger"
 
 #: src/manuals-application.c:254
 msgid "Create GNOME Applications"
-msgstr ""
+msgstr "Lag GNOME-applikasjoner"
 
 #: src/manuals-application.c:290
 msgid "Open a new Manuals window"
-msgstr ""
+msgstr "Åpne et nytt vindu for Håndbøker"
 
 #: src/manuals-bundle-dialog.c:161
 msgid "End of Life"
-msgstr ""
+msgstr "Utgått"
 
 #: src/manuals-bundle-dialog.c:171
 msgid "Install"
@@ -119,11 +119,11 @@ msgstr "Dokumentasjon"
 
 #: src/manuals-bundle-dialog.ui:28
 msgid "Loading SDKs…"
-msgstr ""
+msgstr "Laster SDKer"
 
 #: src/manuals-bundle-dialog.ui:29
 msgid "Please wait while we locate the SDKs on your system"
-msgstr ""
+msgstr "Vennligst vent mens vi ser etter SDKer på ditt system"
 
 #: src/manuals-bundle-dialog.ui:41
 msgid "No SDKs Available"
@@ -131,7 +131,7 @@ msgstr "Ingen tilgjengelige SDKer"
 
 #: src/manuals-bundle-dialog.ui:42
 msgid "Your system is not configured to access any SDKs."
-msgstr ""
+msgstr "Systemet ditt er ikke konfigurert for tilgang til noen SDKer."
 
 #: src/manuals-bundle-dialog.ui:54
 msgid "Installed SDKs"
