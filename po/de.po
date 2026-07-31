@@ -7,33 +7,35 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-06-17 23:46+0000\n"
-"PO-Revision-Date: 2025-06-19 21:54+0200\n"
-"Last-Translator: Philipp Kiemle <l10n@prly.mozmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
+"POT-Creation-Date: 2026-03-17 00:35+0000\n"
+"PO-Revision-Date: 2026-06-23 21:56+0200\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
-#: data/org.gnome.Manuals.desktop.in.in:3
-#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:217
-#: src/manuals-window.c:884 src/manuals-window.ui:6 src/manuals-window.ui:465
-#: src/manuals-window.ui:501
+#: data/org.gnome.Manuals.desktop.in.in:2 data/org.gnome.Manuals.metainfo.xml.in.in:9 src/manuals-application.c:238
+#: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472 src/manuals-window.ui:508
 msgid "Manuals"
 msgstr "Handbücher"
 
-#: data/org.gnome.Manuals.desktop.in.in:4
+#: data/org.gnome.Manuals.desktop.in.in:3
 msgid "Install, Browse, and Search Documentation"
 msgstr "Dokumentationen installieren, lesen und durchsuchen"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Manuals.desktop.in.in:14
+#: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
 msgstr "documentation;manuals;api;reference;docs;developer;Dokumentation;Handbücher;API;Referenz;Doku;Entwickler;Entwicklung;"
+
+#: data/org.gnome.Manuals.desktop.in.in:18
+msgid "New Window"
+msgstr "Neues Fenster"
 
 #: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
@@ -47,62 +49,68 @@ msgstr "Abmessungen des Fensters"
 msgid "Window is Maximized"
 msgstr "Fenster ist maximiert"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:10
 msgid "Read developer documentation"
 msgstr "Entwicklungsdokumentation lesen"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:12
 msgid "Manuals indexes your developer manuals and provides robust browsing and searching capabilities."
 msgstr "Handbücher indexiert Ihre Entwicklungshandbücher und bietet robuste Les- und Suchfunktionen."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:16
 msgid "It supports the devhelp documentation format used by many libraries integrating with the GTK platform."
-msgstr "Es unterstützt das »devhelp«-Dokumentationsformat, das von vielen in die GTK-Plattform integrierten Bibliotheken verwendet wird."
+msgstr ""
+"Es unterstützt das »devhelp«-Dokumentationsformat, das von vielen in die GTK-Plattform integrierten Bibliotheken verwendet "
+"wird."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:36
+#: data/org.gnome.Manuals.metainfo.xml.in.in:43
 msgid "Browse Documentation by SDK"
 msgstr "Dokumentation nach SDK durchsuchen"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:40
-#, fuzzy
+#: data/org.gnome.Manuals.metainfo.xml.in.in:47
 msgid "Free Form Search"
-msgstr "Freie Formularsuche"
+msgstr "1Freie Formularsuche"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:51
 msgid "Install SDK Documentation"
 msgstr "SDK-Dokumentation installieren"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:55
 msgid "Integrated Dark Mode"
 msgstr "Integriertes dunkles Thema"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:59
 msgid "Mobile Search"
 msgstr "Mobile Suche"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:63
 msgid "Adaptable Documentation"
 msgstr "Anpassungsfähige Dokumentation"
 
-#: src/manuals-application.c:227
+#: src/manuals-application.c:248
 msgid "translator-credits"
 msgstr ""
 "Achill Gilgenast <fossdd@pwned.life>\n"
-"Philipp Kiemle <l10n@prly.mozmail.com>"
+"Philipp Kiemle <l10n@prly.mozmail.com>\n"
+"Christian Kirbach <Christian.Kirbach@gmail.com>, 2026"
 
-#: src/manuals-application.c:232
+#: src/manuals-application.c:253
 msgid "Builder"
 msgstr "Builder"
 
-#: src/manuals-application.c:233
+#: src/manuals-application.c:254
 msgid "Create GNOME Applications"
 msgstr "GNOME-Anwendungen erstellen"
 
-#: src/manuals-application.c:269
+#: src/manuals-application.c:290
 msgid "Open a new Manuals window"
 msgstr "Neues Handbücher-Fenster"
 
-#: src/manuals-bundle-dialog.c:148
+#: src/manuals-bundle-dialog.c:161
+msgid "End of Life"
+msgstr "Nicht mehr unterstützt"
+
+#: src/manuals-bundle-dialog.c:171
 msgid "Install"
 msgstr "Installieren"
 
@@ -134,6 +142,14 @@ msgstr "Installierte SDKs"
 msgid "Available SDKs"
 msgstr "Verfügbare SDKs"
 
+#: src/manuals-bundle-dialog.ui:83
+msgid "Hide Legacy SDKs"
+msgstr "Veraltete SDKs verbergen"
+
+#: src/manuals-bundle-dialog.ui:95
+msgid "View Legacy SDKs"
+msgstr "Veraltete SDKs anzeigen"
+
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
 msgstr "Dokumentation wird installiert"
@@ -152,35 +168,35 @@ msgstr "_Abbrechen"
 msgid "%u of %u"
 msgstr "%u von %u"
 
-#: src/manuals-search-entry.ui:14 src/manuals-window.ui:426
+#: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
 msgstr "Suchen"
 
-#: src/manuals-tab.c:143
+#: src/manuals-tab.c:149
 msgid "Open Link in New Tab"
 msgstr "Verweis in neuem Reiter öffnen"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:155
 msgid "Open Link in New Window"
 msgstr "Verweis in neuem Fenster öffnen"
 
-#: src/manuals-tab.c:759
+#: src/manuals-tab.c:874
 msgid "Empty Page"
 msgstr "Leere Seite"
 
-#: src/manuals-window.ui:97
+#: src/manuals-window.ui:104
 msgid "Loading…"
 msgstr "Laden …"
 
-#: src/manuals-window.ui:98
+#: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
 msgstr "Einen Moment bitte, Ihre Dokumentation wird gesucht"
 
-#: src/manuals-window.ui:116
+#: src/manuals-window.ui:123
 msgid "Browse Documentation"
 msgstr "Dokumentation durchsuchen"
 
-#: src/manuals-window.ui:123
+#: src/manuals-window.ui:130
 msgid ""
 "• Press Ctrl+K to search for classes and more\n"
 "• Press Ctrl+T to open a new tab\n"
@@ -192,37 +208,36 @@ msgstr ""
 "\n"
 "Oder drücken Sie Strg+W, um das Fenster zu schließen"
 
-#: src/manuals-window.ui:132
+#: src/manuals-window.ui:139
 msgid "Install Documentation…"
 msgstr "Dokumentation installieren …"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:168
+#: src/manuals-window.ui:175
 msgid "Filter…"
 msgstr "Filtern …"
 
 #. Translators: This is a verb, not a noun
-#: src/manuals-window.ui:393
+#: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
 msgstr "Seitenleiste umschalten"
 
-#: src/manuals-window.ui:418 src/manuals-window.ui:471
-#: src/manuals-window.ui:509 src/manuals-window.ui:538
+#: src/manuals-window.ui:425 src/manuals-window.ui:478 src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
-#: src/manuals-window.ui:603 src/manuals-window.ui:632
+#: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
 msgstr "Neuer _Reiter"
 
-#: src/manuals-window.ui:608 src/manuals-window.ui:637
+#: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
 msgstr "Neues _Fenster"
 
-#: src/manuals-window.ui:614 src/manuals-window.ui:643
+#: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
 msgstr "Dokumentation _installieren …"
 
-#: src/manuals-window.ui:620 src/manuals-window.ui:649
+#: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
 msgstr "_Info zu Handbücher"
