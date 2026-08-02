@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
-"POT-Creation-Date: 2026-03-17 00:35+0000\n"
-"PO-Revision-Date: 2026-05-15 00:44+0300\n"
+"POT-Creation-Date: 2026-07-06 13:44+0000\n"
+"PO-Revision-Date: 2026-08-03 00:21+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <Belarusian>\n"
 "Language: be\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 # звычайна кіраўніцтва або дапаможнік, але пункт меню даведка і для пары даведнік
 #: data/org.gnome.Manuals.desktop.in.in:2 data/org.gnome.Manuals.metainfo.xml.in.in:9 src/manuals-application.c:238
@@ -60,6 +60,11 @@ msgstr "Праграма індэксуе кіраўніцтвы распрац�
 #: data/org.gnome.Manuals.metainfo.xml.in.in:16
 msgid "It supports the devhelp documentation format used by many libraries integrating with the GTK platform."
 msgstr "Падтрымліваецца фармат дакументацыі devhelp, які выкарыстоўваецца вялікай колькасцю бібліятэк платформы GTK."
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Manuals.metainfo.xml.in.in:22
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:43
 msgid "Browse Documentation by SDK"
@@ -167,15 +172,15 @@ msgstr "%u з %u"
 msgid "Search"
 msgstr "Пошук"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:150
 msgid "Open Link in New Tab"
 msgstr "Адкрыць спасылку ў новай укладцы"
 
-#: src/manuals-tab.c:155
+#: src/manuals-tab.c:156
 msgid "Open Link in New Window"
 msgstr "Адкрыць спасылку ў новым акне"
 
-#: src/manuals-tab.c:874
+#: src/manuals-tab.c:929
 msgid "Empty Page"
 msgstr "Пустая старонка"
 
