@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2025-12-04 20:44+0000\n"
-"PO-Revision-Date: 2026-01-27 11:19+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
+"POT-Creation-Date: 2026-07-06 13:44+0000\n"
+"PO-Revision-Date: 2026-08-03 14:30+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -17,10 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Gtranslator 48.0\n"
+"X-Generator: Gtranslator 50.0\n"
+"X-DL-VCS-Web: https://gitlab.gnome.org/GNOME/manuals\n"
+"X-DL-Lang: ro\n"
+"X-DL-Module: Manuals\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #: data/org.gnome.Manuals.desktop.in.in:2
-#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9 src/manuals-application.c:238
 #: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
 #: src/manuals-window.ui:508
 msgid "Manuals"
@@ -51,11 +57,11 @@ msgstr "Dimensiunile ferestrei"
 msgid "Window is Maximized"
 msgstr "Fereastra e maximizată"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:10
 msgid "Read developer documentation"
 msgstr "Citește documentația programatorului"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:12
 msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
@@ -63,7 +69,7 @@ msgstr ""
 "Aplicația „Manuale” indexează manualele programatorilor și oferă capacități "
 "robuste de răsfoire și căutare."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:16
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
@@ -71,27 +77,32 @@ msgstr ""
 "Acceptă formatul de documentație devhelp utilizat de multe biblioteci care "
 "se integrează cu platforma GTK."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:36
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Manuals.metainfo.xml.in.in:22
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:43
 msgid "Browse Documentation by SDK"
 msgstr "Răsfoiește documentația SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:40
+#: data/org.gnome.Manuals.metainfo.xml.in.in:47
 msgid "Free Form Search"
 msgstr "Căutare liberă"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:51
 msgid "Install SDK Documentation"
 msgstr "Instalează documentația SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:55
 msgid "Integrated Dark Mode"
 msgstr "Aspect întunecos integrat"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:59
 msgid "Mobile Search"
 msgstr "Căutare pe mobil"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:63
 msgid "Adaptable Documentation"
 msgstr "Documentație adaptabilă"
 
@@ -177,15 +188,15 @@ msgstr "%u din %u"
 msgid "Search"
 msgstr "Caută"
 
-#: src/manuals-tab.c:143
+#: src/manuals-tab.c:150
 msgid "Open Link in New Tab"
 msgstr "Deschide legătura într-o filă nouă"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:156
 msgid "Open Link in New Window"
 msgstr "Deschide legătura într-o fereastră nouă"
 
-#: src/manuals-tab.c:765
+#: src/manuals-tab.c:929
 msgid "Empty Page"
 msgstr "Pagină goală"
 
