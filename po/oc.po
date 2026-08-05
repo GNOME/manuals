@@ -6,19 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2026-01-23 20:27+0000\n"
-"PO-Revision-Date: 2026-02-02 10:03+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
+"POT-Creation-Date: 2026-07-06 13:44+0000\n"
+"PO-Revision-Date: 2026-08-05 08:12+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Occitan <Occitan>\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.Manuals.desktop.in.in:2
-#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9 src/manuals-application.c:238
 #: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
 #: src/manuals-window.ui:508
 msgid "Manuals"
@@ -49,11 +49,11 @@ msgstr "Dimensions de la fenèstra"
 msgid "Window is Maximized"
 msgstr "La fenèstra es maximizada"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:10
 msgid "Read developer documentation"
 msgstr "Legir la documentacion pels desvelopaires"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:12
 msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
@@ -61,7 +61,7 @@ msgstr ""
 "Manuals indexa los manuals de desvolopament e provesís de capacitats "
 "robustas de navigacion e de recèrca."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:16
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
@@ -69,27 +69,32 @@ msgstr ""
 "Suporta lo format de documentacion devhelp utilizat per fòrça bibliotècas "
 "que s'intègran amb la plataforma GTK."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:36
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Manuals.metainfo.xml.in.in:22
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:43
 msgid "Browse Documentation by SDK"
 msgstr "Percórrer la documentacion per SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:40
+#: data/org.gnome.Manuals.metainfo.xml.in.in:47
 msgid "Free Form Search"
 msgstr "Formulari de recèrca liure"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:51
 msgid "Install SDK Documentation"
 msgstr "Installar la documentacion SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:55
 msgid "Integrated Dark Mode"
 msgstr "Mòde fosc integrat"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:59
 msgid "Mobile Search"
 msgstr "Recèrca mobile"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:63
 msgid "Adaptable Documentation"
 msgstr "Documentacion adaptabla"
 
@@ -176,15 +181,15 @@ msgstr "%u de %u"
 msgid "Search"
 msgstr "Cercar"
 
-#: src/manuals-tab.c:143
+#: src/manuals-tab.c:150
 msgid "Open Link in New Tab"
 msgstr "Dobrir lo ligam dins un onglet novèl"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:156
 msgid "Open Link in New Window"
 msgstr "Dobrir lo ligam dins una fenèstra novèla"
 
-#: src/manuals-tab.c:765
+#: src/manuals-tab.c:929
 msgid "Empty Page"
 msgstr "Pagina voida"
 
