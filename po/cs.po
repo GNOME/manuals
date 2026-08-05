@@ -2,24 +2,25 @@
 # Copyright (C) 2025 Manuals's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Manuals package.
 # Daniel Rusek <mail@asciiwolf.com>, 2025.
+# Patrik Sivek <sivekpatrik@gmail.com>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/-/issues\n"
-"POT-Creation-Date: 2026-02-02 19:44+0000\n"
-"PO-Revision-Date: 2026-02-09 17:42+0100\n"
-"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
-"Language-Team: Czech <Czech>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
+"POT-Creation-Date: 2026-07-06 13:44+0000\n"
+"PO-Revision-Date: 2026-08-05 21:08+0200\n"
+"Last-Translator: Patrik Sivek <sivekpatrik@gmail.com>\n"
+"Language-Team: Czech\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/org.gnome.Manuals.desktop.in.in:2
-#: data/org.gnome.Manuals.metainfo.xml.in.in:6 src/manuals-application.c:238
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9 src/manuals-application.c:238
 #: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
 #: src/manuals-window.ui:508
 msgid "Manuals"
@@ -50,11 +51,11 @@ msgstr "Rozměry okna"
 msgid "Window is Maximized"
 msgstr "Okno je maximalizováno"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:7
+#: data/org.gnome.Manuals.metainfo.xml.in.in:10
 msgid "Read developer documentation"
 msgstr "Přečtěte si vývojářskou dokumentaci"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:9
+#: data/org.gnome.Manuals.metainfo.xml.in.in:12
 msgid ""
 "Manuals indexes your developer manuals and provides robust browsing and "
 "searching capabilities."
@@ -62,7 +63,7 @@ msgstr ""
 "Aplikace Manuály indexuje vaše vývojářské manuály a poskytuje robustní "
 "možnosti procházení a vyhledávání."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:13
+#: data/org.gnome.Manuals.metainfo.xml.in.in:16
 msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
@@ -70,27 +71,32 @@ msgstr ""
 "Podporuje formát dokumentace devhelp používaný mnoha knihovnami "
 "integrujícími se s platformou GTK."
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:36
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Manuals.metainfo.xml.in.in:22
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#: data/org.gnome.Manuals.metainfo.xml.in.in:43
 msgid "Browse Documentation by SDK"
 msgstr "Procházejte dokumentaci podle SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:40
+#: data/org.gnome.Manuals.metainfo.xml.in.in:47
 msgid "Free Form Search"
 msgstr "Vyhledávání ve volném formátu"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:44
+#: data/org.gnome.Manuals.metainfo.xml.in.in:51
 msgid "Install SDK Documentation"
 msgstr "Instalujte dokumentaci SDK"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:48
+#: data/org.gnome.Manuals.metainfo.xml.in.in:55
 msgid "Integrated Dark Mode"
 msgstr "Integrovaný tmavý režim"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:52
+#: data/org.gnome.Manuals.metainfo.xml.in.in:59
 msgid "Mobile Search"
 msgstr "Mobilní vyhledávání"
 
-#: data/org.gnome.Manuals.metainfo.xml.in.in:56
+#: data/org.gnome.Manuals.metainfo.xml.in.in:63
 msgid "Adaptable Documentation"
 msgstr "Přizpůsobitelná dokumentace"
 
@@ -176,15 +182,15 @@ msgstr "%u z %u"
 msgid "Search"
 msgstr "Hledat"
 
-#: src/manuals-tab.c:149
+#: src/manuals-tab.c:150
 msgid "Open Link in New Tab"
 msgstr "Otevřít odkaz v nové kartě"
 
-#: src/manuals-tab.c:155
+#: src/manuals-tab.c:156
 msgid "Open Link in New Window"
 msgstr "Otevřít odkaz v novém okně"
 
-#: src/manuals-tab.c:874
+#: src/manuals-tab.c:929
 msgid "Empty Page"
 msgstr "Prázdná stránka"
 
