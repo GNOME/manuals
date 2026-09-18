@@ -140,6 +140,7 @@ manuals_application_startup (GApplication *app)
   icon_theme = gtk_icon_theme_get_for_display (display);
 
   gtk_icon_theme_add_resource_path (icon_theme, "/org/gnome/foundry/icons");
+  gtk_icon_theme_add_resource_path (icon_theme, "/org/gnome/builder/icons");
 }
 
 static void
