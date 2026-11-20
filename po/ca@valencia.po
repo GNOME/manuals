@@ -2,23 +2,24 @@
 # Copyright (C) 2026 Manuals's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Manuals package.
 # Xavi Ivars <xavi.ivars@gmail.com>, 2026.
+# Artur Vicedo <artur@softcatala.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Manuals main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/manuals/issues\n"
-"POT-Creation-Date: 2026-08-06 19:14+0000\n"
-"PO-Revision-Date: 2026-08-25 17:25+0000\n"
-"Last-Translator: Xavi Ivars <xavi.ivars@gmail.com>\n"
+"POT-Creation-Date: 2026-09-21 15:16+0000\n"
+"PO-Revision-Date: 2026-11-20 22:33+0000\n"
+"Last-Translator: Artur Vicedo <artur@softcatala.org>\n"
 "Language-Team: Catalan (Valencian) <Catalan>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Minairó 1.2.0\n"
+"X-Generator: Minairó 1.15.0\n"
 
 #: data/org.gnome.Manuals.desktop.in.in:2
-#: data/org.gnome.Manuals.metainfo.xml.in.in:9 src/manuals-application.c:238
+#: data/org.gnome.Manuals.metainfo.xml.in.in:9 src/manuals-application.c:239
 #: src/manuals-window.c:916 src/manuals-window.ui:6 src/manuals-window.ui:472
 #: src/manuals-window.ui:508
 msgid "Manuals"
@@ -31,27 +32,27 @@ msgstr ""
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Manuals.desktop.in.in:13
 msgid "documentation;manuals;api;reference;docs;developer;"
-msgstr ""
+msgstr "documentació;manuals;api;referència;docs;desenvolupador;"
 
 #: data/org.gnome.Manuals.desktop.in.in:18
 msgid "New Window"
-msgstr ""
+msgstr "Finestra nova"
 
 #: data/org.gnome.Manuals.gschema.xml:6
 msgid "Width of sidebar in application pixels"
-msgstr ""
+msgstr "Amplària de la barra lateral de l'aplicació en píxels"
 
 #: data/org.gnome.Manuals.gschema.xml:10
 msgid "Window dimensions"
-msgstr ""
+msgstr "Mides de la finestra"
 
 #: data/org.gnome.Manuals.gschema.xml:14
 msgid "Window is Maximized"
-msgstr ""
+msgstr "La finestra està maximitzada"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:10
 msgid "Read developer documentation"
-msgstr ""
+msgstr "Llegiu la documentació de desenvolupament"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:12
 msgid ""
@@ -64,10 +65,12 @@ msgid ""
 "It supports the devhelp documentation format used by many libraries "
 "integrating with the GTK platform."
 msgstr ""
+"És compatible amb el format de documentació de DevHelp utilitzat per moltes "
+"biblioteques que s’integren amb la plataforma GTK."
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:43
 msgid "Browse Documentation by SDK"
-msgstr ""
+msgstr "Navegueu la documentació per SDK"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:47
 msgid "Free Form Search"
@@ -75,11 +78,11 @@ msgstr ""
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:51
 msgid "Install SDK Documentation"
-msgstr ""
+msgstr "Instal·la la documentació SDK"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:55
 msgid "Integrated Dark Mode"
-msgstr ""
+msgstr "Mode fosc integrat"
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:59
 msgid "Mobile Search"
@@ -87,85 +90,85 @@ msgstr ""
 
 #: data/org.gnome.Manuals.metainfo.xml.in.in:63
 msgid "Adaptable Documentation"
-msgstr ""
+msgstr "Documentació adaptable"
 
-#: src/manuals-application.c:248
+#: src/manuals-application.c:249
 msgid "translator-credits"
-msgstr ""
-
-#: src/manuals-application.c:253
-msgid "Builder"
-msgstr ""
+msgstr "Victor Dargallo <victordargallo@disroot.org>"
 
 #: src/manuals-application.c:254
-msgid "Create GNOME Applications"
-msgstr ""
+msgid "Builder"
+msgstr "Constructor"
 
-#: src/manuals-application.c:290
+#: src/manuals-application.c:255
+msgid "Create GNOME Applications"
+msgstr "Crear aplicacions del GNOME"
+
+#: src/manuals-application.c:291
 msgid "Open a new Manuals window"
-msgstr ""
+msgstr "Obri una nova finestra del Manuals"
 
 #: src/manuals-bundle-dialog.c:161
 msgid "End of Life"
-msgstr ""
+msgstr "Final de vida"
 
 #: src/manuals-bundle-dialog.c:171
 msgid "Install"
-msgstr ""
+msgstr "Instal·la"
 
 #: src/manuals-bundle-dialog.ui:4
 msgid "Documentation"
-msgstr ""
+msgstr "Documentació"
 
 #: src/manuals-bundle-dialog.ui:28
 msgid "Loading SDKs…"
-msgstr ""
+msgstr "S'estan carregant els SDKs…"
 
 #: src/manuals-bundle-dialog.ui:29
 msgid "Please wait while we locate the SDKs on your system"
-msgstr ""
+msgstr "S'estan buscant SDKs al vostre sistema"
 
 #: src/manuals-bundle-dialog.ui:41
 msgid "No SDKs Available"
-msgstr ""
+msgstr "No hi ha SDKs disponibles"
 
 #: src/manuals-bundle-dialog.ui:42
 msgid "Your system is not configured to access any SDKs."
-msgstr ""
+msgstr "El vostre sistema no està configurat per accedir a cap SDK."
 
 #: src/manuals-bundle-dialog.ui:54
 msgid "Installed SDKs"
-msgstr ""
+msgstr "SDKs instal·lats"
 
 #: src/manuals-bundle-dialog.ui:67
 msgid "Available SDKs"
-msgstr ""
+msgstr "SDKs disponibles"
 
 #: src/manuals-bundle-dialog.ui:83
 msgid "Hide Legacy SDKs"
-msgstr ""
+msgstr "Oculta els SDK antics"
 
 #: src/manuals-bundle-dialog.ui:95
 msgid "View Legacy SDKs"
-msgstr ""
+msgstr "Mostra els SDK antics"
 
 #: src/manuals-install-button.c:110
 msgid "Installing Documentation"
-msgstr ""
+msgstr "S'està instal·lant la documentació"
 
 #: src/manuals-install-button.ui:16
 msgid "_Install"
-msgstr ""
+msgstr "_Instal·la"
 
 #: src/manuals-install-button.ui:31
 msgid "_Cancel"
-msgstr ""
+msgstr "_Cancel·la"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
 #: src/manuals-search-entry.c:182
 #, c-format
 msgid "%u of %u"
-msgstr ""
+msgstr "%u de %u"
 
 #: src/manuals-search-entry.ui:14 src/manuals-window.ui:433
 msgid "Search"
@@ -173,19 +176,19 @@ msgstr ""
 
 #: src/manuals-tab.c:150
 msgid "Open Link in New Tab"
-msgstr ""
+msgstr "Obri l'enllaç en una pestanya nova"
 
 #: src/manuals-tab.c:156
 msgid "Open Link in New Window"
-msgstr ""
+msgstr "Obri l'enllaç en una finestra nova"
 
 #: src/manuals-tab.c:929
 msgid "Empty Page"
-msgstr ""
+msgstr "Pàgina buida"
 
 #: src/manuals-window.ui:104
 msgid "Loading…"
-msgstr ""
+msgstr "S'està carregant…"
 
 #: src/manuals-window.ui:105
 msgid "One moment please while we locate your documentation"
@@ -193,7 +196,7 @@ msgstr ""
 
 #: src/manuals-window.ui:123
 msgid "Browse Documentation"
-msgstr ""
+msgstr "Navega la documentació"
 
 #: src/manuals-window.ui:130
 msgid ""
@@ -205,35 +208,35 @@ msgstr ""
 
 #: src/manuals-window.ui:139
 msgid "Install Documentation…"
-msgstr ""
+msgstr "Instal·la la documentació…"
 
 #. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:175
 msgid "Filter…"
-msgstr ""
+msgstr "Filtre…"
 
 #. Translators: This is a verb, not a noun
 #: src/manuals-window.ui:400
 msgid "Toggle Sidebar"
-msgstr ""
+msgstr "Commuta la barra lateral"
 
 #: src/manuals-window.ui:425 src/manuals-window.ui:478
 #: src/manuals-window.ui:516 src/manuals-window.ui:545
 msgid "Main Menu"
-msgstr ""
+msgstr "Menú principal"
 
 #: src/manuals-window.ui:610 src/manuals-window.ui:639
 msgid "New _Tab"
-msgstr ""
+msgstr "_Pestanya nova"
 
 #: src/manuals-window.ui:615 src/manuals-window.ui:644
 msgid "New _Window"
-msgstr ""
+msgstr "_Finestra nova"
 
 #: src/manuals-window.ui:621 src/manuals-window.ui:650
 msgid "_Install Documentation…"
-msgstr ""
+msgstr "_Instal·la la documentació…"
 
 #: src/manuals-window.ui:627 src/manuals-window.ui:656
 msgid "_About Manuals"
-msgstr ""
+msgstr "Quant _al Manuals"
